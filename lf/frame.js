@@ -1,7 +1,8 @@
-/* [우리이야기] 261116 v181 — 위 띠 로고를 누르면 우리 이야기 마당(/?plaza=1) · 그림 /icon-192.png (대표 16:05 「홈 버튼을 누르면 우리 이야기 메인으로」) */
-/* [우리이야기] uriyagi.kr 사본 — 사랑흐름 lf/frame.js 를 261116 분리 때 받아 사랑흐름 길은 www.loveflow.ai.kr 로 · 우리 이야기 길(/rec/)은 / 로 */
+/* [우리이야기] uriyagi.kr 사본 — 사랑흐름 lf/frame.js v29(loveflow f95a2b8)를 그대로 받음 · 바꾼 것은 주소뿐: ☰ 사랑흐름 쪽 줄 → https://www.loveflow.ai.kr/… · 위 띠 로고 = 우리 이야기 마당(포도송이 · 대표 261116 16:05) · 본부 알약 /?hq=1 · 공유 카드 = 우리 이야기(사랑흐름-소통-021 ②) · 아이콘 파일 uri-* · inRec = true */
 /* ═══════════════════════════════════════════════════════════════════
-   현재 버전 ▶ lf/frame.js · v27 · 261115 · [전체 검토 B · 대표 OK 17:26] 홈 화면 띠 글 「○○를 홈 화면에 추가하고 바로 여세요」(휴대폰에서 네 줄로 접힘) → 「홈 화면에 두고 바로 여세요」 · 그 밖 무손
+   현재 버전 ▶ lf/frame.js · v29 · 261116 · [696 공유하기 · 홈 화면에 추가 표준 · 대표 OK 261116 19:22] ① 공유하기 = 카카오톡 공유 카드(그림 og-image · 제목 「사랑흐름」 · 설명 「마음을 잇고, 이야기를 남기다」 · 단추 「자세히 보기」) — 카카오를 못 부르면 휴대폰 공유 창 → 주소 복사 · window.LFShare 로 어느 화면에서나 부름 ② ☰ 맨 아래 회색 작은 「공유하기」 → 같은 크기 단추 둘 「💬 공유하기」(카카오 노랑) · 「📲 홈 화면에 추가」 · 「다시 시작」은 그 아래 작게 ③ 홈 화면 아이콘 · 위 띠 그림을 사랑흐름 자기 파일(/apple-touch-icon.png · /icon-192.png)로 — 우리 이야기 폴더(/rec/) 그림을 쓰지 않음. [무손] 그 밖 v28 전부.
+   (이전) lf/frame.js · v28 · 261116 · [우리이야기-소통-021 · 022 · 대표 261116 17:49 「저쪽 방에 필요한 거 모두 승인」] ☰ 우리 이야기 줄(마당 · 이야기방 만들기 · 기록관 만들기) → https://uriyagi.kr/… (뒤 꼬리 같음) · 본부 알약 「⌂ 본부로」 → /hq/?hq=1. [무손] 그 밖 v27 전부.
+   (이전) lf/frame.js · v27 · 261115 · [전체 검토 B · 대표 OK 17:26] 홈 화면 띠 글 「○○를 홈 화면에 추가하고 바로 여세요」(휴대폰에서 네 줄로 접힘) → 「홈 화면에 두고 바로 여세요」 · 그 밖 무손
    (이전) lf/frame.js · v26 · 261112 · [포털 검색 ⑤ · 706 · 710 · 대표 OK 20:54] ☰ 「사랑흐름 여행」 상품 넷 링크 → 상품별 새 주소(/item/○○/) · 방문 통계 「상품 진열」 칸에 새 주소 넷 더함 · 옛 주소에서 넘어온 손님의 들어온 곳(lf_xref)을 이어 받음
    (이전) lf/frame.js · v25 · 261111 · [공사 칸 ⑦ 말 · 577~579 · 점검표 말 사전 v1] 손님 화면 말 — 「마음 여행여권 · 관계 여권 · 마음관리청 · 앞말 없는 여권(여권번호)」 → 「사랑흐름 여권 · 사랑흐름 여권번호」 · 「바탕화면에 두기」 → 「홈 화면에 추가」 · 「장수」 → 「몇 명에게」 · 「담긴 여행」 → 「구성」 · 시트 칸 이름(여권번호)과 본부 표 머리 · 짧은 칩은 그대로
    (이전) lf/frame.js · v24 · 261111 · [공사 칸 ⑥ 입구 · 대표 OK 18:36 · 579 · 599] ☰ 「사랑흐름 여행」 큰 칸 바로 아래 「🎁 선물하기」 한 줄(→ /pay.html?mode=gift · 자수정 보라) · 아래 묶음 「사랑흐름 여행」에도 「선물하기」 · 그 묶음 상품 넷 색을 lf/thumb.js 상품 색으로(마음 여행지도 청록 · 마음여행 남색 · 한 편의 기록 가죽 갈색 · 두 분의 여정 와인). [무손] 그 밖 v23 전부.
@@ -136,9 +137,9 @@
       { t: '기관 · 단체', s: '복지 · 교육 · 공공 프로그램 제안', ic: 'build', c: '#1E4A76', u: 'https://www.loveflow.ai.kr/proposal.html' }
     ] },
     { k: 'story', t: '우리 이야기', ic: 'group', c: '#2E7D6B', sub: '나의 일상부터 우리 모두의 이야기까지', items: [   /* ★v11 415 */
-      { t: '우리 이야기 마당', s: '여러 이야기방 · 기록관의 사진', ic: 'show', c: '#2E7D6B', u: '/?plaza=1' },
-      { t: '이야기방 만들기', s: '나 · 가족 · 친구 · 모임 · 우리 가게', ic: 'spark', c: '#1E4A76', u: '/?open=form&kind=story' },
-      { t: '기록관 만들기', s: '학교 · 기관 · 단체 · 회사', ic: 'build', c: '#3B2F72', u: '/?open=form&kind=hall' }
+      { t: '우리 이야기 마당', s: '여러 이야기방 · 기록관의 사진', ic: 'show', c: '#2E7D6B', u: 'https://uriyagi.kr/?plaza=1' },
+      { t: '이야기방 만들기', s: '나 · 가족 · 친구 · 모임 · 우리 가게', ic: 'spark', c: '#1E4A76', u: 'https://uriyagi.kr/?open=form&kind=story' },
+      { t: '기록관 만들기', s: '학교 · 기관 · 단체 · 회사', ic: 'build', c: '#3B2F72', u: 'https://uriyagi.kr/?open=form&kind=hall' }
     ] }
   ];
 
@@ -211,6 +212,7 @@
     + '.lfx-b3{background:linear-gradient(135deg,#1E4A76,#2C6399);box-shadow:inset 0 0 0 1.5px #C9A96E,0 4px 12px rgba(30,74,118,.2)}'
     + '.lfx-b3 i{background:#C9A96E;color:#1E4A76}'
     + '.lfx-b4{background:linear-gradient(160deg,#0F5A68,#08303D);margin:4px 0 4px}.lfx-b5{background:linear-gradient(160deg,#3B2F72,#1F1840);margin:4px 0 4px}.lfx-b4 i{font-size:19px}'   /* ★v14 */
+    + '.lfx-sh{display:flex;gap:8px;margin-top:14px}.lfx-sh button{flex:1 1 0;min-width:0;border:0;border-radius:12px;padding:12px 6px;font:inherit;font-size:14px;font-weight:700;cursor:pointer}.lfx-sh .kk{background:#FEE500;color:#191919}.lfx-sh .hm{background:#F4EEE4;color:#1E4A76;box-shadow:inset 0 0 0 1px #E6DCCB}'   /* ★v29 696 */
     + '.lfx-restart{display:block;margin:10px 4px 0 auto;border:0;background:none;color:#8a7a68;font:inherit;font-size:12px;cursor:pointer}'
     + 'html.lfx #lfgBub,html.lfx .lff-share,html.lfx .lffsw,html.lfx .lff-sb{display:none!important}'
     + 'html.lfx .lff-tick{display:none!important}'   /* ★v8 「여행자들의 발자취」 띠 감춤 — 번호가 모두 시험 번호(대표 확인 261005). 실제 발급이 쌓이면 여권대장에서 읽어 다시 */
@@ -284,17 +286,17 @@
   function menuHtml2() {
     var p = location.pathname + location.search;
     function mi(t, ic, c, u, cls) {
-      var now = (u === p) || (u === location.pathname && u.length > 1 && u.slice(-1) === 'https://www.loveflow.ai.kr/');
+      var now = (u === p) || (u === location.pathname && u.length > 1 && u.slice(-1) === '/');
       return '<button class="lfx-mi' + (cls ? ' ' + cls : '') + (now ? ' now' : '') + '" data-u="' + u + '">'
         + '<span class="lfx-ci" style="background:' + c + ';width:30px;height:30px;flex-basis:30px">' + svg(ic, 16) + '</span>' + t + '</button>';
     }
     return ''
       + '<div class="lfx-mh"><span>사랑흐름</span><button data-x="1" aria-label="닫기">' + svg('x', 16) + '</button></div>'
       + '<div class="lfx-grp">우리 이야기 · 기록관</div>'
-      + '<button class="lfx-big lfx-b4" data-u="/?plaza=1"><i>🍇</i><span><b>우리 이야기 마당</b><small>이야기방 · 기록관의 사진과 이야기</small></span></button>'
+      + '<button class="lfx-big lfx-b4" data-u="https://uriyagi.kr/?plaza=1"><i>🍇</i><span><b>우리 이야기 마당</b><small>이야기방 · 기록관의 사진과 이야기</small></span></button>'
       + '<div class="lfx-two">'
-      +   mi('이야기방 만들기', 'spark', '#1E4A76', '/?open=form&kind=story')
-      +   mi('기록관 만들기', 'build', '#3B2F72', '/?open=form&kind=hall')
+      +   mi('이야기방 만들기', 'spark', '#1E4A76', 'https://uriyagi.kr/?open=form&kind=story')
+      +   mi('기록관 만들기', 'build', '#3B2F72', 'https://uriyagi.kr/?open=form&kind=hall')
       + '</div>'
       + mi('기관 · 단체 제안', 'group', '#5C7FA6', 'https://www.loveflow.ai.kr/proposal.html')
       + '<div class="lfx-grp">마음 전하기 (무료)</div>'
@@ -311,17 +313,36 @@
       + '<div class="lfx-grp">함께하기</div>'
       + mi('안내자 · 제휴 신청', 'hand', '#1E4A76', 'https://www.loveflow.ai.kr/partner.html')
       + mi('안내 받기', 'chat', '#1D9E75', 'https://www.loveflow.ai.kr/guide/?ask=1')
-      + '<div style="display:flex;justify-content:space-between;margin-top:12px"><button class="lfx-restart" style="margin:0" data-share="1">공유하기</button><button class="lfx-restart" style="margin:0" data-restart="1">다시 시작</button></div>';
+      + '<div class="lfx-sh"><button type="button" class="kk" data-share="1">💬 공유하기</button><button type="button" class="hm" data-home="1">📲 홈 화면에 추가</button></div>'   /* ★v29 696 */
+      + '<button class="lfx-restart" data-restart="1">다시 시작</button>';
   }
 
-  function share() {
-    var H = 'https://www.loveflow.ai.kr';
+  /* ★v29 696 공유하기 — 카카오톡 공유 카드 · 안 되면 휴대폰 공유 창 · 주소 복사 */
+  function shareFallback(H) {
     try {
-      if (navigator.share) { navigator.share({ title: '사랑흐름', text: '가장 소중한 사람을 더 알아가는 시간, 사랑흐름', url: H })['catch'](function () {}); return; }
-      if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(H).then(function () { alert('주소를 복사했어요'); }, function () {}); return; }
+      if (navigator.share) { navigator.share({ title: '우리 이야기', text: '우리의 오늘이 모여, 소중한 추억이 됩니다 — 우리 이야기', url: H })['catch'](function () {}); return; }
+      if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(H).then(function () { alert('주소를 복사했습니다'); }, function () { prompt('주소를 복사해 주세요', H); }); return; }
     } catch (e) {}
     prompt('주소를 복사해 주세요', H);
   }
+  function share() {
+    var H = 'https://uriyagi.kr/?plaza=1';
+    function send() {
+      try {
+        if (!Kakao.isInitialized()) { Kakao.init('0c7493c2a8668712a43ccb9cf17387c8'); }
+        Kakao.Share.sendDefault({ objectType: 'feed',
+          content: { title: '우리 이야기', description: '우리의 오늘이 모여, 소중한 추억이 됩니다', imageUrl: 'https://uriyagi.kr/uri-og.png', imageWidth: 1200, imageHeight: 630, link: { mobileWebUrl: H, webUrl: H } },
+          buttons: [{ title: '자세히 보기', link: { mobileWebUrl: H, webUrl: H } }] });
+      } catch (e) { shareFallback(H); }
+    }
+    if (window.Kakao && window.Kakao.Share) { send(); return; }
+    var s = document.createElement('script'); s.src = 'https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js';
+    var done = 0; s.onload = function () { if (done) { return; } done = 1; if (window.Kakao && window.Kakao.Share) { send(); } else { shareFallback(H); } };
+    s.onerror = function () { if (done) { return; } done = 1; shareFallback(H); };
+    setTimeout(function () { if (!done) { done = 1; shareFallback(H); } }, 5000);
+    document.head.appendChild(s);
+  }
+  window.LFShare = share;
 
   function openMenu() {
     var m = document.getElementById('lfxMenu');
@@ -338,6 +359,7 @@
         if (this.getAttribute('data-x')) { closeAll(); return; }
         if (this.getAttribute('data-restart')) { location.reload(); return; }
         if (this.getAttribute('data-share')) { share(); return; }
+        if (this.getAttribute('data-home')) { closeAll(); if (window.LFHomeAdd) { window.LFHomeAdd(); } return; }   /* ★v29 696 */
         var u = this.getAttribute('data-u'); if (u) { go(u); }
       };
     }
@@ -371,7 +393,7 @@
         if (r.indexOf(location.origin) === 0 && history.length > 1) { history.back(); } else { location.href = bk; }
       };
     }
-    top.querySelector('.lfx-logo').onclick = function () { if (/[?&]plaza=1/.test(location.search) && !document.querySelector('.xpg.on')) { window.scrollTo(0, 0); return; } if (window.LF_LEAVE) { return; } window.LF_LEAVE = 1; this.style.opacity = '.5'; try { document.body.classList.add('lfgo'); } catch (e) {} location.href = '/?plaza=1'; };   /* ★[우리이야기 261116 16:05 대표] 로고 = 우리 이야기 마당(사랑흐름 메인 아님) · 그림도 우리 이야기 아이콘 · ★v10 누르는 즉시 표시 · 두 번 눌림 막음 · 늦게 온 대답이 이동을 가로채지 않게 */
+    top.querySelector('.lfx-logo').onclick = function () { if (/[?&]plaza=1/.test(location.search) && !document.querySelector('.xpg.on')) { window.scrollTo(0, 0); return; } if (window.LF_LEAVE) { return; } window.LF_LEAVE = 1; this.style.opacity = '.5'; try { document.body.classList.add('lfgo'); } catch (e) {} location.href = '/?plaza=1'; };   /* ★v10 누르는 즉시 표시 · 두 번 눌림 막음 · 늦게 온 대답이 이동을 가로채지 않게 */
     top.querySelector('.lfx-burger').onclick = openMenu;
     /* ★v12 본부에서 같은 창으로 연 화면 — 로고 자리에 「⌂ 본부로」 */
     try { if (sessionStorage.getItem('lf_from_hq') === '1' && !/[?&](hq|door)=1/.test(location.search)) { var lg = top.querySelector('.lfx-logo'), hp = document.createElement('a'); hp.id = 'lfHqPill'; hp.className = 'lfx-hq'; hp.href = '/?hq=1'; hp.textContent = '⌂ 본부로'; lg.parentNode.replaceChild(hp, lg); } } catch (e) {}
@@ -419,12 +441,12 @@
      · 화면이 window.LF_WAY = { back, home, fwd } 를 주면 그 뜻으로(자서전 물음 = 앞 물음 · 자서전 홈 · 다음 물음)
      · 글 쓰는 칸을 눌러도 숨지 않음(화면 안에 놓임) */
   function wayHome() {
-    var p = location.pathname || 'https://www.loveflow.ai.kr/';
-    if (p.indexOf('https://www.loveflow.ai.kr/memoir/') === 0) {
+    var p = location.pathname || '/';
+    if (p.indexOf('/memoir/') === 0) {
       var pp = ''; try { pp = sessionStorage.getItem('lf_passport') || localStorage.getItem('lf_passport') || ''; } catch (e) {}
-      return 'https://www.loveflow.ai.kr/memoir/home.html' + (pp ? '?id=' + encodeURIComponent(pp) : '');
+      return '/memoir/home.html' + (pp ? '?id=' + encodeURIComponent(pp) : '');
     }
-    return 'https://www.loveflow.ai.kr/';
+    return '/';
   }
   function wayBack() {
     var W = window.LF_WAY; if (W && W.back && W.back() === true) { return; }
@@ -462,7 +484,7 @@
 
 /* ★v13 칸 2 434 방문 통계 — 개인정보 없이 · 서버 주소는 lf/config.js 한 곳에서 읽음 */
 (function () {
-  var P = location.pathname, SCR = { 'https://www.loveflow.ai.kr/': '첫 화면', 'https://www.loveflow.ai.kr/index.html': '첫 화면', 'https://www.loveflow.ai.kr/travel/': '사랑흐름 여행', 'https://www.loveflow.ai.kr/travel/index.html': '사랑흐름 여행', 'https://www.loveflow.ai.kr/showcase.html': '상품 진열', 'https://www.loveflow.ai.kr/item/': '상품 진열', 'https://www.loveflow.ai.kr/item/index.html': '상품 진열', 'https://www.loveflow.ai.kr/item/map/': '상품 진열', 'https://www.loveflow.ai.kr/item/set/': '상품 진열', 'https://www.loveflow.ai.kr/item/memoir/': '상품 진열', 'https://www.loveflow.ai.kr/item/life/': '상품 진열', 'https://www.loveflow.ai.kr/pay.html': '결제 화면' }[P];   /* ★v17 458 — 상품 설명 화면은 서버 표의 「상품 진열」 칸으로 셈(서버 VIS_SCREENS 그대로) */
+  var P = location.pathname, SCR = { '/': '첫 화면', '/index.html': '첫 화면', '/travel/': '사랑흐름 여행', '/travel/index.html': '사랑흐름 여행', '/showcase.html': '상품 진열', '/item/': '상품 진열', '/item/index.html': '상품 진열', '/item/map/': '상품 진열', '/item/set/': '상품 진열', '/item/memoir/': '상품 진열', '/item/life/': '상품 진열', '/pay.html': '결제 화면' }[P];   /* ★v17 458 — 상품 설명 화면은 서버 표의 「상품 진열」 칸으로 셈(서버 VIS_SCREENS 그대로) */
   if (!SCR) { return; }
   try { if (sessionStorage.getItem('lf_from_hq')) { return; } } catch (e0) { }
   var Q = [], T = null, N = 0, CLK = 0, T0 = Date.now(), SID = '', FIRST = '처음', DEV = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent || '') ? '폰' : '컴', REF = '';
@@ -510,7 +532,7 @@
   var inApp = inKakao || /NAVER\(inapp|Instagram|FBAN|FBAV|Line\//i.test(ua);
   var isIos = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
   var isPhone = isIos || /Android/i.test(ua);
-  var inRec = location.pathname.indexOf('/') === 0;
+  var inRec = true;   /* [우리이야기] 이 사이트 전체가 우리 이야기(사랑흐름 /rec/ 와 같은 길) */
   function standalone() { try { return window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true; } catch (e) { return false; } }
   var EV = null;
   /* 우리 이야기 밖 화면: 설치 신분증 · 아이폰 아이콘 · 일꾼 */
@@ -518,9 +540,9 @@
     try {
       var hd = document.head || document.documentElement;
       if (!document.querySelector('link[rel="manifest"]')) { var m = document.createElement('link'); m.rel = 'manifest'; m.href = '/manifest.webmanifest'; hd.appendChild(m); }
-      if (!document.querySelector('link[rel="apple-touch-icon"]')) { var a = document.createElement('link'); a.rel = 'apple-touch-icon'; a.href = '/apple-icon-180.png'; hd.appendChild(a); }
+      if (!document.querySelector('link[rel="apple-touch-icon"]')) { var a = document.createElement('link'); a.rel = 'apple-touch-icon'; a.href = '/uri-apple-180.png'; hd.appendChild(a); }
       if (!document.querySelector('meta[name="apple-mobile-web-app-title"]')) { var t = document.createElement('meta'); t.name = 'apple-mobile-web-app-title'; t.content = '사랑흐름'; hd.appendChild(t); }
-      if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js', { scope: 'https://www.loveflow.ai.kr/' })['catch'](function () {}); }
+      if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js', { scope: '/' })['catch'](function () {}); }
     } catch (e) {}
     window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); EV = e; });
   }
@@ -570,7 +592,7 @@
     if (document.documentElement.classList.contains('admm') || document.body.classList.contains('admm') || document.body.classList.contains('desk')) { return; }
     css();
     var b = document.createElement('div'); b.className = 'lfh-band'; b.id = 'lfhBand';
-    b.innerHTML = '<img src="/icon-192.png" alt=""><div class="tx">' + '홈 화면에 두고 바로 여세요</div>'
+    b.innerHTML = '<img src="/uri-icon-192.png" alt=""><div class="tx">' + '홈 화면에 두고 바로 여세요</div>'
       + '<button type="button" class="go">홈 화면에 추가</button><button type="button" class="x" aria-label="닫기">✕</button>';
     var top = document.getElementById('lfxTop');
     /* ★v22 몸이 가로 줄(flex row)인 화면(gate · pay · apply · journey · letter · memoir 등 12곳)에서는 띠가 옆 칸이 되어

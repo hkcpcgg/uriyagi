@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v187 · 261116 · [우리이야기] 대표 20:16 — 마당 방마다 12장까지 · 큰 방만 남으면 끊고 「여기까지입니다」 · 맨 아래 「사랑흐름 가기 ›」(사랑흐름 .ur · 로고 파일 그대로) · 위 띠 제목 옆 「💬 공유하기」(사랑흐름-소통-021 표준) · 왼쪽 위 둥근 홈 단추 그림 = 포도송이(lf/frame.js v19) · REC_VER 187 -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v188 · 261116 · [우리이야기] 대표 20:36 「사랑흐름에서 세워 놓은 것 그대로 갖다 써라」 — lf/frame.js 를 사랑흐름 v29 로 다시 받음(☰ 맨 아래 공유하기 · 홈 화면에 추가 · 공유 카드 · 바뀐 것은 주소뿐) · 제목 옆 공유하기도 그 LFShare · REC_VER 188 -->
+<!-- (이전) ★ 현재 버전 ▶ rec/index.html · v187 · 261116 · [우리이야기] 대표 20:16 — 마당 방마다 12장까지 · 큰 방만 남으면 끊고 「여기까지입니다」 · 맨 아래 「사랑흐름 가기 ›」(사랑흐름 .ur · 로고 파일 그대로) · 위 띠 제목 옆 「💬 공유하기」(사랑흐름-소통-021 표준) · 왼쪽 위 둥근 홈 단추 그림 = 포도송이(lf/frame.js v19) · REC_VER 187 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v186 · 261116 · [우리이야기] 그냥 주소로 오면 로그인했어도 마당 먼저(카톡에서 열면 내 방으로 가던 것) · 바탕 아이콘 · 안에서 방 옮김은 내 방 그대로 · REC_VER 186 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v185 · 261116 · [우리이야기] 네이버 가로 480 그림(n.s · 서버 ①Code v92) — 바둑판 칸(480 이하)은 480 · REC_VER 185 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v184 · 261116 · [우리이야기] 네이버 사진 크기 — 마당 큰 칸 · 게시물(보통 크기)은 가로 800 중간 그림(n.m · 서버 ①Code v91), 아직 없으면 드라이브 썸네일 · 원본을 통째로 받지 않음 · 작게(300 이하)는 작은 그림 · REC_VER 184 -->
@@ -2377,15 +2378,10 @@ function pzRooms(){   /* ★v66 390 내 방 먼저(이 기기에서 들어가 �
   h+=oth.map(function(r){ return one(r,''); }).join('')+sm;   /* ★v138 629 「(견본)」 방은 맨 뒤 */
   h+=(PLZ.locks||[]).map(function(x,i){ return mine[x.name]?'':'<button type="button" class="st lk" data-lk="'+i+'"><span class="c"><i class="ini">'+esc(String(x.name).charAt(0))+'</i><em class="hb" title="멤버만 보는 방">🔒</em></span><span class="n">'+esc(x.name)+'</span></button>'; }).join('');   /* ★v181 ⑧ 닫힌 방도 이름은 보임 · 사진은 누를 때만 */
   return '<nav class="sto" aria-label="방">'+h+'<button type="button" class="st mk" id="stMk"><span class="c"><i>＋</i></span><span class="n">만들기</span></button></nav>'; }
-/* ★v187 사랑흐름-소통-021 공유하기 표준 — 마당 제목 옆 「💬 공유하기」 · 누르면 바로 카카오톡 카드 → 안 되면 휴대폰 공유 창 → 주소 복사 */
+/* ★v188 마당 제목 옆 「💬 공유하기」 — 누르면 사랑흐름 lf/frame.js v29 의 LFShare 그대로(카드만 우리 이야기 · 따로 짜지 않음) */
 function shrTop(){ if(VIEW!=='plaza'){ return; } var t=$('lfxTop'); if(!t){ setTimeout(shrTop,300); return; } if($('shrTop')){ return; }
   var sl=t.querySelector('.lfx-slot'); if(!sl){ sl=document.createElement('div'); sl.className='lfx-slot'; t.appendChild(sl); } t.classList.add('has-slot','has-shr');
-  var b=document.createElement('button'); b.type='button'; b.id='shrTop'; b.className='shr'; b.textContent='💬 공유하기'; b.onclick=uriShare; sl.appendChild(b); }
-function uriShare(){ var u='https://uriyagi.kr/?plaza=1', ti='우리 이야기', de='우리의 오늘이 모여, 소중한 추억이 됩니다';
-  kakaoJs(function(ok){
-    if(ok){ try{ Kakao.Share.sendDefault({objectType:'feed',content:{title:ti,description:de,imageUrl:'https://uriyagi.kr/uri-og.png',link:{mobileWebUrl:u,webUrl:u}},buttons:[{title:'자세히 보기',link:{mobileWebUrl:u,webUrl:u}}]}); return; }catch(e){} }
-    if(navigator.share){ navigator.share({title:ti,text:de,url:u}).catch(function(){}); return; }
-    copyLink(u,'주소를 복사했습니다','카카오톡 · 문자에 붙여 넣어 주십시오'); }); }
+  var b=document.createElement('button'); b.type='button'; b.id='shrTop'; b.className='shr'; b.textContent='💬 공유하기'; b.onclick=function(){ if(window.LFShare){ LFShare(); } }; sl.appendChild(b); }
 /* ★v66 390 마당 위 바에 「나」 */
 function meTop(){ if(VIEW!=='plaza'||$('meTop')){ return; } var t=$('lfxTop'); if(!t){ setTimeout(meTop,300); return; }
   var sl=t.querySelector('.lfx-slot'); if(!sl){ sl=document.createElement('div'); sl.className='lfx-slot'; t.appendChild(sl); t.classList.add('has-slot'); }
@@ -6330,7 +6326,7 @@ window.addEventListener('appinstalled',function(){ PWA_EV=null; var b=$('pwaGo')
 try{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js',{scope:'/'})['catch'](function(){});
   /* ★v62 375 새 화면 파일을 받아 오면 한 번 바꿔 엶 — 첫 화면 · 광장에서만(쓰는 중에는 기다렸다가 첫 화면으로 돌아올 때) */
   navigator.serviceWorker.addEventListener('message',function(ev){ if(!ev.data||ev.data.t!=='lf-new'){ return; } NEWV=1; newGo(); }); } }catch(e){}
-var NEWV=0, REC_VER=187;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
+var NEWV=0, REC_VER=188;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
 function newChk(){ try{ if(!window.caches){ return; } caches.open('lf-rec-shell-v2').then(function(c){ return c.match('/'); }).then(function(r){ return r?r.text():''; }).then(function(t){ var m=/rec\/index\.html · v(\d+)/.exec(String(t).slice(0,600)); if(m&&parseInt(m[1],10)>REC_VER){ NEWV=1; newGo(); } })['catch'](function(){}); }catch(e){} }   /* ★v62 375 알림을 놓쳐도 남겨 둔 파일 버전을 직접 봄 */
 setTimeout(newChk,5000); setTimeout(newChk,15000);
 document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible'){ setTimeout(newChk,1500); } });
@@ -7246,6 +7242,6 @@ document.addEventListener('DOMContentLoaded',function(){
 })();
 </script>
 <script src="/lf/flow.js?v=2"></script>
-<script src="/lf/frame.js?v=19"></script>
+<script src="/lf/frame.js?v=29"></script>
 </body>
 </html>
