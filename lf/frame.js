@@ -1,0 +1,591 @@
+/* [우리이야기] uriyagi.kr 사본 — 사랑흐름 lf/frame.js 를 261116 분리 때 받아 사랑흐름 길은 www.loveflow.ai.kr 로 · 우리 이야기 길(/rec/)은 / 로 */
+/* ═══════════════════════════════════════════════════════════════════
+   현재 버전 ▶ lf/frame.js · v27 · 261115 · [전체 검토 B · 대표 OK 17:26] 홈 화면 띠 글 「○○를 홈 화면에 추가하고 바로 여세요」(휴대폰에서 네 줄로 접힘) → 「홈 화면에 두고 바로 여세요」 · 그 밖 무손
+   (이전) lf/frame.js · v26 · 261112 · [포털 검색 ⑤ · 706 · 710 · 대표 OK 20:54] ☰ 「사랑흐름 여행」 상품 넷 링크 → 상품별 새 주소(/item/○○/) · 방문 통계 「상품 진열」 칸에 새 주소 넷 더함 · 옛 주소에서 넘어온 손님의 들어온 곳(lf_xref)을 이어 받음
+   (이전) lf/frame.js · v25 · 261111 · [공사 칸 ⑦ 말 · 577~579 · 점검표 말 사전 v1] 손님 화면 말 — 「마음 여행여권 · 관계 여권 · 마음관리청 · 앞말 없는 여권(여권번호)」 → 「사랑흐름 여권 · 사랑흐름 여권번호」 · 「바탕화면에 두기」 → 「홈 화면에 추가」 · 「장수」 → 「몇 명에게」 · 「담긴 여행」 → 「구성」 · 시트 칸 이름(여권번호)과 본부 표 머리 · 짧은 칩은 그대로
+   (이전) lf/frame.js · v24 · 261111 · [공사 칸 ⑥ 입구 · 대표 OK 18:36 · 579 · 599] ☰ 「사랑흐름 여행」 큰 칸 바로 아래 「🎁 선물하기」 한 줄(→ /pay.html?mode=gift · 자수정 보라) · 아래 묶음 「사랑흐름 여행」에도 「선물하기」 · 그 묶음 상품 넷 색을 lf/thumb.js 상품 색으로(마음 여행지도 청록 · 마음여행 남색 · 한 편의 기록 가죽 갈색 · 두 분의 여정 와인). [무손] 그 밖 v23 전부.
+   (이전) lf/frame.js · v23 · 261111 · [공사 칸 ⑤ 견본에서 찾음 · 595] ← ⌂ → 를 붙인 543 공사(261109 16:31 · 355a013)부터 window.LFWay 를 통째로 덮어써 lf/way.js 의 LFWay.get 이 사라짐 → apply.html(계좌이체 접수) · gate.html(네이버 · 오픈마켓 발권 신청) 신청 단추에서 오류로 멈춤 → 있는 LFWay 에 back · home · fwd 만 덧붙임. [무손] 그 밖 v22 전부.
+   (이전) lf/frame.js · v22 · 261111 · [공사 칸 ④ 견본에서 찾음 · 594] 휴대폰 「홈 화면에 추가」 위 띠(v18)가 몸이 가로 줄(flex row)인 화면 12곳(gate · pay · apply · enter · reenter · showroom · journey · journey/result · letter · memoir · hanmadi · hq)에서 본문 옆 칸이 되어 카드를 좁은 세로 줄로 짓누르던 것 → 그런 화면에서는 위 띠 바로 아래에 떠 있게. [무손] 그 밖 v21 전부.
+   (이전) lf/frame.js · v21 · 261110 · [558 · 대표 OK 19:19] ☰ 「사랑흐름 여행」 상품 넷이 설명 없이 바로 결제(/pay.html)로 가던 것 → 상품 설명(/item/?k=set · memoir · life · map)으로 · 구매하기는 설명 화면 안에서. [무손] 그 밖 v20 전부.
+   (이전) lf/frame.js · v20 · 261109 · [543 · 대표 지적 261109 16:12 「앞으로 · 뒤로 · 홈 단추가 왜 없어졌냐」] ★v1(261004)부터 옛 길 셋(.lfway)을 감추기만 하고 261015 기준 「← ⌂ →」 을 되살리지 않았던 것 — 모든 화면 푸터 바로 위에 동그라미 셋을 둠(화면이 자기 것을 가졌으면 그것) · 화면이 window.LF_WAY 로 뜻을 정할 수 있음 · 자서전 화면 ⌂ = 내 이야기 목록. [무손] 그 밖 v19 전부.
+   (이전) lf/frame.js · v19 · 261106 · [500 소통 · 대표 261106 09:10 「카톡에서 열면 반드시 되는 브라우저로」 · 견본] 카톡 안에서 바깥 브라우저로 넘길 때 여권번호를 주소(?id=)에 실어 보냄 — 바깥 브라우저에서 번호를 다시 넣지 않고 그 자리 그대로. [무손] v18 전부.
+   (이전) lf/frame.js · v18 · 261105 · [533 · 대표 OK 261105 11:28 · 송암 가계도 방식] ① 카톡 안에서 열면 바로 바깥 브라우저(크롬 · 사파리)로 넘김(kakaotalk://web/openExternal · 한 창에 한 번 · ?kk=0 이면 안 넘김) ② 휴대폰 화면 위 띠 「사랑흐름을 바탕화면에 두고 바로 여세요 · 홈 화면에 추가 · ✕」(✕ 누른 분 · 아이콘으로 연 분 · 컴퓨터 · 관리 화면은 안 뜸) ③ 우리 이야기(/rec/) 밖 화면에 설치 신분증(/manifest.webmanifest) · 일꾼(/sw.js) · /rec/ 는 원래 「바탕화면에 두기」(pwaGo)로. [무손] 그 밖 v17 전부.
+   (이전) lf/frame.js · v17 · 261026 · [칸 4-나 458 · 대표 「진행」 11:16] ① 상품 설명 화면(/item/) 방문 · 누름 · 나감을 방문 통계 「상품 진열」 칸으로 셈(옛 진열장 자리 · 서버 이름표 그대로라 서버는 안 고침) ② /item/ · /travel/ 에서 아래 띠 「사랑흐름 여행」에 불 ③ 쓰이지 않던 옛 ☰(menuHtml) 지움. [무손] 새 ☰ · 방문 통계 장치 · 그 밖 v16 전부.
+   (이전) lf/frame.js · v16 · 261024 · [칸 4 · 454 · 대표 OK 261024 21:16] 아래 묶음 띠 · ☰ 큰 카드 「예매하기」 → 「사랑흐름 여행」(첫 화면 보라 띠 · 새 ☰ 묶음과 같은 이름 · 73차 결정 6). [무손] 그 밖 v15 전부.
+   (이전) lf/frame.js · v15 · 261024 · [칸 3 435 · 대표 20:49 「바로 반영」] 새 ☰(우리 이야기 · 기록관 → 마음 전하기 (무료) → 사랑흐름 여행 · 구매한 여행 이어가기 → 함께하기)를 모든 화면에 · 아래 묶음 「맛보기」 → 「마음 전하기 · 무료」 모든 화면 · 「내 여행」 묶음 「여권 입장」 → 「구매한 여행 이어가기」. [무손] 그 밖 v14 전부
+   (이전) lf/frame.js · v14 · 261024 · [칸 3 435 · 73차 결정 5 · 9] ☰ 메뉴 새 차례(시험판) — body 에 data-lf-menu="2" 를 단 화면(첫 화면 시험판 home-new v6)에서만 새 ☰: 우리 이야기 · 기록관(마당 · 이야기방 만들기 · 기록관 만들기 · 기관 · 단체 제안) → 마음 전하기 (무료) → 사랑흐름 여행(사랑흐름 여행 · 구매한 여행 이어가기 · 여권 찾기 · 휴대폰 관리 · 여행의 기록) → 함께하기 · 그 화면의 아래 묶음 「맛보기」 이름 = 「마음 전하기 (무료)」. 다른 화면은 v13 그대로(대표 휴대폰 OK 뒤 v15 에서 모든 화면에). [무손] 그 밖 v13 전부
+   (이전) lf/frame.js · v13 · 261024 · [칸 2 434 · 대표 18:49 OK] 방문 통계 — 첫 화면 · 사랑흐름 여행 · 상품 진열 · 결제 화면에서만 방문(처음 · 다시) · 단추 누름(단추 글 → 갈 곳 · 주소 뒤 물음은 빼고) · 나감(머문 초 · 누름 수)을 우리 이야기 서버 recVisit 로 보냄(「방문 통계」 탭) · 이름 · 연락처 · 입력 칸 글은 보내지 않음 · 묶음 = 그 창의 무작위 번호 · 들어온 곳은 바깥 주소 이름만 · 본부에서 열고 온 화면은 세지 않음 · [무손] 그 밖 v12 전부
+   (이전) lf/frame.js · v12 · 261024 · [칸 7-나 428 · 443] 본부(/rec/?hq=1) 「화면 목록」 · 「주문 · 발급」에서 같은 창으로 연 화면은 위 띠 로고 자리에 「⌂ 본부로」 — 본부로 돌아가는 길(본부에 들어가면 표시가 지워짐) · 그 밖 무손
+   (이전) lf/frame.js · v11 · 261023 · [대표 16:29 「OK 없이 쭉」 · 415 · 306] ① 아래 길목 띠 다섯째 「제휴」 → 「우리 이야기」(마당 · 이야기방 만들기 · 기록관 만들기) — 제휴 두 칸은 「둘러보기」 아래로 ② ☰에 「우리 이야기」 묶음(마당 · 만들기) ③ 「마음 여행여권으로 입장」 → 「여권 입장」(71차 말). [무손] 그 밖 v10 전부.
+   (이전) lf/frame.js · v10 · 261023 · [대표 말씀 16:01] 로고 누르면 즉시 반쯤 흐려짐 · window.LF_LEAVE 표시(우리 이야기 화면이 늦은 대답으로 이동을 가로채지 않음) · 두 번 눌림 막음. [무손] 그 밖 v9 전부.
+   (이전) lf/frame.js · v9 · 261010 · [기기 열쇠 · 자서전 서버 v47] ☰ 메뉴와 「내 여행」 칸에 「휴대폰 관리」(/lf/device.html) 한 줄 · 아이콘 phone. [무손] 그 밖 전부.
+   (이전) lf/frame.js · v8 · 261005 · [한 바퀴 점검 · 대표 261005] ★「사랑흐름 여행자들의 발자취」 띠(.lff-tick)를 틀을 붙인 모든 화면에서 감춤 — 흐르던 번호가 모두 지난 시험 번호라, 개통 뒤 손님 눈에 있지도 않은 손님처럼 보임. ☰ 메뉴 「예매하기」 아래 상품 넷을 결제 화면 이름 · 차례로.
+   (이전) v7 · 261005 · [칸 15 · 이슈 77 · 대표 위임] ★안내자 주소(?lf=ORG-…)를 틀이 붙은 모든 화면에서 주워 둠(새 첫 화면에서 빠져 있던 것) · 안내자 기억은 90일 — 지나면 지움(lf_org 「번호|시각」). 결제 · 발권 · 입금 화면은 지금처럼 lf_org 를 읽음.
+   (이전) v6 · 261005 · [칸 27-4 · 화면 안 「‹ 이전」] 차례가 있는 화면(발권 · 입금 정보 · 이름 남기기 · 동의 · 입장)에서 옛 위 띠의 「‹」가 사라져 뒤로 갈 길이 휴대폰 뒤로 단추뿐이던 것 — <body data-lf-back="/돌아갈곳"> 이 있으면 위 띠 바로 아래에 작은 「‹ 이전」 줄을 깜(앞 화면이 사이트 안이면 그리로, 아니면 적어 둔 곳으로).
+   (이전) v5 · 261005 · [칸 27-4 · 대표 결정 261005 00:35] 아래 띠 「제휴」 셋 → 둘 — 「안내자 · 제휴 신청」(/partner.html · 안내자 되기와 사업 제휴를 한 화면으로) · 「기관 · 단체」(/proposal.html). ☰ 카드 이름도 「안내자 · 제휴 신청」.
+   (이전) v4 · 261004 · [칸 27-4 · 나머지 화면에 틀 붙이기] 옛 상단바 한 종류 더 감춤(.lf-nav · #lfBackdrop — 발권 · 입금 정보 등 21곳이 쓰던 것) · 화면 이름을 .lf-nav .loc 에서도 읽음 · ★첫 주소(/)는 안내 홈 — 마음 한마디 길을 /hanmadi/ 로(아래 띠 맛보기 · ☰), / 에서는 아래 띠 불 안 켬 · ★위 띠 오른쪽 자리(data-lfx-top) — 화면이 꼭 위에 두어야 하는 단추(마음 한마디 소리 켜고 끄기 등)를 ☰ 왼쪽으로 옮겨 붙임(제목 가운데는 그대로).
+   (이전) v3 · 261004 · [칸 27-3] 알맹이 부품 lf/look.css 를 함께 붙임(화면에 따로 안 적어도 됨).
+   (이전) v2 · 261004 · [칸 27-2 · 대표 실폰 확인 지적] ★떠 있는 「안내 받아보기」 단추(#lfgBub) · 옛 공유 동그라미(↗)를 붙인 화면에서 감춤 — 안내 받기는 아래 띠 「둘러보기」에, 공유는 ☰ 메뉴 「공유하기」로.
+   (이전) v1 · 261004 · [자서전 공사 칸 27-2 · 화면 틀 공용 부품]
+   사랑흐름 화면 틀 — 위 띠 · ☰ 메뉴 · 아래 길목 띠(다섯 묶음) · 올라오는 판.
+   이 한 파일만 고치면 붙인 화면이 함께 바뀝니다(기준서 「칸27_화면틀_기준서_261004」).
+
+   [쓰는 법] 화면 </body> 바로 앞에 한 줄
+       <script src="/lf/frame.js?v=1"></script>
+     · 화면 이름: <body data-lf-title="내 이야기 목록"> 가 있으면 그것,
+       없으면 옛 상단바의 가운데 글(.gnav .lc · #loc), 그것도 없으면 <title> 앞부분.
+     · 붙이면 그 화면의 옛 상단바(.gnav · .topbar) · 옛 메뉴(.gdrawer · .drawer · #lfMenu)
+       · 옛 길 셋(.lfway)은 감춥니다(지우지 않음 — 되돌리기 쉽게).
+   [틀] 위 띠(딥네이비 · 왼쪽 로고 = 홈 · 화면 이름 · ☰)
+        아래 띠(딥네이비 · 같은 크기 동그라미 다섯 · 누르면 그 묶음 칸이 아래에서 올라옴)
+        · 글 쓰는 칸을 누르면(자판) 아래 띠가 숨음 · 인쇄 때 위아래 띠 빠짐
+   [색] 딥네이비 = 틀 · 누르는 곳 / 골드 = 소중한 것 / 오렌지(살구) = 지금 여기 · 새것
+   [원칙] 백틱 금지 · 문자열 연결(+)만 · 아이콘은 모두 동그라미 · 이모지 대신 선 아이콘
+   ═══════════════════════════════════════════════════════════════════ */
+/* ★v18 533 카톡 안에서 열리면 바로 바깥 브라우저로 — 한 창에 한 번 · ?kk=0 이면 안 넘김 */
+(function () {
+  try {
+    var ua = navigator.userAgent || '';
+    if (!/KAKAOTALK/i.test(ua) || /[?&]kk=0/.test(location.search)) { return; }
+    if (sessionStorage.getItem('lf_kk_out') === '1') { return; }
+    sessionStorage.setItem('lf_kk_out', '1');
+    var u = location.href.split('#')[0];
+    /* ★v19 여권번호를 주소에 실어 보냄 — 바깥 브라우저에는 카톡 안 기억이 없으므로(자서전 · 편지 등 ?id= 로 이어 씀) */
+    try {
+      var pp = (window.LFPass && LFPass.no && LFPass.no()) || sessionStorage.getItem('lf_passport') || localStorage.getItem('lf_passport') || '';
+      if (pp && /^\/(memoir|letter|l|journey|m|draw|hanmadi)\//.test(location.pathname) && !/[?&]id=/.test(u)) { u += (u.indexOf('?') > -1 ? '&' : '?') + 'id=' + encodeURIComponent(String(pp).trim().toUpperCase()); }
+    } catch (e2) {}
+    window.__lfOut = u;
+    location.replace('kakaotalk://web/openExternal?url=' + encodeURIComponent(u));
+  } catch (e) {}
+})();
+(function () {
+  /* ★v7 안내자 주소 줍기 · 90일 기억 (틀이 그려지기 전에 먼저) */
+  try {
+    var LF_ORG_DAYS = 90;
+    var mo = location.search.match(/[?&]lf=(ORG-?[0-9]{1,6})/i);
+    if (mo) {
+      var v = mo[1].toUpperCase().replace(/^ORG-?/, '');
+      while (v.length < 3) { v = '0' + v; }
+      localStorage.setItem('lf_org', 'ORG-' + v + '|' + (new Date()).getTime());
+    } else {
+      var raw = localStorage.getItem('lf_org') || '';
+      var t = Number(raw.split('|')[1] || 0);
+      if (raw && t && (new Date()).getTime() - t > LF_ORG_DAYS * 86400000) { localStorage.removeItem('lf_org'); }
+    }
+  } catch (eO) {}
+  if (window.LFFrame) { return; }
+
+  var C = { navy: '#1E4A76', gold: '#C9A96E', peach: '#E59273', cream: '#FFFCF7', sand: '#F4EEE4' };
+
+  /* ── 선 아이콘 한 벌 (24 상자) ── */
+  var IC = {
+    pass:   '<rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M9 16h6"/>',
+    find:   '<circle cx="11" cy="11" r="6"/><path d="M16 16l4 4"/>',
+    mem:    '<path d="M5 4h10a2 2 0 012 2v14H7a2 2 0 01-2-2z"/><path d="M8 8h6M8 11h6"/><path d="M19 7l2 2-6 6-2 .5.5-2z"/>',
+    spark:  '<path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/>',
+    word:   '<path d="M4 5h16v11H9l-5 4z"/>',
+    draw:   '<path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 6l3 3"/>',
+    compass:'<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5L11 11l-2.5 4.5L13 13z"/>',
+    ticket: '<path d="M4 8a2 2 0 002-2h12a2 2 0 002 2v2a2 2 0 000 4v2a2 2 0 00-2 2H6a2 2 0 00-2-2v-2a2 2 0 000-4z"/><path d="M14 6v12" stroke-dasharray="2 2"/>',
+    map:    '<path d="M9 4L3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5 9 4z"/><path d="M9 4v13M15 6.5v13"/>',
+    letter: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>',
+    two:    '<circle cx="8.5" cy="8" r="2.6"/><circle cx="16" cy="8" r="2.6"/><path d="M3.5 19c0-2.5 2.2-4.2 5-4.2s5 1.7 5 4.2"/><path d="M14.6 15.1c2.4.2 4.4 1.8 4.4 3.9"/>',
+    group:  '<circle cx="12" cy="8" r="3"/><path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="5" cy="10" r="2"/><circle cx="19" cy="10" r="2"/>',
+    show:   '<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/>',
+    chat:   '<path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/>',
+    hand:   '<path d="M3 12l4-4 4 2 3-2 7 5-4 4-3-1-3 3-3-1-3-3z"/><path d="M11 10l3 3"/>',
+    build:  '<path d="M4 20V9l8-5 8 5v11"/><path d="M9 20v-6h6v6"/>',
+    menu:   '<path d="M4 7h16M4 12h16M4 17h16"/>',
+    phone:  '<rect x="7" y="2.5" width="10" height="19" rx="2.2"/><path d="M11 18h2"/>',
+    gift:   '<rect x="3.5" y="9" width="17" height="11" rx="1.5"/><path d="M2.5 9h19v-3h-19z"/><path d="M12 6v14"/><path d="M12 6c-1.5-3-5-3-5-1s3 1 5 1c2 0 5 1 5-1s-3.5-2-5 1z"/>',   /* ★v24 */
+    x:      '<path d="M6 6l12 12M18 6L6 18"/>'
+  };
+  function svg(k, s) {
+    return '<svg viewBox="0 0 24 24" width="' + (s || 18) + '" height="' + (s || 18) + '" fill="none" stroke="currentColor" '
+      + 'stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (IC[k] || '') + '</svg>';
+  }
+
+  /* ── 길목 다섯 묶음 · 그 안의 칸 ── */
+  var GROUPS = [
+    { k: 'mine', t: '내 여행', ic: 'pass', c: '#C9A96E', items: [
+      { t: '구매한 여행 이어가기', s: '쓰던 곳으로 바로', ic: 'pass', c: '#C9A96E', u: 'https://www.loveflow.ai.kr/reenter.html' },   /* ★v15 73차 결정 5 */
+      { t: '사랑흐름 여권 찾기', s: '번호가 기억나지 않을 때', ic: 'find', c: '#7F97B2', u: 'https://www.loveflow.ai.kr/find/' },
+      { t: '내 기록 보기', s: '쓴 글 · 완성된 기록', ic: 'mem', c: '#C0872E', u: 'https://www.loveflow.ai.kr/memoir/home.html' },
+      { t: '휴대폰 관리', s: '다른 휴대폰 · 대리인', ic: 'phone', c: '#5C7FA6', u: 'https://www.loveflow.ai.kr/lf/device.html' }
+    ] },
+    { k: 'taste', t: '마음 전하기', ic: 'spark', c: '#8A6FC9', sub: '무료', items: [   /* ★v15 71차 말 */
+      { t: '마음 한마디', s: '오늘 마음을 한마디로', ic: 'word', c: '#E59273', u: 'https://www.loveflow.ai.kr/hanmadi/' },
+      { t: '삐뚤빼뚤 마음 도화지', s: '손가락으로 그려 보내기', ic: 'draw', c: '#8A6FC9', u: 'https://www.loveflow.ai.kr/draw/' },
+      { t: '관계 나침반', s: '무료로 먼저 해 보기', ic: 'compass', c: '#1D9E75', u: 'https://www.loveflow.ai.kr/compass.html' }
+    ] },
+    { k: 'buy', t: '사랑흐름 여행', ic: 'ticket', c: '#E58A5F', items: [
+      { t: '마음여행', s: '여행지도와 편지', ic: 'letter', c: '#24508A', u: 'https://www.loveflow.ai.kr/item/set/' },
+      { t: '한 편의 기록', s: '나의 이야기를 한 편씩', ic: 'mem', c: '#9A6334', u: 'https://www.loveflow.ai.kr/item/memoir/' },
+      { t: '두 분의 여정', s: '지도 · 편지 · 기록까지', ic: 'two', c: '#8E3B62', u: 'https://www.loveflow.ai.kr/item/life/' },
+      { t: '마음 여행지도', s: '나를 먼저 돌아보기', ic: 'map', c: '#1E8C76', u: 'https://www.loveflow.ai.kr/item/map/' },
+      { t: '선물하기', s: '소중한 분께 마음을 담아', ic: 'gift', c: '#4B33B0', u: 'https://www.loveflow.ai.kr/pay.html?mode=gift' },   /* ★v24 579 */
+      { t: '단체 · 기관', s: '여럿이 함께 떠나기', ic: 'group', c: '#5C7FA6', u: 'https://www.loveflow.ai.kr/proposal.html' }
+    ] },
+    { k: 'look', t: '둘러보기', ic: 'show', c: '#C25B7C', items: [
+      { t: '여행의 기록', s: '먼저 다녀간 분들의 이야기', ic: 'show', c: '#C25B7C', u: 'https://www.loveflow.ai.kr/showroom.html' },
+      { t: '자서전 소개', s: '한 편의 기록이 무엇인지', ic: 'mem', c: '#C0872E', u: 'https://www.loveflow.ai.kr/memoir/' },
+      { t: '안내 받기', s: '전화로 차근차근 안내해 드려요', ic: 'chat', c: '#1D9E75', u: 'https://www.loveflow.ai.kr/guide/?ask=1', ask: 1 },
+      { t: '안내자 · 제휴 신청', s: '안내자로 함께하기 · 사업으로 제휴하기', ic: 'hand', c: '#5C7FA6', u: 'https://www.loveflow.ai.kr/partner.html' },
+      { t: '기관 · 단체', s: '복지 · 교육 · 공공 프로그램 제안', ic: 'build', c: '#1E4A76', u: 'https://www.loveflow.ai.kr/proposal.html' }
+    ] },
+    { k: 'story', t: '우리 이야기', ic: 'group', c: '#2E7D6B', sub: '나의 일상부터 우리 모두의 이야기까지', items: [   /* ★v11 415 */
+      { t: '우리 이야기 마당', s: '여러 이야기방 · 기록관의 사진', ic: 'show', c: '#2E7D6B', u: '/?plaza=1' },
+      { t: '이야기방 만들기', s: '나 · 가족 · 친구 · 모임 · 우리 가게', ic: 'spark', c: '#1E4A76', u: '/?open=form&kind=story' },
+      { t: '기록관 만들기', s: '학교 · 기관 · 단체 · 회사', ic: 'build', c: '#3B2F72', u: '/?open=form&kind=hall' }
+    ] }
+  ];
+
+  /* 지금 화면이 어느 묶음인지 */
+  function groupOfPath(p) {
+    p = p || location.pathname;
+    if (/^\/(memoir\/(home|ask|sign|book|ritual|friends|invite)|reenter|find|enter|gate|apply|youth)/.test(p)) { return 'mine'; }
+    if (/^\/(hanmadi|draw|compass|free)/.test(p)) { return 'taste'; }   /* ★v4 첫 주소(/)는 안내 홈 — 어느 묶음에도 불 안 켬 */
+    if (/^\/(pay|showcase|item\/|travel\/)/.test(p)) { return 'buy'; }   /* ★v17 458 상품 설명 · 사랑흐름 여행 */
+    if (/^\/(showroom|memoir\/?$|memoir\/index|guide)/.test(p)) { return 'look'; }
+    if (/^\/(partner|proposal)/.test(p)) { return 'look'; }
+    if (/^\/rec\//.test(p)) { return 'story'; }
+    return '';
+  }
+
+  var CSS = ''
+    + ':root{--lf-navy:' + C.navy + ';--lf-gold:' + C.gold + ';--lf-peach:' + C.peach + ';--lf-cream:' + C.cream + ';--lf-sand:' + C.sand + '}'
+    /* 옛 틀 감춤 (붙인 화면만) */
+    + 'html.lfx .gnav,html.lfx .topbar,html.lfx .gdrawer,html.lfx .drawer,html.lfx #lfMenu,html.lfx .lf-backdrop,html.lfx .lfway,html.lfx #lfway,html.lfx .lf-nav,html.lfx #lfBackdrop{display:none!important}'
+    + 'html.lfx body{padding-top:52px!important;padding-bottom:calc(72px + env(safe-area-inset-bottom))!important}'
+    /* 위 띠 */
+    + '.lfx-top{position:fixed;top:0;left:0;right:0;z-index:1500;height:52px;display:flex;align-items:center;justify-content:space-between;gap:8px;'
+    +   'padding:0 10px;background:var(--lf-navy);color:#fff;box-sizing:border-box;font-family:inherit}'
+    + '.lfx-hq{flex:0 0 auto;display:inline-flex;align-items:center;height:32px;padding:0 12px;border-radius:999px;background:#534AB7;color:#fff;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap}'
+    + '.lfx-logo{width:36px;height:36px;border-radius:50%;background:#fff;display:grid;place-items:center;border:0;padding:0;cursor:pointer;flex:0 0 36px;overflow:hidden}'
+    + '.lfx-logo img{width:28px;height:28px;object-fit:contain;display:block}'
+    + '.lfx-title{flex:1;text-align:center;font-size:15.5px;font-weight:800;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'
+    + '.lfx-slot{position:absolute;right:54px;top:50%;transform:translateY(-50%);display:flex;gap:6px}'
+    + '.lfx-slot>*{width:32px!important;height:32px!important;border-radius:50%!important;border:0!important;background:rgba(255,255,255,.12)!important;color:#fff!important;display:grid!important;place-items:center;padding:0!important;cursor:pointer;font-size:14px}'
+    + '.lfx-top.has-slot .lfx-title{padding:0 38px}'
+    + '.lfx-burger{width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.12);color:#fff;display:grid;place-items:center;cursor:pointer;flex:0 0 36px}'
+    /* 아래 길목 띠 */
+    + '.lfx-tab{position:fixed;left:0;right:0;bottom:0;z-index:1500;background:var(--lf-navy);display:flex;justify-content:space-around;align-items:center;'
+    +   'height:64px;padding:0 4px env(safe-area-inset-bottom);box-sizing:content-box;transition:transform .18s}'
+    + '.lfx-tab.hide{transform:translateY(110%)}'
+    + '.lfx-tab button{flex:1;max-width:84px;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:0;color:#DCE6F1;font:inherit;font-size:10.5px;cursor:pointer;padding:6px 0}'
+    + '.lfx-tab i{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;color:#fff;font-style:normal}'
+    + '.lfx-tab button.on{color:#fff;font-weight:800}.lfx-tab button.on i{box-shadow:0 0 0 2px #fff}'
+    /* 가림막 · 올라오는 판 */
+    + '.lfx-dim{position:fixed;inset:0;z-index:1600;background:rgba(30,40,55,.38);opacity:0;visibility:hidden;transition:.2s}'
+    + '.lfx-dim.on{opacity:1;visibility:visible}'
+    + '.lfx-sheet{position:fixed;left:0;right:0;bottom:0;z-index:1700;max-width:560px;margin:0 auto;background:#fff;border-radius:22px 22px 0 0;'
+    +   'padding:10px 16px calc(14px + env(safe-area-inset-bottom));box-shadow:0 -8px 24px rgba(0,0,0,.18);transform:translateY(105%);transition:transform .22s;font-family:inherit;box-sizing:border-box}'
+    + '.lfx-sheet.on{transform:none}'
+    + '.lfx-grab{width:40px;height:4px;border-radius:2px;background:#DDD6CB;margin:0 auto 10px}'
+    + '.lfx-sh-t{display:flex;align-items:center;gap:10px;font-weight:900;font-size:16px;color:var(--lf-navy);margin-bottom:6px}'
+    + '.lfx-sh-t small{font-weight:500;font-size:12px;color:#8a7a68}'
+    + '.lfx-it{display:flex;align-items:center;gap:12px;width:100%;padding:11px 4px;border:0;border-top:1px solid #F3EADF;background:none;text-align:left;cursor:pointer;font:inherit;color:#2E3A46}'
+    + '.lfx-it b{display:block;font-size:15px}.lfx-it small{display:block;font-size:12px;color:#8a7a68}'
+    + '.lfx-ci{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;color:#fff;flex:0 0 34px}'
+    + '.lfx-it.now{background:#FBF1E6;border-radius:12px}'
+    /* ☰ 메뉴 */
+    + '.lfx-menu{position:fixed;top:0;right:0;z-index:1700;width:84%;max-width:330px;height:100%;background:#fff;box-shadow:-8px 0 30px rgba(0,0,0,.18);'
+    +   'transform:translateX(102%);transition:transform .24s;overflow-y:auto;padding:14px 14px 24px;box-sizing:border-box;font-family:inherit}'
+    + '.lfx-menu.on{transform:none}'
+    + '.lfx-mh{display:flex;justify-content:space-between;align-items:center;font-weight:900;font-size:17px;color:var(--lf-navy);margin:2px 2px 10px}'
+    + '.lfx-mh button{width:34px;height:34px;border-radius:50%;border:0;background:#F4EEE4;color:var(--lf-navy);display:grid;place-items:center;cursor:pointer}'
+    + '.lfx-grp{font-size:11.5px;font-weight:800;color:#8a7a68;margin:12px 4px 2px}'
+    + '.lfx-mi{display:flex;align-items:center;gap:10px;width:100%;padding:8px 6px;border:0;border-radius:12px;background:none;cursor:pointer;font:inherit;font-size:14.5px;color:#2E3A46;text-align:left}'
+    + '.lfx-mi.gold{background:#FBF5E8;font-weight:800}'
+    + '.lfx-mi.now{background:#FBF1E6}.lfx-mi.now:after{content:"지금 여기";margin-left:auto;font-size:10.5px;color:#B4583A;background:#FCE7DE;border-radius:8px;padding:0 6px}'
+    + '.lfx-two{display:grid;grid-template-columns:1fr 1fr;gap:2px}'
+    + '.lfx-opp{margin-top:14px;border-radius:18px;padding:10px;background:linear-gradient(135deg,#FFF1E6,#FCE7EF)}'
+    + '.lfx-ot{font-size:12px;font-weight:900;color:#B4583A;margin:0 2px 8px}'
+    + '.lfx-big{display:flex;align-items:center;gap:10px;width:100%;border:0;border-radius:14px;padding:12px;color:#fff;margin-bottom:8px;cursor:pointer;font:inherit;text-align:left;box-shadow:0 4px 12px rgba(120,60,40,.18)}'
+    + '.lfx-big i{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.22);flex:0 0 38px;font-style:normal}'
+    + '.lfx-big b{display:block;font-size:15.5px}.lfx-big small{font-size:11.5px;opacity:.92}'
+    + '.lfx-b1{background:linear-gradient(135deg,#E8875F,#D9663F)}'
+    + '.lfx-b2{background:linear-gradient(135deg,#C25B7C,#A84466)}'
+    + '.lfx-b3{background:linear-gradient(135deg,#1E4A76,#2C6399);box-shadow:inset 0 0 0 1.5px #C9A96E,0 4px 12px rgba(30,74,118,.2)}'
+    + '.lfx-b3 i{background:#C9A96E;color:#1E4A76}'
+    + '.lfx-b4{background:linear-gradient(160deg,#0F5A68,#08303D);margin:4px 0 4px}.lfx-b5{background:linear-gradient(160deg,#3B2F72,#1F1840);margin:4px 0 4px}.lfx-b4 i{font-size:19px}'   /* ★v14 */
+    + '.lfx-restart{display:block;margin:10px 4px 0 auto;border:0;background:none;color:#8a7a68;font:inherit;font-size:12px;cursor:pointer}'
+    + 'html.lfx #lfgBub,html.lfx .lff-share,html.lfx .lffsw,html.lfx .lff-sb{display:none!important}'
+    + 'html.lfx .lff-tick{display:none!important}'   /* ★v8 「여행자들의 발자취」 띠 감춤 — 번호가 모두 시험 번호(대표 확인 261005). 실제 발급이 쌓이면 여권대장에서 읽어 다시 */
+    + '.lfx-back{position:fixed;top:52px;left:0;right:0;z-index:1400;height:34px;display:flex;align-items:center;padding:0 12px;box-sizing:border-box;background:rgba(255,252,247,.94);border-bottom:1px solid rgba(234,223,207,.8)}'
+    + 'html.lfx-hasback body{padding-top:86px!important}'
+    + '.lfx-back button{border:0;background:none;color:var(--lf-navy);font:inherit;font-size:14.5px;font-weight:700;padding:4px 2px;cursor:pointer}'
+    + '@media print{.lfx-back,.lfx-top,.lfx-tab,.lfx-sheet,.lfx-dim,.lfx-menu{display:none!important}html.lfx body{padding-bottom:0}}';
+
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  function titleOf() {
+    var b = document.body && document.body.getAttribute('data-lf-title');
+    if (b) { return b; }
+    var el = document.querySelector('.gnav .lc, .gnav .loc, .lf-nav .loc, #loc, .topbar .ttl, .topbar .title');
+    var t = el ? (el.textContent || '').trim() : '';
+    if (t) { return t; }
+    t = (document.title || '').replace(/^사랑흐름\s*[·|]\s*/, '').replace(/\s*[·|]\s*사랑흐름.*$/, '');
+    return t || '사랑흐름';
+  }
+
+  var STATE = { open: '' };
+
+  function go(u, ask) {
+    if (ask && window.LFG && typeof window.LFG.open === 'function') { closeAll(); window.LFG.open('아래 띠'); return; }
+    location.href = u;
+  }
+
+  function closeAll() {
+    var ids = ['lfxDim', 'lfxSheet', 'lfxMenu'];
+    for (var i = 0; i < ids.length; i++) { var e = document.getElementById(ids[i]); if (e) { e.classList.remove('on'); } }
+    var bs = document.querySelectorAll('.lfx-tab button');
+    var cur = groupOfPath();
+    for (var j = 0; j < bs.length; j++) { bs[j].classList.toggle('on', bs[j].getAttribute('data-k') === cur); }
+    STATE.open = '';
+  }
+
+  function openSheet(k) {
+    if (STATE.open === k) { closeAll(); return; }
+    var g = null;
+    for (var i = 0; i < GROUPS.length; i++) { if (GROUPS[i].k === k) { g = GROUPS[i]; } }
+    if (!g) { return; }
+    var here = location.pathname + location.search;
+    var h = '<div class="lfx-grab"></div>'
+      + '<div class="lfx-sh-t"><span class="lfx-ci" style="background:' + g.c + '">' + svg(g.ic, 17) + '</span>'
+      + esc(g.t) + (g.sub ? ' <small>' + esc(g.sub) + '</small>' : '') + '</div>';
+    for (var j = 0; j < g.items.length; j++) {
+      var it = g.items[j];
+      var now = (it.u.split('?')[0] === location.pathname) && (!/\?/.test(it.u) || here.indexOf(it.u) >= 0);
+      h += '<button class="lfx-it' + (now ? ' now' : '') + '" data-u="' + esc(it.u) + '"' + (it.ask ? ' data-ask="1"' : '') + '>'
+        + '<span class="lfx-ci" style="background:' + it.c + '">' + svg(it.ic, 17) + '</span>'
+        + '<span><b>' + esc(it.t) + '</b><small>' + esc(it.s) + '</small></span></button>';
+    }
+    var sh = document.getElementById('lfxSheet');
+    sh.innerHTML = h;
+    var bs = sh.querySelectorAll('.lfx-it');
+    for (var b = 0; b < bs.length; b++) {
+      bs[b].onclick = function () { go(this.getAttribute('data-u'), this.getAttribute('data-ask') === '1'); };
+    }
+    var tb = document.querySelectorAll('.lfx-tab button');
+    for (var t = 0; t < tb.length; t++) { tb[t].classList.toggle('on', tb[t].getAttribute('data-k') === k); }
+    document.getElementById('lfxMenu').classList.remove('on');
+    document.getElementById('lfxDim').classList.add('on');
+    sh.classList.add('on');
+    STATE.open = k;
+  }
+
+  /* ★v17 458 — 옛 ☰(menuHtml · v14 전) 지움 · 이제 새 ☰ 하나 */
+
+  /* ★v14 칸 3 435 — 새 ☰(73차) · data-lf-menu="2" 화면에서만 */
+  function menu2() { return true; }   /* ★v15 모든 화면 */
+  function menuHtml2() {
+    var p = location.pathname + location.search;
+    function mi(t, ic, c, u, cls) {
+      var now = (u === p) || (u === location.pathname && u.length > 1 && u.slice(-1) === 'https://www.loveflow.ai.kr/');
+      return '<button class="lfx-mi' + (cls ? ' ' + cls : '') + (now ? ' now' : '') + '" data-u="' + u + '">'
+        + '<span class="lfx-ci" style="background:' + c + ';width:30px;height:30px;flex-basis:30px">' + svg(ic, 16) + '</span>' + t + '</button>';
+    }
+    return ''
+      + '<div class="lfx-mh"><span>사랑흐름</span><button data-x="1" aria-label="닫기">' + svg('x', 16) + '</button></div>'
+      + '<div class="lfx-grp">우리 이야기 · 기록관</div>'
+      + '<button class="lfx-big lfx-b4" data-u="/?plaza=1"><i>🍇</i><span><b>우리 이야기 마당</b><small>이야기방 · 기록관의 사진과 이야기</small></span></button>'
+      + '<div class="lfx-two">'
+      +   mi('이야기방 만들기', 'spark', '#1E4A76', '/?open=form&kind=story')
+      +   mi('기록관 만들기', 'build', '#3B2F72', '/?open=form&kind=hall')
+      + '</div>'
+      + mi('기관 · 단체 제안', 'group', '#5C7FA6', 'https://www.loveflow.ai.kr/proposal.html')
+      + '<div class="lfx-grp">마음 전하기 (무료)</div>'
+      + mi('마음 한마디', 'word', '#E59273', 'https://www.loveflow.ai.kr/hanmadi/')
+      + mi('삐뚤빼뚤 마음 도화지', 'draw', '#8A6FC9', 'https://www.loveflow.ai.kr/draw/')
+      + mi('관계 나침반', 'compass', '#1D9E75', 'https://www.loveflow.ai.kr/compass.html')
+      + '<div class="lfx-grp">사랑흐름 여행</div>'
+      + '<button class="lfx-big lfx-b5" data-u="https://www.loveflow.ai.kr/travel/"><i>' + svg('map', 20) + '</i><span><b>사랑흐름 여행</b><small>여행지도 · 편지 · 자서전</small></span></button>'
+      + mi('선물하기', 'gift', '#4B33B0', 'https://www.loveflow.ai.kr/pay.html?mode=gift')   /* ★v24 579 */
+      + mi('구매한 여행 이어가기', 'pass', '#C9A96E', 'https://www.loveflow.ai.kr/reenter.html', 'gold')
+      + mi('사랑흐름 여권 찾기', 'find', '#7F97B2', 'https://www.loveflow.ai.kr/find/')
+      + mi('휴대폰 관리', 'phone', '#5C7FA6', 'https://www.loveflow.ai.kr/lf/device.html')
+      + mi('여행의 기록', 'show', '#C25B7C', 'https://www.loveflow.ai.kr/showroom.html')
+      + '<div class="lfx-grp">함께하기</div>'
+      + mi('안내자 · 제휴 신청', 'hand', '#1E4A76', 'https://www.loveflow.ai.kr/partner.html')
+      + mi('안내 받기', 'chat', '#1D9E75', 'https://www.loveflow.ai.kr/guide/?ask=1')
+      + '<div style="display:flex;justify-content:space-between;margin-top:12px"><button class="lfx-restart" style="margin:0" data-share="1">공유하기</button><button class="lfx-restart" style="margin:0" data-restart="1">다시 시작</button></div>';
+  }
+
+  function share() {
+    var H = 'https://www.loveflow.ai.kr';
+    try {
+      if (navigator.share) { navigator.share({ title: '사랑흐름', text: '가장 소중한 사람을 더 알아가는 시간, 사랑흐름', url: H })['catch'](function () {}); return; }
+      if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(H).then(function () { alert('주소를 복사했어요'); }, function () {}); return; }
+    } catch (e) {}
+    prompt('주소를 복사해 주세요', H);
+  }
+
+  function openMenu() {
+    var m = document.getElementById('lfxMenu');
+    if (m.classList.contains('on')) { closeAll(); return; }
+    closeAll();
+    document.getElementById('lfxDim').classList.add('on');
+    m.classList.add('on');
+  }
+
+  function wireMenu(m) {
+    var bs = m.querySelectorAll('button');
+    for (var i = 0; i < bs.length; i++) {
+      bs[i].onclick = function () {
+        if (this.getAttribute('data-x')) { closeAll(); return; }
+        if (this.getAttribute('data-restart')) { location.reload(); return; }
+        if (this.getAttribute('data-share')) { share(); return; }
+        var u = this.getAttribute('data-u'); if (u) { go(u); }
+      };
+    }
+  }
+
+  function build() {
+    if (menu2()) { for (var gi = 0; gi < GROUPS.length; gi++) { if (GROUPS[gi].k === 'taste') { GROUPS[gi].t = '마음 전하기'; GROUPS[gi].sub = '무료'; } } }   /* ★v14 71차 말 */
+    if (document.getElementById('lfxTop')) { return; }
+    document.documentElement.classList.add('lfx');
+    if (!document.getElementById('lfLookCss')) {
+      var lk = document.createElement('link'); lk.id = 'lfLookCss'; lk.rel = 'stylesheet'; lk.href = '/lf/look.css?v=1';
+      (document.head || document.documentElement).appendChild(lk);
+    }
+    var st = document.createElement('style'); st.id = 'lfxCss'; st.appendChild(document.createTextNode(CSS));
+    (document.head || document.documentElement).appendChild(st);
+
+    var top = document.createElement('div');
+    top.className = 'lfx-top'; top.id = 'lfxTop';
+    top.innerHTML = '<button class="lfx-logo" aria-label="사랑흐름 첫 화면"><img src="https://www.loveflow.ai.kr/logo-96.png" alt=""></button>'
+      + '<div class="lfx-title">' + esc(titleOf()) + '</div>'
+      + '<button class="lfx-burger" aria-label="메뉴">' + svg('menu', 18) + '</button>';
+    document.body.insertBefore(top, document.body.firstChild);
+    /* ★v6 화면 안 「‹ 이전」 */
+    var bk = document.body.getAttribute('data-lf-back');
+    if (bk) {
+      var bb = document.createElement('div'); bb.className = 'lfx-back';
+      bb.innerHTML = '<button type="button" aria-label="이전 화면으로">‹ 이전</button>';
+      top.parentNode.insertBefore(bb, top.nextSibling); document.documentElement.classList.add('lfx-hasback');
+      bb.firstChild.onclick = function () {
+        var r = document.referrer || '';
+        if (r.indexOf(location.origin) === 0 && history.length > 1) { history.back(); } else { location.href = bk; }
+      };
+    }
+    top.querySelector('.lfx-logo').onclick = function () { if (window.LF_LEAVE) { return; } window.LF_LEAVE = 1; this.style.opacity = '.5'; try { document.body.classList.add('lfgo'); } catch (e) {} location.href = 'https://www.loveflow.ai.kr/'; };   /* ★v10 누르는 즉시 표시 · 두 번 눌림 막음 · 늦게 온 대답이 이동을 가로채지 않게 */
+    top.querySelector('.lfx-burger').onclick = openMenu;
+    /* ★v12 본부에서 같은 창으로 연 화면 — 로고 자리에 「⌂ 본부로」 */
+    try { if (sessionStorage.getItem('lf_from_hq') === '1' && !/[?&](hq|door)=1/.test(location.search)) { var lg = top.querySelector('.lfx-logo'), hp = document.createElement('a'); hp.id = 'lfHqPill'; hp.className = 'lfx-hq'; hp.href = '/?hq=1'; hp.textContent = '⌂ 본부로'; lg.parentNode.replaceChild(hp, lg); } } catch (e) {}
+    /* ★v4 위 띠 오른쪽 자리 — <button data-lfx-top> 를 ☰ 왼쪽으로 옮김 */
+    var slots = document.querySelectorAll('[data-lfx-top]');
+    if (slots.length) {
+      var sl = document.createElement('div'); sl.className = 'lfx-slot';
+      for (var q = 0; q < slots.length; q++) { sl.appendChild(slots[q]); }
+      top.appendChild(sl); top.className += ' has-slot';
+    }
+
+    var dim = document.createElement('div'); dim.className = 'lfx-dim'; dim.id = 'lfxDim'; dim.onclick = closeAll;
+    var sh = document.createElement('div'); sh.className = 'lfx-sheet'; sh.id = 'lfxSheet'; sh.setAttribute('role', 'dialog');
+    var m = document.createElement('nav'); m.className = 'lfx-menu'; m.id = 'lfxMenu'; m.setAttribute('aria-label', '사이트 메뉴');
+    m.innerHTML = menuHtml2(); wireMenu(m);   /* ★v14 */
+
+    var tab = document.createElement('nav'); tab.className = 'lfx-tab'; tab.id = 'lfxTab'; tab.setAttribute('aria-label', '사랑흐름 길목');
+    var cur = groupOfPath(), th = '';
+    for (var i = 0; i < GROUPS.length; i++) {
+      var g = GROUPS[i];
+      th += '<button data-k="' + g.k + '"' + (g.k === cur ? ' class="on"' : '') + '><i style="background:' + g.c + '">' + svg(g.ic, 18) + '</i>' + esc(g.t) + '</button>';
+    }
+    tab.innerHTML = th;
+    var tbs = tab.querySelectorAll('button');
+    for (var j = 0; j < tbs.length; j++) { tbs[j].onclick = function () { openSheet(this.getAttribute('data-k')); }; }
+
+    document.body.appendChild(dim); document.body.appendChild(sh); document.body.appendChild(m); document.body.appendChild(tab);
+
+    /* 글 쓰는 칸을 누르면 아래 띠를 숨김 (자판) */
+    function typing(e) {
+      var t = e.target; if (!t || !t.tagName) { return false; }
+      var n = t.tagName.toLowerCase();
+      if (n === 'textarea' || n === 'select') { return true; }
+      if (n === 'input') { return !/^(button|submit|checkbox|radio|file|range|color|reset|image)$/i.test(t.type || ''); }
+      return !!t.isContentEditable;
+    }
+    document.addEventListener('focusin', function (e) { if (typing(e)) { tab.classList.add('hide'); } });
+    document.addEventListener('focusout', function (e) { if (typing(e)) { setTimeout(function () { tab.classList.remove('hide'); }, 120); } });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeAll(); } });
+    way3();
+  }
+
+  /* ★v20 543 — 「← ⌂ →」 동그라미 셋을 모든 화면 푸터 바로 위에(대표 기준 261015 · 지적 261109)
+     · 화면이 자기 것(.way3 · 본부 #lfHqWay · body data-lf-way="own")을 가졌으면 그것을 씀
+     · 화면이 window.LF_WAY = { back, home, fwd } 를 주면 그 뜻으로(자서전 물음 = 앞 물음 · 자서전 홈 · 다음 물음)
+     · 글 쓰는 칸을 눌러도 숨지 않음(화면 안에 놓임) */
+  function wayHome() {
+    var p = location.pathname || 'https://www.loveflow.ai.kr/';
+    if (p.indexOf('https://www.loveflow.ai.kr/memoir/') === 0) {
+      var pp = ''; try { pp = sessionStorage.getItem('lf_passport') || localStorage.getItem('lf_passport') || ''; } catch (e) {}
+      return 'https://www.loveflow.ai.kr/memoir/home.html' + (pp ? '?id=' + encodeURIComponent(pp) : '');
+    }
+    return 'https://www.loveflow.ai.kr/';
+  }
+  function wayBack() {
+    var W = window.LF_WAY; if (W && W.back && W.back() === true) { return; }
+    var r = document.referrer || '';
+    if (r.indexOf(location.origin) === 0 && history.length > 1) { history.back(); } else { location.href = wayHome(); }
+  }
+  function wayFwd() { var W = window.LF_WAY; if (W && W.fwd && W.fwd() === true) { return; } history.forward(); }
+  function wayGoHome() { var W = window.LF_WAY; if (W && W.home && W.home() === true) { return; } location.href = wayHome(); }
+  function way3() {
+    if (document.getElementById('lfxWay')) { return; }
+    var b = document.body;
+    if (b.getAttribute('data-lf-way') === 'own' || document.getElementById('lfHqWay') || document.querySelector('.way3')) { return; }
+    if (!document.getElementById('lfxWayCss')) {
+      var c = document.createElement('style'); c.id = 'lfxWayCss';
+      c.appendChild(document.createTextNode('.lfx-way{display:flex;justify-content:center;gap:26px;margin:22px 0 10px;clear:both}'
+        + '.lfx-way button{width:44px;height:44px;border-radius:50%;border:0;background:#1E4A76;color:#fff;font-size:20px;line-height:1;display:grid;place-items:center;cursor:pointer;font-family:inherit;padding:0}'
+        + '.lfx-way button:active{opacity:.6}@media print{.lfx-way{display:none!important}}'));
+      (document.head || document.documentElement).appendChild(c);
+    }
+    var w = document.createElement('div'); w.className = 'lfx-way'; w.id = 'lfxWay';
+    w.innerHTML = '<button type="button" aria-label="앞 화면">&#8592;</button><button type="button" aria-label="홈">&#8962;</button><button type="button" aria-label="앞으로">&#8594;</button>';
+    var bs = w.getElementsByTagName('button'); bs[0].onclick = wayBack; bs[1].onclick = wayGoHome; bs[2].onclick = wayFwd;
+    var f = document.getElementById('lfFoot'), at = null;
+    if (f) { at = f; while (at.parentNode && at.parentNode !== b && !/(^| )(legal|glegal|lf-foot|foot)( |$)/.test(at.parentNode.className || '')) { at = at.parentNode; } if (at.parentNode && at.parentNode !== b && /(legal|glegal|lf-foot|foot)/.test(at.parentNode.className || '')) { at = at.parentNode; } }
+    if (!at) { at = document.querySelector('.glegal') || document.querySelector('.legal') || document.querySelector('.lf-foot') || document.querySelector('footer'); }
+    if (at && at.parentNode) { at.parentNode.insertBefore(w, at); } else { b.insertBefore(w, document.getElementById('lfxTab') || null); }
+  }
+  /* ★v23 — 들어온 길 부품(lf/way.js)의 LFWay.get 을 지우지 않게 덧붙이기만(v22까지 통째로 덮어써 apply · gate 신청이 멈췄음) */
+  var _lfw = window.LFWay || {}; _lfw.back = wayBack; _lfw.home = wayGoHome; _lfw.fwd = wayFwd; window.LFWay = _lfw;
+
+  window.LFFrame = { open: openSheet, menu: openMenu, close: closeAll, groups: GROUPS, version: 'v3' };
+
+  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', build); } else { build(); }
+})();
+
+/* ★v13 칸 2 434 방문 통계 — 개인정보 없이 · 서버 주소는 lf/config.js 한 곳에서 읽음 */
+(function () {
+  var P = location.pathname, SCR = { 'https://www.loveflow.ai.kr/': '첫 화면', 'https://www.loveflow.ai.kr/index.html': '첫 화면', 'https://www.loveflow.ai.kr/travel/': '사랑흐름 여행', 'https://www.loveflow.ai.kr/travel/index.html': '사랑흐름 여행', 'https://www.loveflow.ai.kr/showcase.html': '상품 진열', 'https://www.loveflow.ai.kr/item/': '상품 진열', 'https://www.loveflow.ai.kr/item/index.html': '상품 진열', 'https://www.loveflow.ai.kr/item/map/': '상품 진열', 'https://www.loveflow.ai.kr/item/set/': '상품 진열', 'https://www.loveflow.ai.kr/item/memoir/': '상품 진열', 'https://www.loveflow.ai.kr/item/life/': '상품 진열', 'https://www.loveflow.ai.kr/pay.html': '결제 화면' }[P];   /* ★v17 458 — 상품 설명 화면은 서버 표의 「상품 진열」 칸으로 셈(서버 VIS_SCREENS 그대로) */
+  if (!SCR) { return; }
+  try { if (sessionStorage.getItem('lf_from_hq')) { return; } } catch (e0) { }
+  var Q = [], T = null, N = 0, CLK = 0, T0 = Date.now(), SID = '', FIRST = '처음', DEV = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent || '') ? '폰' : '컴', REF = '';
+  try { SID = sessionStorage.getItem('lf_vsid') || ''; if (!SID) { SID = Math.random().toString(36).slice(2, 10); sessionStorage.setItem('lf_vsid', SID); } } catch (e1) { SID = Math.random().toString(36).slice(2, 10); }
+  try { if (localStorage.getItem('lf_vseen')) { FIRST = '다시'; } localStorage.setItem('lf_vseen', '1'); } catch (e2) { }
+  try { var rh = document.referrer ? new URL(document.referrer).hostname : ''; if (rh && rh.indexOf('loveflow.ai.kr') < 0) { REF = rh; } } catch (e3) { }
+  try { var xr = sessionStorage.getItem('lf_xref'); if (xr) { sessionStorage.removeItem('lf_xref'); if (!REF) { REF = new URL(xr).hostname; } } } catch (e4) { }   /* ★v26 710 옛 상품 주소에서 넘어온 경우 들어온 곳 이어 받음 */
+  function gas() { var C = window.LF_CONFIG; return (C && C.gas && C.gas.rec) || ''; }
+  function flush() {
+    T = null; if (!Q.length) { return; } var u = gas(); if (!u) { return; }
+    var a = Q.splice(0, 10), b = JSON.stringify({ action: 'recVisit', items: JSON.stringify(a), dev: DEV, ref: REF, sid: SID });
+    try { fetch(u, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: b, keepalive: true }).catch(function () { }); } catch (e) { }
+    if (Q.length) { T = setTimeout(flush, 800); }
+  }
+  function add(k, m) { if (N >= 40) { return; } N++; Q.push([k, SCR, String(m || '').slice(0, 80)]); if (!T) { T = setTimeout(flush, 2500); } }
+  function label(el) {
+    var t = el.getAttribute('aria-label') || '', b = el.querySelector('b');
+    if (!t) { t = b ? b.textContent : el.textContent; }
+    return String(t || '').replace(/\s+/g, ' ').trim().slice(0, 30);
+  }
+  function dest(el) {
+    var u = el.getAttribute('data-u') || (el.tagName === 'A' ? el.getAttribute('href') : '') || '';
+    if (!u || /^(javascript:|#|tel:|mailto:)/i.test(u)) { return ''; }
+    try { var x = new URL(u, location.href); return x.hostname === location.hostname ? x.pathname : x.hostname; } catch (e) { return ''; }
+  }
+  document.addEventListener('click', function (e) {
+    var el = e.target && e.target.closest ? e.target.closest('a,button,[data-u],[data-k],[role=button]') : null;
+    if (!el || el.closest('input,textarea,select')) { return; }
+    var l = label(el); if (!l) { return; } CLK++;
+    var d = dest(el); add('누름', l + (d ? ' → ' + d : ''));
+  }, true);
+  function leave() { if (leave.done) { return; } leave.done = 1; add('나감', Math.round((Date.now() - T0) / 1000) + '초 · 누름 ' + CLK); if (T) { clearTimeout(T); } flush(); }
+  window.addEventListener('pagehide', leave);
+  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') { leave(); } });
+  function start() { add('방문', FIRST); }
+  if (gas()) { start(); return; }
+  var s = document.createElement('script'); s.src = '/lf/config.js?v=5'; s.onload = start; s.onerror = function () { }; document.head.appendChild(s);
+})();
+
+/* ★v18 533 바탕화면 바로가기 — 휴대폰 첫 화면 위 띠 + 홈 화면에 추가(송암 가계도 방식) */
+(function () {
+  if (window.LF_HOME_BAND) { return; } window.LF_HOME_BAND = 1;
+  var ua = navigator.userAgent || '';
+  var inKakao = /KAKAOTALK/i.test(ua);
+  var inApp = inKakao || /NAVER\(inapp|Instagram|FBAN|FBAV|Line\//i.test(ua);
+  var isIos = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+  var isPhone = isIos || /Android/i.test(ua);
+  var inRec = location.pathname.indexOf('/') === 0;
+  function standalone() { try { return window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true; } catch (e) { return false; } }
+  var EV = null;
+  /* 우리 이야기 밖 화면: 설치 신분증 · 아이폰 아이콘 · 일꾼 */
+  if (!inRec) {
+    try {
+      var hd = document.head || document.documentElement;
+      if (!document.querySelector('link[rel="manifest"]')) { var m = document.createElement('link'); m.rel = 'manifest'; m.href = '/manifest.webmanifest'; hd.appendChild(m); }
+      if (!document.querySelector('link[rel="apple-touch-icon"]')) { var a = document.createElement('link'); a.rel = 'apple-touch-icon'; a.href = '/apple-icon-180.png'; hd.appendChild(a); }
+      if (!document.querySelector('meta[name="apple-mobile-web-app-title"]')) { var t = document.createElement('meta'); t.name = 'apple-mobile-web-app-title'; t.content = '사랑흐름'; hd.appendChild(t); }
+      if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js', { scope: 'https://www.loveflow.ai.kr/' })['catch'](function () {}); }
+    } catch (e) {}
+    window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); EV = e; });
+  }
+  var KEY = inRec ? 'lf_home_x_rec' : 'lf_home_x';
+  function closed() { try { return localStorage.getItem(KEY) === '1'; } catch (e) { return false; } }
+  var CSS = '.lfh-band{display:flex;align-items:center;gap:10px;margin:0;padding:9px 12px;background:#F4EEE4;border-bottom:1px solid #E6DCCB;font:14px/1.35 -apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;color:#1E4A76}'
+    + '.lfh-band img{width:30px;height:30px;border-radius:7px;flex:none}'
+    + '.lfh-band .tx{flex:1;min-width:0;font-weight:600}'
+    + '.lfh-band .go{flex:none;border:0;border-radius:18px;padding:8px 13px;background:#1E4A76;color:#fff;font:600 13px/1 inherit;font-family:inherit}'
+    + '.lfh-band .x{flex:none;border:0;background:none;color:#7A8796;font-size:17px;padding:4px 2px}'
+    + '.lfh-dim{position:fixed;inset:0;z-index:2147483000;background:rgba(20,30,45,.45);display:flex;align-items:flex-end;justify-content:center}'
+    + '.lfh-sheet{width:100%;max-width:460px;background:#FFFCF7;border-radius:18px 18px 0 0;padding:22px 20px calc(18px + env(safe-area-inset-bottom));font:15px/1.5 -apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;color:#22303F;text-align:center}'
+    + '.lfh-sheet h2{margin:0 0 6px;font-size:18px;color:#1E4A76}'
+    + '.lfh-step{display:flex;align-items:center;justify-content:center;gap:8px;margin:8px auto;padding:10px;border:1px solid #E6DCCB;border-radius:12px;background:#fff;max-width:300px}'
+    + '.lfh-step b{display:inline-block;min-width:34px;padding:3px 6px;border-radius:8px;background:#F4EEE4;color:#1E4A76}'
+    + '.lfh-arw{color:#9AA3AD;font-size:14px}'
+    + '.lfh-sheet .close{margin-top:14px;width:100%;border:1px solid #1E4A76;background:#fff;color:#1E4A76;border-radius:12px;padding:12px;font:600 15px/1 inherit;font-family:inherit}';
+  function css() { if (document.getElementById('lfhCss')) { return; } var s = document.createElement('style'); s.id = 'lfhCss'; s.appendChild(document.createTextNode(CSS)); (document.head || document.documentElement).appendChild(s); }
+  function sheet(html) {
+    css();
+    var d = document.createElement('div'); d.className = 'lfh-dim'; d.id = 'lfhDim';
+    d.innerHTML = '<div class="lfh-sheet" role="dialog" aria-modal="true">' + html + '<button type="button" class="close">닫기</button></div>';
+    d.onclick = function (e) { if (e.target === d || e.target.className === 'close') { d.parentNode.removeChild(d); } };
+    document.body.appendChild(d);
+  }
+  var A = '<div class="lfh-arw">↓</div>';
+  function guide() {
+    if (isIos) {
+      sheet('<h2>📲 홈 화면에 추가</h2><p>아래 순서대로 한 번만 눌러 주세요.</p>'
+        + '<div class="lfh-step"><b>□↑</b>공유 단추(화면 아래)</div>' + A + '<div class="lfh-step"><b>＋</b>홈 화면에 추가</div>' + A + '<div class="lfh-step"><b>추가</b>오른쪽 위</div>');
+    } else {
+      sheet('<h2>📲 홈 화면에 추가</h2><p>아래 순서대로 한 번만 눌러 주세요.</p>'
+        + '<div class="lfh-step"><b>⋮</b>브라우저 메뉴(오른쪽 위)</div>' + A + '<div class="lfh-step"><b>＋</b>홈 화면에 추가</div>' + A + '<div class="lfh-step"><b>추가</b>확인</div>'
+        + '<p style="font-size:13px;color:#6B7785;margin:10px 0 0">삼성 인터넷은 ≡ 메뉴 → 현재 페이지 추가 → 홈 화면</p>');
+    }
+  }
+  function add() {
+    if (inRec && typeof window.pwaGo === 'function') { window.pwaGo(); return; }
+    if (standalone()) { sheet('<h2>이미 홈 화면에 있습니다</h2><p>이미 아이콘으로 열고 계십니다.</p>'); return; }
+    if (inKakao) { location.href = 'kakaotalk://web/openExternal?url=' + encodeURIComponent(location.href.split('#')[0]); return; }
+    if (EV) { var ev = EV; EV = null; try { ev.prompt(); ev.userChoice.then(function (c) { if (c && c.outcome !== 'accepted') { EV = ev; } })['catch'](function () {}); } catch (e) { guide(); } return; }
+    guide();
+  }
+  window.LFHomeAdd = add;
+  function band() {
+    if (!isPhone || inApp || standalone() || closed() || document.getElementById('lfhBand')) { return; }
+    if (document.documentElement.classList.contains('admm') || document.body.classList.contains('admm') || document.body.classList.contains('desk')) { return; }
+    css();
+    var b = document.createElement('div'); b.className = 'lfh-band'; b.id = 'lfhBand';
+    b.innerHTML = '<img src="/icon-192.png" alt=""><div class="tx">' + '홈 화면에 두고 바로 여세요</div>'
+      + '<button type="button" class="go">홈 화면에 추가</button><button type="button" class="x" aria-label="닫기">✕</button>';
+    var top = document.getElementById('lfxTop');
+    /* ★v22 몸이 가로 줄(flex row)인 화면(gate · pay · apply · journey · letter · memoir 등 12곳)에서는 띠가 옆 칸이 되어
+       본문 카드를 좁은 세로 줄로 짓눌렀음 → 그런 화면에서는 띠를 위 띠 바로 아래에 떠 있게(본문 줄에 끼지 않음) */
+    var bs = null; try { bs = getComputedStyle(document.body); } catch (e) {}
+    var rowBody = bs && /flex/.test(bs.display) && !/column/.test(bs.flexDirection || '');
+    var topIn = top && top.parentNode && !(top.parentNode === document.body && rowBody);
+    if (rowBody) {
+      var tb = 0; try { if (top) { var tr = top.getBoundingClientRect(); var tp = getComputedStyle(top).position; if (tp === 'fixed' || tp === 'sticky') { tb = Math.max(0, tr.bottom); } } } catch (e) {}
+      b.style.cssText = 'position:fixed;left:0;right:0;top:' + tb + 'px;z-index:2147482000;box-shadow:0 4px 12px rgba(14,23,54,.15)';
+      document.body.appendChild(b);
+    } else if (topIn) { top.parentNode.insertBefore(b, top.nextSibling); } else { document.body.insertBefore(b, document.body.firstChild); }
+    b.querySelector('.go').onclick = add;
+    b.querySelector('.x').onclick = function () { try { localStorage.setItem(KEY, '1'); } catch (e) {} b.parentNode.removeChild(b); };
+  }
+  window.addEventListener('appinstalled', function () { EV = null; var b = document.getElementById('lfhBand'); if (b) { b.parentNode.removeChild(b); } });
+  function start() { setTimeout(band, 300); }
+  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', start); } else { start(); }
+})();
