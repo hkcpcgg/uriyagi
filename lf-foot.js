@@ -1,6 +1,7 @@
 /* [우리이야기] uriyagi.kr 사본 — 사랑흐름 lf-foot.js 그대로 · 링크만 www.loveflow.ai.kr 로(사랑흐름이 절대 주소판을 주면 바꿈 · 우리이야기-소통-020) */
 /* ═══════════════════════════════════════════════════════════════
-   현재 버전 ▶ lf-foot.js · v8 · 261116 · [우리이야기-소통-020 요청 2] 다른 도메인(uriyagi.kr 등)에서 부르면 메뉴 줄 링크(소개 · 이용약관 · 개인정보처리방침 · 환불정책) 앞에 https://www.loveflow.ai.kr 를 붙임 · 사랑흐름 화면(loveflow.ai.kr · 시험 환경)은 그대로. [무손] 그 밖 v7 전부.
+   현재 버전 ▶ lf-foot.js · v9 · 261116 · [우리이야기 사본만 · 대표 261116 14:23 「띄어쓰기 말고 한 칸씩 붙여서」] 사업자 줄 양쪽 꽉 채움(justify) 뺌 → 가운데 · 보통 간격 · 글자 크기 맞춤은 그대로(두 줄에 드는 가장 큰 크기 · 가운데 맞춤에도 같은 셈). 사랑흐름 원본은 그대로. [무손] 그 밖 v8 전부.
+   (이전) lf-foot.js · v8 · 261116 · [우리이야기-소통-020 요청 2] 다른 도메인(uriyagi.kr 등)에서 부르면 메뉴 줄 링크(소개 · 이용약관 · 개인정보처리방침 · 환불정책) 앞에 https://www.loveflow.ai.kr 를 붙임 · 사랑흐름 화면(loveflow.ai.kr · 시험 환경)은 그대로. [무손] 그 밖 v7 전부.
    (이전) lf-foot.js · v7 · 261116 · [우리이야기-소통-015 요청 2] 부르는 자리(#lfFoot · .lf-foot)에 data-refund="0" 을 주면 메뉴 줄 「환불정책」만 뺌 — 값을 주지 않는 사랑흐름 화면은 v6 그대로. [무손] 그 밖 v6 전부.
    (이전) lf-foot.js · v6 · 261116 · [대표 261116 10:08 · OK 10:16] 푸터 네 줄 — ①소개 · 이용약관 · 개인정보처리방침(굵게) · 환불정책 · 문의 = 가운데 ②③사업자 정보 = 이어 쓰기 · 양쪽 꽉 채움 두 줄(첫 줄은 「통신판매 제2025-경기파주-1747호」까지) · 글자는 푸터 폭에 맞춰 두 줄에 드는 가장 큰 크기(7~11px) ④© · 국문 · 영문 경고 한 줄. 상호 · 대표자 꼬리말 줄임. [무손] 링크 · 본부 띠 · 그 밖 전부.
    (이전) lf-foot.js · v5 · 261110 · [대표 261110 09:25 「저작권은 늘 주장해야 한다 · 빠졌다」] 맨 아래 저작권 줄 밑에 무단 이용 경고 국문 · 영문 두 줄을 다시 붙임(v2 에서 약관 안으로만 옮겼던 것 — 약관 제5조는 그대로) · 문구는 자서전 결과물(memoir/book) · 약관과 같은 말. [무손] 그 밖 v4 전부.
@@ -39,7 +40,7 @@
     + ".lfft-links a{color:#9d8f80;text-decoration:none;cursor:pointer;margin:0 5px;white-space:nowrap}"
     + ".lfft-links a.pv{font-weight:700;color:#7d6f60}"
     + ".lfft-links a:hover{text-decoration:underline}"
-    + ".lfft-biz{font-size:8.6px;line-height:1.75;margin-top:4px;text-align:justify;text-align-last:justify;word-break:keep-all}"
+    + ".lfft-biz{font-size:8.6px;line-height:1.75;margin-top:4px;text-align:center;word-break:keep-all}"   /* ★v9 우리 이야기 사본 — 양쪽 꽉 채움 뺌 · 가운데 · 보통 간격 */
     + ".lfft-biz span{white-space:nowrap}"
     + ".lfft-biz a{color:#9d8f80;text-decoration:none}"
     + ".lfft-c{font-size:8.6px;line-height:1.75;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:clip}";
