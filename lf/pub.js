@@ -64,7 +64,7 @@
       var page = all.slice(from, from + n);
       var res = { status: 'ok', items: page, total: all.length, more: from + n < all.length ? 1 : 0, next: from + page.length, pub: 1 };
       if (rnd) { res.rnd = rnd; } if (rnd && String(p.tier) === '1') { res.tier = 1; }
-      if (!from) { res.rooms = o.rooms; }
+      if (!from) { res.rooms = o.rooms; res.locks = o.locks || []; }   /* ★[우리이야기 v181] 닫힌 방 이름 */
       cb(JSON.parse(JSON.stringify(res)));
     });
   }

@@ -1,3 +1,4 @@
+/* [우리이야기] 261116 v181 — 위 띠 로고를 누르면 우리 이야기 마당(/?plaza=1) · 그림 /icon-192.png (대표 16:05 「홈 버튼을 누르면 우리 이야기 메인으로」) */
 /* [우리이야기] uriyagi.kr 사본 — 사랑흐름 lf/frame.js 를 261116 분리 때 받아 사랑흐름 길은 www.loveflow.ai.kr 로 · 우리 이야기 길(/rec/)은 / 로 */
 /* ═══════════════════════════════════════════════════════════════════
    현재 버전 ▶ lf/frame.js · v27 · 261115 · [전체 검토 B · 대표 OK 17:26] 홈 화면 띠 글 「○○를 홈 화면에 추가하고 바로 여세요」(휴대폰에서 네 줄로 접힘) → 「홈 화면에 두고 바로 여세요」 · 그 밖 무손
@@ -355,7 +356,7 @@
 
     var top = document.createElement('div');
     top.className = 'lfx-top'; top.id = 'lfxTop';
-    top.innerHTML = '<button class="lfx-logo" aria-label="사랑흐름 첫 화면"><img src="https://www.loveflow.ai.kr/logo-96.png" alt=""></button>'
+    top.innerHTML = '<button class="lfx-logo" aria-label="우리 이야기 마당"><img src="/icon-192.png" alt=""></button>'
       + '<div class="lfx-title">' + esc(titleOf()) + '</div>'
       + '<button class="lfx-burger" aria-label="메뉴">' + svg('menu', 18) + '</button>';
     document.body.insertBefore(top, document.body.firstChild);
@@ -370,7 +371,7 @@
         if (r.indexOf(location.origin) === 0 && history.length > 1) { history.back(); } else { location.href = bk; }
       };
     }
-    top.querySelector('.lfx-logo').onclick = function () { if (window.LF_LEAVE) { return; } window.LF_LEAVE = 1; this.style.opacity = '.5'; try { document.body.classList.add('lfgo'); } catch (e) {} location.href = 'https://www.loveflow.ai.kr/'; };   /* ★v10 누르는 즉시 표시 · 두 번 눌림 막음 · 늦게 온 대답이 이동을 가로채지 않게 */
+    top.querySelector('.lfx-logo').onclick = function () { if (/[?&]plaza=1/.test(location.search) && !document.querySelector('.xpg.on')) { window.scrollTo(0, 0); return; } if (window.LF_LEAVE) { return; } window.LF_LEAVE = 1; this.style.opacity = '.5'; try { document.body.classList.add('lfgo'); } catch (e) {} location.href = '/?plaza=1'; };   /* ★[우리이야기 261116 16:05 대표] 로고 = 우리 이야기 마당(사랑흐름 메인 아님) · 그림도 우리 이야기 아이콘 · ★v10 누르는 즉시 표시 · 두 번 눌림 막음 · 늦게 온 대답이 이동을 가로채지 않게 */
     top.querySelector('.lfx-burger').onclick = openMenu;
     /* ★v12 본부에서 같은 창으로 연 화면 — 로고 자리에 「⌂ 본부로」 */
     try { if (sessionStorage.getItem('lf_from_hq') === '1' && !/[?&](hq|door)=1/.test(location.search)) { var lg = top.querySelector('.lfx-logo'), hp = document.createElement('a'); hp.id = 'lfHqPill'; hp.className = 'lfx-hq'; hp.href = '/?hq=1'; hp.textContent = '⌂ 본부로'; lg.parentNode.replaceChild(hp, lg); } } catch (e) {}
