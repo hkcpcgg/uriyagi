@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v184 · 261116 · [우리이야기] 네이버 사진 크기 — 마당 큰 칸 · 게시물(보통 크기)은 가로 800 중간 그림(n.m · 서버 ①Code v91), 아직 없으면 드라이브 썸네일 · 원본을 통째로 받지 않음 · 작게(300 이하)는 작은 그림 · REC_VER 184 -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v185 · 261116 · [우리이야기] 네이버 가로 480 그림(n.s · 서버 ①Code v92) — 바둑판 칸(480 이하)은 480 · REC_VER 185 -->
+<!-- (이전) ★ 현재 버전 ▶ rec/index.html · v184 · 261116 · [우리이야기] 네이버 사진 크기 — 마당 큰 칸 · 게시물(보통 크기)은 가로 800 중간 그림(n.m · 서버 ①Code v91), 아직 없으면 드라이브 썸네일 · 원본을 통째로 받지 않음 · 작게(300 이하)는 작은 그림 · REC_VER 184 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v183 · 261116 · [우리이야기] S7 사진 국내 보관 2단계(서버 ①Code v89 와 짝) — 공개 사진은 답의 n(네이버 자리)이 있으면 네이버(한국 · kr.object.ncloudstorage.com/uriyagi-photo)에서 바로 받음 · 작게(300 이하)는 작은 그림 · 크게는 원본 · 네이버가 안 열리면 그 사진만 드라이브로 · 방 단위 스위치는 서버(NCP_ON) · 닫힌 방 · 비공개 사진은 지금처럼 · REC_VER 183 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v182 · 261116 · [우리이야기] 대표 261116 16:24 · 16:26 · 16:37 — ① 마당 맨 위 「← 마당」 줄 뺌 · 나가기 물음 · 「우리 이야기에서 나왔습니다」 화면 없앰(뒤로 = 그냥 나감 · 앞 화면 없으면 그 자리) ② 위 띠 동그라미 로고 감춤 ③ 마당 맨 끝 「📲 홈 화면에 추가」 한 줄 ④ 🎤 안내 모두 뺌(한 줄 · 위치 보기 · 「🎤가 안 보이면」 · 자판 그림 · 글 칸 안 🎤 · 이용 안내 문장) ⑤ 아이콘 = 포도송이(임시 · uri-icon-192/512 · uri-apple-180 · uri-favicon-48) · 카톡 기본 그림 = uri-og.png · REC_VER 182 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v181 · 261116 · [우리이야기] 15회차 2차(대표 OK 16:03 · 서버 ①Code v86 과 짝) — ⑦ 초대 링크로 온 열쇠 없는 분은 마당 먼저: 도입부 바로 밑 얇은 한 줄 「○○ 님이 초대한 ○○ ›」 + 맨 끝 「○○ 들어가기 ›」 단추(모양 다르게 · 누르면 ?g=…&go=1 → 공개 방 손님 · 닫힌 방 로그인 화면) ⑧ 닫힌 방도 이름은 마당 방 띠 · 검색에(🔒 · 미리보기는 관리자가 고른 것 중 아이 사진 아닌 것 · 누를 때만 받음) · 「🚪 방 두드리기」 → 「똑똑! 누구세요?」 → 카카오 → 「똑똑— 들어가고 싶다는 마음을 전했어요.」 · 관리자 오늘 할 일 「똑똑! ○○ 님이 방을 두드렸어요」[승인] · 열리면 다음에 열 때 「관리자가 열어 주었어요」 ⑨ 사진 없는 방 = 가운데 큰 「＋ 올리기」 하나 · 사진을 올리면 그 방 사진 화면 · 방 화면 「이용 안내」 접기 뺌(내 방 · ☰) / 대표 16:05 — 「홈 화면에 추가」 = 되는 곳은 설치 창 바로 · 카카오톡 안이면 바로 인터넷으로 · 안 되는 곳만 한 줄 · 위 띠 로고 = 우리 이야기 마당(frame.js 사본) · 앱 이름 「우리 이야기」 · REC_VER 181 -->
@@ -2189,7 +2190,7 @@ function duScan(o,d){ d=d||0; if(!o||typeof o!=='object'||d>6){ return; } if(Arr
   if(o.id){ if(o.u&&/^[A-Za-z0-9_-]{10,80}$/.test(o.u)){ DU[o.id]=o.u; } if(o.n&&o.n.p&&/^p\/C-\d{4}\/[A-Za-z0-9-]+\.(jpg|png|webp|heic)$/.test(o.n.p)){ NU[o.id]=o.n; }   /* ★v183 S7 네이버(한국) */ if(o.mv&&/^https:\/\/www\.loveflow\.ai\.kr\/rec\/seed\/[A-Za-z0-9_\/-]+\.mp4$/.test(o.mv)){ MV[o.id]=o.mv; } }
   for(var k in o){ if(o[k]&&typeof o[k]==='object'){ duScan(o[k],d+1); } } }
 var NCP_BASE='https://kr.object.ncloudstorage.com/uriyagi-photo/', NU={};   /* ★v183 S7 사진 국내 보관 — 공개 사진은 네이버에서 바로 */
-function duUrl(id,w){ var n=NU[id], ww=w||480; if(n){ if(ww<=300&&n.t){ return NCP_BASE+n.t; } if(ww<=1000&&n.m){ return NCP_BASE+n.m; } if(ww<=1000&&DU[id]){ return 'https://drive.google.com/thumbnail?id='+encodeURIComponent(DU[id])+'&sz=w'+ww; } return NCP_BASE+(n.m||n.p); }   /* ★v184 작게 = 작은 그림 · 보통 = 가로 800 · 없으면 드라이브(원본을 통째로 받지 않음) */ return DU[id]?'https://drive.google.com/thumbnail?id='+encodeURIComponent(DU[id])+'&sz=w'+(w||480):''; }
+function duUrl(id,w){ var n=NU[id], ww=w||480; if(n){ if(ww<=300&&n.t){ return NCP_BASE+n.t; } if(ww<=520&&n.s){ return NCP_BASE+n.s; } if(ww<=1000&&n.m){ return NCP_BASE+n.m; } if(ww<=1000&&DU[id]){ return 'https://drive.google.com/thumbnail?id='+encodeURIComponent(DU[id])+'&sz=w'+ww; } return NCP_BASE+(n.m||n.p); }   /* ★v184 작게 = 작은 그림 · 보통 = 가로 800 · 없으면 드라이브(원본을 통째로 받지 않음) */ return DU[id]?'https://drive.google.com/thumbnail?id='+encodeURIComponent(DU[id])+'&sz=w'+(w||480):''; }
 function duLoad(id,w,cb){ var u=duUrl(id,w); if(!u){ cb(''); return; } var im=new Image(), done=false; function fin(x){ if(done){ return; } done=true; cb(x); }
   im.onload=function(){ fin(im.naturalWidth>1?u:''); }; im.onerror=function(){ if(NU[id]&&DU[id]){ delete NU[id]; done=true; duLoad(id,w,cb); return; } fin(''); }; setTimeout(function(){ fin(''); },8000); im.src=u; }   /* ★v183 네이버가 안 되면 드라이브로 */
 try{ var pv0=JSON.parse(localStorage.getItem(PVK)||'{}'); for(var pk0 in pv0){ PVC[pk0]=pv0[pk0]; } }catch(e){}
@@ -6315,7 +6316,7 @@ window.addEventListener('appinstalled',function(){ PWA_EV=null; var b=$('pwaGo')
 try{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js',{scope:'/'})['catch'](function(){});
   /* ★v62 375 새 화면 파일을 받아 오면 한 번 바꿔 엶 — 첫 화면 · 광장에서만(쓰는 중에는 기다렸다가 첫 화면으로 돌아올 때) */
   navigator.serviceWorker.addEventListener('message',function(ev){ if(!ev.data||ev.data.t!=='lf-new'){ return; } NEWV=1; newGo(); }); } }catch(e){}
-var NEWV=0, REC_VER=184;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
+var NEWV=0, REC_VER=185;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
 function newChk(){ try{ if(!window.caches){ return; } caches.open('lf-rec-shell-v2').then(function(c){ return c.match('/'); }).then(function(r){ return r?r.text():''; }).then(function(t){ var m=/rec\/index\.html · v(\d+)/.exec(String(t).slice(0,600)); if(m&&parseInt(m[1],10)>REC_VER){ NEWV=1; newGo(); } })['catch'](function(){}); }catch(e){} }   /* ★v62 375 알림을 놓쳐도 남겨 둔 파일 버전을 직접 봄 */
 setTimeout(newChk,5000); setTimeout(newChk,15000);
 document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible'){ setTimeout(newChk,1500); } });
