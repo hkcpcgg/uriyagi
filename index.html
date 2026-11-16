@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v186 · 261116 · [우리이야기] 그냥 주소로 오면 로그인했어도 마당 먼저(카톡에서 열면 내 방으로 가던 것) · 바탕 아이콘 · 안에서 방 옮김은 내 방 그대로 · REC_VER 186 -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v187 · 261116 · [우리이야기] 대표 20:16 — 마당 방마다 12장까지 · 큰 방만 남으면 끊고 「여기까지입니다」 · 맨 아래 「사랑흐름 가기 ›」(사랑흐름 .ur · 로고 파일 그대로) · 위 띠 제목 옆 「💬 공유하기」(사랑흐름-소통-021 표준) · REC_VER 187 -->
+<!-- (이전) ★ 현재 버전 ▶ rec/index.html · v186 · 261116 · [우리이야기] 그냥 주소로 오면 로그인했어도 마당 먼저(카톡에서 열면 내 방으로 가던 것) · 바탕 아이콘 · 안에서 방 옮김은 내 방 그대로 · REC_VER 186 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v185 · 261116 · [우리이야기] 네이버 가로 480 그림(n.s · 서버 ①Code v92) — 바둑판 칸(480 이하)은 480 · REC_VER 185 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v184 · 261116 · [우리이야기] 네이버 사진 크기 — 마당 큰 칸 · 게시물(보통 크기)은 가로 800 중간 그림(n.m · 서버 ①Code v91), 아직 없으면 드라이브 썸네일 · 원본을 통째로 받지 않음 · 작게(300 이하)는 작은 그림 · REC_VER 184 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v183 · 261116 · [우리이야기] S7 사진 국내 보관 2단계(서버 ①Code v89 와 짝) — 공개 사진은 답의 n(네이버 자리)이 있으면 네이버(한국 · kr.object.ncloudstorage.com/uriyagi-photo)에서 바로 받음 · 작게(300 이하)는 작은 그림 · 크게는 원본 · 네이버가 안 열리면 그 사진만 드라이브로 · 방 단위 스위치는 서버(NCP_ON) · 닫힌 방 · 비공개 사진은 지금처럼 · REC_VER 183 -->
@@ -1553,6 +1554,9 @@ body.btabon #fab,body.btabon #way3,body.btabon .fabtip{display:none!important}
 .rph .rint{margin-top:4px}
 .rup{display:block;border:0;background:none;color:var(--sub);font-size:14px;padding:4px 2px;cursor:pointer;font-family:inherit;text-align:left}
 .rup b{color:var(--ink)}
+/* ★v187 사랑흐름 공유하기 단추 꼴 그대로(loveflow index v74 .hm .shr) */
+#lfxTop .shr{border:0;border-radius:999px;padding:5px 10px;background:#FEE500;color:#191919;font-size:12px;font-weight:700;line-height:1.2;cursor:pointer;white-space:nowrap}
+#lfxTop.has-shr .lfx-title{padding:0 96px 0 4px}
 /* ★v178 사랑흐름 메인 v70 .ur 그대로 */
 .ur{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:18px;background:#fff;padding:14px 16px;text-decoration:none;color:inherit}
 .ur .i{font-size:26px}.ur b{display:block;color:#3B2A6E;font-size:15.5px}.ur small{color:#8A8070;font-size:12px}.ur .go{margin-left:auto;font-weight:800;color:var(--navy);white-space:nowrap;font-size:14px}
@@ -2321,8 +2325,8 @@ function pzWire(el){
 }
 /* ★v65 383 · 384 · 385 — 9장 묶음(큰 칸 왼쪽 · 오른쪽 번갈아) · 고르게 섞기(같은 방이 옆 · 위 칸에 붙지 않게 · 새것 앞쪽) · 세 묶음 뒤 「이야기방 만들기」 한 칸 */
 var PZL={sl:[],cells:[],occ:{},row:1,b:0,mk:0,age:0,seen:{}};
-var PZ_MAKE_AFTER=3;
-function pzReset(){ PZL={sl:[],cells:[],occ:{},row:1,b:0,mk:0,age:0,seen:{}}; }
+var PZ_MAKE_AFTER=3, PZ_CAP=12;   /* ★v187 대표 261116 20:16 — 마당에는 방마다 12장까지만 · 사진 많은 방이 끝까지 풀리지 않게 */
+function pzReset(){ PZL={sl:[],cells:[],occ:{},row:1,b:0,mk:0,age:0,seen:{},rc:{}}; }
 function pzGrow(n){
   while(PZL.sl.filter(function(s){ return !s.make; }).length<n){
     if(PZL.b===PZ_MAKE_AFTER&&!PZL.mk){ PZL.sl.push({make:1,r:PZL.row}); PZL.row+=2; PZL.mk=1; }
@@ -2333,7 +2337,7 @@ function pzGrow(n){
 }
 function pzCellsOf(s){ var a=[], h=s.big?2:1; for(var r=0;r<h;r++){ for(var c=0;c<h;c++){ a.push((s.r+r)+':'+(s.c+c)); } } return a; }
 function pzAdd(items){
-  var g={}, n=0; (items||[]).forEach(function(x){ if(!PLZ.rooms[x.c]||PZL.seen[x.id]){ return; } PZL.seen[x.id]=1; x._a=PZL.age++; (g[x.c]=g[x.c]||[]).push(x); n++; });
+  var g={}, n=0; (items||[]).forEach(function(x){ if(!PLZ.rooms[x.c]||PZL.seen[x.id]){ return; } PZL.seen[x.id]=1; if((PZL.rc[x.c]||0)>=PZ_CAP){ return; } PZL.rc[x.c]=(PZL.rc[x.c]||0)+1;   /* ★v187 방마다 12장 */ x._a=PZL.age++; (g[x.c]=g[x.c]||[]).push(x); n++; });
   if(!n){ return; }
   var done=PZL.cells.length; pzGrow(done+n);
   var free=PZL.sl.filter(function(s){ return !s.make; }).slice(done,done+n);
@@ -2373,13 +2377,22 @@ function pzRooms(){   /* ★v66 390 내 방 먼저(이 기기에서 들어가 �
   h+=oth.map(function(r){ return one(r,''); }).join('')+sm;   /* ★v138 629 「(견본)」 방은 맨 뒤 */
   h+=(PLZ.locks||[]).map(function(x,i){ return mine[x.name]?'':'<button type="button" class="st lk" data-lk="'+i+'"><span class="c"><i class="ini">'+esc(String(x.name).charAt(0))+'</i><em class="hb" title="멤버만 보는 방">🔒</em></span><span class="n">'+esc(x.name)+'</span></button>'; }).join('');   /* ★v181 ⑧ 닫힌 방도 이름은 보임 · 사진은 누를 때만 */
   return '<nav class="sto" aria-label="방">'+h+'<button type="button" class="st mk" id="stMk"><span class="c"><i>＋</i></span><span class="n">만들기</span></button></nav>'; }
+/* ★v187 사랑흐름-소통-021 공유하기 표준 — 마당 제목 옆 「💬 공유하기」 · 누르면 바로 카카오톡 카드 → 안 되면 휴대폰 공유 창 → 주소 복사 */
+function shrTop(){ if(VIEW!=='plaza'){ return; } var t=$('lfxTop'); if(!t){ setTimeout(shrTop,300); return; } if($('shrTop')){ return; }
+  var sl=t.querySelector('.lfx-slot'); if(!sl){ sl=document.createElement('div'); sl.className='lfx-slot'; t.appendChild(sl); } t.classList.add('has-slot','has-shr');
+  var b=document.createElement('button'); b.type='button'; b.id='shrTop'; b.className='shr'; b.textContent='💬 공유하기'; b.onclick=uriShare; sl.appendChild(b); }
+function uriShare(){ var u='https://uriyagi.kr/?plaza=1', ti='우리 이야기', de='우리의 오늘이 모여, 소중한 추억이 됩니다';
+  kakaoJs(function(ok){
+    if(ok){ try{ Kakao.Share.sendDefault({objectType:'feed',content:{title:ti,description:de,imageUrl:'https://uriyagi.kr/uri-og.png',link:{mobileWebUrl:u,webUrl:u}},buttons:[{title:'자세히 보기',link:{mobileWebUrl:u,webUrl:u}}]}); return; }catch(e){} }
+    if(navigator.share){ navigator.share({title:ti,text:de,url:u}).catch(function(){}); return; }
+    copyLink(u,'주소를 복사했습니다','카카오톡 · 문자에 붙여 넣어 주십시오'); }); }
 /* ★v66 390 마당 위 바에 「나」 */
 function meTop(){ if(VIEW!=='plaza'||$('meTop')){ return; } var t=$('lfxTop'); if(!t){ setTimeout(meTop,300); return; }
   var sl=t.querySelector('.lfx-slot'); if(!sl){ sl=document.createElement('div'); sl.className='lfx-slot'; t.appendChild(sl); t.classList.add('has-slot'); }
   var b=document.createElement('button'); b.type='button'; b.id='meTop'; b.className='lfx-me'; b.setAttribute('aria-label','나'); b.innerHTML='<span>나</span>'; b.onclick=meOpen; sl.appendChild(b); }
 function pzRows(g){ if(!g){ return; } var w=g.clientWidth; if(w>0){ g.style.gridAutoRows=Math.floor((w-4)/3)+'px'; } }
 window.addEventListener('resize',function(){ pzRows($('pzg')); });
-function plazaMode(){ document.body.classList.add('hqm'); dkMark(); $('fab').hidden=false; $('fab').classList.remove('hid');   /* ★v133 566 마당에도 ＋ */ lkLoad(); if(PLUS_OPEN){ PLUS_OPEN=0; setTimeout(function(){ plusPick(null); },500); } else if(shareFlag()){ shareKick(); }   /* ★v152 674 */ $('navbar').hidden=true; function tt(){ try{ document.title='우리 이야기 마당'; var t=document.querySelector('.lfx-title'); if(t){ t.textContent='우리 이야기 마당'; } }catch(e){} } tt(); setTimeout(tt,300); setTimeout(tt,1200); }
+function plazaMode(){ document.body.classList.add('hqm'); dkMark(); $('fab').hidden=false; $('fab').classList.remove('hid');   /* ★v133 566 마당에도 ＋ */ lkLoad(); if(PLUS_OPEN){ PLUS_OPEN=0; setTimeout(function(){ plusPick(null); },500); } else if(shareFlag()){ shareKick(); }   /* ★v152 674 */ $('navbar').hidden=true; shrTop(); function tt(){ try{ document.title='우리 이야기 마당'; var t=document.querySelector('.lfx-title'); if(t){ t.textContent='우리 이야기 마당'; } }catch(e){} } tt(); setTimeout(tt,300); setTimeout(tt,1200); }
 var PZRND=Math.random().toString(36).slice(2,10);   /* ★v107 들어올 때마다 다른 차례 */
 function pzMix(a){ a=(a||[]).slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)), t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
 function plazaSet(d){ PLZ.rooms=d.rooms||[]; PLZ.locks=d.locks||PLZ.locks||[];   /* ★v181 ⑧ 닫힌 방 이름 */ PLZ.items=pzMix(d.items); PLZ.more=d.more?1:0; PLZ.next=d.next||PLZ.items.length; pzReset(); pzAdd(PLZ.items); }
@@ -2451,7 +2464,7 @@ function plazaDraw(){
   h+=PZL.cells.map(pzCell).join('');
   el.innerHTML='<section class="pz" style="padding-top:8px">'+uriIn()+'<div id="invT"></div>'+pzRooms()+(PZL.cells.length?'<div class="mgrid" id="pzg">'+h+'</div>':'')+
     '<div id="invB"></div>'+(PLZ.more?'<div class="shmore" id="pzMore">'+(PLZ.busy?'더 불러오는 중입니다':'아래로 내리면 더 보입니다')+'</div>':(mkIn?'':pzMake(0).replace('class="mkc"','class="mkc solo"'))+'<div class="pzend">여기까지입니다</div>')+
-    (pwaIn()?'':'<button type="button" class="btn line pwab" id="pzPwa" style="margin-top:18px">📲 홈 화면에 추가</button>')+'<div class="lo lo3"><div class="brand">🍇 사랑흐름 · 우리 이야기</div></div></section>';   /* ★v182 마당 끝 한 줄 */
+    (pwaIn()?'':'<button type="button" class="btn line pwab" id="pzPwa" style="margin-top:18px">📲 홈 화면에 추가</button>')+(PLZ.more?'':'<a class="ur" href="https://www.loveflow.ai.kr/" id="pzLf" style="margin-top:14px"><span class="i"><img src="https://www.loveflow.ai.kr/logo.png" alt="" width="28" height="28" style="display:block"></span><span><b>사랑흐름</b><small>마음 여행지도 · 마음여행 · 한 편의 기록(자서전)</small></span><span class="go">사랑흐름 가기 ›</span></a>')+'<div class="lo lo3"><div class="brand">🍇 사랑흐름 · 우리 이야기</div></div></section>';   /* ★v182 마당 끝 한 줄 */
   if($('pzPwa')){ $('pzPwa').onclick=pwaGo; }
   pzRows($('pzg')); uriInWire(); invPaint();
   pzWire(el); mvWire(el); wayDraw(); posWire(el); if($('pBk')){ $('pBk').onclick=exitAsk; } btabDraw();   /* ★v68 · ★v140 ← = 나가기 물음 · 하단 탭 */
@@ -2470,7 +2483,7 @@ function plazaMore(){
   api({action:'recPlaza',n:'24',from:String(PLZ.next),rnd:PZRND,_hq:1},function(d){ PLZ.busy=0;
     if(lfGone()||VIEW!=='plaza'||formUp()){ return; }   /* ★v73 */
     if(!d||d.status!=='ok'){ PLZ.more=0; if(m){ m.hidden=true; } return; }
-    var nw=(d.items||[]).filter(function(x){ return !PZL.seen[x.id]; }); PLZ.items=PLZ.items.concat(nw); pzAdd(nw);   /* ★v107 겹친 사진 거름 */ PLZ.more=d.more?1:0; PLZ.next=d.next||PLZ.items.length;
+    var nw=(d.items||[]).filter(function(x){ return !PZL.seen[x.id]; }), c0=PZL.cells.length; PLZ.items=PLZ.items.concat(nw); pzAdd(nw); if(PZL.cells.length===c0){ d.more=0; }   /* ★v187 더 올 사진이 다 찬 방 것뿐이면 끊음 */   /* ★v107 겹친 사진 거름 */ PLZ.more=d.more?1:0; PLZ.next=d.next||PLZ.items.length;
     var y=window.scrollY||0; plazaDraw(); window.scrollTo(0,y);
     if(VWON&&VW.src==='plaza'){ vwAppend(PZL.cells.slice(VW.list.length).map(function(o){ return vwFromPz(o.x); })); } });
 }
@@ -2641,7 +2654,7 @@ function meOpen(){
   if(mem){ h+='<div class="mtabs" role="tablist"><button type="button" role="tab" data-mt="p"'+(MEP.tab==='p'?' class="on"':'')+'>내 게시물</button><button type="button" role="tab" data-mt="g"'+(MEP.tab==='g'?' class="on"':'')+'>받은 기억'+(gn?' <span class="mtn">새 기억 '+gn+'</span>':'')+'</button></div><div id="meUq"></div><div class="mpg" id="mePics"'+(MEP.tab==='p'?'':' hidden')+'></div><div id="meGot"'+(MEP.tab==='g'?'':' hidden')+'></div>'; }
   h+='<button type="button" class="bigb" id="meMk">＋ 우리 이야기 만들기</button>'+
     '<button type="button" class="btn line" id="meHelp" style="margin-top:12px">이용 안내</button>'+   /* ★v181 15회차 ⑨ 안내는 내 방 · ☰ 에서 */
-    '<a class="ur" href="https://www.loveflow.ai.kr/" id="lfGo" style="margin-top:16px"><span class="i"><img src="/logo-96.png" alt="" width="28" height="28" style="display:block"></span><span><b>사랑흐름</b><small>마음 여행지도 · 마음여행 · 한 편의 기록(자서전)</small></span><span class="go">사랑흐름 가기 ›</span></a>'+   /* ★v178 사랑흐름 메인 .ur 그대로 */
+    '<a class="ur" href="https://www.loveflow.ai.kr/" id="lfGo" style="margin-top:16px"><span class="i"><img src="https://www.loveflow.ai.kr/logo.png" alt="" width="28" height="28" style="display:block"></span><span><b>사랑흐름</b><small>마음 여행지도 · 마음여행 · 한 편의 기록(자서전)</small></span><span class="go">사랑흐름 가기 ›</span></a>'+   /* ★v178 사랑흐름 메인 .ur 그대로 */
     '<div style="height:90px"></div>';
   pgOpen('meP',h); btabDraw();
   var el=$('meP');
@@ -6317,7 +6330,7 @@ window.addEventListener('appinstalled',function(){ PWA_EV=null; var b=$('pwaGo')
 try{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js',{scope:'/'})['catch'](function(){});
   /* ★v62 375 새 화면 파일을 받아 오면 한 번 바꿔 엶 — 첫 화면 · 광장에서만(쓰는 중에는 기다렸다가 첫 화면으로 돌아올 때) */
   navigator.serviceWorker.addEventListener('message',function(ev){ if(!ev.data||ev.data.t!=='lf-new'){ return; } NEWV=1; newGo(); }); } }catch(e){}
-var NEWV=0, REC_VER=186;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
+var NEWV=0, REC_VER=187;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
 function newChk(){ try{ if(!window.caches){ return; } caches.open('lf-rec-shell-v2').then(function(c){ return c.match('/'); }).then(function(r){ return r?r.text():''; }).then(function(t){ var m=/rec\/index\.html · v(\d+)/.exec(String(t).slice(0,600)); if(m&&parseInt(m[1],10)>REC_VER){ NEWV=1; newGo(); } })['catch'](function(){}); }catch(e){} }   /* ★v62 375 알림을 놓쳐도 남겨 둔 파일 버전을 직접 봄 */
 setTimeout(newChk,5000); setTimeout(newChk,15000);
 document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible'){ setTimeout(newChk,1500); } });
