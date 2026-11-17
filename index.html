@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v193 · 261117 · [우리이야기] ④ 내 사진(대표 OK 12:32 · 시안 v1) — 내 방 동그라미 📷 → 「내 사진」 판(고르기 · 바꾸기 · 지우기 · 320 정사각 · picShrink) · 게시물 머리 · 대화 이름 옆 사진(bp · 고른 분만) · 방 관리 사람 목록 「사진 가리기」 · 마당 · 카톡 카드는 그대로 -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v194 · 261117 · [우리이야기] 대표 12:49 「대표 사진을 올린 사진에서만 고르게 하지 말고 앨범 · 갤러리 · 기기 안에서도」 — 방 설정 대표 사진 「📱 휴대폰 갤러리에서 고르기」(여러 장 · 6장까지) → 이 방 게시물로 올림(열린 방 = 공개) → 1번부터 대표 사진에 바로 걸기 -->
+<!-- (이전) ★ 현재 버전 ▶ rec/index.html · v193 · 261117 · [우리이야기] ④ 내 사진(대표 OK 12:32 · 시안 v1) — 내 방 동그라미 📷 → 「내 사진」 판(고르기 · 바꾸기 · 지우기 · 320 정사각 · picShrink) · 게시물 머리 · 대화 이름 옆 사진(bp · 고른 분만) · 방 관리 사람 목록 「사진 가리기」 · 마당 · 카톡 카드는 그대로 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v192 · 261117 · [우리이야기] S7 마무리 2단계(대표 OK 10:53) — 드라이브가 치워진 사진도 네이버 주소로 바로 받음(duHas = 드라이브 또는 네이버 · 큰 사진 · 마당 · 받은 기억 · 위 방 · 방 표지 · 카드 배경) · 보이는 것은 그대로 · 사랑흐름-소통-026 점검 — 새 값(열쇠 · 표 · 초대 · 링크)을 돌려주는 요청은 늦게 온 답도 받아 씀(API_LATE · jsonp 2분) -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v191 · 261117 · [우리이야기] 대표 OK 10:30(관리길 시안 v1) — ① 마당 먼저 뒤로 끊긴 「나」를 뒤에서 조용히 받음(MEQ · 내 방에 이름 · 카카오 로그인) · 내가 만든 방 카드 「⚙ 관리」 · 방 ⋯ 에 「⚙ 방 관리」 ② ☰ 관리 칸 — 관리하는 방 목록이 없으면 받아서 다시 엶 ③ 방 관리 맨 위 방 정보 카드(대표 사진 · 이름 · 소개 → 바꾸기 → 대표 사진 · 이름 · 소개로 바로) · 카톡 → 크롬으로 넘길 때 열쇠를 # 칸에(사랑흐름-024 ⑥) · REC_VER 191 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v190 · 261117 · [우리이야기] 사랑흐름-소통-022 · 023 — 마당 맨 아래 사랑흐름 칸 = 카톡 첫인상 그림 한 장(og-image 선명본 · 누르면 사랑흐름 메인) · lf/frame.js 를 사랑흐름 v31 로 · lf-foot.js 를 v10 으로 다시 받음(주소만 바꿈) · 오른쪽 아래 동그라미 꼴을 사랑흐름 .lfx-fab 와 똑같이(테두리 · 그림자 · 그림 선) · 사랑흐름 동그라미는 data-lf-fab=off 로 끄고 우리 것(마당 = 우리 이야기 · 방 = 그 방) · 판 제목(h2) 앞 아이콘 뗌(사랑흐름-022 요청 2 · 제목을 단추로 알고 누르는 헛손질) · REC_VER 190 -->
@@ -5361,13 +5362,26 @@ var BPICK=[], BCAND=[];
 function bestDraw(){
   var el=$('dBest'); if(!el||!DECO){ return; }
   BPICK=String(DECO.c.best||'').split(',').filter(Boolean);
-  el.innerHTML='<div class="card"><h2>대표 사진 <small style="font-family:var(--f-body);font-size:13px;color:var(--sub);font-weight:400" id="bN">'+BPICK.length+' / 6</small></h2><p class="lead">첫 화면 맨 위 6칸에 걸 사진입니다. 아래는 <b>이 방에 공개된 사진(최근 것부터)</b>이고, 「더 보기」로 지난 사진도 볼 수 있습니다. 누르는 차례대로 1~6번 자리에 놓이고 다시 누르면 빠집니다. 고르지 않으면 반응(기억해요 · 대화)이 많은 사진이 저절로 걸립니다.</p><div id="bG"></div><button class="btn line lv" id="bMore" type="button" hidden style="margin-top:8px">더 보기</button><div class="pair" style="margin-top:10px"><button class="btn line" id="bClr" type="button">고른 것 모두 빼기</button><button class="btn" id="bOk" type="button">대표 사진으로 걸기</button></div></div>';
+  el.innerHTML='<div class="card"><h2>대표 사진 <small style="font-family:var(--f-body);font-size:13px;color:var(--sub);font-weight:400" id="bN">'+BPICK.length+' / 6</small></h2><p class="lead">첫 화면 맨 위 6칸에 걸 사진입니다. 아래는 <b>이 방에 공개된 사진(최근 것부터)</b>이고, 「더 보기」로 지난 사진도 볼 수 있습니다. 누르는 차례대로 1~6번 자리에 놓이고 다시 누르면 빠집니다. 고르지 않으면 반응(기억해요 · 대화)이 많은 사진이 저절로 걸립니다.</p><button class="btn line" id="bGal" type="button" style="margin:0 0 10px">📱 휴대폰 갤러리에서 고르기</button><input type="file" id="bGalF" accept="image/*" multiple hidden><p class="note" style="margin:-4px 0 10px">갤러리에서 고른 사진은 이 방 게시물로도 올라가고('+(openRoom()?'열린 방이라 누구나 봅니다':'함께하는 분만 봅니다')+') 1번부터 대표 사진에 걸립니다.</p><div id="bG"></div><button class="btn line lv" id="bMore" type="button" hidden style="margin-top:8px">더 보기</button><div class="pair" style="margin-top:10px"><button class="btn line" id="bClr" type="button">고른 것 모두 빼기</button><button class="btn" id="bOk" type="button">대표 사진으로 걸기</button></div></div>';
   wait($('bG'),'사진을 모으는 중입니다');
   var bFrom=0, bAll=[];
   function bLoad(first){ api({action:'recList',grid:'1',lite:'1',mode:'new',n:'30',from:String(bFrom)},function(d){ if(VIEW!=='deco'){ return; } var got=(d.items||[]).filter(function(x){ return !x.state||x.state==='실림'; }); bAll=bAll.concat(got); BCAND=bAll; bFrom+=(d.items||[]).length;
     if(first){ var have={}; BCAND.forEach(function(x){ have[x.id]=1; (x.photos||[]).forEach(function(p){ have[p.id]=1; }); }); BPICK=BPICK.filter(function(id){ return have[id]; }); }
     bestGrid(); if($('bMore')){ $('bMore').hidden=!(d.more||(d.items||[]).length>=30); } }); }   /* ★v137 「더 보기」로 지난 사진까지 */
   bLoad(true); $('bMore').onclick=function(){ this.hidden=true; bLoad(false); };
+  $('bGal').onclick=function(){ $('bGalF').click(); };   /* ★v194 대표 261117 12:49 「앨범 · 갤러리 · 기기 안에서도 고를 수 있게」 — 이 방 게시물로 올리고 1번부터 대표 사진에 */
+  $('bGalF').onchange=function(){ var fs=Array.prototype.slice.call(this.files||[]).slice(0,6), ids=[], bad=0, n=fs.length; this.value=''; if(!n){ return; }
+    var pub=openRoom(); busyOn('사진을 담는 중입니다 (1/'+n+')');
+    (function nx(i){
+      if(i>=n){ busyOff(); if(!ids.length){ toast('사진을 올리지 못했습니다','잠시 후 다시 해 주십시오'); return; }
+        var nb=ids.concat(BPICK.filter(function(x){ return ids.indexOf(x)<0; })).slice(0,6);
+        api({action:'recComSet',best:nb.join(','),_busy:'대표 사진을 거는 중입니다'},function(r){ if(r.status!=='ok'){ toast(r.msg||'걸지 못했습니다'); return; } DECO.c=r; homeDirty(); bestDraw(); toast('갤러리 사진 '+ids.length+'장을 대표 사진에 걸었습니다',(bad?bad+'장은 올리지 못했습니다 · ':'')+'이 방 게시물로도 올라갔습니다'); });
+        return; }
+      busyText('사진을 올리는 중입니다 ('+(i+1)+'/'+n+')');
+      shrink(fs[i],function(u,pv){ if(!u){ bad++; nx(i+1); return; }
+        var q={action:'recAdd',cv:CV,agree:'1',kind:'사진',photo:u,pv:pv||'',src:'가진 사진',title:'',text:'',scope:pub?'공개':'공동체',_quiet:1}; if(pub){ q.agreePub='1'; }
+        api(q,function(r){ if(r&&r.status==='ok'&&(r.id||r.dup)&&(r.state==='실림'||r.dup)){ ids.push(r.dup||r.id); } else { bad++; } nx(i+1); }); });
+    })(0); };
   $('bClr').onclick=function(){ if(!BPICK.length){ toast('고른 사진이 없습니다','사진을 누르면 1~6번 자리에 놓입니다'); return; } BPICK=[]; bestGrid(); toast('고른 것을 모두 뺐습니다','「대표 사진으로 걸기」를 눌러야 첫 화면에 실립니다'); };   /* ★v137 눌러도 아무 일 없어 보이던 것 */
   $('bOk').onclick=function(){ var b=this; b.disabled=true; api({action:'recComSet',best:BPICK.join(','),_busy:'대표 사진을 거는 중입니다'},function(r){ b.disabled=false; if(r.status!=='ok'){ toast(r.msg||'걸지 못했습니다'); return; } DECO.c=r; homeDirty(); toHome(); toast(BPICK.length?'대표 사진 '+BPICK.length+'장을 걸었습니다':'대표 사진을 비웠습니다','첫 화면에 바로 실립니다'); }); };
 }
@@ -6489,7 +6503,7 @@ window.addEventListener('appinstalled',function(){ PWA_EV=null; var b=$('pwaGo')
 try{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js',{scope:'/'})['catch'](function(){});
   /* ★v62 375 새 화면 파일을 받아 오면 한 번 바꿔 엶 — 첫 화면 · 광장에서만(쓰는 중에는 기다렸다가 첫 화면으로 돌아올 때) */
   navigator.serviceWorker.addEventListener('message',function(ev){ if(!ev.data||ev.data.t!=='lf-new'){ return; } NEWV=1; newGo(); }); } }catch(e){}
-var NEWV=0, REC_VER=193;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
+var NEWV=0, REC_VER=194;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
 function newChk(){ try{ if(!window.caches){ return; } caches.open('lf-rec-shell-v2').then(function(c){ return c.match('/'); }).then(function(r){ return r?r.text():''; }).then(function(t){ var m=/rec\/index\.html · v(\d+)/.exec(String(t).slice(0,600)); if(m&&parseInt(m[1],10)>REC_VER){ NEWV=1; newGo(); } })['catch'](function(){}); }catch(e){} }   /* ★v62 375 알림을 놓쳐도 남겨 둔 파일 버전을 직접 봄 */
 setTimeout(newChk,5000); setTimeout(newChk,15000);
 document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible'){ setTimeout(newChk,1500); } });
