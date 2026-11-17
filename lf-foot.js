@@ -1,6 +1,7 @@
-/* [우리이야기] uriyagi.kr 사본 — 사랑흐름 lf-foot.js 그대로 · 링크만 www.loveflow.ai.kr 로(사랑흐름이 절대 주소판을 주면 바꿈 · 우리이야기-소통-020) */
+/* [우리이야기] uriyagi.kr 사본 — 사랑흐름 lf-foot.js v10(loveflow 67a8e39)을 그대로 받음 · 바꾼 것: 본부 바로가기 → https://www.loveflow.ai.kr/hq/?hq=1 (다른 링크는 원본이 스스로 www.loveflow.ai.kr 을 붙임) */
 /* ═══════════════════════════════════════════════════════════════
-   현재 버전 ▶ lf-foot.js · v9 · 261116 · [우리이야기 사본만 · 대표 261116 14:23 「띄어쓰기 말고 한 칸씩 붙여서」] 사업자 줄 양쪽 꽉 채움(justify) 뺌 → 가운데 · 보통 간격 · 글자 크기 맞춤은 그대로(두 줄에 드는 가장 큰 크기 · 가운데 맞춤에도 같은 셈). 사랑흐름 원본은 그대로. [무손] 그 밖 v8 전부.
+   현재 버전 ▶ lf-foot.js · v10 · 261117 · [700 · 대표 OK 261117 07:36] 사업자 정보 양쪽 맞춤(줄이 넘치면 글자 사이가 벌어짐) → 왼쪽부터 이어 쓰기 · 글꼴이 온 뒤 · 화면을 다 연 뒤 · 2.5초 뒤 글자 크기를 다시 맞춤(실폰 결제 화면 세 줄 · © 줄 잘림). [무손] 그 밖 v9 전부.
+   (이전) lf-foot.js · v9 · 261116 · [우리이야기-소통-021 · 022 · 대표 261116 17:49 「저쪽 방에 필요한 거 모두 승인」] 본부 바로가기 → /hq/?hq=1. [무손] 그 밖 v8 전부.
    (이전) lf-foot.js · v8 · 261116 · [우리이야기-소통-020 요청 2] 다른 도메인(uriyagi.kr 등)에서 부르면 메뉴 줄 링크(소개 · 이용약관 · 개인정보처리방침 · 환불정책) 앞에 https://www.loveflow.ai.kr 를 붙임 · 사랑흐름 화면(loveflow.ai.kr · 시험 환경)은 그대로. [무손] 그 밖 v7 전부.
    (이전) lf-foot.js · v7 · 261116 · [우리이야기-소통-015 요청 2] 부르는 자리(#lfFoot · .lf-foot)에 data-refund="0" 을 주면 메뉴 줄 「환불정책」만 뺌 — 값을 주지 않는 사랑흐름 화면은 v6 그대로. [무손] 그 밖 v6 전부.
    (이전) lf-foot.js · v6 · 261116 · [대표 261116 10:08 · OK 10:16] 푸터 네 줄 — ①소개 · 이용약관 · 개인정보처리방침(굵게) · 환불정책 · 문의 = 가운데 ②③사업자 정보 = 이어 쓰기 · 양쪽 꽉 채움 두 줄(첫 줄은 「통신판매 제2025-경기파주-1747호」까지) · 글자는 푸터 폭에 맞춰 두 줄에 드는 가장 큰 크기(7~11px) ④© · 국문 · 영문 경고 한 줄. 상호 · 대표자 꼬리말 줄임. [무손] 링크 · 본부 띠 · 그 밖 전부.
@@ -40,10 +41,10 @@
     + ".lfft-links a{color:#9d8f80;text-decoration:none;cursor:pointer;margin:0 5px;white-space:nowrap}"
     + ".lfft-links a.pv{font-weight:700;color:#7d6f60}"
     + ".lfft-links a:hover{text-decoration:underline}"
-    + ".lfft-biz{font-size:8.6px;line-height:1.75;margin-top:4px;text-align:center;word-break:keep-all}"   /* ★v9 우리 이야기 사본 — 양쪽 꽉 채움 뺌 · 가운데 · 보통 간격 */
+    + ".lfft-biz{font-size:8.6px;line-height:1.75;margin-top:4px;text-align:left;word-break:keep-all}"
     + ".lfft-biz span{white-space:nowrap}"
     + ".lfft-biz a{color:#9d8f80;text-decoration:none}"
-    + ".lfft-c{font-size:8.6px;line-height:1.75;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:clip}";
+    + ".lfft-c{font-size:8.6px;line-height:1.75;margin-top:1px;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:clip}";
 
   /* ★v6 사업자 정보 = 두 줄 꽉 채움 · 글자 크기는 푸터 폭에 맞춰(412px 폭 = 8.6px · 넓은 화면은 11px 까지) */
   var BIZ_ITEMS = [
@@ -104,12 +105,12 @@
       if (document.getElementById("lfHqPill") || document.getElementById("lfHqBack") || document.getElementById("lfxTop")) { return; }
       var b = document.createElement("div"); b.id = "lfHqBack";
       b.style.cssText = "position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;justify-content:center;padding:8px 12px;background:#26215C";
-      b.innerHTML = '<a href="https://www.loveflow.ai.kr/rec/?hq=1" style="display:inline-flex;align-items:center;gap:6px;color:#fff;text-decoration:none;font:700 14px/1.2 \'Noto Sans KR\',sans-serif;border:1.5px solid #AFA9EC;border-radius:999px;padding:7px 18px">⌂ 본부로</a>';
+      b.innerHTML = '<a href="https://www.loveflow.ai.kr/hq/?hq=1" style="display:inline-flex;align-items:center;gap:6px;color:#fff;text-decoration:none;font:700 14px/1.2 \'Noto Sans KR\',sans-serif;border:1.5px solid #AFA9EC;border-radius:999px;padding:7px 18px">⌂ 본부로</a>';
       document.body.insertBefore(b, document.body.firstChild);
       var bp = parseFloat(getComputedStyle(document.body).paddingTop) || 0; document.body.style.paddingTop = (bp + 52) + "px";
     } catch (e) {}
   }
-  function start() { paint(); setTimeout(hqBack, 400); setTimeout(fit, 300); window.addEventListener("resize", fit); }
+  function start() { paint(); setTimeout(hqBack, 400); setTimeout(fit, 300); window.addEventListener("resize", fit); window.addEventListener("load", fit); try { if (document.fonts && document.fonts.ready) { document.fonts.ready.then(fit); } } catch (e) {} setTimeout(fit, 2500); }   /* ★v10 글꼴이 늦게 와도 다시 맞춤(실폰 3줄 · © 줄 잘림) */
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", start);
