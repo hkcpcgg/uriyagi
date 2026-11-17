@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v192 · 261117 · [우리이야기] S7 마무리 2단계(대표 OK 10:53) — 드라이브가 치워진 사진도 네이버 주소로 바로 받음(duHas = 드라이브 또는 네이버 · 큰 사진 · 마당 · 받은 기억 · 위 방 · 방 표지 · 카드 배경) · 보이는 것은 그대로 -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v192 · 261117 · [우리이야기] S7 마무리 2단계(대표 OK 10:53) — 드라이브가 치워진 사진도 네이버 주소로 바로 받음(duHas = 드라이브 또는 네이버 · 큰 사진 · 마당 · 받은 기억 · 위 방 · 방 표지 · 카드 배경) · 보이는 것은 그대로 · 사랑흐름-소통-026 점검 — 새 값(열쇠 · 표 · 초대 · 링크)을 돌려주는 요청은 늦게 온 답도 받아 씀(API_LATE · jsonp 2분) -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v191 · 261117 · [우리이야기] 대표 OK 10:30(관리길 시안 v1) — ① 마당 먼저 뒤로 끊긴 「나」를 뒤에서 조용히 받음(MEQ · 내 방에 이름 · 카카오 로그인) · 내가 만든 방 카드 「⚙ 관리」 · 방 ⋯ 에 「⚙ 방 관리」 ② ☰ 관리 칸 — 관리하는 방 목록이 없으면 받아서 다시 엶 ③ 방 관리 맨 위 방 정보 카드(대표 사진 · 이름 · 소개 → 바꾸기 → 대표 사진 · 이름 · 소개로 바로) · 카톡 → 크롬으로 넘길 때 열쇠를 # 칸에(사랑흐름-024 ⑥) · REC_VER 191 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v190 · 261117 · [우리이야기] 사랑흐름-소통-022 · 023 — 마당 맨 아래 사랑흐름 칸 = 카톡 첫인상 그림 한 장(og-image 선명본 · 누르면 사랑흐름 메인) · lf/frame.js 를 사랑흐름 v31 로 · lf-foot.js 를 v10 으로 다시 받음(주소만 바꿈) · 오른쪽 아래 동그라미 꼴을 사랑흐름 .lfx-fab 와 똑같이(테두리 · 그림자 · 그림 선) · 사랑흐름 동그라미는 data-lf-fab=off 로 끄고 우리 것(마당 = 우리 이야기 · 방 = 그 방) · 판 제목(h2) 앞 아이콘 뗌(사랑흐름-022 요청 2 · 제목을 단추로 알고 누르는 헛손질) · REC_VER 190 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v189 · 261117 · [우리이야기] 대표 OK 07:38(시안 v3) — ① 공유 = 흰 동그라미 공유 그림 · 오른쪽 아래 공유 · ↑ 맨 위로(마당 · 방) · 위 띠 노란 알약 · 방 ↗ 뺌 ② 게시물 ↗ → 동그라미 ③ … 메뉴 맨 위 공유하기 · 사진 고르기(공유 · 삭제) · 이 사진만 삭제 · 전체 삭제는 맨 아래 + 「사진 고르기로 / n장 모두 지우기」 ④ 보낼 사진 고르기 새 창(보던 사진 먼저 · 끝까지 · 찾기 · 10장 중 ○장 · &ps= 받은 쪽 넘겨 보기) · REC_VER 189 -->
@@ -1703,6 +1703,8 @@ function busyOff(){ BUSY_N=Math.max(0,BUSY_N-1); if(BUSY_N){ return; } if(BUSY_T
 function busyText(msg){ var d=$('busy'); if(d&&d.firstChild){ d.firstChild.textContent=msg; } }
 /* ★v36 240 — 읽기 요청이 깨져 오면(많은 분이 한꺼번에 열 때 구글이 오류 페이지를 줌) 1.5초 뒤 한 번 더 */
 var ITREAD={recPhoto:1,recPhotos:1,recSpeed:1,recLog:1,recVisit:1,recMe:1,recMyRooms:1,recSnap:1,recBy:1,recPvPhoto:1,recLockPhoto:1,recKnockSee:1};   /* ★v120 읽기만 하는 요청 */
+/* ★v192 사랑흐름-소통-026 — 서버가 새 값(열쇠 · 표 · 초대 · 링크)을 만들어 돌려주는 것은 시간이 지나 「연결 안 됨」을 보인 뒤라도 늦게 온 답을 받아 씀(2분까지) */
+var API_LATE={recKakao:1,recKakaoLink:1,recKakaoTicket:1,recInvite:1,recShow:1,recOpenApply:1,recAdminTicket:1,recAdminClaim:1,recMainKey:1,recHqLogin:1};
 var API_AGAIN={recPlaza:1,recHome:1,recList:1,recPvs:1,recGet:1,recCats:1,recQueue:1,recPeople:1,recReport:1,recBundle:1};
 function api(p,cb,again){
   if(!GAS){ cb({status:'err',msg:'서버 주소를 읽지 못했습니다. 잠시 후 다시 열어 주십시오.'}); return; }
@@ -1714,7 +1716,7 @@ function api(p,cb,again){
   if(!again&&!p._srv&&window.LFPub&&(p.action==='recPlaza'||p.action==='recHome')){ var pp=p; (p.action==='recPlaza'?LFPub.plaza:LFPub.home)(pp,function(d){ if(d){ try{ duScan(d); }catch(e0){} cb(d); return; } pp._srv=1; api(pp,cb); }); return; }   /* ★v130 572 보기는 서버에 묻지 않게 — 마당 · 메인 목록 · 열쇠 없는 손님 방 첫 화면은 공개 목록 시트(0.3초) · 없거나 늦으면 서버 */
   var bm=p._quiet?'':(p._busy||BUSY_MSG[p.action]); delete p._busy; delete p._quiet; if(bm){ busyOn(bm); }   /* ★v124 571 뒤에서 보내는 것은 「올리는 중」 화면을 띄우지 않음 */
   var t0s=spdNow(), szs=0, act0=p.action;   /* ★v49 330 */
-  var done=false; function fin(d){ if(done){ return; } done=true; if(bm){ busyOff(); } spdStep(act0,t0s,d,szs); if(d){ try{ duScan(d); }catch(e0){} }   /* ★v53 333 · 339 */
+  var done=false, late=!!API_LATE[p.action]; function fin(d){ if(done){ if(late&&d&&d.status==='ok'){ late=false; try{ duScan(d); }catch(eL){} cb(d); } return; } done=true; if(bm){ busyOff(); } spdStep(act0,t0s,d,szs); if(d){ try{ duScan(d); }catch(e0){} }   /* ★v53 333 · 339 */
     if(!d&&p0&&API_AGAIN[p.action]){ setTimeout(function(){ api(p0,cb,1); },1500); return; }
     if(d&&d.reason==='ADMIN_KAKAO'){ tkSet(ATK,''); setTimeout(function(){ adminNeed(VIEW==='feed'?'adm':VIEW); },0); }   /* ★v37 */
     if(d&&d.reason==='PAUSED'){ setTimeout(pausedOn,0); }
@@ -1722,14 +1724,15 @@ function api(p,cb,again){
   try{
     fetch(GAS,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(p)})
       .then(function(r){ return r.text(); }).then(function(tx){ szs=tx.length; return JSON.parse(tx); }).then(fin)
-      .catch(function(){ if(JSON.stringify(p).length<1800){ jsonp(p,fin); } else { fin(null); } });
-  }catch(e){ jsonp(p,fin); }
+      .catch(function(){ if(JSON.stringify(p).length<1800){ jsonp(p,fin,late); } else { fin(null); } });
+  }catch(e){ jsonp(p,fin,late); }
   setTimeout(function(){ fin(null); },60000);
 }
-function jsonp(p,cb){
+function jsonp(p,cb,late){
   var name='rcb_'+Date.now()+'_'+Math.floor(Math.random()*1e6), sc=document.createElement('script'), done=false;
-  function fin(d){ if(done){ return; } done=true; try{ delete window[name]; }catch(e){} if(sc.parentNode){ sc.parentNode.removeChild(sc); } cb(d); }
-  window[name]=fin; sc.onerror=function(){ fin(null); };
+  function drop(){ try{ delete window[name]; }catch(e){} if(sc.parentNode){ sc.parentNode.removeChild(sc); } }
+  function fin(d){ if(done){ if(late&&d){ drop(); cb(d); } return; } done=true; if(!(late&&!d)){ drop(); } else { setTimeout(drop,120000); } cb(d); }   /* ★v192 새 값은 늦은 답도 받음(2분) */
+  window[name]=fin; sc.onerror=function(){ late=false; fin(null); };
   var q=[]; for(var k in p){ q.push(k+'='+encodeURIComponent(p[k])); }
   sc.src=GAS+'?'+q.join('&')+'&callback='+name+'&t='+Date.now(); document.body.appendChild(sc);
   setTimeout(function(){ fin(null); },25000);
