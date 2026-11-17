@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v191 · 261117 · [우리이야기] 대표 OK 10:30(관리길 시안 v1) — ① 마당 먼저 뒤로 끊긴 「나」를 뒤에서 조용히 받음(MEQ · 내 방에 이름 · 카카오 로그인) · 내가 만든 방 카드 「⚙ 관리」 · 방 ⋯ 에 「⚙ 방 관리」 ② ☰ 관리 칸 — 관리하는 방 목록이 없으면 받아서 다시 엶 ③ 방 관리 맨 위 방 정보 카드(대표 사진 · 이름 · 소개 → 바꾸기 → 대표 사진 · 이름 · 소개로 바로) · REC_VER 191 -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v191 · 261117 · [우리이야기] 대표 OK 10:30(관리길 시안 v1) — ① 마당 먼저 뒤로 끊긴 「나」를 뒤에서 조용히 받음(MEQ · 내 방에 이름 · 카카오 로그인) · 내가 만든 방 카드 「⚙ 관리」 · 방 ⋯ 에 「⚙ 방 관리」 ② ☰ 관리 칸 — 관리하는 방 목록이 없으면 받아서 다시 엶 ③ 방 관리 맨 위 방 정보 카드(대표 사진 · 이름 · 소개 → 바꾸기 → 대표 사진 · 이름 · 소개로 바로) · 카톡 → 크롬으로 넘길 때 열쇠를 # 칸에(사랑흐름-024 ⑥) · REC_VER 191 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v190 · 261117 · [우리이야기] 사랑흐름-소통-022 · 023 — 마당 맨 아래 사랑흐름 칸 = 카톡 첫인상 그림 한 장(og-image 선명본 · 누르면 사랑흐름 메인) · lf/frame.js 를 사랑흐름 v31 로 · lf-foot.js 를 v10 으로 다시 받음(주소만 바꿈) · 오른쪽 아래 동그라미 꼴을 사랑흐름 .lfx-fab 와 똑같이(테두리 · 그림자 · 그림 선) · 사랑흐름 동그라미는 data-lf-fab=off 로 끄고 우리 것(마당 = 우리 이야기 · 방 = 그 방) · 판 제목(h2) 앞 아이콘 뗌(사랑흐름-022 요청 2 · 제목을 단추로 알고 누르는 헛손질) · REC_VER 190 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v189 · 261117 · [우리이야기] 대표 OK 07:38(시안 v3) — ① 공유 = 흰 동그라미 공유 그림 · 오른쪽 아래 공유 · ↑ 맨 위로(마당 · 방) · 위 띠 노란 알약 · 방 ↗ 뺌 ② 게시물 ↗ → 동그라미 ③ … 메뉴 맨 위 공유하기 · 사진 고르기(공유 · 삭제) · 이 사진만 삭제 · 전체 삭제는 맨 아래 + 「사진 고르기로 / n장 모두 지우기」 ④ 보낼 사진 고르기 새 창(보던 사진 먼저 · 끝까지 · 찾기 · 10장 중 ○장 · &ps= 받은 쪽 넘겨 보기) · REC_VER 189 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v188 · 261116 · [우리이야기] 대표 20:36 「사랑흐름에서 세워 놓은 것 그대로 갖다 써라」 — lf/frame.js 를 사랑흐름 v29 로 다시 받음(☰ 맨 아래 공유하기 · 홈 화면에 추가 · 공유 카드 · 바뀐 것은 주소뿐) · 제목 옆 공유하기도 그 LFShare · REC_VER 188 -->
@@ -6460,12 +6460,13 @@ function newGo(){
   try{ sessionStorage.setItem('lf_rec_rl',String(Date.now())); }catch(e){}
   NEWV=0; location.reload();
 }
+function keyHash(){ try{ var k=sget(KEY); if(!/^[a-f0-9]{32}$/.test(k||'')){ return ''; } var h='#k='+k; var ks=localStorage.getItem('lf_rec_keys'); if(ks&&ks.length<1800){ h+='&ks='+encodeURIComponent(ks); } var lg=localStorage.getItem('lf_rec_lastg'); if(lg){ h+='&lg='+encodeURIComponent(lg); } return h; }catch(e){ return ''; } }
 function pwaIn(){ try{ return window.matchMedia('(display-mode: standalone)').matches||navigator.standalone===true; }catch(e){ return false; } }
 function pwaGo(){   /* ★v181 대표 261116 16:05 「복잡하게 해 놓으면 못 쓴다」 — 되는 곳은 단추 한 번(설치 창) · 카카오톡 안이면 바로 인터넷으로 넘김 · 안 되는 곳만 한 줄 안내 */
   var ua=navigator.userAgent||'', ios=/iPhone|iPad|iPod/i.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1), kk=/KAKAOTALK/i.test(ua), inapp=kk||/NAVER\(inapp|Instagram|FBAN|FBAV|Line\//i.test(ua), sam=/SamsungBrowser/i.test(ua);
   if(PWA_EV&&!inapp){ pwaPrompt(); return; }
   var here=location.href.split('#')[0];
-  if(kk){ location.href='kakaotalk://web/openExternal?url='+encodeURIComponent(here+(here.indexOf('?')>-1?'&':'?')+'pwa=1'); return; }
+  if(kk){ location.href='kakaotalk://web/openExternal?url='+encodeURIComponent(here+(here.indexOf('?')>-1?'&':'?')+'pwa=1'+keyHash()); return; }   /* ★v191 사랑흐름-024 ⑥ 카톡 → 크롬으로 넘어갈 때 열쇠도 # 칸에 실어 보냄(서버로 안 감 · 받은 쪽이 기억하고 주소에서 지움) */
   if(!ios&&!inapp&&!PWA_WAIT){ PWA_WAIT=1; busyOn('잠시만 기다려 주십시오'); setTimeout(function(){ busyOff(); PWA_WAIT=0; if(PWA_EV){ pwaAsk(); } else { pwaOne(ios,inapp,sam); } },1200); return; }
   pwaOne(ios,inapp,sam);
 }
