@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v194 · 261117 · [우리이야기] 대표 12:49 「대표 사진을 올린 사진에서만 고르게 하지 말고 앨범 · 갤러리 · 기기 안에서도」 — 방 설정 대표 사진 「📱 휴대폰 갤러리에서 고르기」(여러 장 · 6장까지) → 이 방 게시물로 올림(열린 방 = 공개) → 1번부터 대표 사진에 바로 걸기 -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v195 · 261117 · [우리이야기] S5 위 방(헤이리 전 ⑧ · 대표 OK 13:16 · 시안 v1 · ★서버 ①Code v98 · ②관리 v46 과 짝) — ① 올릴 때 「위 방에도 보이기」 연결된 위 방 전부 켜진 채 시작 · 빼기만 ② 연결된 방 맨 위 「＋ 아래 방 추가」(방 이름으로 찾기 → 「이 방 추가」 → 그 방 관리자께 연결 요청) · 보낸 요청 「수락 기다림 · 요청 거두기」 · 받은 요청 수락 · 거절 · 링크 길은 아래로 ③ 다른 방 공유 창에 「우리 방 아래로 추가」(내가 관리하는 방이 있을 때) ④ 처리할 일 「위 방 연결 요청」 → 수락 · 거절 · REC_VER 195 -->
+<!-- (이전) ★ 현재 버전 ▶ rec/index.html · v194 · 261117 · [우리이야기] 대표 12:49 「대표 사진을 올린 사진에서만 고르게 하지 말고 앨범 · 갤러리 · 기기 안에서도」 — 방 설정 대표 사진 「📱 휴대폰 갤러리에서 고르기」(여러 장 · 6장까지) → 이 방 게시물로 올림(열린 방 = 공개) → 1번부터 대표 사진에 바로 걸기 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v193 · 261117 · [우리이야기] ④ 내 사진(대표 OK 12:32 · 시안 v1) — 내 방 동그라미 📷 → 「내 사진」 판(고르기 · 바꾸기 · 지우기 · 320 정사각 · picShrink) · 게시물 머리 · 대화 이름 옆 사진(bp · 고른 분만) · 방 관리 사람 목록 「사진 가리기」 · 마당 · 카톡 카드는 그대로 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v192 · 261117 · [우리이야기] S7 마무리 2단계(대표 OK 10:53) — 드라이브가 치워진 사진도 네이버 주소로 바로 받음(duHas = 드라이브 또는 네이버 · 큰 사진 · 마당 · 받은 기억 · 위 방 · 방 표지 · 카드 배경) · 보이는 것은 그대로 · 사랑흐름-소통-026 점검 — 새 값(열쇠 · 표 · 초대 · 링크)을 돌려주는 요청은 늦게 온 답도 받아 씀(API_LATE · jsonp 2분) -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v191 · 261117 · [우리이야기] 대표 OK 10:30(관리길 시안 v1) — ① 마당 먼저 뒤로 끊긴 「나」를 뒤에서 조용히 받음(MEQ · 내 방에 이름 · 카카오 로그인) · 내가 만든 방 카드 「⚙ 관리」 · 방 ⋯ 에 「⚙ 방 관리」 ② ☰ 관리 칸 — 관리하는 방 목록이 없으면 받아서 다시 엶 ③ 방 관리 맨 위 방 정보 카드(대표 사진 · 이름 · 소개 → 바꾸기 → 대표 사진 · 이름 · 소개로 바로) · 카톡 → 크롬으로 넘길 때 열쇠를 # 칸에(사랑흐름-024 ⑥) · REC_VER 191 -->
@@ -3349,9 +3350,19 @@ function lazyBottom2(){ var t=$('opBand'); if(!t||!window.IntersectionObserver){
 /* ★v140 ❓7 맨 위 ← — 이 방 안에서 한 걸음 · 첫 화면이면 마당으로(마당에서 한 번 더 누를 때만 나가기 물음) */
 function roomBack(){ if($('dimTop')){ closeSheet(); return; } if(STACK.length>1){ doBack(); return; } if(DOOR){ doorBack(); return; } homeGo(); }
 /* ★v140 ↗ 공유 — 카카오톡으로 보내기 · 링크 복사 · QR 받기(관리자 · 공개 방) */
+/* ★v195 S5 ② 다른 방에서 — 내가 관리하는 방(이 방 말고) */
+function plugMine(){ var cur=ME&&ME.comName; if(!cur||ASU){ return []; } return myRoomsL().filter(function(x){ return x.n!==cur&&meRole(x)==='관리자'; }); }
+function plugFrom(){ var cur=ME&&ME.comName, L=plugMine(); if(!L.length){ return; }
+  function goX(x){ closeSheet(); sset('lf_rec_find',cur); sset(KEY,x.k); sset('lf_rec_pend','plug'); location.href=location.pathname+'?me=1'; }
+  if(L.length===1){ goX(L[0]); return; }
+  sheet('<h2>어느 방 아래로 추가할까요?</h2><p class="note">「'+esc(cur)+'」을 아래 방으로 받을 우리 방을 고릅니다. 그 방 관리자가 수락하면 연결됩니다.</p><div class="pkl">'+L.map(function(x,i){ var c=myrCover(myrOf(x.n)); return '<button type="button" class="pkr" data-pq="'+i+'"><i'+(c?' style="background-image:url('+esc(c)+')"':'')+'>'+(c?'':'🏠')+'</i><span><b>'+esc(x.n)+'</b><small>관리자</small></span></button>'; }).join('')+'</div><button class="btn line" id="pqX" type="button">닫기</button>',function(){
+    $('pqX').onclick=closeSheet; each($('dimTop'),'[data-pq]',function(b){ b.onclick=function(){ goX(L[+b.getAttribute('data-pq')]); }; }); });
+}
 function roomShare(){
-  sheet('<h2>공유</h2><p class="lead" style="margin-top:4px">'+esc((ME&&ME.comName)||'우리 이야기')+'</p><button class="btn kakao" id="smK" type="button">'+KICON+'카카오톡으로 보내기</button><button class="btn line" id="smL" type="button">링크 복사</button>'+(qrOk()?'<button class="btn line" id="smQ" type="button">QR 받기</button>':'')+'<button class="btn line" id="smX" type="button">닫기</button>',function(){
+  var pm=plugMine().length&&ME&&ME.role!=='관리자';
+  sheet('<h2>공유</h2><p class="lead" style="margin-top:4px">'+esc((ME&&ME.comName)||'우리 이야기')+'</p><button class="btn kakao" id="smK" type="button">'+KICON+'카카오톡으로 보내기</button><button class="btn line" id="smL" type="button">링크 복사</button>'+(qrOk()?'<button class="btn line" id="smQ" type="button">QR 받기</button>':'')+(pm?'<button class="btn line" id="smP" type="button">'+ic('adn')+' 우리 방 아래로 추가</button><p class="note" style="margin:2px 0 0;text-align:center">그 방 관리자가 수락하면 연결됩니다</p>':'')+'<button class="btn line" id="smX" type="button">닫기</button>',function(){
     $('smX').onclick=closeSheet; $('smK').onclick=function(){ closeSheet(); shareRec(null); };
+    if($('smP')){ $('smP').onclick=function(){ closeSheet(); setTimeout(plugFrom,60); }; }   /* ★v195 S5 */
     if($('smQ')){ $('smQ').onclick=function(){ closeSheet(); qrSheet(); }; }
     $('smL').onclick=function(){ closeSheet();
       if(isGuest()){ copyLink(location.origin+'/?g='+G,'링크를 복사했습니다'); return; }
@@ -4702,7 +4713,7 @@ function scopeFix(){ if(A.scope==='공개'&&!pubOk()){ A.scope='공동체'; } }
 /* ★v135 516 위 방 고르기 · 홍보 동의 */
 function upNamesOf(it){ var R=upRooms(), l=it.ups||[]; return R.length?upNames(l):''; }
 function upRooms(){ return (ME&&ME.upRooms)||[]; }
-function upSel(){ if(!A.ups){ A.ups=upRooms().filter(function(x){ return x.d===1; }).map(function(x){ return x.c; }); } return A.ups; }
+function upSel(){ if(!A.ups){ A.ups=upRooms().map(function(x){ return x.c; }); } return A.ups; }   /* ★v195 S5 ① 연결된 위 방 전부 켜진 채 · 빼기만 */
 function upOk(){ return A.scope==='공개'&&pubOk()&&upRooms().length>0; }
 function upNames(l){ var R=upRooms(), n=R.filter(function(x){ return l.indexOf(x.c)>-1; }).map(function(x){ return x.n; }); return n.length?(n.length>2?n.slice(0,2).join(' · ')+' 외 '+(n.length-2):n.join(' · ')):'보이지 않음'; }
 function upPickLine(){ if(!upOk()){ return ''; } var l=upSel(); return '<button type="button" class="upln" id="upPk"><span style="white-space:nowrap">↑ 위 방에도</span><b>'+esc(upNames(l))+'</b><i>›</i></button>'; }
@@ -4711,7 +4722,7 @@ function promoLine(){ if(!promoOk()){ return ''; } return '<label class="prln"><
 function upRoomSheet(cur,done){
   var R=upRooms(), on={}; cur.forEach(function(c){ on[c]=1; });
   function draw(){ return R.map(function(x){ return '<button type="button" class="uprow" data-uc="'+esc(x.c)+'"><span>'+ic('aup','sm')+'</span><span><b>'+esc(x.n)+'</b><small>'+(x.d===1?'바로 위 방':'그 위 방')+'</small></span><em class="'+(on[x.c]?'on':'off')+'">'+(on[x.c]?'● 보임':'○ 안 보임')+'</em></button>'; }).join(''); }
-  sheet('<h2>위 방에도 보이기</h2><p class="note">방마다 눌러 켜고 끕니다.</p><div id="upRs">'+draw()+'</div><p class="note">아이가 나온 사진 · 나만 보기 · 이 방에서만은 위 방에 보이지 않습니다.</p><div class="pair" style="margin-top:12px"><button class="btn line" id="urNo" type="button">취소</button><button class="btn" id="urOk" type="button">확인</button></div>',function(){
+  sheet('<h2>위 방에도 보이기</h2><p class="note">연결된 위 방에 모두 보입니다. 빼고 싶은 방만 눌러 끄십시오.</p><div id="upRs">'+draw()+'</div><p class="note">아이가 나온 사진 · 나만 보기 · 이 방에서만은 위 방에 보이지 않습니다.</p><div class="pair" style="margin-top:12px"><button class="btn line" id="urNo" type="button">취소</button><button class="btn" id="urOk" type="button">확인</button></div>',function(){
     function bind(){ each($('upRs'),'[data-uc]',function(b){ b.onclick=function(){ var c=b.getAttribute('data-uc'); if(on[c]){ delete on[c]; } else { on[c]=1; } $('upRs').innerHTML=draw(); bind(); }; }); }
     bind(); $('urNo').onclick=closeSheet;
     $('urOk').onclick=function(){ var l=R.filter(function(x){ return on[x.c]; }).map(function(x){ return x.c; }); closeSheet(); done(l); };
@@ -6007,15 +6018,16 @@ function admToday(){
     if(wt){ R.push(['chk','check','c-green','승인 대기 '+wt,'승인하면 보입니다','t-wait',it.filter(function(x){ return !x.takeDown; })]); }   /* ★v129 616 숫자 옆에 그 사진 */
     if(pw){ R.push(['ppl','ppl','c-peach','가입 신청 '+pw,'수락 · 거절','t-wait']); }
     if(ps){ R.push(['ppl','key','c-gray','쓰기 멈춘 분 '+ps,'확인 뒤 「쓰기 멈춤 풀기」','t-wait']); }
+    var pq=(q&&q.plugReq)||[]; if(pq.length){ R.push(['plq','aup','c-navy','위 방 연결 요청 '+pq.length,(pq[0].upName||pq[0].up)+(pq.length>1?' 외':'')+' · 수락 · 거절','t-wait']); }   /* ★v195 S5 */
     var uh=(q&&q.upHid)||[]; if(uh.length){ R.push(['uph','grape','c-violet','위 방에서 뺀 우리 사진 '+uh.length,uh[0].upName+' · 사유 '+uh[0].why+(uh.length>1?' 외':''),'t-wait',uh.map(function(x){ return {id:x.id,pv:upPicUrl(x)}; })]); }   /* ★v131 510 보기만 */
     $('tdN').innerHTML=R.length?'<span class="tag t-wait">'+R.length+'</span>':'';
     el.innerHTML=R.length?R.map(function(r){ return '<button type="button" class="mrow" data-td="'+r[0]+'"><span class="ci '+r[2]+'">'+ic(r[1])+'</span><span><b>'+esc(r[3])+'</b><small>'+esc(r[4])+'</small>'+thStrip(r[6],6)+'</span></button>'; }).join(''):'<p class="note">지금 처리할 일이 없습니다.</p>';
     lazyPhotos(el);   /* ★v129 616 */
-    each(el,'[data-td]',function(b){ b.onclick=function(){ var k=b.getAttribute('data-td'); if(k==='uph'){ upHidSheet((q&&q.upHid)||[]); return; } admTap(k); }; });
+    each(el,'[data-td]',function(b){ b.onclick=function(){ var k=b.getAttribute('data-td'); if(k==='uph'){ upHidSheet((q&&q.upHid)||[]); return; } if(k==='plq'){ plugReqSheet(((q&&q.plugReq)||[]).slice(),0); return; } admTap(k); }; });
   }
   if(AQ&&Date.now()-AQ_AT<20000){ draw(AQ); return; }
   wait(el,'처리할 일을 모으는 중입니다');
-  api({action:'recQueue'},function(q){ if(q.status==='ok'){ AQ=q; AQ_AT=Date.now(); QN=q.items.length+q.links.length+(q.cats||[]).length+(q.people||[]).length; drawBadge(); } draw(q.status==='ok'?q:null); });
+  api({action:'recQueue'},function(q){ if(q.status==='ok'){ AQ=q; AQ_AT=Date.now(); QN=q.items.length+q.links.length+(q.cats||[]).length+(q.people||[]).length+(q.plugReq||[]).length; drawBadge(); } draw(q.status==='ok'?q:null); });
 }
 
 /* 찾기 — 관리 화면 줄 · 이럴 땐 · 함께하는 분 이름 */
@@ -6176,16 +6188,54 @@ function linkSheet(t,lead,url,warn){
 
 /* ── 모임 잇기(꽂힘) — 관리자 ── */
 function plugView(){
-  $('body').innerHTML=pauseBar()+'<div class="card"><h2>연결 링크 만들기</h2><p class="lead">링크를 상대 방 관리자께 보내고, 그분이 받으면 두 방이 연결됩니다.</p>'+
+  $('body').innerHTML=pauseBar()+'<div class="card"><h2>＋ 아래 방 추가</h2><p class="lead">방 이름으로 찾아 「이 방 추가」를 누르면 그 방 관리자께 연결 요청이 갑니다. 수락하면 연결됩니다.</p>'+
+    '<button type="button" class="mrow" id="plFd"><span class="ci c-green">'+ic('look')+'</span><span><b>방 이름으로 찾기</b><small>마당에 이름이 보이는 방</small></span></button></div><div id="plB"></div>'+
+    '<div class="card"><h2>링크로 연결하기</h2><p class="lead">링크를 상대 방 관리자께 보내고, 그분이 받으면 두 방이 연결됩니다.</p>'+
     '<button type="button" class="mrow" data-pa="up"><span class="ci c-navy">'+ic('aup')+'</span><span><b>위 방 연결 링크 만들기</b><small>우리 방을 다른 방 아래로 연결합니다</small></span></button>'+
     '<button type="button" class="mrow" data-pa="down"><span class="ci c-green">'+ic('adn')+'</span><span><b>아래 방 연결 링크 만들기</b><small>다른 방을 우리 방 아래로 연결합니다</small></span></button>'+
-    '<button type="button" class="mrow" id="plMk"><span class="ci c-green">'+ic('plus')+'</span><span><b>아래 방 열기</b><small>새 방을 바로 우리 방 아래에 엽니다</small></span></button></div><div id="plB"></div>';   /* ★v38 */
+    '<button type="button" class="mrow" id="plMk"><span class="ci c-green">'+ic('plus')+'</span><span><b>아래 방 열기</b><small>새 방을 바로 우리 방 아래에 엽니다</small></span></button></div>';   /* ★v38 · ★v195 S5 찾기를 맨 위로 · 링크 길은 아래로 */
   $('plMk').onclick=makeSheet;
+  $('plFd').onclick=function(){ plugFind(''); };
   each($('body'),'[data-pa]',function(b){ b.onclick=function(){ var side=b.getAttribute('data-pa');
     api({action:'recPlug',act:'ask',side:side,_busy:'연결 링크를 만드는 중입니다'},function(r){ if(r.status!=='ok'){ toast(r.msg||'만들지 못했습니다'); return; }
       linkSheet(side==='up'?'위 방 연결 링크':'아래 방 연결 링크',side==='up'?'우리 방을 아래로 받아 줄 <b>위 방 관리자</b>께 보내 주십시오. 한 번만 쓰입니다.':'우리 방 아래로 들어올 <b>아래 방 관리자</b>께 보내 주십시오. 한 번만 쓰입니다.',r.link);
       plugList(); }); }; });
   plugList();
+  var fq=sget('lf_rec_find'); if(fq){ sset('lf_rec_find',''); setTimeout(function(){ plugFind(fq); },200); }   /* ★v195 다른 방 공유 창 「우리 방 아래로 추가」에서 옴 */
+}
+/* ★v195 S5 ② 방 이름으로 찾아 「이 방 추가」 → 그 방 관리자 수락 한 번 */
+function plugFind(q0){
+  var last='';
+  sheet('<h2>아래 방 추가</h2><p class="note">방 이름으로 찾습니다. 「이 방 추가」를 누르면 그 방 관리자께 연결 요청이 갑니다.</p><textarea class="t one" rows="1" wrap="off" enterkeyhint="search" id="pfQ" maxlength="30" placeholder="방 이름" autocomplete="off">'+esc(q0||'')+'</textarea><div id="pfL" style="margin-top:8px"></div><button class="btn line" id="pfX" type="button">닫기</button>',function(){
+    $('pfX').onclick=function(){ closeSheet(); if(VIEW==='plug'){ plugList(); } };
+    var tm=0;
+    function find(){ var q=$('pfQ').value.replace(/\n/g,'').trim(); if(q===last&&$('pfL').innerHTML){ return; } last=q; wait($('pfL'),'방을 찾는 중입니다');
+      api({action:'recPlug',act:'find',q:q},function(d){ if(!$('pfL')||q!==last){ return; }
+        if(d.status!=='ok'){ $('pfL').innerHTML='<div class="msg">'+esc(d.msg||'찾지 못했습니다.')+'</div>'; return; }
+        var it=d.items||[]; if(!it.length){ $('pfL').innerHTML='<p class="note">'+(q?'「'+esc(q)+'」이 든 방이 없습니다.':'찾을 방이 없습니다.')+'</p>'; return; }
+        $('pfL').innerHTML=it.map(function(x,i){ var c=myrCover(x); var b=x.st==='down'?'<span class="sbtn" style="background:#EEE;color:#888">연결됨</span>':x.st==='wait'?'<span class="sbtn" style="background:#EEE;color:#888">수락 기다림</span>':'<button type="button" class="sbtn" data-pf="'+i+'" style="background:var(--navy);color:#fff">이 방 추가</button>';
+          return '<div class="sw"><span class="lth"'+(c?' style="background-image:url(\''+esc(c)+'\')"':'')+'></span><span><b>'+esc(x.name||x.com)+'</b><small>'+(x.open?'공개 방':'비공개 방')+(x.st==='down'?' · 이미 아래 방':'')+'</small></span>'+b+'</div>'; }).join('')+(it.length>=30?'<p class="note">더 있으면 이름을 더 적어 주십시오.</p>':'');
+        each($('pfL'),'[data-pf]',function(b){ b.onclick=function(){ var x=it[+b.getAttribute('data-pf')]; b.disabled=true;
+          api({action:'recPlug',act:'req',com:x.com,_busy:'연결 요청을 보내는 중입니다'},function(r){ if(r.status!=='ok'){ b.disabled=false; toast(r.msg||'보내지 못했습니다'); return; }
+            x.st='wait'; b.outerHTML='<span class="sbtn" style="background:#EEE;color:#888">수락 기다림</span>'; toast('연결 요청을 보냈습니다',esc(x.name)+' 관리자가 수락하면 연결됩니다'); if(VIEW==='plug'){ plugList(); } }); }; }); }); }
+    $('pfQ').oninput=function(){ clearTimeout(tm); tm=setTimeout(find,400); };
+    $('pfQ').onkeydown=function(e){ if(e.key==='Enter'){ e.preventDefault(); clearTimeout(tm); find(); } };
+    find();
+  });
+}
+/* ★v195 S5 ③ 받은 위 방 연결 요청 — 수락 · 거절(아래 방 관리자) */
+function plugReqSheet(l,i){
+  l=l||[]; var x=l[i||0]; if(!x){ return; }
+  var c=myrCover(x);
+  sheet('<div style="text-align:center"><span class="ci c-navy" style="width:56px;height:56px;'+(c?'background:center/cover no-repeat url(\''+esc(c)+'\')':'')+'">'+(c?'':ic('aup'))+'</span><h2 style="margin-top:8px">위 방 연결 요청</h2><p class="lead"><b>'+esc(x.upName||x.up)+'</b>'+(x.by?' · 관리자 '+esc(x.by):'')+(x.at?' · '+esc(x.at):'')+'</p></div>'+
+    '<p class="lead" style="margin-top:6px">수락하시면 <b>'+esc((ME&&ME.comName)||'우리 방')+'</b>이 <b>'+esc(x.upName||x.up)+'</b> 아래 방이 됩니다.</p><ul class="note" style="margin:6px 0 0;padding-left:18px;line-height:1.7"><li>우리 방 <b>전체 공개 사진</b>이 위 방에도 보입니다</li><li>아이 사진 · 이 방에서만 · 나만 보기는 보이지 않습니다</li><li>위 방은 보기 · 「빼기」만, 우리 사진을 지우지 못합니다</li><li>언제든 관리 → 연결된 방 → 「연결 끊기」</li></ul>'+
+    (l.length>1?'<p class="note">받은 요청 '+l.length+' 가운데 '+((i||0)+1)+'</p>':'')+'<div id="prM"></div><div class="pair" style="margin-top:14px"><button class="btn line" id="prNo" type="button" style="color:var(--red);border-color:var(--red)">거절</button><button class="btn" id="prOk" type="button">수락</button></div><button class="btn line" id="prX" type="button">나중에</button>',function(){
+    $('prX').onclick=closeSheet;
+    function ans(yes){ $('prOk').disabled=true; $('prNo').disabled=true;
+      api({action:'recPlug',act:yes?'reqOk':'reqNo',no:x.no,_busy:yes?'연결하는 중입니다':'처리하는 중입니다'},function(r){ if(r.status!=='ok'){ $('prOk').disabled=false; $('prNo').disabled=false; if(r.reason==='ADMIN_KAKAO'){ return; } $('prM').innerHTML='<div class="err">'+esc(r.msg||'처리하지 못했습니다.')+'</div>'; return; }
+        AQ=null; closeSheet(); toast(yes?'연결했습니다':'거절했습니다',yes?esc((r.lowName||'')+' → '+(r.upName||'')):''); l.splice(i||0,1); if(l.length){ setTimeout(function(){ plugReqSheet(l,0); },300); return; } if(VIEW==='adm'){ admToday(); } else if(VIEW==='plug'){ plugList(); } }); }
+    $('prOk').onclick=function(){ ans(true); }; $('prNo').onclick=function(){ ans(false); };
+  });
 }
 function plugList(){
   var el=$('plB'); if(!el){ return; } wait(el,'이어진 방을 모으는 중입니다');
@@ -6193,9 +6243,10 @@ function plugList(){
     if(VIEW!=='plug'||!$('plB')){ return; }
     if(d.status!=='ok'){ el.innerHTML='<div class="msg">'+esc(d.msg||'불러오지 못했습니다.')+'</div>'; return; }
     function nm(n,c){ return esc(n||c||''); }
-    var ups=d.ups||[], downs=d.downs||[], wt=d.wait||[], deep=(d.tree||[]).filter(function(x){ return x.depth>1; });
+    var ups=d.ups||[], downs=d.downs||[], wt=d.wait||[], ro=d.reqOut||[], ri=d.reqIn||[], deep=(d.tree||[]).filter(function(x){ return x.depth>1; });
     var h='<div class="card"><h2>위 방 '+ups.length+'</h2>'+(ups.length?ups.map(function(o){ return '<div class="sw"><span><b>'+nm(o.upName,o.up)+'</b><small>'+esc(o.up)+'</small></span><button type="button" class="sbtn red" data-off="'+esc(o.no)+'" data-nm="'+nm(o.upName,o.up)+'">연결 끊기</button>'+qh('plug')+'</div>'; }).join(''):'<p class="note">연결된 위 방이 없습니다.</p>')+'</div>'+
-      '<div class="card"><h2>아래 방 '+downs.length+'</h2>'+(downs.length?downs.map(function(o){ var ad=o.admins||[];   /* ★v38 관리자 · 임명 대기 · 빼기 */
+      (ri.length?'<div class="card"><h2>받은 연결 요청 '+ri.length+'</h2>'+ri.map(function(o,i){ return '<div class="sw"><span><b>'+nm(o.upName,o.up)+'</b><small>위 방으로 연결 요청 · '+esc(o.at||'')+'</small></span><button type="button" class="sbtn" data-ri="'+i+'" style="background:var(--navy);color:#fff">보기</button></div>'; }).join('')+'</div>':'')+   /* ★v195 S5 */
+      '<div class="card"><h2>아래 방 '+downs.length+(ro.filter(function(o){ return o.state==='신청'; }).length?' <small style="font-weight:400;color:var(--sub)">· 수락 기다림 '+ro.filter(function(o){ return o.state==='신청'; }).length+'</small>':'')+'</h2>'+ro.map(function(o){ return '<div class="sw"><span class="lth" data-lth="'+esc(o.low)+'"></span><span><b>'+nm(o.lowName,o.low)+'</b><small>'+(o.state==='거절'?'거절됨':'수락 기다림')+' · '+esc(o.at||'')+' 요청</small></span>'+(o.state==='신청'?'<button type="button" class="sbtn red" data-off="'+esc(o.no)+'" data-nm="" data-wt="2">요청 거두기</button>':'')+'</div>'; }).join('')+(downs.length?downs.map(function(o){ var ad=o.admins||[];   /* ★v38 관리자 · 임명 대기 · 빼기 */
           return '<div class="sw"><span class="lth" data-lth="'+esc(o.low)+'"></span><span><b>'+nm(o.lowName,o.low)+(o.qn?' <span class="tag t-wait">처리할 일 '+o.qn+'</span>':'')+'</b><small>'+(o.qn?'그 방 관리자가 처리합니다':'처리할 일 없음')+'</small></span><span style="display:flex;gap:6px;flex:none">'+(ad.length?'':'<button type="button" class="sbtn" data-sa="'+esc(o.low)+'" data-nm="'+nm(o.lowName,o.low)+'">관리자 지정</button>')+'<button type="button" class="sbtn red" data-off="'+esc(o.no)+'" data-nm="'+nm(o.lowName,o.low)+'">연결 끊기</button>'+qh('plug')+'</span></div>'+
             (ad.length?ad.map(function(a){ return '<div class="sw adl"><span><b>'+esc(a.name||'(이름 없음)')+(a.pend?' <span class="tag t-wait">임명 대기</span>':'')+'</b><small>관리자'+(a.pend?' · 임명 링크를 아직 받지 않음':' · 이 방 관리자는 그 방 · 본부만 바꿀 수 있습니다')+'</small></span>'+(a.pend?'<button type="button" class="sbtn red" data-so="'+esc(o.low)+'" data-sn="'+esc(a.no)+'" data-nm="'+esc(a.name||'')+'" data-pd="1">지정 취소</button>':'')+'</div>'; }).join(''):'<p class="err" style="margin:0 0 6px">관리자가 없습니다</p>'); }).join('')+
         (deep.length?'<p class="note" style="margin-top:10px">더 아래 방</p>'+deep.map(function(x){ return '<div class="sw"><span><b>'+'└ '.repeat(Math.min(4,x.depth-1))+nm(x.name,x.com)+'</b><small>'+esc(x.com)+'</small></span></div>'; }).join(''):'')+
@@ -6204,13 +6255,14 @@ function plugList(){
     if(wt.length){ h+='<div class="card"><h2>아직 받지 않은 링크 '+wt.length+'</h2>'+wt.map(function(o){ var up=!!o.low; return '<div class="sw"><span><b>'+(up?'위 방 연결 링크':'아래 방 연결 링크')+'</b><small>'+esc(o.no)+'</small></span><span style="display:flex;gap:6px;flex:none"><button type="button" class="sbtn" data-lk="'+esc(o.link||'')+'">복사</button><button type="button" class="sbtn red" data-off="'+esc(o.no)+'" data-nm="" data-wt="1">링크 취소</button></span></div>'; }).join('')+'</div>'; }
     el.innerHTML=h;
     each(el,'[data-lk]',function(b){ b.onclick=function(){ copyLink(b.getAttribute('data-lk'),'복사했습니다','상대 방 관리자께 보내 주십시오'); }; });
-    each(el,'[data-off]',function(b){ b.onclick=function(){ plugOff(b.getAttribute('data-off'),b.getAttribute('data-nm'),!!b.getAttribute('data-wt')); }; });
+    each(el,'[data-off]',function(b){ b.onclick=function(){ var wt=b.getAttribute('data-wt'); plugOff(b.getAttribute('data-off'),b.getAttribute('data-nm'),wt==='2'?'2':!!wt); }; });
+    each(el,'[data-ri]',function(b){ b.onclick=function(){ plugReqSheet(ri.slice(),+b.getAttribute('data-ri')); }; });   /* ★v195 */
     each(el,'[data-sa]',function(b){ b.onclick=function(){ subAdmin(b.getAttribute('data-sa'),b.getAttribute('data-nm')); }; });
     each(el,'[data-so]',function(b){ b.onclick=function(){ subOut(b.getAttribute('data-so'),b.getAttribute('data-sn'),b.getAttribute('data-nm'),!!b.getAttribute('data-pd')); }; });   /* ★v38 */
     if($('upP')){ upPics($('upP')); }   /* ★v131 510 */
   });
 }
-function plugOff(no,nm,wt){
+function plugOff(no,nm,wt){ if(wt&&String(wt)==='2'){ api({action:'recPlug',act:'off',no:no,_busy:'요청을 거두는 중입니다'},function(r){ if(r.status==='ok'){ toast('요청을 거두었습니다'); plugList(); } else { toast(r.msg||'처리하지 못했습니다'); } }); return; }
   sheet('<h2>'+(wt?'링크 취소':'연결 끊기')+'</h2><p class="lead" style="margin-top:6px">'+(wt?'이 링크는 더 이상 쓰이지 않습니다.':'<b>'+esc(nm)+'</b> 방과의 연결을 끊습니다. 두 방의 기록은 그대로 남고, 묶어 보기에서만 빠집니다.')+'</p>'+
     '<div class="pair" style="margin-top:16px"><button class="btn line" id="poNo2" type="button">취소</button><button class="btn red" id="poGo2" type="button">'+(wt?'링크 취소':'연결 끊기')+'</button></div>',function(){
     $('poNo2').onclick=closeSheet;
@@ -6503,7 +6555,7 @@ window.addEventListener('appinstalled',function(){ PWA_EV=null; var b=$('pwaGo')
 try{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js',{scope:'/'})['catch'](function(){});
   /* ★v62 375 새 화면 파일을 받아 오면 한 번 바꿔 엶 — 첫 화면 · 광장에서만(쓰는 중에는 기다렸다가 첫 화면으로 돌아올 때) */
   navigator.serviceWorker.addEventListener('message',function(ev){ if(!ev.data||ev.data.t!=='lf-new'){ return; } NEWV=1; newGo(); }); } }catch(e){}
-var NEWV=0, REC_VER=194;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
+var NEWV=0, REC_VER=195;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
 function newChk(){ try{ if(!window.caches){ return; } caches.open('lf-rec-shell-v2').then(function(c){ return c.match('/'); }).then(function(r){ return r?r.text():''; }).then(function(t){ var m=/rec\/index\.html · v(\d+)/.exec(String(t).slice(0,600)); if(m&&parseInt(m[1],10)>REC_VER){ NEWV=1; newGo(); } })['catch'](function(){}); }catch(e){} }   /* ★v62 375 알림을 놓쳐도 남겨 둔 파일 버전을 직접 봄 */
 setTimeout(newChk,5000); setTimeout(newChk,15000);
 document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible'){ setTimeout(newChk,1500); } });
