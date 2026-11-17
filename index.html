@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v196 · 261117 · [우리이야기] 대표 19:02 「꽉 닫아 놨다 · 더 보기로 본인이 요청하면 더 볼 수 있게」 — ① 마당: 방마다 12장(v187)에서 막혀 「여기까지입니다」로 끝나던 것 → 남은 사진이 있으면 맨 아래 「사진 더 보기」(누를 때마다 방마다 12장씩 더 · 저절로 풀리지는 않음) ② 방 바둑판: 아래로 내리면 저절로 + 맨 아래 「사진 더 보기」 단추 · 한 번 못 불러오면 영영 끊기던 것 → 단추로 다시 ③ 관리 확인 뒤 사랑흐름 /p/ 로 돌아가던 한 줄 걷음(우리이야기-030) · REC_VER 196 -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v197 · 261117 · [우리이야기] 대표 19:45 「마당 하단 사랑흐름 가는 링크 단추를 왜 없앴냐」 — v190(사랑흐름-022 요청으로 단추를 그림으로 바꿈 · 대표 승인 없이) 되돌림: 마당 맨 아래 「사랑흐름 가기 ›」 단추를 늘(더 불러오는 중에도) 다시 · 그림은 그 위에 그대로 · REC_VER 197 -->
+<!-- (이전) ★ 현재 버전 ▶ rec/index.html · v196 · 261117 · [우리이야기] 대표 19:02 「꽉 닫아 놨다 · 더 보기로 본인이 요청하면 더 볼 수 있게」 — ① 마당: 방마다 12장(v187)에서 막혀 「여기까지입니다」로 끝나던 것 → 남은 사진이 있으면 맨 아래 「사진 더 보기」(누를 때마다 방마다 12장씩 더 · 저절로 풀리지는 않음) ② 방 바둑판: 아래로 내리면 저절로 + 맨 아래 「사진 더 보기」 단추 · 한 번 못 불러오면 영영 끊기던 것 → 단추로 다시 ③ 관리 확인 뒤 사랑흐름 /p/ 로 돌아가던 한 줄 걷음(우리이야기-030) · REC_VER 196 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v195 · 261117 · [우리이야기] S5 위 방(헤이리 전 ⑧ · 대표 OK 13:16 · 시안 v1 · ★서버 ①Code v98 · ②관리 v46 과 짝) — ① 올릴 때 「위 방에도 보이기」 연결된 위 방 전부 켜진 채 시작 · 빼기만 ② 연결된 방 맨 위 「＋ 아래 방 추가」(방 이름으로 찾기 → 「이 방 추가」 → 그 방 관리자께 연결 요청) · 보낸 요청 「수락 기다림 · 요청 거두기」 · 받은 요청 수락 · 거절 · 링크 길은 아래로 ③ 다른 방 공유 창에 「우리 방 아래로 추가」(내가 관리하는 방이 있을 때) ④ 처리할 일 「위 방 연결 요청」 → 수락 · 거절 · REC_VER 195 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v194 · 261117 · [우리이야기] 대표 12:49 「대표 사진을 올린 사진에서만 고르게 하지 말고 앨범 · 갤러리 · 기기 안에서도」 — 방 설정 대표 사진 「📱 휴대폰 갤러리에서 고르기」(여러 장 · 6장까지) → 이 방 게시물로 올림(열린 방 = 공개) → 1번부터 대표 사진에 바로 걸기 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v193 · 261117 · [우리이야기] ④ 내 사진(대표 OK 12:32 · 시안 v1) — 내 방 동그라미 📷 → 「내 사진」 판(고르기 · 바꾸기 · 지우기 · 320 정사각 · picShrink) · 게시물 머리 · 대화 이름 옆 사진(bp · 고른 분만) · 방 관리 사람 목록 「사진 가리기」 · 마당 · 카톡 카드는 그대로 -->
@@ -2515,7 +2516,7 @@ function plazaDraw(){
   h+=PZL.cells.map(pzCell).join('');
   el.innerHTML='<section class="pz" style="padding-top:8px">'+uriIn()+'<div id="invT"></div>'+pzRooms()+(PZL.cells.length?'<div class="mgrid" id="pzg">'+h+'</div>':'')+
     '<div id="invB"></div>'+(PLZ.more?'<div class="shmore" id="pzMore">'+(PLZ.busy?'더 불러오는 중입니다':'아래로 내리면 더 보입니다')+'</div>':(PZL.over.length||PLZ.srv)?'<button type="button" class="btn line" id="pzOpen" style="margin-top:14px">'+ic('photo','sm')+' 사진 더 보기</button>':(mkIn?'':pzMake(0).replace('class="mkc"','class="mkc solo"'))+'<div class="pzend">여기까지입니다</div>')+
-    (pwaIn()?'':'<button type="button" class="btn line pwab" id="pzPwa" style="margin-top:18px">📲 홈 화면에 추가</button>')+(PLZ.more?'':'<a class="lfog" href="https://www.loveflow.ai.kr/" id="pzLf"><img src="https://www.loveflow.ai.kr/og-image.png?v=261117" alt="서로의 언어를 알면, 사랑은 더욱 깊어집니다 — 사랑흐름" loading="lazy" decoding="async" width="2400" height="1260"></a>')+'<div class="lo lo3"><div class="brand">🍇 사랑흐름 · 우리 이야기</div></div></section>';   /* ★v182 마당 끝 한 줄 */
+    (pwaIn()?'':'<button type="button" class="btn line pwab" id="pzPwa" style="margin-top:18px">📲 홈 화면에 추가</button>')+(PLZ.more?'':'<a class="lfog" href="https://www.loveflow.ai.kr/" id="pzLf"><img src="https://www.loveflow.ai.kr/og-image.png?v=261117" alt="서로의 언어를 알면, 사랑은 더욱 깊어집니다 — 사랑흐름" loading="lazy" decoding="async" width="2400" height="1260"></a>')+'<a class="ur" href="https://www.loveflow.ai.kr/" id="pzLfB" style="margin-top:14px"><span class="i"><img src="https://www.loveflow.ai.kr/logo.png" alt="" width="28" height="28" style="display:block"></span><span><b>사랑흐름</b><small>마음 여행지도 · 마음여행 · 한 편의 기록(자서전)</small></span><span class="go">사랑흐름 가기 ›</span></a><div class="lo lo3"><div class="brand">🍇 사랑흐름 · 우리 이야기</div></div></section>';   /* ★v182 마당 끝 한 줄 */
   if($('pzPwa')){ $('pzPwa').onclick=pwaGo; }
   if($('pzOpen')){ $('pzOpen').onclick=pzOpen; }   /* ★v196 */
   pzRows($('pzg')); uriInWire(); invPaint();
@@ -6561,7 +6562,7 @@ window.addEventListener('appinstalled',function(){ PWA_EV=null; var b=$('pwaGo')
 try{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js',{scope:'/'})['catch'](function(){});
   /* ★v62 375 새 화면 파일을 받아 오면 한 번 바꿔 엶 — 첫 화면 · 광장에서만(쓰는 중에는 기다렸다가 첫 화면으로 돌아올 때) */
   navigator.serviceWorker.addEventListener('message',function(ev){ if(!ev.data||ev.data.t!=='lf-new'){ return; } NEWV=1; newGo(); }); } }catch(e){}
-var NEWV=0, REC_VER=196;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
+var NEWV=0, REC_VER=197;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
 function newChk(){ try{ if(!window.caches){ return; } caches.open('lf-rec-shell-v2').then(function(c){ return c.match('/'); }).then(function(r){ return r?r.text():''; }).then(function(t){ var m=/rec\/index\.html · v(\d+)/.exec(String(t).slice(0,600)); if(m&&parseInt(m[1],10)>REC_VER){ NEWV=1; newGo(); } })['catch'](function(){}); }catch(e){} }   /* ★v62 375 알림을 놓쳐도 남겨 둔 파일 버전을 직접 봄 */
 setTimeout(newChk,5000); setTimeout(newChk,15000);
 document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible'){ setTimeout(newChk,1500); } });
