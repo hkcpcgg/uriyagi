@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v191 · 261117 · [우리이야기] 대표 OK 10:30(관리길 시안 v1) — ① 마당 먼저 뒤로 끊긴 「나」를 뒤에서 조용히 받음(MEQ · 내 방에 이름 · 카카오 로그인) · 내가 만든 방 카드 「⚙ 관리」 · 방 ⋯ 에 「⚙ 방 관리」 ② ☰ 관리 칸 — 관리하는 방 목록이 없으면 받아서 다시 엶 ③ 방 관리 맨 위 방 정보 카드(대표 사진 · 이름 · 소개 → 바꾸기 → 대표 사진 · 이름 · 소개로 바로) · 카톡 → 크롬으로 넘길 때 열쇠를 # 칸에(사랑흐름-024 ⑥) · REC_VER 191 -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v192 · 261117 · [우리이야기] S7 마무리 2단계(대표 OK 10:53) — 드라이브가 치워진 사진도 네이버 주소로 바로 받음(duHas = 드라이브 또는 네이버 · 큰 사진 · 마당 · 받은 기억 · 위 방 · 방 표지 · 카드 배경) · 보이는 것은 그대로 -->
+<!-- (이전) ★ 현재 버전 ▶ rec/index.html · v191 · 261117 · [우리이야기] 대표 OK 10:30(관리길 시안 v1) — ① 마당 먼저 뒤로 끊긴 「나」를 뒤에서 조용히 받음(MEQ · 내 방에 이름 · 카카오 로그인) · 내가 만든 방 카드 「⚙ 관리」 · 방 ⋯ 에 「⚙ 방 관리」 ② ☰ 관리 칸 — 관리하는 방 목록이 없으면 받아서 다시 엶 ③ 방 관리 맨 위 방 정보 카드(대표 사진 · 이름 · 소개 → 바꾸기 → 대표 사진 · 이름 · 소개로 바로) · 카톡 → 크롬으로 넘길 때 열쇠를 # 칸에(사랑흐름-024 ⑥) · REC_VER 191 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v190 · 261117 · [우리이야기] 사랑흐름-소통-022 · 023 — 마당 맨 아래 사랑흐름 칸 = 카톡 첫인상 그림 한 장(og-image 선명본 · 누르면 사랑흐름 메인) · lf/frame.js 를 사랑흐름 v31 로 · lf-foot.js 를 v10 으로 다시 받음(주소만 바꿈) · 오른쪽 아래 동그라미 꼴을 사랑흐름 .lfx-fab 와 똑같이(테두리 · 그림자 · 그림 선) · 사랑흐름 동그라미는 data-lf-fab=off 로 끄고 우리 것(마당 = 우리 이야기 · 방 = 그 방) · 판 제목(h2) 앞 아이콘 뗌(사랑흐름-022 요청 2 · 제목을 단추로 알고 누르는 헛손질) · REC_VER 190 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v189 · 261117 · [우리이야기] 대표 OK 07:38(시안 v3) — ① 공유 = 흰 동그라미 공유 그림 · 오른쪽 아래 공유 · ↑ 맨 위로(마당 · 방) · 위 띠 노란 알약 · 방 ↗ 뺌 ② 게시물 ↗ → 동그라미 ③ … 메뉴 맨 위 공유하기 · 사진 고르기(공유 · 삭제) · 이 사진만 삭제 · 전체 삭제는 맨 아래 + 「사진 고르기로 / n장 모두 지우기」 ④ 보낼 사진 고르기 새 창(보던 사진 먼저 · 끝까지 · 찾기 · 10장 중 ○장 · &ps= 받은 쪽 넘겨 보기) · REC_VER 189 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v188 · 261116 · [우리이야기] 대표 20:36 「사랑흐름에서 세워 놓은 것 그대로 갖다 써라」 — lf/frame.js 를 사랑흐름 v29 로 다시 받음(☰ 맨 아래 공유하기 · 홈 화면에 추가 · 공유 카드 · 바뀐 것은 주소뿐) · 제목 옆 공유하기도 그 LFShare · REC_VER 188 -->
@@ -2230,6 +2231,7 @@ var GRID=null, GKEY='', PVC={};
 var SNK='lf_rec_snap', PVK='lf_rec_pv', PVSAVE=null;
 /* ★v53 333 사진 바로 주소(u) · 339 움직이는 그림(mv) — 서버 답에서 모아 둠 */
 var DU={}, MV={};
+function duHas(id){ return !!(id&&(DU[id]||NU[id])); }   /* ★v192 S7 — 드라이브 주소 또는 네이버 주소(드라이브가 치워진 사진) */
 function duScan(o,d){ d=d||0; if(!o||typeof o!=='object'||d>6){ return; } if(Array.isArray(o)){ for(var i=0;i<o.length;i++){ duScan(o[i],d+1); } return; }
   if(o.id){ if(o.u&&/^[A-Za-z0-9_-]{10,80}$/.test(o.u)){ DU[o.id]=o.u; } if(o.n&&o.n.p&&/^p\/C-\d{4}\/[A-Za-z0-9-]+\.(jpg|png|webp|heic)$/.test(o.n.p)){ NU[o.id]=o.n; }   /* ★v183 S7 네이버(한국) */ if(o.mv&&/^https:\/\/www\.loveflow\.ai\.kr\/rec\/seed\/[A-Za-z0-9_\/-]+\.mp4$/.test(o.mv)){ MV[o.id]=o.mv; } }
   for(var k in o){ if(o[k]&&typeof o[k]==='object'){ duScan(o[k],d+1); } } }
@@ -2333,7 +2335,7 @@ function pvLoad(el){
     api({action:'recPvs',ids:part.join(',')},function(d){ if(d.status!=='ok'){ spdPend(-1); return; } for(var k in (d.items||{})){ put(k,d.items[k]); }
       (d.miss||[]).forEach(function(id){ NEEDPV[id]=1; spdPend(1); photo(id,true,function(u){ if(u){ put(id,u); } spdPend(-1); },1); }); spdPend(-1); });
   })(ids.slice(i,i+9)); } }
-  var srv=[], du=need.filter(function(id){ if(DU[id]){ return true; } srv.push(id); return false; }), duLeft=du.length, duBad=[];   /* ★v53 333 바로 주소 먼저 · 안 되는 것만 서버로 */
+  var srv=[], du=need.filter(function(id){ if(duHas(id)){ return true; } srv.push(id); return false; }), duLeft=du.length, duBad=[];   /* ★v53 333 바로 주소 먼저 · 안 되는 것만 서버로 */
   du.forEach(function(id){ spdPend(1); duLoad(id,480,function(u){ if(u){ put(id,u); } else { duBad.push(id); } duLeft--; if(!duLeft&&duBad.length){ srvAsk(duBad); } spdPend(-1); }); });
   srvAsk(srv);
   spdPend(0);
@@ -2527,7 +2529,7 @@ var MYRK='lf_rec_myr', MYR=null, MYR_BUSY=0;
 function myrGet(){ if(MYR){ return MYR; } try{ var o=JSON.parse(localStorage.getItem(MYRK)||'null'); if(o&&o.items){ MYR=o; } }catch(e){} return MYR; }
 function myrOf(n){ var m=myrGet(); if(!m||!n){ return null; } for(var i=0;i<m.items.length;i++){ if(m.items[i].name===n){ return m.items[i]; } } return null; }
 function myrCls(n){ var x=myrOf(n); if(!x){ return ''; } return x.newN>0?' nw':' sn'; }
-function myrCover(x){ var c=x&&x.cover; if(!c){ return ''; } if(c.yt){ return 'https://i.ytimg.com/vi/'+encodeURIComponent(c.yt)+'/mqdefault.jpg'; } if(c.u){ DU[c.id]=c.u; return duUrl(c.id,240); } return c.pv||PVC[c.id]||''; }
+function myrCover(x){ var c=x&&x.cover; if(!c){ return ''; } if(c.yt){ return 'https://i.ytimg.com/vi/'+encodeURIComponent(c.yt)+'/mqdefault.jpg'; } if(c.u){ DU[c.id]=c.u; } if(duHas(c.id)){ return duUrl(c.id,240); } return c.pv||PVC[c.id]||''; }
 function myrLoad(cb){
   var ks=rksGet().map(function(x){ return x&&x.k; }).filter(function(k){ return /^[a-f0-9]{32}$/.test(k||''); }); if(K&&ks.indexOf(K)<0){ ks.unshift(K); }
   if(!ks.length||MYR_BUSY){ if(cb){ cb(false); } return; } MYR_BUSY=1;
@@ -2614,7 +2616,7 @@ function rcvDraw(){
     '<div><button type="button" class="lk" id="rvOut"'+(d.out?' disabled':'')+'>'+(d.out?'빼 주세요 요청을 보냈습니다':'이 사진에서 저를 빼 주세요')+'</button></div>'+
     '<div class="lo lo3" style="margin-top:28px"><div class="brand">🍇 사랑흐름 · 우리 이야기</div></div></div>';
   if($('rvPh')){ var ph=$('rvPh'), put=function(u){ if(u){ ph.style.backgroundImage='url('+u+')'; ph.classList.remove('wait'); } };
-    if(it.u){ DU[it.id]=it.u; duLoad(it.id,1600,function(u){ if(u){ put(u); } else { rcvBig(put,it); } }); } else { put(it.pv); rcvBig(put,it); } }
+    if(it.u){ DU[it.id]=it.u; } if(duHas(it.id)){ duLoad(it.id,1600,function(u){ if(u){ put(u); } else { rcvBig(put,it); } }); } else { put(it.pv); rcvBig(put,it); } }
   if($('rvYt')){ $('rvYt').onclick=function(){ vwYt({yt:it.yt}); }; }
   if($('rvRm')){ $('rvRm').onclick=function(){ location.href=location.pathname+'?g='+encodeURIComponent(d.room.g)+'&r='+encodeURIComponent(it.id); }; }
   $('rvGo').onclick=function(){ var v=$('rvT').value.trim(), b=this; if(!v){ toast('기억을 한 줄 적어 주세요'); $('rvT').focus(); return; }
@@ -2719,7 +2721,7 @@ function meUq(){ var b=$('meUq'); if(!b){ return; } var j=UQR||UQ[0];
 function meGot(){ var el=$('meGot'); if(!el){ return; } if(!GM){ wait(el,'받은 기억을 모으는 중입니다'); }
   gmLoad(function(g){ el=$('meGot'); if(!el){ return; } var L=(g&&g.items)||[], s0=gmSeen();
     if(!g){ el.innerHTML='<p class="note" style="padding:12px 16px">불러오지 못했습니다. 잠시 후 다시 열어 주십시오.</p>'; return; }
-    el.innerHTML=L.length?L.map(function(x,i){ var th=x.pv||(x.u?'https://drive.google.com/thumbnail?id='+encodeURIComponent(x.u)+'&sz=w200':'')||(x.video&&x.video.thumb)||'';
+    el.innerHTML=L.length?L.map(function(x,i){ var th=x.pv||(x.id&&NU[x.id]?duUrl(x.id,240):'')||(x.u?'https://drive.google.com/thumbnail?id='+encodeURIComponent(x.u)+'&sz=w200':'')||(x.video&&x.video.thumb)||'';
       return '<button type="button" class="mgot'+(x.at>s0?' nw':'')+'" data-gm="'+i+'"><i'+(th?' style="background-image:url('+esc(th)+')"':'')+'></i><span><b>'+esc(x.by||'')+' 님</b> '+(x.kind==='grape'?'🍇 나도 기억해요':'기억을 남겼습니다')+'<small>'+(x.kind==='grape'?'':'「'+esc(x.text||'')+'」 · ')+esc(x.room||'')+(x.when?' · '+esc(x.when):'')+'</small></span></button>';   /* ★v170 671 🍇 도 받은 기억에 */ }).join('')
       :'<p class="note" style="padding:12px 16px">아직 받은 기억이 없습니다. 내 사진에 다른 분이 기억을 남기면 여기에 보입니다.</p>';
     each(el,'[data-gm]',function(b){ b.onclick=function(){ var x=L[+b.getAttribute('data-gm')]; if(!x){ return; }
@@ -2951,7 +2953,7 @@ document.addEventListener('keydown',function(ev){ if(!VWON||document.querySelect
 function vwLoad(i){ var e=VW.list[i]; if(!e||e.full||e.yt||e.mv){ return; } e.full=1;
   var im=document.querySelector('#vsc img[data-full="'+i+'"]'); if(!im){ return; }
   function put(u){ var wv=im.parentNode&&im.parentNode.querySelector('.vwait'); if(u){ im.src=u; im.classList.remove('wait'); if(wv){ wv.parentNode.removeChild(wv); } var bg=im.parentNode.querySelector('.bg'); if(bg&&!e.th){ bg.style.backgroundImage='url('+u+')'; } } else if(wv&&!e.th){ wv.innerHTML='<b>사진을 불러오지 못했습니다</b>'; } }   /* ★v101 497 */
-  if(e.src==='plaza'){ if(DU[e.id]){ duLoad(e.id,1600,function(u){ put(u||e.th); }); } else { put(e.th); } }
+  if(e.src==='plaza'){ if(duHas(e.id)){ duLoad(e.id,1600,function(u){ put(u||e.th); }); } else { put(e.th); } }
   else { photo(e.id,false,put); }
 }
 function vwWatch(){
@@ -3560,7 +3562,7 @@ window.addEventListener('pagehide',phnSend); document.addEventListener('visibili
 function photo(id,small,cb,noDu){
   var k=(small?'s:':'')+id; if(PHC[k]){ cb(PHC[k]); return; }
   if(!noDu){ if(PHW[k]){ PHW[k].push(cb); return; } PHW[k]=[cb]; var cb0=cb; cb=function(u){ var w=PHW[k]||[cb0]; delete PHW[k]; w.forEach(function(f){ try{ f(u); }catch(e){} }); }; }   /* ★v120 받는 중인 사진은 기다렸다 같이 받음 */
-  if(DU[id]&&!noDu){ duLoad(id,small?480:1600,function(u){ if(u){ PHC[k]=u; if(small){ PHN.s++; } else { PHN.b++; } cb(u); } else { photo(id,small,cb,1); } }); return; }   /* ★v53 333 서버를 거치지 않고 */
+  if(duHas(id)&&!noDu){ duLoad(id,small?480:1600,function(u){ if(u){ PHC[k]=u; if(small){ PHN.s++; } else { PHN.b++; } cb(u); } else { photo(id,small,cb,1); } }); return; }   /* ★v53 333 서버를 거치지 않고 */
   api({action:'recPhoto',id:id,small:small?'1':''},function(d){ if(d.status==='ok'){ if(small){ PHN.s++; } else { PHN.b++; } PHN.kb+=String(d.data||'').length*0.75/1024; PHC[k]='data:'+d.type+';base64,'+d.data; pvHeal(id,PHC[k]); cb(PHC[k]); } else { cb(''); } });
 }
 /* ★v25 스스로 채우기 — 미리보기 없는 옛 사진을 이 폰이 처음 열면 작은 사진을 만들어 서버에 남김(다음부터 모두 빨리) */
@@ -3578,7 +3580,7 @@ function lazyPhotos(el){
   var grids=el.querySelectorAll('.g9');
   Array.prototype.forEach.call(grids,function(g){
     var tiles=g.querySelectorAll('[data-phs]'), need=[], map={};
-    Array.prototype.forEach.call(tiles,function(t){ var id=t.getAttribute('data-phs'); map[id]=t; if(PHC['s:'+id]){ t.style.backgroundImage='url('+PHC['s:'+id]+')'; t.classList.remove('wait'); } else if(DU[id]){ photo(id,true,function(u){ if(u){ t.style.backgroundImage='url('+u+')'; t.classList.remove('wait'); } }); } else { need.push(id); } });   /* ★v53 333 */
+    Array.prototype.forEach.call(tiles,function(t){ var id=t.getAttribute('data-phs'); map[id]=t; if(PHC['s:'+id]){ t.style.backgroundImage='url('+PHC['s:'+id]+')'; t.classList.remove('wait'); } else if(duHas(id)){ photo(id,true,function(u){ if(u){ t.style.backgroundImage='url('+u+')'; t.classList.remove('wait'); } }); } else { need.push(id); } });   /* ★v53 333 */
     if(!need.length){ return; }
     api({action:'recPhotos',ids:need.join(','),small:'1'},function(d){ if(d.status!=='ok'){ return; } d.items.forEach(function(x){ var u='data:'+x.type+';base64,'+x.data; PHC['s:'+x.id]=u; pvHeal(x.id,u); if(map[x.id]){ map[x.id].style.backgroundImage='url('+u+')'; map[x.id].classList.remove('wait'); } }); });
   });
@@ -3615,7 +3617,7 @@ function itGet(id,cb,fresh){
 }
 function itBig(L){ if(L&&L.kind==='사진'&&L.photo&&!(L.photos&&L.photos.length>1)){ photo(L.id,false,function(){}); } }
 function itAhead(it){
-  try{ var nr=itNear(it.id); if(nr.n){ itGet(nr.n.id,function(){}); if(DU[nr.n.id]){ itBig(nr.n); } } }catch(e){}   /* 서버 부름은 한 번만 더 — 큰 사진은 바로 주소(드라이브)일 때만 미리 */
+  try{ var nr=itNear(it.id); if(nr.n){ itGet(nr.n.id,function(){}); if(duHas(nr.n.id)){ itBig(nr.n); } } }catch(e){}   /* 서버 부름은 한 번만 더 — 큰 사진은 바로 주소(드라이브)일 때만 미리 */
 }
 /* ★v116 사진 화면 기다리는 동안 — 목록에 이미 있던 작은 사진을 큰 칸에 먼저 보여 줌(빈 화면 · 「펼치는 중」만 보이지 않게) */
 function itPre(el,id){
@@ -6341,7 +6343,7 @@ function subOut(com,no,nm,pend){   /* ★v131 510 받은 관리자 해제는 서
   });
 }
 /* ★v131 572 ④ 510 — 위 방은 아래 모임 사진을 「우리 방에서 빼기」만(원본 · 그 모임 · 마당 · 다른 위 모임은 그대로) */
-function upPicUrl(x,w){ return x.yt?'https://i.ytimg.com/vi/'+encodeURIComponent(x.yt)+'/mqdefault.jpg':(x.u?'https://drive.google.com/thumbnail?id='+encodeURIComponent(x.u)+'&sz=w'+(w||200):''); }
+function upPicUrl(x,w){ return x.yt?'https://i.ytimg.com/vi/'+encodeURIComponent(x.yt)+'/mqdefault.jpg':(x.id&&NU[x.id])?duUrl(x.id,w||200):(x.u?'https://drive.google.com/thumbnail?id='+encodeURIComponent(x.u)+'&sz=w'+(w||200):''); }
 function upPics(el,after){
   wait(el,'사진을 모으는 중입니다');
   api({action:'recPlug',act:'upPics'},function(d){
@@ -6449,7 +6451,7 @@ window.addEventListener('appinstalled',function(){ PWA_EV=null; var b=$('pwaGo')
 try{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js',{scope:'/'})['catch'](function(){});
   /* ★v62 375 새 화면 파일을 받아 오면 한 번 바꿔 엶 — 첫 화면 · 광장에서만(쓰는 중에는 기다렸다가 첫 화면으로 돌아올 때) */
   navigator.serviceWorker.addEventListener('message',function(ev){ if(!ev.data||ev.data.t!=='lf-new'){ return; } NEWV=1; newGo(); }); } }catch(e){}
-var NEWV=0, REC_VER=191;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
+var NEWV=0, REC_VER=192;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
 function newChk(){ try{ if(!window.caches){ return; } caches.open('lf-rec-shell-v2').then(function(c){ return c.match('/'); }).then(function(r){ return r?r.text():''; }).then(function(t){ var m=/rec\/index\.html · v(\d+)/.exec(String(t).slice(0,600)); if(m&&parseInt(m[1],10)>REC_VER){ NEWV=1; newGo(); } })['catch'](function(){}); }catch(e){} }   /* ★v62 375 알림을 놓쳐도 남겨 둔 파일 버전을 직접 봄 */
 setTimeout(newChk,5000); setTimeout(newChk,15000);
 document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible'){ setTimeout(newChk,1500); } });
@@ -6522,7 +6524,7 @@ var MK_INTRO={   /* ★v106 565 방 소개 흐린 예시(종류마다) */
   'F-08':'예: 우리 회사가 걸어온 길과 일터의 이야기를 모읍니다.','F-14':'예: 이 기록관에서 모으는 기록을 적어 주세요.' };
 var MK_BG={story:'',hall:''};   /* ★v72 411-③ 카드 배경 = 마당의 실제 사진(못 받으면 색만) */
 function mkBgLoad(cb){ if(MK_BG.story||MK_BG.done){ cb(); return; } MK_BG.done=1;
-  function pick(d){ var it=(d&&d.items)||[], a=[]; for(var i=0;i<it.length&&a.length<2;i++){ var x=it[i]; if(x.yt){ a.push('https://i.ytimg.com/vi/'+encodeURIComponent(x.yt)+'/mqdefault.jpg'); } else if(x.u&&/^[A-Za-z0-9_-]{10,80}$/.test(x.u)){ a.push('https://drive.google.com/thumbnail?id='+encodeURIComponent(x.u)+'&sz=w400'); } } MK_BG.story=a[0]||''; MK_BG.hall=a[1]||a[0]||''; cb(); }
+  function pick(d){ var it=(d&&d.items)||[], a=[]; for(var i=0;i<it.length&&a.length<2;i++){ var x=it[i]; if(x.yt){ a.push('https://i.ytimg.com/vi/'+encodeURIComponent(x.yt)+'/mqdefault.jpg'); } else if(x.id&&NU[x.id]){ a.push(duUrl(x.id,520)); } else if(x.u&&/^[A-Za-z0-9_-]{10,80}$/.test(x.u)){ a.push('https://drive.google.com/thumbnail?id='+encodeURIComponent(x.u)+'&sz=w400'); } } MK_BG.story=a[0]||''; MK_BG.hall=a[1]||a[0]||''; cb(); }
   var sn=null; try{ sn=snapGet('plaza'); }catch(e){} if(sn){ pick(sn); return; }
   api({action:'recPlaza',n:'8',_hq:1},function(d){ if(d&&d.status==='ok'){ pick(d); } }); }
 function mkKindOf(fr){ for(var k in MK_KIND){ for(var i=0;i<MK_KIND[k].types.length;i++){ if(MK_KIND[k].types[i][1]===fr){ return k; } } } return ''; }
