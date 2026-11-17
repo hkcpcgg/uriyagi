@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v192 · 261117 · [우리이야기] S7 마무리 2단계(대표 OK 10:53) — 드라이브가 치워진 사진도 네이버 주소로 바로 받음(duHas = 드라이브 또는 네이버 · 큰 사진 · 마당 · 받은 기억 · 위 방 · 방 표지 · 카드 배경) · 보이는 것은 그대로 · 사랑흐름-소통-026 점검 — 새 값(열쇠 · 표 · 초대 · 링크)을 돌려주는 요청은 늦게 온 답도 받아 씀(API_LATE · jsonp 2분) -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v193 · 261117 · [우리이야기] ④ 내 사진(대표 OK 12:32 · 시안 v1) — 내 방 동그라미 📷 → 「내 사진」 판(고르기 · 바꾸기 · 지우기 · 320 정사각 · picShrink) · 게시물 머리 · 대화 이름 옆 사진(bp · 고른 분만) · 방 관리 사람 목록 「사진 가리기」 · 마당 · 카톡 카드는 그대로 -->
+<!-- (이전) ★ 현재 버전 ▶ rec/index.html · v192 · 261117 · [우리이야기] S7 마무리 2단계(대표 OK 10:53) — 드라이브가 치워진 사진도 네이버 주소로 바로 받음(duHas = 드라이브 또는 네이버 · 큰 사진 · 마당 · 받은 기억 · 위 방 · 방 표지 · 카드 배경) · 보이는 것은 그대로 · 사랑흐름-소통-026 점검 — 새 값(열쇠 · 표 · 초대 · 링크)을 돌려주는 요청은 늦게 온 답도 받아 씀(API_LATE · jsonp 2분) -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v191 · 261117 · [우리이야기] 대표 OK 10:30(관리길 시안 v1) — ① 마당 먼저 뒤로 끊긴 「나」를 뒤에서 조용히 받음(MEQ · 내 방에 이름 · 카카오 로그인) · 내가 만든 방 카드 「⚙ 관리」 · 방 ⋯ 에 「⚙ 방 관리」 ② ☰ 관리 칸 — 관리하는 방 목록이 없으면 받아서 다시 엶 ③ 방 관리 맨 위 방 정보 카드(대표 사진 · 이름 · 소개 → 바꾸기 → 대표 사진 · 이름 · 소개로 바로) · 카톡 → 크롬으로 넘길 때 열쇠를 # 칸에(사랑흐름-024 ⑥) · REC_VER 191 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v190 · 261117 · [우리이야기] 사랑흐름-소통-022 · 023 — 마당 맨 아래 사랑흐름 칸 = 카톡 첫인상 그림 한 장(og-image 선명본 · 누르면 사랑흐름 메인) · lf/frame.js 를 사랑흐름 v31 로 · lf-foot.js 를 v10 으로 다시 받음(주소만 바꿈) · 오른쪽 아래 동그라미 꼴을 사랑흐름 .lfx-fab 와 똑같이(테두리 · 그림자 · 그림 선) · 사랑흐름 동그라미는 data-lf-fab=off 로 끄고 우리 것(마당 = 우리 이야기 · 방 = 그 방) · 판 제목(h2) 앞 아이콘 뗌(사랑흐름-022 요청 2 · 제목을 단추로 알고 누르는 헛손질) · REC_VER 190 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v189 · 261117 · [우리이야기] 대표 OK 07:38(시안 v3) — ① 공유 = 흰 동그라미 공유 그림 · 오른쪽 아래 공유 · ↑ 맨 위로(마당 · 방) · 위 띠 노란 알약 · 방 ↗ 뺌 ② 게시물 ↗ → 동그라미 ③ … 메뉴 맨 위 공유하기 · 사진 고르기(공유 · 삭제) · 이 사진만 삭제 · 전체 삭제는 맨 아래 + 「사진 고르기로 / n장 모두 지우기」 ④ 보낼 사진 고르기 새 창(보던 사진 먼저 · 끝까지 · 찾기 · 10장 중 ○장 · &ps= 받은 쪽 넘겨 보기) · REC_VER 189 -->
@@ -1352,6 +1353,11 @@ body.lyon .dim{z-index:1700}body.lyon .toast,body.lyon .busy{z-index:1710}
 .av{flex:0 0 auto;width:64px;height:64px;border-radius:50%;padding:3px;background:conic-gradient(from 210deg,#8E7CF0,#5CC8E0,#B7F0E0,#F6E3B4,#F2B8D9,#8E7CF0)}
 .av span{display:grid;place-items:center;width:100%;height:100%;border-radius:50%;background:linear-gradient(150deg,#1B2350,#3B2F72);color:#fff;font-weight:700;font-size:22px}
 .mh .nm{font-size:20px;font-weight:800;color:var(--navy2)}
+.av{position:relative}.av span.pic{background-size:cover;background-position:center;color:transparent}   /* ★v193 ④ 내 사진 */
+.av .cam{position:absolute;right:-4px;bottom:-4px;width:26px;height:26px;border-radius:50%;background:#fff;border:1px solid #DDD;display:grid;place-items:center;font-size:13px;padding:0;box-shadow:0 1px 4px rgba(0,0,0,.15);cursor:pointer}
+.pfav.pic,.tav.pic{background-size:cover;background-position:center;color:transparent}
+.tav{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:#E3DED3;color:var(--navy2);font-size:10px;font-weight:800;margin-right:6px;vertical-align:-5px;flex:none}
+.pbig{width:104px;height:104px;border-radius:50%;margin:6px auto 12px;display:grid;place-items:center;background:linear-gradient(150deg,#1B2350,#3B2F72);color:#fff;font-size:38px;font-weight:800;background-size:cover;background-position:center}
 .mh .sb{font-size:12.5px;color:var(--sub);margin-top:4px}
 .msec{padding:14px 16px 4px}
 .msec h3{font-size:14px;color:var(--sub);margin:0 0 10px;font-weight:600}
@@ -2234,6 +2240,8 @@ var GRID=null, GKEY='', PVC={};
 var SNK='lf_rec_snap', PVK='lf_rec_pv', PVSAVE=null;
 /* ★v53 333 사진 바로 주소(u) · 339 움직이는 그림(mv) — 서버 답에서 모아 둠 */
 var DU={}, MV={};
+function picUrl(k){ return k&&/^f\/[a-f0-9]{32}\.jpg$/.test(k)?NCP_BASE+k:''; }   /* ★v193 ④ 내 사진(네이버 · 고른 분만) */
+function picBg(k){ var u=picUrl(k); return u?' style="background-image:url('+u+')"':''; }
 function duHas(id){ return !!(id&&(DU[id]||NU[id])); }   /* ★v192 S7 — 드라이브 주소 또는 네이버 주소(드라이브가 치워진 사진) */
 function duScan(o,d){ d=d||0; if(!o||typeof o!=='object'||d>6){ return; } if(Array.isArray(o)){ for(var i=0;i<o.length;i++){ duScan(o[i],d+1); } return; }
   if(o.id){ if(o.u&&/^[A-Za-z0-9_-]{10,80}$/.test(o.u)){ DU[o.id]=o.u; } if(o.n&&o.n.p&&/^p\/C-\d{4}\/[A-Za-z0-9-]+\.(jpg|png|webp|heic)$/.test(o.n.p)){ NU[o.id]=o.n; }   /* ★v183 S7 네이버(한국) */ if(o.mv&&/^https:\/\/www\.loveflow\.ai\.kr\/rec\/seed\/[A-Za-z0-9_\/-]+\.mp4$/.test(o.mv)){ MV[o.id]=o.mv; } }
@@ -2682,7 +2690,7 @@ function meRole(x){ var my=myrOf(x.n); return (x.here&&ME&&!isGuest())?ME.role:(
 /* ★v191 대표 261117 10:25 — 마당 먼저(v186) 뒤로 「나」를 안 불러와 내 방 · ☰ 관리가 끊김 → 열쇠가 있으면 뒤에서 조용히 「나」만 받아 둠(방 화면은 그리지 않음) */
 var MEQ=null, MEQB=0;
 function meqLoad(cb){ if(ME||MEQ||!K||MEQB){ if(cb){ cb(); } return; } MEQB=1;
-  api({action:'recHome',lite:'1',n:'1',mode:F.sort},function(d){ MEQB=0; if(d&&d.status==='ok'&&!d.guest){ MEQ={name:d.name||'',kakao:d.kakao?1:0,role:d.role||'',comName:d.comName||''}; } if(cb){ cb(); } }); }
+  api({action:'recHome',lite:'1',n:'1',mode:F.sort},function(d){ MEQB=0; if(d&&d.status==='ok'&&!d.guest){ MEQ={name:d.name||'',kakao:d.kakao?1:0,role:d.role||'',comName:d.comName||'',pic:d.pic||''}; } if(cb){ cb(); } }); }
 function meOpen(){
   var rooms=myRoomsL(), me0=(ME&&!isGuest())?ME:MEQ, mem=!!me0, nm=(me0&&me0.name)||'나';
   if(!mem&&K&&!ME){ meqLoad(function(){ if(MEQ&&$('meP')&&$('meP').classList.contains('on')){ meRedraw(); } }); }
@@ -2692,7 +2700,7 @@ function meOpen(){
     return '<div class="msec"><h3>'+t+' '+ids.length+'</h3>'+show.map(function(i){ return mcard(rooms[i],i); }).join('')+(ids.length>3&&!all?'<button type="button" class="mall" data-mall="'+key+'">모두 보기 ›</button>':'')+'</div>'; }
   var gn=gmNew();
   var h='<div class="xph"><button type="button" class="bk" aria-label="닫기">✕</button><b>내 방</b>'+(mem&&ME?'<button type="button" id="meG" aria-label="설정">⚙</button>':'')+'</div>'+
-    '<div class="mh"><span class="av"><span>'+esc(nm.charAt(0))+'</span></span><div><div class="nm">'+esc(nm==='나'?'나':nm+' 님')+'</div><div class="sb">'+(mem?(me0.kakao?'카카오 로그인 · ':'')+'방 '+rooms.length:'이 기기에서 들어가 본 방')+'</div></div></div>';
+    '<div class="mh"><span class="av"><span'+(mem&&me0&&me0.pic&&picUrl(me0.pic)?' class="pic"'+picBg(me0.pic):'')+'>'+esc(nm.charAt(0))+'</span>'+(mem&&me0&&me0.kakao?'<button type="button" class="cam" id="meCam" aria-label="내 사진">📷</button>':'')+'</span><div><div class="nm">'+esc(nm==='나'?'나':nm+' 님')+'</div><div class="sb">'+(mem?(me0.kakao?'카카오 로그인 · ':'')+'방 '+rooms.length:'이 기기에서 들어가 본 방')+'</div></div></div>';
   if(!mem){ h+='<div class="msec"><p class="note" style="margin:0 0 10px">카카오로 로그인하면 내 방과 내 게시물이 보입니다.</p><button type="button" class="btn kakao" id="meIn" style="margin-top:0">'+KICON+'카카오 로그인</button></div>'; }
   h+=sec('내가 만든 방',made,MEP.allM,'m')+sec(mem?'함께하는 방':'들어가 본 방',join,MEP.allJ,'j');
   if(!rooms.length){ h+='<div class="msec"><p class="note">아직 들어가 본 방이 없습니다.</p></div>'; }
@@ -2710,6 +2718,7 @@ function meOpen(){
   each(el,'[data-mt]',function(b){ b.onclick=function(){ var t=b.getAttribute('data-mt'); if(t===MEP.tab){ return; } MEP.tab=t; each(el,'[data-mt]',function(x){ x.classList.toggle('on',x===b); }); $('mePics').hidden=t!=='p'; $('meGot').hidden=t!=='g'; $('meUq').hidden=t!=='p'; if(t==='g'){ meGot(); } }; });
   if($('meIn')){ $('meIn').onclick=function(){ lyBack(); setTimeout(joinGate,60); }; }
   if($('meG')){ $('meG').onclick=meGear; }
+  if($('meCam')){ $('meCam').onclick=function(){ picSheet(); }; }
   $('meMk').onclick=function(){ opnStart(); };
   $('meHelp').onclick=function(){ helpSheet(mem?undefined:'보는 분'); };
   if(mem){ meUq(); if(MEP.tab==='p'){ mePicsLoad(); } else { meGot(); } }
@@ -3082,7 +3091,7 @@ function pfPost(it,i){
   var sl=vid?'<div class="pfi vid'+(sh?' sh':'')+'" data-pv="'+i+'">'+(it.video.thumb?'<img alt="" src="'+esc(it.video.thumb)+'">':'')+'<button type="button" class="pfpl" data-pa="play" aria-label="재생">▶</button></div>'
     :ps.map(function(p,k){ var th=pfTh(p,it); return '<div class="pfi" data-pk="'+k+'"><img alt="'+esc((it.title||'사진')+' '+(k+1))+'"'+(th?' src="'+esc(th)+'"':'')+' data-fid="'+esc(p.id)+'">'+(th?'':'<div class="pfw8">사진을 불러오는 중입니다</div>')+'</div>'; }).join('');
   var n=vid?1:ps.length, txt=(it.text&&it.kind!=='글'&&it.kind!=='링크')?it.text:'', tt=it.title&&!(txt&&String(txt).indexOf(it.title)===0)?it.title:'';
-  return '<article class="pfp" data-pi="'+i+'"><header class="pfh"><span class="pfav"'+(PF.fromPz?'':' data-pa="room" role="button" aria-label="방 첫 화면"')+'>'+esc((by||(ME&&ME.comName)||'?').charAt(0))+'</span><div class="pfnm"'+(PF.fromPz?'':' data-pa="room" role="button"')+'>'+(by?'<b>'+esc(by)+'</b>':'')+'<small>'+esc(it.when||'')+'</small></div><button type="button" class="pfmo" data-pa="more" aria-label="더 보기">⋯</button></header>'+
+  return '<article class="pfp" data-pi="'+i+'"><header class="pfh"><span class="pfav'+(by&&it.bp&&picUrl(it.bp)?' pic':'')+'"'+(by&&it.bp?picBg(it.bp):'')+(PF.fromPz?'':' data-pa="room" role="button" aria-label="방 첫 화면"')+'>'+esc((by||(ME&&ME.comName)||'?').charAt(0))+'</span><div class="pfnm"'+(PF.fromPz?'':' data-pa="room" role="button"')+'>'+(by?'<b>'+esc(by)+'</b>':'')+'<small>'+esc(it.when||'')+'</small></div><button type="button" class="pfmo" data-pa="more" aria-label="더 보기">⋯</button></header>'+
     '<div class="pfm"><div class="pfs" data-ps="'+i+'">'+sl+'</div>'+(n>1?'<span class="pfc" data-pc="'+i+'">1/'+n+'</span><button type="button" class="pfar l" data-pa="prev" aria-label="앞 사진">‹</button><button type="button" class="pfar r" data-pa="next" aria-label="다음 사진">›</button>':'')+'</div>'+(n>1?'<div class="pfd" data-pd="'+i+'">'+ps.map(function(p,k){ return '<i'+(k?'':' class="on"')+'></i>'; }).join('')+'</div>':'')+
     '<div class="pfa" data-pa0="'+i+'"></div>'+
     (tt||txt?'<div class="pft">'+(by?'<b>'+esc(by)+'</b>':'')+esc([tt,txt].filter(Boolean).join('\n'))+'</div>':'')+'<div class="pfk" data-pkk="'+i+'"></div><button type="button" class="pfwr" data-pa="write">기억 남기기…</button></article>';   /* ★v147 664 인스타 「댓글 달기…」 자리 · 테두리 없는 흐린 한 줄 */
@@ -4136,7 +4145,7 @@ function drawTalks(it){
   if(!ts.length){ el.innerHTML=''; return; }
   el.innerHTML=ts.map(function(t){
     var act=t.me?'<button class="tdel" type="button" data-te="'+esc(t.no)+'">수정</button><button class="tdel" type="button" data-no="'+esc(t.no)+'" data-a="mine" style="margin-left:10px">삭제</button>':(isBoss()?'<button class="tdel" type="button" data-no="'+esc(t.no)+'" data-a="boss">비공개</button>':'');
-    return '<div class="tl1'+(t.me?' me':'')+'"><div class="th1"><b>'+esc(t.by)+'</b><small>'+esc(t.at)+'</small>'+(t.check?'<span class="tag t-wait">확인 중</span>':'')+(t.ed?'<span class="edm">수정됨</span>':'')+act+'</div><p>'+esc(t.text)+'</p>'+(t.voice?voiceBtn('data-vt="'+esc(t.no)+'"'):'')+'</div>';
+    return '<div class="tl1'+(t.me?' me':'')+'"><div class="th1">'+(t.bp&&picUrl(t.bp)?'<span class="tav pic"'+picBg(t.bp)+'></span>':'')+'<b>'+esc(t.by)+'</b><small>'+esc(t.at)+'</small>'+(t.check?'<span class="tag t-wait">확인 중</span>':'')+(t.ed?'<span class="edm">수정됨</span>':'')+act+'</div><p>'+esc(t.text)+'</p>'+(t.voice?voiceBtn('data-vt="'+esc(t.no)+'"'):'')+'</div>';
   }).join('');
   each(el,'[data-vt]',function(b){ b.onclick=function(){ playRec({tno:b.getAttribute('data-vt')},b); }; });
   each(el,'[data-te]',function(b){ b.onclick=function(){ var no=b.getAttribute('data-te'), t=ts.filter(function(x){ return x.no===no; })[0]; if(t){ talkEdit(it,t); } }; });   /* ★v81 343 */
@@ -4942,6 +4951,31 @@ function sendPipe(list,bundle,each,done,quiet){
 /* 내 휴대폰 사진 — 1600px로 다시 그려 담음(사진 속 위치 · 기기 정보 빠짐) */
 var PICKMODE='', FULLM='';
 function openFile(mode){ PICKMODE=mode; var f=$('fileIn'); f.value=''; f.click(); }
+/* ★v193 ④ 내 사진 — 대표 OK 261117 12:32 · 시안 v1 · 정사각 320 으로 줄여 보냄(그림을 다시 그려 위치 · 기기 정보 빠짐) */
+function picShrink(file,cb){
+  function draw(img,w,h){ var s0=Math.min(w,h), c=document.createElement('canvas'); c.width=320; c.height=320; c.getContext('2d').drawImage(img,(w-s0)/2,(h-s0)/2,s0,s0,0,0,320,320); cb(c.toDataURL('image/jpeg',0.85)); }
+  function fallback(){ var u=URL.createObjectURL(file), im=new Image(); im.onload=function(){ draw(im,im.naturalWidth,im.naturalHeight); URL.revokeObjectURL(u); }; im.onerror=function(){ cb(''); }; im.src=u; }
+  if(window.createImageBitmap){ createImageBitmap(file,{imageOrientation:'from-image'}).then(function(b){ draw(b,b.width,b.height); }).catch(fallback); } else { fallback(); }
+}
+function picMe(){ return ME&&!ME.guest?ME:MEQ; }
+function picSet(k){ [ME,MEQ].forEach(function(o){ if(o){ o.pic=k||''; } }); }
+function picSheet(){
+  var m=picMe(), k=m&&m.pic, nm=(m&&m.name)||'나';
+  sheet('<h3>내 사진</h3><p class="note" style="margin:0 0 6px">함께하는 방에서 내 이름 옆에 보입니다(열린 방이면 그 방을 보는 분께도). 마당 사진 꼬리표에는 나오지 않습니다.</p>'+
+    '<div class="pbig"'+picBg(k)+'>'+(k?'':esc(nm.charAt(0)))+'</div>'+
+    '<input type="file" id="picF" accept="image/*" hidden>'+
+    '<button type="button" class="btn" id="picGo">'+(k?'다른 사진으로 바꾸기':'휴대폰 사진에서 고르기')+'</button>'+
+    (k?'<button type="button" class="btn line" id="picDel" style="color:#B4442E;border-color:#B4442E">내 사진 지우기</button>':'')+
+    '<p class="note" style="margin:10px 0 0">작게 줄여 받고 위치 · 기기 정보는 빠집니다 · 카카오 사진은 가져오지 않습니다 · 한 번 고르면 내 모든 방에 같이 보입니다.</p>'+
+    '<button type="button" class="btn line" id="picX">닫기</button>',function(d){
+    $('picX').onclick=closeSheet;
+    $('picGo').onclick=function(){ $('picF').click(); };
+    $('picF').onchange=function(){ var f=this.files&&this.files[0]; if(!f){ return; } busyOn('사진을 줄이는 중입니다');
+      picShrink(f,function(u){ busyOff(); if(!u){ toast('사진을 읽지 못했습니다','다른 사진을 골라 주십시오'); return; }
+        api({action:'recMyPic',act:'set',pic:u,_busy:'내 사진을 올리는 중입니다'},function(r){ if(r.status==='ok'){ picSet(r.pic); closeSheet(); toast('내 사진을 바꿨습니다',r.rooms>1?'내 방 '+r.rooms+'곳에 같이 보입니다':''); meOpen(); } else { toast(r.msg||'올리지 못했습니다'); } }); }); };
+    if($('picDel')){ $('picDel').onclick=function(){ api({action:'recMyPic',act:'del',_busy:'지우는 중입니다'},function(r){ if(r.status==='ok'){ picSet(''); closeSheet(); toast('내 사진을 지웠습니다'); meOpen(); } else { toast(r.msg||'지우지 못했습니다'); } }); }; }
+  });
+}
 function shrink(file,cb){
   var MAX=1600;
   function draw(img,w,h){ var r=Math.min(1,MAX/Math.max(w,h)), c=document.createElement('canvas'); c.width=Math.round(w*r); c.height=Math.round(h*r); c.getContext('2d').drawImage(img,0,0,c.width,c.height); cb(c.toDataURL('image/jpeg',0.82),preview(img,w,h)); }
@@ -5216,7 +5250,7 @@ function pplView(){
           (x.stop?'<button type="button" class="sbtn" data-ok="'+esc(x.no)+'" data-act="풀기">제한 해제</button>':'')+
           (fixed||x.role==='신청 중'?'':'<button type="button" class="tg'+(x.auto?' on':'')+'" data-no="'+esc(x.no)+'"'+(boss?'':' disabled')+' aria-label="바로 공개"></button>')+
           (ME.role==='관리자'&&x.hand?'<button type="button" class="sbtn red" data-hc="'+esc(x.no)+'" data-nm="'+esc(x.name||'')+'">위임 취소</button>':'')+(ME.role==='관리자'&&!x.me&&(x.role==='올리는 사람'||x.role==='참여자')?'<button type="button" class="sbtn" data-ap="'+esc(x.no)+'" data-to="확인자">승인 권한 주기</button>':'')+(ME.role==='관리자'&&!x.me&&x.role==='확인자'?'<button type="button" class="sbtn" data-ap="'+esc(x.no)+'" data-to="올리는 사람">승인 권한 빼기</button>':'')+   /* ★v155 653 86차 ❓9 (가) */
-          (canRole(x)?'<button type="button" class="sbtn" data-rl="'+esc(x.no)+'">역할 변경</button>':'')+(boss&&!x.me&&x.role!=='관리자'?'<button type="button" class="sbtn red" data-out="'+esc(x.no)+'" data-nm="'+esc(x.name||'')+'">내보내기</button>':'')+qh('ppl')+'</span></div>'; }).join('')+
+          (canRole(x)?'<button type="button" class="sbtn" data-rl="'+esc(x.no)+'">역할 변경</button>':'')+(ME.role==='관리자'&&!x.me&&x.pic?'<button type="button" class="sbtn'+(x.picHid?'':' red')+'" data-ph="'+esc(x.no)+'" data-on="'+(x.picHid?'0':'1')+'">'+(x.picHid?'사진 다시 보이기':'사진 가리기')+'</button>':'')+(boss&&!x.me&&x.role!=='관리자'?'<button type="button" class="sbtn red" data-out="'+esc(x.no)+'" data-nm="'+esc(x.name||'')+'">내보내기</button>':'')+qh('ppl')+'</span></div>'; }).join('')+
       (boss?'<p class="note">「역할 변경」은 나보다 아래 역할만 고를 수 있습니다. 관리자 위임도 「역할 변경」 안에 있습니다.</p>':'<p class="note">공개 설정 · 내보내기는 관리자만 바꿉니다. 「승인」 · 「제한 해제」 · 멤버 「역할 변경」은 승인 권한이 있는 멤버도 합니다.</p>')+'</div>';
     $('pq').innerHTML=h;
     each($('pq'),'[data-ap]',function(b){ b.onclick=function(){ var no=b.getAttribute('data-ap'), to=b.getAttribute('data-to'); b.disabled=true; api({action:'recRoleSet',no:no,role:to},function(r){ if(r.status==='ok'){ toast(to==='확인자'?'승인 권한을 드렸습니다':'승인 권한을 뺐습니다',to==='확인자'?'게시물 승인 · 가입 신청을 함께 처리합니다':''); pplView(); } else { b.disabled=false; toast(r.msg||'바꾸지 못했습니다'); } }); }; });   /* ★v155 653 */
@@ -5231,6 +5265,7 @@ function pplView(){
     setSw('tgChk','check','예','아니오','첫 게시물은 승인 뒤 공개합니다','첫 게시물도 바로 공개합니다');
     $('tgc').onclick=function(){ var b=this, appr=!b.classList.contains('on'); b.disabled=true; api({action:'recComAuto',on:appr?'0':'1'},function(r){ b.disabled=false; if(r.status==='ok'){ b.classList.toggle('on',!r.autoCom); ME.autoCom=r.autoCom; toast(r.autoCom?'게시물 승인을 껐습니다':'게시물 승인을 켰습니다',r.autoCom?'올린 게시물이 바로 보입니다':'멤버가 올린 게시물은 승인한 뒤 보입니다'); } else { toast(r.msg||'바꾸지 못했습니다'); } }); };
     each($('pq'),'[data-no]',function(b){ b.onclick=function(){ var on=!b.classList.contains('on'); b.disabled=true; api({action:'recPersonAuto',no:b.getAttribute('data-no'),on:on?'1':'0'},function(r){ b.disabled=false; if(r.status==='ok'){ b.classList.toggle('on',!!r.auto); } else { toast(r.msg||'바꾸지 못했습니다'); } }); }; });
+    each($('pq'),'[data-ph]',function(b){ b.onclick=function(){ var on=b.getAttribute('data-on')==='1'; b.disabled=true; api({action:'recPicHide',no:b.getAttribute('data-ph'),on:on?'1':'0'},function(r){ if(r.status==='ok'){ toast(on?'이 방에서 그분 사진을 가렸습니다':'그분 사진을 다시 보이게 했습니다'); pplView(); } else { b.disabled=false; toast(r.msg||'바꾸지 못했습니다'); } }); }; });   /* ★v193 ④ */
     each($('pq'),'[data-out]',function(b){ b.onclick=function(){ outSheet(b.getAttribute('data-out'),b.getAttribute('data-nm'),pplView); }; });
   });
 }
@@ -6454,7 +6489,7 @@ window.addEventListener('appinstalled',function(){ PWA_EV=null; var b=$('pwaGo')
 try{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js',{scope:'/'})['catch'](function(){});
   /* ★v62 375 새 화면 파일을 받아 오면 한 번 바꿔 엶 — 첫 화면 · 광장에서만(쓰는 중에는 기다렸다가 첫 화면으로 돌아올 때) */
   navigator.serviceWorker.addEventListener('message',function(ev){ if(!ev.data||ev.data.t!=='lf-new'){ return; } NEWV=1; newGo(); }); } }catch(e){}
-var NEWV=0, REC_VER=192;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
+var NEWV=0, REC_VER=193;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
 function newChk(){ try{ if(!window.caches){ return; } caches.open('lf-rec-shell-v2').then(function(c){ return c.match('/'); }).then(function(r){ return r?r.text():''; }).then(function(t){ var m=/rec\/index\.html · v(\d+)/.exec(String(t).slice(0,600)); if(m&&parseInt(m[1],10)>REC_VER){ NEWV=1; newGo(); } })['catch'](function(){}); }catch(e){} }   /* ★v62 375 알림을 놓쳐도 남겨 둔 파일 버전을 직접 봄 */
 setTimeout(newChk,5000); setTimeout(newChk,15000);
 document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible'){ setTimeout(newChk,1500); } });
