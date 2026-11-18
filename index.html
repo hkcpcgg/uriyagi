@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v200 · 261118 · [우리이야기] 참여 단추 · 사랑흐름 칸 시안 v1(대표 OK 261118 19:27) — ① 방 맨 아래 「나도 사진 올리기」(주황 동그라미 ＋ · btUp 그대로 · 멤버 = 이 방에 바로 · 손님 = 가입) ② 「우리 이야기 만들기」 → 「우리 이야기방 만들기」(화면 말 모두) ③ 마당 · 내 방 · ☰ 맨 아래 사랑흐름 = 그림 + 그 밑 「사랑흐름 바로 가기 ›」 한 덩어리 · 링크 하나(겹치던 .ur 칸 뺌) -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v201 · 261118 · [우리이야기] 고장 고침 — 사진 한 장 화면(마당 사진 · 사진 공유 링크 &r=)의 사진 칸이 비어 보이던 것: 게시물 큰 창 .pf 꾸밈(display:none · position:fixed)이 같은 이름의 사진 칸까지 덮음 → .card.big .pf 만 되살림 · 그 밖 v200 그대로 -->
+<!-- (이전) ★ 현재 버전 ▶ rec/index.html · v200 · 261118 · [우리이야기] 참여 단추 · 사랑흐름 칸 시안 v1(대표 OK 261118 19:27) — ① 방 맨 아래 「나도 사진 올리기」(주황 동그라미 ＋ · btUp 그대로 · 멤버 = 이 방에 바로 · 손님 = 가입) ② 「우리 이야기 만들기」 → 「우리 이야기방 만들기」(화면 말 모두) ③ 마당 · 내 방 · ☰ 맨 아래 사랑흐름 = 그림 + 그 밑 「사랑흐름 바로 가기 ›」 한 덩어리 · 링크 하나(겹치던 .ur 칸 뺌) -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v199 · 261118 · [우리이야기] 새 소식 묶음(시안 v2 · 대표 OK 261118 17:20 · 서버 ①Code v103 과 짝) — 내 방 맨 위 「새 소식」(기억 · 🍇 나도 기억해요 · ♥ 좋아요 · 최근 5 · 안 본 것 연보라 · 없으면 칸 없음 · 모두 보기 = 받은 기억 탭) · 「내가 만든 방」 카드에 처리할 일(주황 테두리 · 가입 신청 · 승인 대기 · 위 방 연결 요청 · 단추 「처리할 일 n ›」 · 없으면 ⚙ 관리) · 아래 탭 내 방 빨간 점 → 숫자 · 내 방 맨 아래 사랑흐름 = 육각형 그림 + 「사랑흐름 바로 가기 ›」 · 「이용 안내」 = 「만들기」 단추 크기 · recMyRooms · recGotMem 에 q=1 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v198 · 261118 · [우리이야기] 기본 기능 시안 v1(대표 OK 261118 15:56) — 1 손님이 마당 · 검색 · 받은 사진으로 누른 방은 바로 그 방(&go=1 · &r= · 같은 주소에서 넘어옴) · 카톡 초대 링크만 마당 먼저 · 2 마당 방 동그라미 네이버 사진(cv.n) · 5 마당 맨 아래 = 사랑흐름 새 그림(lf-og-261118.jpg · 대표가 준 육각형) + 「사랑흐름 바로 가기 ›」 늘 보임 · ☰ 맨 아래도 같은 그림 + 단추(옛 「사랑흐름 홈」 = / 로 가던 헛손질) · 6 왼쪽 위 로고 되살림(uri-logo.png) · 7 방 사진 · 이름 = 방 프로필 · 8 게시물 · 기억의 얼굴 · 이름 = 그 사람 프로필(whoOpen) · 9 내 얼굴 = 내 사진 바꾸기 · 10 관리 띠 「처리할 일 n · 방 관리 ›」 · 「관리자 ›」 · 11 🍇 「나도 기억해요」 글씨 · 12 포도 하나(사랑흐름-030 새 아이콘 · 탭 · 로고 · 방 기본) · 13 닫힌 방 동그라미 찌그러짐(.lk 꾸밈 겹침 → .lck) · 내 방 탭 = 내 사진 동그라미(대표 「꿀꿀해」) -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v197 · 261117 · [우리이야기] 대표 19:45 「마당 하단 사랑흐름 가는 링크 단추를 왜 없앴냐」 — v190(사랑흐름-022 요청으로 단추를 그림으로 바꿈 · 대표 승인 없이) 되돌림: 마당 맨 아래 「사랑흐름 가기 ›」 단추를 늘(더 불러오는 중에도) 다시 · 그림은 그 위에 그대로 · REC_VER 197 -->
@@ -894,6 +895,7 @@ html.lfx body{padding-bottom:0!important}
 .big img.media{width:100%;display:block;max-height:70vh;object-fit:contain;background:var(--sand)}
 /* ★v97 사진 틀 높이 고정 — 세로 · 가로 사진 모두 같은 틀 · 빈 곳은 같은 사진을 흐리게 깔아 채움 · 아래 단추 줄이 들썩이지 않게 */
 .big .pf{position:relative;height:min(64vh,120vw);overflow:hidden;background:#1E2A38}
+.card.big .pf{display:block;position:relative;inset:auto;z-index:auto}   /* ★v201 게시물 큰 창(.pf · v148)의 「display:none · fixed」가 사진 한 장 화면 사진 칸까지 숨기던 것(대표 261118 19:55 데스크톱 빈 칸) */
 .big .pf .pfb{position:absolute;inset:-24px;background:center/cover no-repeat;filter:blur(20px) brightness(.72);transform:scale(1.08)}
 .big .pf img.media{position:relative;width:100%;height:100%;max-height:none;object-fit:contain;background:transparent}
 .big .pfs{min-height:28px}
@@ -6631,7 +6633,7 @@ window.addEventListener('appinstalled',function(){ PWA_EV=null; var b=$('pwaGo')
 try{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js',{scope:'/'})['catch'](function(){});
   /* ★v62 375 새 화면 파일을 받아 오면 한 번 바꿔 엶 — 첫 화면 · 광장에서만(쓰는 중에는 기다렸다가 첫 화면으로 돌아올 때) */
   navigator.serviceWorker.addEventListener('message',function(ev){ if(!ev.data||ev.data.t!=='lf-new'){ return; } NEWV=1; newGo(); }); } }catch(e){}
-var NEWV=0, REC_VER=200;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
+var NEWV=0, REC_VER=201;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
 function newChk(){ try{ if(!window.caches){ return; } caches.open('lf-rec-shell-v2').then(function(c){ return c.match('/'); }).then(function(r){ return r?r.text():''; }).then(function(t){ var m=/rec\/index\.html · v(\d+)/.exec(String(t).slice(0,600)); if(m&&parseInt(m[1],10)>REC_VER){ NEWV=1; newGo(); } })['catch'](function(){}); }catch(e){} }   /* ★v62 375 알림을 놓쳐도 남겨 둔 파일 버전을 직접 봄 */
 setTimeout(newChk,5000); setTimeout(newChk,15000);
 document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible'){ setTimeout(newChk,1500); } });
