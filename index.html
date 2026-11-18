@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v198 · 261118 · [우리이야기] 기본 기능 시안 v1(대표 OK 261118 15:56) — 1 손님이 마당 · 검색 · 받은 사진으로 누른 방은 바로 그 방(&go=1 · &r= · 같은 주소에서 넘어옴) · 카톡 초대 링크만 마당 먼저 · 2 마당 방 동그라미 네이버 사진(cv.n) · 5 마당 맨 아래 = 사랑흐름 새 그림(lf-og-261118.jpg · 대표가 준 육각형) + 「사랑흐름 바로 가기 ›」 늘 보임 · ☰ 맨 아래도 같은 그림 + 단추(옛 「사랑흐름 홈」 = / 로 가던 헛손질) · 6 왼쪽 위 로고 되살림(uri-logo.png) · 7 방 사진 · 이름 = 방 프로필 · 8 게시물 · 기억의 얼굴 · 이름 = 그 사람 프로필(whoOpen) · 9 내 얼굴 = 내 사진 바꾸기 · 10 관리 띠 「처리할 일 n · 방 관리 ›」 · 「관리자 ›」 · 11 🍇 「나도 기억해요」 글씨 · 12 포도 하나(사랑흐름-030 새 아이콘 · 탭 · 로고 · 방 기본) · 13 닫힌 방 동그라미 찌그러짐(.lk 꾸밈 겹침 → .lck) · 내 방 탭 = 내 사진 동그라미(대표 「꿀꿀해」) -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v199 · 261118 · [우리이야기] 새 소식 묶음(시안 v2 · 대표 OK 261118 17:20 · 서버 ①Code v103 과 짝) — 내 방 맨 위 「새 소식」(기억 · 🍇 나도 기억해요 · ♥ 좋아요 · 최근 5 · 안 본 것 연보라 · 없으면 칸 없음 · 모두 보기 = 받은 기억 탭) · 「내가 만든 방」 카드에 처리할 일(주황 테두리 · 가입 신청 · 승인 대기 · 위 방 연결 요청 · 단추 「처리할 일 n ›」 · 없으면 ⚙ 관리) · 아래 탭 내 방 빨간 점 → 숫자 · 내 방 맨 아래 사랑흐름 = 육각형 그림 + 「사랑흐름 바로 가기 ›」 · 「이용 안내」 = 「만들기」 단추 크기 · recMyRooms · recGotMem 에 q=1 -->
+<!-- (이전) ★ 현재 버전 ▶ rec/index.html · v198 · 261118 · [우리이야기] 기본 기능 시안 v1(대표 OK 261118 15:56) — 1 손님이 마당 · 검색 · 받은 사진으로 누른 방은 바로 그 방(&go=1 · &r= · 같은 주소에서 넘어옴) · 카톡 초대 링크만 마당 먼저 · 2 마당 방 동그라미 네이버 사진(cv.n) · 5 마당 맨 아래 = 사랑흐름 새 그림(lf-og-261118.jpg · 대표가 준 육각형) + 「사랑흐름 바로 가기 ›」 늘 보임 · ☰ 맨 아래도 같은 그림 + 단추(옛 「사랑흐름 홈」 = / 로 가던 헛손질) · 6 왼쪽 위 로고 되살림(uri-logo.png) · 7 방 사진 · 이름 = 방 프로필 · 8 게시물 · 기억의 얼굴 · 이름 = 그 사람 프로필(whoOpen) · 9 내 얼굴 = 내 사진 바꾸기 · 10 관리 띠 「처리할 일 n · 방 관리 ›」 · 「관리자 ›」 · 11 🍇 「나도 기억해요」 글씨 · 12 포도 하나(사랑흐름-030 새 아이콘 · 탭 · 로고 · 방 기본) · 13 닫힌 방 동그라미 찌그러짐(.lk 꾸밈 겹침 → .lck) · 내 방 탭 = 내 사진 동그라미(대표 「꿀꿀해」) -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v197 · 261117 · [우리이야기] 대표 19:45 「마당 하단 사랑흐름 가는 링크 단추를 왜 없앴냐」 — v190(사랑흐름-022 요청으로 단추를 그림으로 바꿈 · 대표 승인 없이) 되돌림: 마당 맨 아래 「사랑흐름 가기 ›」 단추를 늘(더 불러오는 중에도) 다시 · 그림은 그 위에 그대로 · REC_VER 197 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v196 · 261117 · [우리이야기] 대표 19:02 「꽉 닫아 놨다 · 더 보기로 본인이 요청하면 더 볼 수 있게」 — ① 마당: 방마다 12장(v187)에서 막혀 「여기까지입니다」로 끝나던 것 → 남은 사진이 있으면 맨 아래 「사진 더 보기」(누를 때마다 방마다 12장씩 더 · 저절로 풀리지는 않음) ② 방 바둑판: 아래로 내리면 저절로 + 맨 아래 「사진 더 보기」 단추 · 한 번 못 불러오면 영영 끊기던 것 → 단추로 다시 ③ 관리 확인 뒤 사랑흐름 /p/ 로 돌아가던 한 줄 걷음(우리이야기-030) · REC_VER 196 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v195 · 261117 · [우리이야기] S5 위 방(헤이리 전 ⑧ · 대표 OK 13:16 · 시안 v1 · ★서버 ①Code v98 · ②관리 v46 과 짝) — ① 올릴 때 「위 방에도 보이기」 연결된 위 방 전부 켜진 채 시작 · 빼기만 ② 연결된 방 맨 위 「＋ 아래 방 추가」(방 이름으로 찾기 → 「이 방 추가」 → 그 방 관리자께 연결 요청) · 보낸 요청 「수락 기다림 · 요청 거두기」 · 받은 요청 수락 · 거절 · 링크 길은 아래로 ③ 다른 방 공유 창에 「우리 방 아래로 추가」(내가 관리하는 방이 있을 때) ④ 처리할 일 「위 방 연결 요청」 → 수락 · 거절 · REC_VER 195 -->
@@ -1644,6 +1645,26 @@ body.btabon #fab,body.btabon #way3,body.btabon .fabtip{display:none!important}
 .admbar b{font-size:15.5px}.admbar.hot{border-color:#F3C79E;background:#FFF1E4;color:#8A4A12}.admbar.hot b{color:#E8771E}
 .rpf{text-align:center;padding:4px 0 8px}.rpfa{width:132px;height:132px;margin:4px auto 12px;border-radius:50%;background:#F1ECFA center/cover no-repeat;display:grid;place-items:center;box-shadow:0 0 0 3px #fff,0 0 0 5px #CDBEF0}.rpfa img.urg{width:64px;height:64px}
 .pfk p b[data-pa=who],.pfh [data-pa=who]{cursor:pointer}
+
+/* ★v199 새 소식 묶음(시안 v2 · 대표 OK 261118 17:20) */
+.nws{margin:6px 16px 16px;border-radius:18px;background:#fff;box-shadow:0 2px 10px rgba(60,40,100,.08);overflow:hidden;border:1px solid #EFE7F8}
+.nws h3{display:flex;align-items:center;gap:8px;margin:0;padding:13px 16px 8px;font-size:16.5px;color:var(--navy2)}
+.nws h3 .n{background:#E5484D;color:#fff;border-radius:999px;font-size:12px;padding:1px 8px;font-weight:800}
+.nws h3 .s{margin-left:auto;font-size:12.5px;color:#9A8F80;font-weight:500}
+.nws .r{display:flex;align-items:center;gap:11px;width:100%;border:0;background:none;text-align:left;padding:9px 16px;font:inherit;min-height:58px;border-top:1px solid #F5F0F9;cursor:pointer;color:inherit}
+.nws .r.nw{background:linear-gradient(90deg,#F7F2FF,#fff 70%)}
+.nws .av{position:relative;width:42px;height:42px;border-radius:50%;flex:none;display:grid;place-items:center;color:#fff;font-weight:800;font-size:16px}
+.nws .av i{position:absolute;right:-3px;bottom:-3px;width:20px;height:20px;border-radius:50%;background:#fff;display:grid;place-items:center;font-style:normal;font-size:11px;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.nws .tx{flex:1;min-width:0;font-size:14px;line-height:1.45;color:var(--ink)}.nws .tx q{quotes:"「" "」";color:#4B3A78}
+.nws .tx small{display:block;font-size:12px;color:#9A8F80;margin-top:2px}
+.nws .th{width:46px;height:46px;border-radius:10px;flex:none;background:#EEE center/cover no-repeat}
+.nws .more{display:block;width:100%;border:0;border-top:1px solid #F5F0F9;background:#FBF9FE;padding:11px;font:inherit;font-size:13.5px;color:#5B44A0;font-weight:700;cursor:pointer;min-height:44px}
+.mrc .qrow{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}.mrc .qrow span{font-size:12px;font-weight:700;color:#A4520F;background:#FFF1E4;border:1px solid #F7CFA6;border-radius:999px;padding:1px 8px}
+.mrc.hot{box-shadow:0 0 0 1.5px #F3C79E,0 3px 12px rgba(232,119,30,.14)}
+.mrc .madm.hot{background:#E8771E;color:#fff;border-color:#E8771E}
+.btab .bdn{position:absolute;top:-2px;left:calc(50% + 6px);min-width:18px;height:18px;border-radius:9px;background:#E5484D;color:#fff;font-size:11px;font-weight:800;display:grid;place-items:center;padding:0 5px;border:2px solid #fff;line-height:1}
+#meP .lfwrap{margin:18px 16px 0}#meP .lfwrap .lfog{margin:0 0 10px}
+#meHelp{display:block;width:calc(100% - 32px);margin:12px auto 0!important;min-height:56px;border-radius:26px;font-size:16px;font-weight:800}
 </style>
 <body data-lf-title="우리 이야기" data-lf-fab="off">
 <div class="app" id="app">
@@ -2566,9 +2587,9 @@ function myrCover(x){ var c=x&&x.cover; if(!c){ return ''; } if(c.yt){ return 'h
 function myrLoad(cb){
   var ks=rksGet().map(function(x){ return x&&x.k; }).filter(function(k){ return /^[a-f0-9]{32}$/.test(k||''); }); if(K&&ks.indexOf(K)<0){ ks.unshift(K); }
   if(!ks.length||MYR_BUSY){ if(cb){ cb(false); } return; } MYR_BUSY=1;
-  api({action:'recMyRooms',ks:ks.slice(0,30).join(','),_hq:1},function(d){ MYR_BUSY=0;
+  api({action:'recMyRooms',ks:ks.slice(0,30).join(','),q:'1',_hq:1},function(d){ MYR_BUSY=0;
     if(!d||d.status!=='ok'){ if(cb){ cb(false); } return; }   /* 서버 v27 이면 모르는 요청 — 지금처럼 */
-    var old=JSON.stringify((myrGet()||{}).items||[]); MYR={t:Date.now(),hq:d.hq?1:0,items:(d.items||[]).map(function(x){ return {name:x.name,k:x.k,com:x.com||'',role:x.role||'',up:x.up?1:0,people:x.people||0,newN:x.newN||0,pin:x.pin?1:0,wait:x.wait?1:0,cover:x.cover||null}; })};   /* ★v68 역할 · 위 방 · 본부 */
+    var old=JSON.stringify((myrGet()||{}).items||[]); MYR={t:Date.now(),hq:d.hq?1:0,items:(d.items||[]).map(function(x){ return {name:x.name,k:x.k,com:x.com||'',role:x.role||'',up:x.up?1:0,people:x.people||0,newN:x.newN||0,pin:x.pin?1:0,wait:x.wait?1:0,cover:x.cover||null,q:(x.q&&x.q.n)?{wait:+x.q.wait||0,join:+x.q.join||0,link:+x.q.link||0,plug:+x.q.plug||0,n:+x.q.n||0}:null}; })};   /* ★v199 q 처리할 일 */   /* ★v68 역할 · 위 방 · 본부 */
     if(d.hq){ sset('lf_rec_hq','1'); }
     try{ localStorage.setItem(MYRK,JSON.stringify(MYR)); }catch(e){}
     if(cb){ cb(old!==JSON.stringify(MYR.items)); } posRedo(); });
@@ -2697,23 +2718,40 @@ function mcard(x,i,plain){
   var my=plain?null:myrOf(x.n), cv=(x.here?hereCover():'')||myrCover(my), ini=String(x.n||'').replace(/^\s+/,'').charAt(0)||'🍇';   /* ★v67 396 */
   var ppl=my?my.people:(x.here&&ME.stat?ME.stat.people:0);
   var sub=[plain?'지금 보고 있는 방':(x.here?'지금 여기 · '+roleName(ME.role):(my&&my.wait?'등록 신청':(my&&my.role?roleName(my.role):''))),ppl?'멤버 '+ppl:''].filter(Boolean).join(' · ');   /* ★v170 672 「들어가기」 대신 내 역할(카톡 · 밴드 목록처럼 상태 한 줄) */
-  return '<div class="mrc" data-mr="'+i+'"><span class="im"'+(cv?' style="background-image:url('+esc(cv)+')"':'')+'>'+(cv?'':esc(ini))+'</span><span class="tx"><b>'+(x.pin?'📌 ':'')+esc(x.n)+'</b><small>'+esc(sub)+'</small>'+(my&&my.newN&&!x.here?'<span class="nw">새 사진 '+my.newN+'</span>':'')+'</span>'+
-    (!plain&&meRole(x)==='관리자'?'<button type="button" class="madm" data-ma="'+i+'">⚙ 관리</button>':'<button type="button" class="mo" data-mo="'+i+'" aria-label="'+esc(x.n)+' 더 보기">⋯</button>')+'</div>';   /* ★v191 ① 내가 만든 방 = ⚙ 관리 바로 */
+  var q9=plain?null:(meRole(x)==='관리자'?myQ(x):null);   /* ★v199 */
+  return '<div class="mrc'+(q9&&q9.n?' hot':'')+'" data-mr="'+i+'"><span class="im"'+(cv?' style="background-image:url('+esc(cv)+')"':'')+'>'+(cv?'':esc(ini))+'</span><span class="tx"><b>'+(x.pin?'📌 ':'')+esc(x.n)+'</b><small>'+esc(sub)+'</small>'+(my&&my.newN&&!x.here?'<span class="nw">새 사진 '+my.newN+'</span>':'')+(q9&&q9.t.length?'<span class="qrow">'+q9.t.map(function(s){ return '<span>'+esc(s)+'</span>'; }).join('')+'</span>':'')+'</span>'+
+    (!plain&&meRole(x)==='관리자'?(function(){ var q=myQ(x); return q&&q.n?'<button type="button" class="madm hot" data-ma="'+i+'">처리할 일 '+q.n+' ›</button>':'<button type="button" class="madm" data-ma="'+i+'">⚙ 관리</button>'; })():'<button type="button" class="mo" data-mo="'+i+'" aria-label="'+esc(x.n)+' 더 보기">⋯</button>')+'</div>';   /* ★v191 ① 내가 만든 방 = ⚙ 관리 바로 */
 }
 var MEP={rooms:[],pics:[],rest:[],tab:'p',allM:0,allJ:0};
 /* ══ ★v149 654 내 방(도식 5 2판 · 86차) — ⚙ · 나 · 내가 만든 방 · 함께하는 방(3개 + 모두 보기) · 탭 내 게시물(올리는 중 · 실패 · 승인 대기 먼저) / 받은 기억(누르면 그 사진) ══ */
 var GM=null, GMB=0, GMK='lf_rec_gm';
 function gmSeen(){ try{ return +(localStorage.getItem(GMK)||0)||0; }catch(e){ return 0; } }
+function myQ(x){ if(!x){ return null; } var my=myrOf(x.n), q=my&&my.q; if(x.here&&ME&&!isGuest()&&isBoss()&&QN>0&&!(q&&q.n)){ return {n:QN,t:[]}; } if(!q||!q.n){ return null; } var t=[]; if(q.join){ t.push('가입 신청 '+q.join); } if(q.wait){ t.push('승인 대기 '+q.wait); } if(q.plug){ t.push('위 방 연결 요청 '+q.plug); } if(q.link){ t.push('확인할 것 '+q.link); } return {n:q.n,t:t}; }   /* ★v199 새 소식 — 관리하는 방 처리할 일(①Code v103 q) */
+function myQSum(){ var s=0; try{ myRoomsL().forEach(function(x){ var r=meRole(x); if(r==='관리자'||r==='확인자'){ var q=myQ(x); if(q){ s+=q.n; } } }); }catch(e){} return s; }
+function gmTh(x){ return x.pv||(x.n&&(x.n.t||x.n.s)?NCP_BASE+(x.n.t||x.n.s):'')||(x.u?'https://drive.google.com/thumbnail?id='+encodeURIComponent(x.u)+'&sz=w200':'')||(x.video&&x.video.thumb)||''; }
+function gmGo(x){ if(!x){ return; } if(!sget('lf_sh2_'+x.to)){ try{ sessionStorage.setItem('lf_shgm',x.to); }catch(e0){} } if(x.k===K){ lyAll(function(){ STACK=[{v:'feed'}]; render(); setTimeout(function(){ pfOpenId(x.to); },0); }); return; } sset(KEY,x.k); location.href=location.pathname+'?r='+encodeURIComponent(x.to); }
+var GM_AV=[['#E58FB1','#B15E8C'],['#9B7FE0','#6A4FB3'],['#7FB7E0','#4A7FB3'],['#E0B37F','#B3804A'],['#8FD1B5','#4F9B7C']];
+function gmRow(x,i,s0){ var nm=String(x.by||'?'), h=0; for(var c=0;c<nm.length;c++){ h=(h*31+nm.charCodeAt(c))%997; } var cc=GM_AV[h%GM_AV.length], th=gmTh(x), ic=x.kind==='grape'?'🍇':x.kind==='like'?'<b style="color:#E5484D">♥</b>':'💬';
+  var what=x.kind==='grape'?' 님이 「나도 기억해요」':x.kind==='like'?' 님이 좋아해요':' 님이 기억을 남겼어요 <q>'+esc(x.text||'')+'</q>';
+  return '<button type="button" class="r'+(x.at>s0?' nw':'')+'" data-nws="'+i+'"><span class="av" style="background:linear-gradient(140deg,'+cc[0]+','+cc[1]+')">'+esc(nm.charAt(0))+'<i>'+ic+'</i></span><span class="tx"><b>'+esc(nm)+'</b>'+what+'<small>'+esc(x.room||'')+(x.when?' · '+esc(x.when):'')+'</small></span><span class="th"'+(th?' style="background-image:url('+esc(th)+')"':'')+'></span></button>'; }
+var NWS0=null;
+function meNews(){ var el=$('meNws'); if(!el){ return; } var L=(GM&&GM.items)||[], s0=NWS0!==null?NWS0:gmSeen(), n=L.filter(function(x){ return x.at>s0; }).length;   /* ★v199 내 방 맨 위 「새 소식」 — 새것이 있을 때만 · 최근 5 · 모두 보기 = 받은 기억 탭 */
+  if(!n){ el.innerHTML=''; el.hidden=true; return; } el.hidden=false;
+  el.innerHTML='<section class="nws"><h3>새 소식 <span class="n">'+n+'</span><span class="s">내 사진에 남긴 기억 · 반응</span></h3>'+L.slice(0,5).map(function(x,i){ return gmRow(x,i,s0); }).join('')+'<button type="button" class="more" id="nwsAll">새 소식 모두 보기 ›</button></section>';
+  each(el,'[data-nws]',function(b){ b.onclick=function(){ gmGo(L[+b.getAttribute('data-nws')]); }; });
+  $('nwsAll').onclick=function(){ var tb=document.querySelector('#meP [data-mt="g"]'); if(tb){ tb.click(); setTimeout(function(){ tb.scrollIntoView({behavior:'smooth',block:'start'}); },50); } };
+  try{ localStorage.setItem(GMK,String(L[0].at)); }catch(e){} btabDraw(); }
 function gmNew(){ var s0=gmSeen(); return GM&&GM.items?GM.items.filter(function(x){ return x.at>s0; }).length:0; }
 function gmLoad(cb,force){ if(!ME||isGuest()||!K){ if(cb){ cb(null); } return; } if(GM&&!force&&Date.now()-GM.t<600000){ if(cb){ cb(GM); } return; }
   var ks=rksGet().map(function(x){ return x&&x.k; }).filter(function(k){ return k&&k!==K&&/^[a-f0-9]{32}$/.test(k); }).slice(0,20).join(',');
-  api({action:'recGotMem',k:K,ks:ks,_quiet:1},function(r){ if(r&&r.status==='ok'){ GM={t:Date.now(),items:r.items||[],last:r.last||0}; } if(cb){ cb(GM); } btabDraw(); }); }
+  api({action:'recGotMem',k:K,ks:ks,q:'1',_quiet:1},function(r){ if(r&&r.status==='ok'){ GM={t:Date.now(),items:r.items||[],last:r.last||0}; } if(cb){ cb(GM); } btabDraw(); }); }
 function meRole(x){ var my=myrOf(x.n); return (x.here&&ME&&!isGuest())?ME.role:(my&&my.role)||''; }
 /* ★v191 대표 261117 10:25 — 마당 먼저(v186) 뒤로 「나」를 안 불러와 내 방 · ☰ 관리가 끊김 → 열쇠가 있으면 뒤에서 조용히 「나」만 받아 둠(방 화면은 그리지 않음) */
 var MEQ=null, MEQB=0;
 function meqLoad(cb){ if(ME||MEQ||!K||MEQB){ if(cb){ cb(); } return; } MEQB=1;
   api({action:'recHome',lite:'1',n:'1',mode:F.sort},function(d){ MEQB=0; if(d&&d.status==='ok'&&!d.guest){ MEQ={name:d.name||'',kakao:d.kakao?1:0,role:d.role||'',comName:d.comName||'',pic:d.pic||''}; } if(cb){ cb(); } }); }
 function meOpen(){
+  if(!($('meP')&&$('meP').classList.contains('on'))){ NWS0=gmSeen(); }   /* ★v199 내 방을 연 때 기준 — 다시 그려도 새 소식이 사라지지 않게 */
   var rooms=myRoomsL(), me0=(ME&&!isGuest())?ME:MEQ, mem=!!me0, nm=(me0&&me0.name)||'나';
   if(!mem&&K&&!ME){ meqLoad(function(){ if(MEQ&&$('meP')&&$('meP').classList.contains('on')){ meRedraw(); } }); }
   MEP.rooms=rooms; MEP.pics=MEP.pics||[]; if(!mem){ MEP.tab='p'; }
@@ -2724,14 +2762,15 @@ function meOpen(){
   var h='<div class="xph"><button type="button" class="bk" aria-label="닫기">✕</button><b>내 방</b>'+(mem&&ME?'<button type="button" id="meG" aria-label="설정">⚙</button>':'')+'</div>'+
     '<div class="mh"><span class="av"><span'+(mem&&me0&&me0.pic&&picUrl(me0.pic)?' class="pic"'+picBg(me0.pic):'')+'>'+esc(nm.charAt(0))+'</span>'+(mem&&me0&&me0.kakao?'<button type="button" class="cam" id="meCam" aria-label="내 사진">📷</button>':'')+'</span><div><div class="nm">'+esc(nm==='나'?'나':nm+' 님')+'</div><div class="sb">'+(mem?(me0.kakao?'카카오 로그인 · ':'')+'방 '+rooms.length:'이 기기에서 들어가 본 방')+'</div></div></div>';
   if(!mem){ h+='<div class="msec"><p class="note" style="margin:0 0 10px">카카오로 로그인하면 내 방과 내 게시물이 보입니다.</p><button type="button" class="btn kakao" id="meIn" style="margin-top:0">'+KICON+'카카오 로그인</button></div>'; }
+  if(mem){ h+='<div id="meNws" hidden></div>'; }   /* ★v199 */
   h+=sec('내가 만든 방',made,MEP.allM,'m')+sec(mem?'함께하는 방':'들어가 본 방',join,MEP.allJ,'j');
   if(!rooms.length){ h+='<div class="msec"><p class="note">아직 들어가 본 방이 없습니다.</p></div>'; }
   if(mem){ h+='<div class="mtabs" role="tablist"><button type="button" role="tab" data-mt="p"'+(MEP.tab==='p'?' class="on"':'')+'>내 게시물</button><button type="button" role="tab" data-mt="g"'+(MEP.tab==='g'?' class="on"':'')+'>받은 기억'+(gn?' <span class="mtn">새 기억 '+gn+'</span>':'')+'</button></div><div id="meUq"></div><div class="mpg" id="mePics"'+(MEP.tab==='p'?'':' hidden')+'></div><div id="meGot"'+(MEP.tab==='g'?'':' hidden')+'></div>'; }
   h+='<button type="button" class="bigb" id="meMk">＋ 우리 이야기 만들기</button>'+
     '<button type="button" class="btn line" id="meHelp" style="margin-top:12px">이용 안내</button>'+   /* ★v181 15회차 ⑨ 안내는 내 방 · ☰ 에서 */
-    '<a class="ur" href="https://www.loveflow.ai.kr/" id="lfGo" style="margin-top:16px"><span class="i"><img src="https://www.loveflow.ai.kr/logo.png" alt="" width="28" height="28" style="display:block"></span><span><b>사랑흐름</b><small>마음 여행지도 · 마음여행 · 한 편의 기록(자서전)</small></span><span class="go">사랑흐름 가기 ›</span></a>'+   /* ★v178 사랑흐름 메인 .ur 그대로 */
+    '<div class="lfwrap"><a class="lfog" href="https://www.loveflow.ai.kr/"><img src="/lf-og-261118.jpg" alt="MBTI와 사랑흐름 LFRI로 두 사람 사이를 이어갑니다 — 사랑흐름" loading="lazy" width="1200" height="630"></a><a class="ur" href="https://www.loveflow.ai.kr/" id="lfGo"><span class="i"><img src="https://www.loveflow.ai.kr/logo.png" alt="" width="28" height="28" style="display:block"></span><span><b>사랑흐름</b><small>마음 여행지도 · 마음여행 · 한 편의 기록(자서전)</small></span><span class="go">사랑흐름 바로 가기 ›</span></a></div>'+   /* ★v178 사랑흐름 메인 .ur 그대로 */
     '<div style="height:90px"></div>';
-  pgOpen('meP',h); btabDraw();
+  pgOpen('meP',h); btabDraw(); if(mem){ var s1=gmSeen(); if(GM){ meNews(); } gmLoad(function(){ if(gmSeen()===s1){ meNews(); } },true); }   /* ★v199 새 소식 */
   var el=$('meP');
   each(el,'[data-mr]',function(c){ c.onclick=function(e){ if(e.target.closest('[data-mo]')||e.target.closest('[data-ma]')){ return; } roomGo(MEP.rooms[+c.getAttribute('data-mr')]); }; });
   each(el,'[data-ma]',function(b){ b.onclick=function(){ seatAdm(MEP.rooms[+b.getAttribute('data-ma')]); }; });   /* ★v191 ① */
@@ -3407,8 +3446,8 @@ function meIco(){ var m=null, k=''; try{ m=picMe(); k=m&&m.pic&&picUrl(m.pic); }
 function btabDraw(){
   var b=$('btab'); if(!b){ b=document.createElement('nav'); b.id='btab'; b.className='btab'; b.setAttribute('aria-label','아래 탭'); document.body.appendChild(b); }
   var on=btabOn(); flcDraw(on); b.hidden=!on; document.body.classList.toggle('btabon',on); var mp=$('meP'), mo=mp&&mp.classList.contains('on'); b.style.zIndex=mo?String((+mp.style.zIndex||1520)+1):PF.on&&$('pf')?String((+$('pf').style.zIndex||1500)+1):''; if(!on){ var t0=$('btip'); if(t0){ t0.remove(); } return; }
-  shChk(); var dot=(isBoss()&&QN>0)||gmNew()>0; if(!GM&&!GMB&&ME&&!isGuest()&&K){ GMB=1; setTimeout(function(){ gmLoad(); },4000); }   /* ★v149 받은 기억 새 것도 빨간 점 */
-  b.innerHTML='<div class="bin"><button type="button" data-bt="pz"'+(VIEW==='plaza'?' class="on" aria-current="page"':'')+'><span class="bi"><img class="bgr" src="/uri-logo.png" alt="" width="26" height="26"></span>마당</button><button type="button" data-bt="fd"><span class="bi">🔍</span>검색</button><button type="button" data-bt="me"'+(mo?' class="on" aria-current="page"':'')+'><span class="bi">'+meIco()+'</span>내 방'+(dot?'<span class="bdot"></span>':'')+'</button>'+((ME&&ME.paused)?'':'<button type="button" class="bplus" data-bt="up"><span class="bi">＋</span>올리기</button>')+'</div>';
+  shChk(); var bn=gmNew()+(K&&!isGuest()?myQSum():0), dot=bn>0;   /* ★v199 빨간 점 → 숫자(새 소식 + 처리할 일) */ if(!GM&&!GMB&&ME&&!isGuest()&&K){ GMB=1; setTimeout(function(){ gmLoad(); },4000); }   /* ★v149 받은 기억 새 것도 빨간 점 */
+  b.innerHTML='<div class="bin"><button type="button" data-bt="pz"'+(VIEW==='plaza'?' class="on" aria-current="page"':'')+'><span class="bi"><img class="bgr" src="/uri-logo.png" alt="" width="26" height="26"></span>마당</button><button type="button" data-bt="fd"><span class="bi">🔍</span>검색</button><button type="button" data-bt="me"'+(mo?' class="on" aria-current="page"':'')+'><span class="bi">'+meIco()+'</span>내 방'+(dot?'<span class="bdn">'+(bn>99?'99+':bn)+'</span>':'')+'</button>'+((ME&&ME.paused)?'':'<button type="button" class="bplus" data-bt="up"><span class="bi">＋</span>올리기</button>')+'</div>';
   each(b,'[data-bt]',function(x){ x.onclick=function(){ var k=x.getAttribute('data-bt');
     if(k==='me'&&mo){ mp.scrollTop=0; return; }
     if((PF.on||mo)&&k!=='up'&&k!=='pz'){ lyBack(); setTimeout(function(){ x.click(); },60); return; }   /* ★v149 내 방 위에서 검색 = 내 방 닫고 */   /* 게시물 위에서 검색 · 내 방 = 게시물 닫고 그 화면 */
@@ -6589,7 +6628,7 @@ window.addEventListener('appinstalled',function(){ PWA_EV=null; var b=$('pwaGo')
 try{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js',{scope:'/'})['catch'](function(){});
   /* ★v62 375 새 화면 파일을 받아 오면 한 번 바꿔 엶 — 첫 화면 · 광장에서만(쓰는 중에는 기다렸다가 첫 화면으로 돌아올 때) */
   navigator.serviceWorker.addEventListener('message',function(ev){ if(!ev.data||ev.data.t!=='lf-new'){ return; } NEWV=1; newGo(); }); } }catch(e){}
-var NEWV=0, REC_VER=198;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
+var NEWV=0, REC_VER=199;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
 function newChk(){ try{ if(!window.caches){ return; } caches.open('lf-rec-shell-v2').then(function(c){ return c.match('/'); }).then(function(r){ return r?r.text():''; }).then(function(t){ var m=/rec\/index\.html · v(\d+)/.exec(String(t).slice(0,600)); if(m&&parseInt(m[1],10)>REC_VER){ NEWV=1; newGo(); } })['catch'](function(){}); }catch(e){} }   /* ★v62 375 알림을 놓쳐도 남겨 둔 파일 버전을 직접 봄 */
 setTimeout(newChk,5000); setTimeout(newChk,15000);
 document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible'){ setTimeout(newChk,1500); } });
