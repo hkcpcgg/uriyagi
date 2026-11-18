@@ -36,7 +36,7 @@ async function openPage(name, url, ctxOpt) {
       srvTimes.push({ page: name, ms: Date.now() - t1 });
       const tx = await res.text();
       if (!roomG && name === '방') { const m = tx.match(/"g"\s*:\s*"([A-Fa-f0-9]{32})"/); if (m) roomG = m[1].toLowerCase(); }
-      if (!recId) { const m = tx.match(/"(R-\d{6})"/); if (m) recId = m[1]; }
+      if (!recId && name === '방') { const m = tx.match(/"(R-\d{6})"/); if (m) recId = m[1]; }
     } catch (e) { console.log('답 읽기 오류', name, String(e.message).slice(0, 80)); }
   });
   await p.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 }).catch(e => errs.push('열기 실패 ' + e.message.slice(0, 80)));
@@ -48,7 +48,7 @@ async function openPage(name, url, ctxOpt) {
     await p.waitForTimeout(250);
   }
   await p.waitForTimeout(2500);
-  if (!recId && name !== '공유 링크') { recId = await p.evaluate(() => { const m = document.documentElement.innerHTML.match(/R-\d{6}/); return m ? m[0] : ''; }).catch(() => ''); }
+  if (!recId && name === '방') { recId = await p.evaluate(() => { const m = document.documentElement.innerHTML.match(/R-\d{6}/); return m ? m[0] : ''; }).catch(() => ''); }
   if (!roomG && name === '방') { roomG = await p.evaluate(() => { try { return (localStorage.getItem('lf_rec_lastg') || '').replace(/[^a-f0-9]/gi, ''); } catch (e) { return ''; } }).catch(() => ''); if (roomG.length !== 32) roomG = ''; }
   const st = await p.evaluate(async () => {
     // 사진 칸 = 40px 넘는 <img> 와 바탕 그림(background-image) 칸 · 바탕 그림은 따로 불러 봐서 안 오면 빈 칸
