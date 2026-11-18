@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v203 · 261118 · [우리이야기] 대표 OK 20:15 — 카톡 안 브라우저(휴대폰)로 열면 휴대폰 인터넷으로 자동 넘김(kakaotalk://web/openExternal · 로그인 열쇠 # 칸 같이 · v191 keyHash 그대로 · kx=1 되돌아 돌지 않음 · 넘어가면 카톡 창 닫음 · 안 넘어가면 「다른 브라우저로 열기」 단추) · 사랑흐름 사본 frame.js 의 열쇠 없는 넘기기는 쉬게 함(sessionStorage lf_kk_out 먼저 세움 · frame.js 손대지 않음) · 카카오 로그인 돌아오는 길은 넘기지 않음 · 10/7 v12 「자동 안 함」 거둠 · 그 밖 v202 그대로 -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v204 · 261118 · [우리이야기] 고장 고침 — 마당 사진 칸이 빈 베이지로 남던 것: 드라이브가 치워진 사진(드라이브 번호 u 없음 · 네이버 n 만 있음)은 칸이 「불러올 사진」 표(data-pu · data-pb)를 못 받아 영영 비어 있었음(v192 duHas 를 마당 칸 두 곳 pzTile · pzCell 에 안 씀) → x.u||duHas(x.id) · 그 밖 v203 그대로 -->
+<!-- (이전) ★ 현재 버전 ▶ rec/index.html · v203 · 261118 · [우리이야기] 대표 OK 20:15 — 카톡 안 브라우저(휴대폰)로 열면 휴대폰 인터넷으로 자동 넘김(kakaotalk://web/openExternal · 로그인 열쇠 # 칸 같이 · v191 keyHash 그대로 · kx=1 되돌아 돌지 않음 · 넘어가면 카톡 창 닫음 · 안 넘어가면 「다른 브라우저로 열기」 단추) · 사랑흐름 사본 frame.js 의 열쇠 없는 넘기기는 쉬게 함(sessionStorage lf_kk_out 먼저 세움 · frame.js 손대지 않음) · 카카오 로그인 돌아오는 길은 넘기지 않음 · 10/7 v12 「자동 안 함」 거둠 · 그 밖 v202 그대로 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v202 · 261118 · [우리이야기] 대표 20:05 — 카톡 공유 · 초대 · 링크 복사 · QR 로 받은 방 링크는 모두 바로 그 방(손님 guestIn) · v181 「마당 먼저(INV)」 거둠 · 그 밖 v201 그대로 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v201 · 261118 · [우리이야기] 고장 고침 — 사진 한 장 화면(마당 사진 · 사진 공유 링크 &r=)의 사진 칸이 비어 보이던 것: 게시물 큰 창 .pf 꾸밈(display:none · position:fixed)이 같은 이름의 사진 칸까지 덮음 → .card.big .pf 만 되살림 · 그 밖 v200 그대로 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v200 · 261118 · [우리이야기] 참여 단추 · 사랑흐름 칸 시안 v1(대표 OK 261118 19:27) — ① 방 맨 아래 「나도 사진 올리기」(주황 동그라미 ＋ · btUp 그대로 · 멤버 = 이 방에 바로 · 손님 = 가입) ② 「우리 이야기 만들기」 → 「우리 이야기방 만들기」(화면 말 모두) ③ 마당 · 내 방 · ☰ 맨 아래 사랑흐름 = 그림 + 그 밑 「사랑흐름 바로 가기 ›」 한 덩어리 · 링크 하나(겹치던 .ur 칸 뺌) -->
@@ -2430,7 +2431,7 @@ function findList(){ var f=(ME&&ME.finds)||[]; return f.length?f.slice(0,4):['70
 var PLZ={rooms:[],items:[],more:0,next:0,busy:0}, PZO=null;
 function pzCv(c){ return !c?'':c.yt?'https://i.ytimg.com/vi/'+encodeURIComponent(c.yt)+'/mqdefault.jpg':(c.id&&NU[c.id]&&duUrl(c.id,240))||(c.id&&PVC[c.id])||(c.u?'https://drive.google.com/thumbnail?id='+encodeURIComponent(c.u)+'&sz=w480':''); }
 function pzTile(x,room){ var yt=x.yt?'https://i.ytimg.com/vi/'+encodeURIComponent(x.yt)+'/mqdefault.jpg':'', bg=yt||PVC[x.id]||'', mv=!x.yt&&MV[x.id];
-  return '<button type="button" class="tl'+(bg?'':' wait')+'" data-pz="'+esc(x.id)+'" data-pg="'+esc(room.g)+'"'+(!bg&&x.u?' data-pu="'+esc(x.id)+'"':'')+(bg?' style="background-image:url('+esc(bg)+')"':'')+' aria-label="'+esc((x.t||'사진')+' · '+room.name)+'">'+
+  return '<button type="button" class="tl'+(bg?'':' wait')+'" data-pz="'+esc(x.id)+'" data-pg="'+esc(room.g)+'"'+(!bg&&(x.u||duHas(x.id))?' data-pu="'+esc(x.id)+'"':'')+(bg?' style="background-image:url('+esc(bg)+')"':'')+' aria-label="'+esc((x.t||'사진')+' · '+room.name)+'">'+
     (mv?'<video class="tv" muted loop playsinline preload="none" data-mv="'+esc(mv)+'"></video>':'')+(x.yt?'<span class="pl"></span>':'')+'<i class="rt">'+esc(room.name)+'</i></button>'; }
 /* ★v117 방 아래 「우리 이야기 마당」 — 다른 방 공개 사진 12장을 옆으로 밀어 보기 · 누르면 마당 */
 function pzPics(el){ each(el,'[data-pu]',function(t){ var id=t.getAttribute('data-pu'); t.removeAttribute('data-pu'); spdPend(1);
@@ -2474,7 +2475,7 @@ function pzCell(o,i){
   var x=o.x, s=o.s, r=PLZ.rooms[x.c]; if(!r){ return ''; }
   var big=!!s.big, yt=x.yt?'https://i.ytimg.com/vi/'+encodeURIComponent(x.yt)+'/'+(big?'hqdefault':'mqdefault')+'.jpg':'', bg=yt||PVC[x.id]||'', mv=!x.yt&&MV[x.id];
   var pos='grid-row:'+s.r+(big?' / span 2':'')+';grid-column:'+s.c+(big?' / span 2':'');
-  return '<button type="button" class="tl'+(big?' big':'')+(bg?'':' wait')+'" data-vz="'+i+'"'+(!bg&&x.u?' data-pu="'+esc(x.id)+'"':'')+(big&&x.u?' data-pb="'+esc(x.id)+'"':'')+' style="'+pos+(bg?';background-image:url('+esc(bg)+')':'')+'" aria-label="'+esc((x.t||'사진')+' · '+r.name)+'">'+
+  return '<button type="button" class="tl'+(big?' big':'')+(bg?'':' wait')+'" data-vz="'+i+'"'+(!bg&&(x.u||duHas(x.id))?' data-pu="'+esc(x.id)+'"':'')+(big&&(x.u||duHas(x.id))?' data-pb="'+esc(x.id)+'"':'')+' style="'+pos+(bg?';background-image:url('+esc(bg)+')':'')+'" aria-label="'+esc((x.t||'사진')+' · '+r.name)+'">'+
     (mv?'<video class="tv" muted loop playsinline preload="none" data-mv="'+esc(mv)+'"></video><span class="mvi">▶</span>':'')+(x.yt?'<span class="pl"></span>':'')+'<i class="rt go"><span>🏠 '+esc(r.name)+'</span><b>›</b></i></button>';   /* ★v106 563 누르면 그 방 */
 }
 function pzMake(r){ return '<div class="mkc"'+(r?' style="grid-row:'+r+' / span 2"':'')+'><h3>나의 일상부터 우리 모두의 이야기까지</h3>'+
@@ -6654,7 +6655,7 @@ window.addEventListener('appinstalled',function(){ PWA_EV=null; var b=$('pwaGo')
 try{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js',{scope:'/'})['catch'](function(){});
   /* ★v62 375 새 화면 파일을 받아 오면 한 번 바꿔 엶 — 첫 화면 · 광장에서만(쓰는 중에는 기다렸다가 첫 화면으로 돌아올 때) */
   navigator.serviceWorker.addEventListener('message',function(ev){ if(!ev.data||ev.data.t!=='lf-new'){ return; } NEWV=1; newGo(); }); } }catch(e){}
-var NEWV=0, REC_VER=203;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
+var NEWV=0, REC_VER=204;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
 function newChk(){ try{ if(!window.caches){ return; } caches.open('lf-rec-shell-v2').then(function(c){ return c.match('/'); }).then(function(r){ return r?r.text():''; }).then(function(t){ var m=/rec\/index\.html · v(\d+)/.exec(String(t).slice(0,600)); if(m&&parseInt(m[1],10)>REC_VER){ NEWV=1; newGo(); } })['catch'](function(){}); }catch(e){} }   /* ★v62 375 알림을 놓쳐도 남겨 둔 파일 버전을 직접 봄 */
 setTimeout(newChk,5000); setTimeout(newChk,15000);
 document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible'){ setTimeout(newChk,1500); } });
