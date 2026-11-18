@@ -25,14 +25,14 @@ async function openPage(name, url, ctxOpt) {
   const errs = [];
   p.on('pageerror', e => errs.push(String(e.message || e).slice(0, 120)));
   const t0 = Date.now(); const reqStart = new Map();
-  p.on('request', r => { if (/script\.google(usercontent)?\.com/.test(r.url())) reqStart.set(r, Date.now()); });
+  p.on('request', r => { if (!/script\.google(usercontent)?\.com/.test(r.url())) return; const fr = r.redirectedFrom(); reqStart.set(r, fr && reqStart.has(fr) ? reqStart.get(fr) : Date.now()); });   // 넘겨받은 요청은 처음 요청 때부터 잼(서버가 일하는 시간 포함)
   p.on('response', async r => {
     if (!reqStart.has(r.request())) return;
     if (/script\.google\.com/.test(r.url()) && r.status() === 302) return;
     srvTimes.push({ page: name, ms: Date.now() - reqStart.get(r.request()) });
     try {
       const tx = await r.text();
-      if (!roomG && name === '방') { const m = tx.match(/"g"\s*:\s*"([a-f0-9]{32})"/); if (m) roomG = m[1]; }
+      if (!roomG && name === '방') { const m = tx.match(/"g"\s*:\s*"([A-Fa-f0-9]{32})"/); if (m) roomG = m[1].toLowerCase(); }
       if (!recId) { const m = tx.match(/"(R-\d{6})"/); if (m) recId = m[1]; }
     } catch (e) {}
   });
@@ -45,6 +45,7 @@ async function openPage(name, url, ctxOpt) {
     await p.waitForTimeout(250);
   }
   await p.waitForTimeout(2500);
+  if (!roomG && name === '방') { roomG = await p.evaluate(() => { try { return (localStorage.getItem('lf_rec_lastg') || '').replace(/[^a-f0-9]/gi, ''); } catch (e) { return ''; } }).catch(() => ''); if (roomG.length !== 32) roomG = ''; }
   const st = await p.evaluate(async () => {
     // 사진 칸 = 40px 넘는 <img> 와 바탕 그림(background-image) 칸 · 바탕 그림은 따로 불러 봐서 안 오면 빈 칸
     const tiles = [], urls = new Set();
