@@ -25,16 +25,19 @@ async function openPage(name, url, ctxOpt) {
   const errs = [];
   p.on('pageerror', e => errs.push(String(e.message || e).slice(0, 120)));
   const t0 = Date.now(); const reqStart = new Map();
-  p.on('request', r => { if (!/script\.google(usercontent)?\.com/.test(r.url())) return; const fr = r.redirectedFrom(); reqStart.set(r, fr && reqStart.has(fr) ? reqStart.get(fr) : Date.now()); });   // 넘겨받은 요청은 처음 요청 때부터 잼(서버가 일하는 시간 포함)
-  p.on('response', async r => {
-    if (!reqStart.has(r.request())) return;
-    if (/script\.google\.com/.test(r.url()) && r.status() === 302) return;
-    srvTimes.push({ page: name, ms: Date.now() - reqStart.get(r.request()) });
+  const isSrv = u => /script\.google(usercontent)?\.com/.test(u);
+  p.on('request', r => { if (isSrv(r.url())) reqStart.set(r, Date.now()); });
+  p.on('response', async res => {
     try {
-      const tx = await r.text();
+      const rq = res.request(); if (!isSrv(rq.url())) return;
+      if (res.status() >= 300 && res.status() < 400) return;
+      let root = rq; while (root.redirectedFrom()) root = root.redirectedFrom();   // 넘겨받은 요청은 처음 요청 때부터 잼(서버가 일하는 시간 포함)
+      const t1 = reqStart.get(root) ?? reqStart.get(rq); if (t1 == null) return;
+      srvTimes.push({ page: name, ms: Date.now() - t1 });
+      const tx = await res.text();
       if (!roomG && name === '방') { const m = tx.match(/"g"\s*:\s*"([A-Fa-f0-9]{32})"/); if (m) roomG = m[1].toLowerCase(); }
       if (!recId) { const m = tx.match(/"(R-\d{6})"/); if (m) recId = m[1]; }
-    } catch (e) {}
+    } catch (e) { console.log('답 읽기 오류', name, String(e.message).slice(0, 80)); }
   });
   await p.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 }).catch(e => errs.push('열기 실패 ' + e.message.slice(0, 80)));
   // 첫 사진이 보일 때까지
