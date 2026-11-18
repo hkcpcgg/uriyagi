@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v202 · 261118 · [우리이야기] 대표 20:05 — 카톡 공유 · 초대 · 링크 복사 · QR 로 받은 방 링크는 모두 바로 그 방(손님 guestIn) · v181 「마당 먼저(INV)」 거둠 · 그 밖 v201 그대로 -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v203 · 261118 · [우리이야기] 대표 OK 20:15 — 카톡 안 브라우저(휴대폰)로 열면 휴대폰 인터넷으로 자동 넘김(kakaotalk://web/openExternal · 로그인 열쇠 # 칸 같이 · v191 keyHash 그대로 · kx=1 되돌아 돌지 않음 · 넘어가면 카톡 창 닫음 · 안 넘어가면 「다른 브라우저로 열기」 단추) · 사랑흐름 사본 frame.js 의 열쇠 없는 넘기기는 쉬게 함(sessionStorage lf_kk_out 먼저 세움 · frame.js 손대지 않음) · 카카오 로그인 돌아오는 길은 넘기지 않음 · 10/7 v12 「자동 안 함」 거둠 · 그 밖 v202 그대로 -->
+<!-- (이전) ★ 현재 버전 ▶ rec/index.html · v202 · 261118 · [우리이야기] 대표 20:05 — 카톡 공유 · 초대 · 링크 복사 · QR 로 받은 방 링크는 모두 바로 그 방(손님 guestIn) · v181 「마당 먼저(INV)」 거둠 · 그 밖 v201 그대로 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v201 · 261118 · [우리이야기] 고장 고침 — 사진 한 장 화면(마당 사진 · 사진 공유 링크 &r=)의 사진 칸이 비어 보이던 것: 게시물 큰 창 .pf 꾸밈(display:none · position:fixed)이 같은 이름의 사진 칸까지 덮음 → .card.big .pf 만 되살림 · 그 밖 v200 그대로 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v200 · 261118 · [우리이야기] 참여 단추 · 사랑흐름 칸 시안 v1(대표 OK 261118 19:27) — ① 방 맨 아래 「나도 사진 올리기」(주황 동그라미 ＋ · btUp 그대로 · 멤버 = 이 방에 바로 · 손님 = 가입) ② 「우리 이야기 만들기」 → 「우리 이야기방 만들기」(화면 말 모두) ③ 마당 · 내 방 · ☰ 맨 아래 사랑흐름 = 그림 + 그 밑 「사랑흐름 바로 가기 ›」 한 덩어리 · 링크 하나(겹치던 .ur 칸 뺌) -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v199 · 261118 · [우리이야기] 새 소식 묶음(시안 v2 · 대표 OK 261118 17:20 · 서버 ①Code v103 과 짝) — 내 방 맨 위 「새 소식」(기억 · 🍇 나도 기억해요 · ♥ 좋아요 · 최근 5 · 안 본 것 연보라 · 없으면 칸 없음 · 모두 보기 = 받은 기억 탭) · 「내가 만든 방」 카드에 처리할 일(주황 테두리 · 가입 신청 · 승인 대기 · 위 방 연결 요청 · 단추 「처리할 일 n ›」 · 없으면 ⚙ 관리) · 아래 탭 내 방 빨간 점 → 숫자 · 내 방 맨 아래 사랑흐름 = 육각형 그림 + 「사랑흐름 바로 가기 ›」 · 「이용 안내」 = 「만들기」 단추 크기 · recMyRooms · recGotMem 에 q=1 -->
@@ -1686,6 +1687,8 @@ body.btabon #fab,body.btabon #way3,body.btabon .fabtip{display:none!important}
 <script src="/lf-foot.js?v=10" defer></script>
 <script>
 (function(){
+/* ★v203 사랑흐름 사본 lf/frame.js(v18~)도 카톡 안이면 바로 바깥으로 넘기는데 열쇠 없이 넘김 → 이 화면이 열쇠를 실어 넘기므로 frame.js 넘기기는 쉬게 함(frame.js 손대지 않음 · 그 「한 창에 한 번」 표를 먼저 세움) */
+try{ if(/KAKAOTALK/i.test(navigator.userAgent||'')){ sessionStorage.setItem('lf_kk_out','1'); } }catch(eK){}
 /* ── 서버 주소 — /lf/config.js 한 곳에서(이슈 178) ── */
 var GAS=(window.LF_CONFIG&&LF_CONFIG.gas&&(LF_CONFIG.gas.rec||LF_CONFIG.gas.memoir))||'';   /* ★v30 새 서버 먼저 */
 var CV='22';                                   /* 화면 판 — 서버 v40 은 이것이 있으면 올리기 약속을 꼭 봄 */
@@ -1853,10 +1856,27 @@ function spdDone(){
 }   /* ★v58 속도 상자 뺌 — 숫자는 서버 「속도」 탭 */
 
 var FROMPZ=''; try{ FROMPZ=sessionStorage.getItem('lf_from_pz')||''; sessionStorage.removeItem('lf_from_pz'); }catch(e){} var FROMHOME=FROMPZ==='home';   /* ★v151 메인 사진으로 들어온 방 — 방 첫 화면에서 뒤로 = 메인 */   /* ★v106 562 마당('1') · 메인('home')에서 사진으로 들어옴 */
+/* ★v203 카톡 안 브라우저면 휴대폰 인터넷(기본 브라우저)으로 넘김 — 사진 20장 고르기 · 로그인 기억이 브라우저에 남음 · 열쇠는 # 칸(서버로 안 감 · 받은 쪽 boot 가 기억하고 주소에서 지움) · kx=1 = 한 번 넘긴 표(되돌아 돌지 않음) · 카카오 로그인 돌아오는 길(code · error)은 넘기지 않음 */
+function kkOut(sp){
+  try{
+    var ua=navigator.userAgent||''; if(!/KAKAOTALK/i.test(ua)||!/Android|iPhone|iPad|iPod/i.test(ua)){ return false; }
+    if(sp.get('code')||sp.get('error')){ return false; }
+    if(/(^|[#&])kx=1/.test(location.hash||'')){ return false; }
+    if(sessionStorage.getItem('uri_kx')==='1'){ return false; } sessionStorage.setItem('uri_kx','1');   /* 한 창에 한 번(frame.js 와 같은 꼴) — 안 넘어가 다시 열려도 돌지 않음 */
+    var kh=keyHash(), url=location.origin+location.pathname+location.search+(kh?kh+'&kx=1':'#kx=1');
+    var go=function(){ location.href='kakaotalk://web/openExternal?url='+encodeURIComponent(url); };
+    var m=$('main'); if(m){ m.innerHTML='<div class="waitbox">'+LFH+'<b>휴대폰 인터넷으로 여는 중입니다</b><p class="lead" id="kxMore" hidden style="margin-top:14px">열리지 않으면 아래 단추를 눌러 주십시오</p><button type="button" class="btn warm" id="kxGo" hidden style="margin-top:10px">다른 브라우저로 열기</button></div>'; }
+    var gone=0; document.addEventListener('visibilitychange',function(){ if(document.hidden&&!gone){ gone=1; setTimeout(function(){ try{ location.href='kakaotalk://inappbrowser/close'; }catch(e){} },300); } });
+    go();
+    setTimeout(function(){ if(gone){ return; } var a=$('kxMore'), b=$('kxGo'); if(a){ a.hidden=false; } if(b){ b.hidden=false; b.onclick=go; } },1800);
+    return true;
+  }catch(e){ return false; }
+}
 function boot(){
   try{ var sq=new URLSearchParams(location.search).get('speed'); if(sq==='1'){ localStorage.setItem('lf_speed','1'); } else if(sq==='0'){ localStorage.removeItem('lf_speed'); } }catch(e){}   /* ★v49 330 */
   var sp=new URLSearchParams(location.search);
   if(sp.get('hq')==='1'){ location.replace('https://www.loveflow.ai.kr/hq/'+location.search); return; }   /* ★S6 본부는 사랑흐름 www.loveflow.ai.kr/hq/ */
+  if(kkOut(sp)){ return; }   /* ★v203 대표 OK 261118 20:15 — 카톡 안 브라우저 → 휴대폰 인터넷으로 자동 넘김(열쇠 # 같이 · v191 장치) · 10/7 v12 「자동 안 함」 거둠 */
   try{ var hh=new URLSearchParams((location.hash||'').slice(1)), hk=(hh.get('k')||'').toLowerCase(); if(/^[a-f0-9]{32}$/.test(hk)){ if(!localStorage.getItem('lf_rec_k')){ localStorage.setItem('lf_rec_k',hk); } var hks=hh.get('ks'); if(hks&&!localStorage.getItem('lf_rec_keys')){ JSON.parse(hks); localStorage.setItem('lf_rec_keys',hks); } var hlg=(hh.get('lg')||'').replace(/[^a-f0-9]/gi,'').slice(0,32); if(hlg&&!localStorage.getItem('lf_rec_lastg')){ localStorage.setItem('lf_rec_lastg',hlg); } } if(location.hash){ history.replaceState(null,'',location.pathname+location.search); } }catch(eH){}   /* ★S6 옛 주소 넘기는 문이 건넨 열쇠(# 칸 · 서버로 안 감) → 다시 로그인 없이 이어짐 */
   if(sp.get('pwa')==='1'){ sp.delete('pwa'); try{ history.replaceState(null,'',location.pathname+(sp.toString()?'?'+sp.toString():'')); }catch(e){} if(!pwaIn()){ var pw0=Date.now(); (function w(){ if(PWA_EV){ pwaAsk(); return; } if(Date.now()-pw0<6000){ setTimeout(w,400); } })(); } }   /* ★v45 · ★v181 설치 창이 준비되면 단추 하나 · 안 되면 아무것도 띄우지 않음 */
   var g=(sp.get('g')||'').trim(), k=(sp.get('k')||'').trim();
@@ -6634,7 +6654,7 @@ window.addEventListener('appinstalled',function(){ PWA_EV=null; var b=$('pwaGo')
 try{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js',{scope:'/'})['catch'](function(){});
   /* ★v62 375 새 화면 파일을 받아 오면 한 번 바꿔 엶 — 첫 화면 · 광장에서만(쓰는 중에는 기다렸다가 첫 화면으로 돌아올 때) */
   navigator.serviceWorker.addEventListener('message',function(ev){ if(!ev.data||ev.data.t!=='lf-new'){ return; } NEWV=1; newGo(); }); } }catch(e){}
-var NEWV=0, REC_VER=202;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
+var NEWV=0, REC_VER=203;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
 function newChk(){ try{ if(!window.caches){ return; } caches.open('lf-rec-shell-v2').then(function(c){ return c.match('/'); }).then(function(r){ return r?r.text():''; }).then(function(t){ var m=/rec\/index\.html · v(\d+)/.exec(String(t).slice(0,600)); if(m&&parseInt(m[1],10)>REC_VER){ NEWV=1; newGo(); } })['catch'](function(){}); }catch(e){} }   /* ★v62 375 알림을 놓쳐도 남겨 둔 파일 버전을 직접 봄 */
 setTimeout(newChk,5000); setTimeout(newChk,15000);
 document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible'){ setTimeout(newChk,1500); } });
