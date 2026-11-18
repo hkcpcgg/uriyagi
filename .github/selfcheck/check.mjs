@@ -1,4 +1,4 @@
-// 우리 이야기 매일 자가진단 (v1 · 261118 · 대표 OK 20:15)
+// 우리 이야기 매일 자가진단 (v2 · 261118 · 대표 OK 20:15) — v2 바탕 그림(background-image) 사진 칸도 셈 · 공유 링크 방 열쇠는 방 답의 g
 // 손님 눈으로 uriyagi.kr 를 열어 봄: 마당 · 방 · 사진 한 장 · 공유 링크 · 첫 화면 시간 · 빈 사진 칸 · 오류 · 서버 시간
 // 결과 = 표(GitHub 실행 요약) · 하나라도 「고장」이면 실패로 끝남(→ 알림 글)
 import { chromium } from 'playwright';
@@ -32,7 +32,7 @@ async function openPage(name, url, ctxOpt) {
     srvTimes.push({ page: name, ms: Date.now() - reqStart.get(r.request()) });
     try {
       const tx = await r.text();
-      if (!roomG) { const m = tx.match(/"g"\s*:\s*"([a-f0-9]{32})"/); if (m) roomG = m[1]; }
+      if (!roomG && name === '방') { const m = tx.match(/"g"\s*:\s*"([a-f0-9]{32})"/); if (m) roomG = m[1]; }
       if (!recId) { const m = tx.match(/"(R-\d{6})"/); if (m) recId = m[1]; }
     } catch (e) {}
   });
@@ -40,24 +40,34 @@ async function openPage(name, url, ctxOpt) {
   // 첫 사진이 보일 때까지
   let first = -1;
   for (let i = 0; i < 60; i++) {
-    const ok = await p.evaluate(() => [...document.querySelectorAll('#main img')].some(im => im.complete && im.naturalWidth > 0 && im.getBoundingClientRect().width > 40)).catch(() => false);
+    const ok = await p.evaluate(() => [...document.querySelectorAll('#main *')].some(el => { const b = el.getBoundingClientRect(); if (b.width < 40 || b.height < 40) return false; if (el.tagName === 'IMG') return el.complete && el.naturalWidth > 0; return /url\(/.test(getComputedStyle(el).backgroundImage); })).catch(() => false);
     if (ok) { first = Date.now() - t0; break; }
     await p.waitForTimeout(250);
   }
   await p.waitForTimeout(2500);
-  const st = await p.evaluate(() => {
-    const ims = [...document.querySelectorAll('#main img')].filter(im => { const b = im.getBoundingClientRect(); return b.width > 40 && b.height > 40; });
-    const broken = ims.filter(im => im.complete && im.naturalWidth === 0).map(im => (im.currentSrc || im.src || '').slice(-60));
+  const st = await p.evaluate(async () => {
+    // 사진 칸 = 40px 넘는 <img> 와 바탕 그림(background-image) 칸 · 바탕 그림은 따로 불러 봐서 안 오면 빈 칸
+    const tiles = [], urls = new Set();
+    for (const el of document.querySelectorAll('#main *')) {
+      const b = el.getBoundingClientRect(); if (b.width < 40 || b.height < 40) continue;
+      if (el.tagName === 'IMG') { if (!el.src || /^data:|\.svg/.test(el.src) || /uri-logo|lf-og/.test(el.src)) continue; tiles.push({ img: el }); continue; }
+      const m = getComputedStyle(el).backgroundImage.match(/url\(["']?([^"')]+)/); if (!m || /^data:|\.svg/.test(m[1])) continue;
+      tiles.push({ bg: m[1] }); urls.add(m[1]);
+    }
+    const fail = new Set();
+    await Promise.all([...urls].slice(0, 60).map(u => new Promise(res => { const im = new Image(); const to = setTimeout(() => { fail.add(u); res(); }, 10000); im.onload = () => { clearTimeout(to); if (!im.naturalWidth) fail.add(u); res(); }; im.onerror = () => { clearTimeout(to); fail.add(u); res(); }; im.src = u; })));
+    const broken = [];
+    for (const t of tiles) { if (t.img) { if (t.img.complete && t.img.naturalWidth === 0) broken.push((t.img.currentSrc || t.img.src).slice(-60)); } else if (fail.has(t.bg)) broken.push(t.bg.slice(-60)); }
     const tx = (document.getElementById('main') || document.body).innerText || '';
-    return { n: ims.length, broken, down: /연결되지 않습니다|들어오지 못했습니다|찾을 수 없습니다/.test(tx), text: tx.slice(0, 80).replace(/\s+/g, ' ') };
-  }).catch(() => ({ n: 0, broken: [], down: true, text: '' }));
+    return { n: tiles.length, broken, down: /연결되지 않습니다|들어오지 못했습니다|찾을 수 없습니다/.test(tx), text: tx.slice(0, 80).replace(/\s+/g, ' ') };
+  }).catch(e => ({ n: 0, broken: [], down: true, text: '점검 오류 ' + e.message }));
   return { p, ctx, errs, first, st };
 }
 
 function judgePage(name, r, minImgs) {
   const f = r.first;
   put(name + ' · 첫 사진', f < 0 ? false : f > LIM.first ? false : f > LIM.firstWarn ? 'w' : true, f < 0 ? '안 보임' : (f / 1000).toFixed(1) + '초');
-  put(name + ' · 사진 수', r.st.n >= minImgs && !r.st.down, r.st.n + '장', r.st.down ? '화면 말: ' + r.st.text : '');
+  put(name + ' · 사진 수', r.st.n >= minImgs && !r.st.down, r.st.n + '장', (r.st.down || r.st.n < minImgs) ? '화면 말: ' + r.st.text : '');
   put(name + ' · 빈 사진 칸', r.st.broken.length === 0, r.st.broken.length + '칸', r.st.broken.slice(0, 3).join(' , '));
   put(name + ' · 화면 오류', r.errs.length === 0, r.errs.length + '건', r.errs.slice(0, 2).join(' / '));
 }
@@ -80,7 +90,7 @@ if (roomG) {
   put('공유 링크 · 바로 그 방', r.st.n >= 2 && !r.st.down, r.st.n + '장', r.st.down ? r.st.text : '');
   put('공유 링크 · 화면 오류', r.errs.length === 0, r.errs.length + '건', r.errs.slice(0, 2).join(' / '));
   await r.ctx.close();
-} else put('공유 링크', false, '방 열쇠 못 받음', '');
+} else put('공유 링크', false, '방 열쇠 못 받음', '방 답 ' + srvTimes.filter(x => x.page === '방').length + '번');
 // 5 서버 시간
 if (srvTimes.length) {
   const ms = srvTimes.map(x => x.ms).sort((a, b) => a - b), mx = ms[ms.length - 1], md = ms[Math.floor(ms.length / 2)];
