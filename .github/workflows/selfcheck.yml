@@ -1,0 +1,40 @@
+# 우리 이야기 매일 자가진단 (v1 · 261118 · 대표 OK 20:15)
+# 매일 아침 7시쯤(한국) 손님 눈으로 uriyagi.kr 을 열어 봄 → 고장이면 알림 글(이슈)을 올려 메일이 감
+name: 매일 자가진단
+on:
+  schedule:
+    - cron: '7 22 * * *'   # UTC 22:07 = 한국 07:07
+  workflow_dispatch: {}
+permissions:
+  contents: read
+  issues: write
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/selfcheck
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: 준비
+        run: |
+          cd .github/selfcheck
+          npm init -y >/dev/null
+          npm i playwright@1.48.2 >/dev/null
+          npx playwright install --with-deps chromium >/dev/null
+      - name: 점검
+        id: run
+        run: cd .github/selfcheck && node check.mjs
+      - name: 고장이면 알림 글
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          F=.github/selfcheck/selfcheck.md
+          [ -f "$F" ] || echo "점검이 끝까지 돌지 못했습니다. 실행 기록: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" > "$F"
+          echo "" >> "$F"; echo "실행 기록: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> "$F"
+          N=$(gh issue list -R "${{ github.repository }}" --state open --search "자가진단 고장 in:title" --json number -q '.[0].number')
+          if [ -n "$N" ]; then gh issue comment "$N" -R "${{ github.repository }}" -F "$F"; else gh issue create -R "${{ github.repository }}" -t "자가진단 고장 알림" -F "$F"; fi
