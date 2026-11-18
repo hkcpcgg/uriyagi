@@ -1,4 +1,4 @@
-// 우리 이야기 매일 자가진단 (v2 · 261118 · 대표 OK 20:15) — v2 바탕 그림(background-image) 사진 칸도 셈 · 공유 링크 방 열쇠는 방 답의 g
+// 우리 이야기 매일 자가진단 (v3 · 사진이 끝내 안 들어온 칸도 빈 칸으로 셈 · v2 · 261118 · 대표 OK 20:15) — v2 바탕 그림(background-image) 사진 칸도 셈 · 공유 링크 방 열쇠는 방 답의 g
 // 손님 눈으로 uriyagi.kr 를 열어 봄: 마당 · 방 · 사진 한 장 · 공유 링크 · 첫 화면 시간 · 빈 사진 칸 · 오류 · 서버 시간
 // 결과 = 표(GitHub 실행 요약) · 하나라도 「고장」이면 실패로 끝남(→ 알림 글)
 import { chromium } from 'playwright-core';
@@ -48,6 +48,7 @@ async function openPage(name, url, ctxOpt) {
     await p.waitForTimeout(250);
   }
   await p.waitForTimeout(2500);
+  await p.evaluate(() => window.scrollTo(0, 700)).catch(() => {}); await p.waitForTimeout(4000);
   if (!recId && name === '방') { recId = await p.evaluate(() => { const m = document.documentElement.innerHTML.match(/R-\d{6}/); return m ? m[0] : ''; }).catch(() => ''); }
   if (!roomG && name === '방') { roomG = await p.evaluate(() => { try { return (localStorage.getItem('lf_rec_lastg') || '').replace(/[^a-f0-9]/gi, ''); } catch (e) { return ''; } }).catch(() => ''); if (roomG.length !== 32) roomG = ''; }
   const st = await p.evaluate(async () => {
@@ -63,6 +64,8 @@ async function openPage(name, url, ctxOpt) {
     await Promise.all([...urls].slice(0, 60).map(u => new Promise(res => { const im = new Image(); const to = setTimeout(() => { fail.add(u); res(); }, 10000); im.onload = () => { clearTimeout(to); if (!im.naturalWidth) fail.add(u); res(); }; im.onerror = () => { clearTimeout(to); fail.add(u); res(); }; im.src = u; })));
     const broken = [];
     for (const t of tiles) { if (t.img) { if (t.img.complete && t.img.naturalWidth === 0) broken.push((t.img.currentSrc || t.img.src).slice(-60)); } else if (fail.has(t.bg)) broken.push(t.bg.slice(-60)); }
+    // ★v3 사진이 끝내 안 들어온 칸(「wait」 표가 그대로 · 바탕 그림 없음) = 빈 칸 — 261118 마당 빈 베이지 칸을 못 잡은 것
+    for (const el of document.querySelectorAll('#main .wait')) { const b = el.getBoundingClientRect(); if (b.width < 40 || b.height < 40 || el.hidden) continue; if (!/url\(/.test(getComputedStyle(el).backgroundImage)) broken.push('안 들어온 칸 ' + (el.getAttribute('aria-label') || el.className).slice(0, 40)); }
     const tx = (document.getElementById('main') || document.body).innerText || '';
     return { n: tiles.length, broken, down: /연결되지 않습니다|들어오지 못했습니다|찾을 수 없습니다/.test(tx), text: tx.slice(0, 80).replace(/\s+/g, ' ') };
   }).catch(e => ({ n: 0, broken: [], down: true, text: '점검 오류 ' + e.message }));
