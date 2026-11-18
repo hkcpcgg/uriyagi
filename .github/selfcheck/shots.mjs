@@ -15,7 +15,7 @@ async function textAt(p, re, n) {
 async function wait(p) { for (let i = 0; i < 40; i++) { const ok = await p.evaluate(() => [...document.querySelectorAll('#main *')].some(el => /url\(/.test(getComputedStyle(el).backgroundImage) || (el.tagName === 'IMG' && el.naturalWidth > 0 && el.width > 60))); if (ok) break; await p.waitForTimeout(300); } await p.waitForTimeout(2500); }
 try {
   let p = await ctx.newPage();
-  await p.goto(B + '?plaza=1'); await wait(p); await snap(p, '01_마당');
+  await p.goto(B + '?plaza=1'); await wait(p); await snap(p, '01_마당'); await p.waitForTimeout(6000); await snap(p, '01b_마당_7초뒤'); await p.evaluate(() => window.scrollTo(0, 500)); await p.waitForTimeout(4000); await snap(p, '01c_마당_아래');
   await textAt(p, /우리 이야기방 만들기/, '02_만들기칸');
   await p.evaluate(() => window.scrollTo(0, 0));
   const lk = await p.evaluate(() => { const e = document.querySelector('.lck'); if (!e) return false; e.scrollIntoView({ block: 'center' }); return true; });
