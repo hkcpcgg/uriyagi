@@ -1,7 +1,7 @@
 // 우리 이야기 매일 자가진단 (v2 · 261118 · 대표 OK 20:15) — v2 바탕 그림(background-image) 사진 칸도 셈 · 공유 링크 방 열쇠는 방 답의 g
 // 손님 눈으로 uriyagi.kr 를 열어 봄: 마당 · 방 · 사진 한 장 · 공유 링크 · 첫 화면 시간 · 빈 사진 칸 · 오류 · 서버 시간
 // 결과 = 표(GitHub 실행 요약) · 하나라도 「고장」이면 실패로 끝남(→ 알림 글)
-import { chromium } from 'playwright';
+import { chromium } from 'playwright-core';
 import fs from 'fs';
 
 const BASE = 'https://uriyagi.kr/';
@@ -11,7 +11,7 @@ const rows = [];   // [항목, 결과, 값, 메모]
 let bad = 0, warn = 0;
 const put = (k, ok, v, m) => { rows.push([k, ok === true ? '정상' : ok === 'w' ? '느림' : '고장', v, m || '']); if (ok === false) bad++; if (ok === 'w') warn++; };
 
-const browser = await chromium.launch();
+const browser = await chromium.launch({ executablePath: process.env.CHROME || '/usr/bin/google-chrome' });   // 러너에 깔린 크롬(받기 없음 · 빠름)
 const mobile = { viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true,
   userAgent: 'Mozilla/5.0 (Linux; Android 14; SM-S918N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36' };
 const desktop = { viewport: { width: 1280, height: 900 } };
@@ -25,7 +25,7 @@ async function openPage(name, url, ctxOpt) {
   const errs = [];
   p.on('pageerror', e => errs.push(String(e.message || e).slice(0, 120)));
   const t0 = Date.now(); const reqStart = new Map();
-  const isSrv = u => /script\.google(usercontent)?\.com/.test(u);
+  const isSrv = u => /script\.google(usercontent)?\.com|docs\.google\.com\/spreadsheets/.test(u);   // 서버 · 공개 목록(gviz)
   p.on('request', r => { if (isSrv(r.url())) reqStart.set(r, Date.now()); });
   p.on('response', async res => {
     try {
@@ -48,6 +48,7 @@ async function openPage(name, url, ctxOpt) {
     await p.waitForTimeout(250);
   }
   await p.waitForTimeout(2500);
+  if (!recId && name !== '공유 링크') { recId = await p.evaluate(() => { const m = document.documentElement.innerHTML.match(/R-\d{6}/); return m ? m[0] : ''; }).catch(() => ''); }
   if (!roomG && name === '방') { roomG = await p.evaluate(() => { try { return (localStorage.getItem('lf_rec_lastg') || '').replace(/[^a-f0-9]/gi, ''); } catch (e) { return ''; } }).catch(() => ''); if (roomG.length !== 32) roomG = ''; }
   const st = await p.evaluate(async () => {
     // 사진 칸 = 40px 넘는 <img> 와 바탕 그림(background-image) 칸 · 바탕 그림은 따로 불러 봐서 안 오면 빈 칸
@@ -95,11 +96,17 @@ if (roomG) {
   put('공유 링크 · 화면 오류', r.errs.length === 0, r.errs.length + '건', r.errs.slice(0, 2).join(' / '));
   await r.ctx.close();
 } else put('공유 링크', false, '방 열쇠 못 받음', '방 답 ' + srvTimes.filter(x => x.page === '방').length + '번');
-// 5 서버 시간
+// 5 서버 시간 — ① 화면이 받은 답(공개 목록 · 서버) ② 서버에 직접 recPing
 if (srvTimes.length) {
   const ms = srvTimes.map(x => x.ms).sort((a, b) => a - b), mx = ms[ms.length - 1], md = ms[Math.floor(ms.length / 2)];
-  put('서버 · 가장 느린 답', mx > LIM.srv ? false : mx > LIM.srvWarn ? 'w' : true, (mx / 1000).toFixed(1) + '초', '가운데 ' + (md / 1000).toFixed(1) + '초 · ' + ms.length + '번');
-} else put('서버 답', false, '0번', '서버에서 답이 하나도 안 옴');
+  put('화면이 받은 답 · 가장 느림', mx > LIM.srv ? false : mx > LIM.srvWarn ? 'w' : true, (mx / 1000).toFixed(1) + '초', '가운데 ' + (md / 1000).toFixed(1) + '초 · ' + ms.length + '번');
+} else put('화면이 받은 답', false, '0번', '공개 목록 · 서버에서 답이 하나도 안 옴');
+try {
+  const GAS = 'https://script.google.com/macros/s/AKfycbyxGWMrhY9Ffihk56ve-8s_S87fdkg_WEMpJO7q3FZRkdlBZWwkWo8m2Gs-fBbrhoVMOg/exec';
+  const t0 = Date.now(); const res = await fetch(GAS, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action: 'recPing' }), signal: AbortSignal.timeout(40000) });
+  const tx = await res.text(); const ms = Date.now() - t0; let ok = false; try { ok = JSON.parse(tx).status === 'ok'; } catch (e) {}
+  put('서버 직접(recPing)', !ok ? false : ms > LIM.srv ? false : ms > LIM.srvWarn ? 'w' : true, (ms / 1000).toFixed(1) + '초', ok ? '' : '답: ' + tx.slice(0, 60));
+} catch (e) { put('서버 직접(recPing)', false, '답 없음', String(e.message).slice(0, 60)); }
 await browser.close();
 
 const now = new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 16).replace('T', ' ');

@@ -23,8 +23,8 @@ jobs:
         run: |
           cd .github/selfcheck
           npm init -y >/dev/null
-          npm i playwright@1.48.2 >/dev/null
-          npx playwright install --with-deps chromium >/dev/null
+          npm i playwright-core@1.48.2 >/dev/null
+          google-chrome --version
       - name: 점검
         id: run
         run: cd .github/selfcheck && node check.mjs
