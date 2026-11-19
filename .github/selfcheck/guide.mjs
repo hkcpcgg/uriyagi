@@ -34,7 +34,7 @@ try {
   await p.goto(B + '?c=' + ROOM); await wait(p); await snap(p, 'g04_방첫화면');
   await tapAt(p, 'g05_사진누름', PIC, 'g05b_게시물');
   await p.mouse.wheel(0, 0);
-  await tapAt(p, 'g06_좋아요', Q('#pf.on .pfa [data-pa=like]'));
+  boxes['g06_좋아요'] = await boxOf(p, Q('#pf.on .pfa [data-pa=like]')); await snap(p, 'g06_좋아요');   // 누르지 않음(견본 숫자 안 바꿈)
   await tapAt(p, 'g07_기억누름', Q('#pf.on .pfa [data-pa=write]'), 'g07b_기억창');
   await p.evaluate(() => { const d = document.getElementById('dimTop'); if (d) d.remove(); });
   await tapAt(p, 'g08_공유누름', Q('#pf.on .pfa [data-pa=send]'), 'g08b_공유창');
@@ -54,17 +54,17 @@ try {
   // ── 멤버(시험 방 관리자 열쇠)
   if (/^[a-f0-9]{32}$/.test(KEY)) {
     c = await newCtx(); p = await c.newPage();
-    await p.goto(B + '?c=' + ROOM + '#k=' + KEY); await wait(p); await snap(p, 'm01_방첫화면');
+    await p.goto(B + '?k=' + KEY); await wait(p); await snap(p, 'm01_방첫화면');
     await tapAt(p, 'm02_초대누름', T('/초대하기/'), 'm02b_초대창');
-    await p.goto(B + '?c=' + ROOM); await wait(p);
+    await p.goto(B + '?me=1'); await wait(p);
     await tapAt(p, 'm03_올리기누름', Q('#btab [data-bt=up]'), 'm03b_새게시물');
-    await p.goto(B + '?c=' + ROOM); await wait(p);
+    await p.goto(B + '?me=1'); await wait(p);
     await tapAt(p, 'm04_내방누름', Q('#btab [data-bt=me]'), 'm04b_내방');
     await tapAt(p, 'm05_내사진', `() => [...document.querySelectorAll('#meP .av, #meP [data-me=pic], #meP .mh .av')].filter(e=>e.getBoundingClientRect().width>20)[0]`, 'm05b_내사진창');
-    await p.goto(B + '?c=' + ROOM); await wait(p);
+    await p.goto(B + '?me=1'); await wait(p);
     await tapAt(p, 'm06_관리누름', T('/방 관리|⚙/'), 'm06b_방관리');
     await tapAt(p, 'm07_처리할일', T('/처리할 일/'), 'm07b_처리할일');
-    await p.goto(B + '?c=' + ROOM); await wait(p);
+    await p.goto(B + '?me=1'); await wait(p);
     await tapAt(p, 'm08_사진누름', PIC, 'm08b_게시물');
     await tapAt(p, 'm09_더보기', Q('#pf.on .pfa [data-pa=more]'), 'm09b_내게시물메뉴');
     await c.close();

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v206 · 261119 · [우리이야기] 💬 누르자마자 기억 창부터(불러오는 동안 기다림 표시) · 그 밖 v205 그대로 -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v207 · 261119 · [우리이야기] 고장 고침 — 보낼 사진 고르기 날짜 칸 「99999년」(날짜 모르는 사진) → 「날짜 모름」 · 그 밖 v206 그대로 -->
+<!-- (이전) ★ 현재 버전 ▶ rec/index.html · v206 · 261119 · [우리이야기] 💬 누르자마자 기억 창부터(불러오는 동안 기다림 표시) · 그 밖 v205 그대로 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v205 · 261119 · [우리이야기] 게시물 보기 쇼츠형(시안 v1 · 대표 261119 11:06 「승인 다 됨 · 쭉 가라」) — 사진 한 장 = 화면 하나(위아래로 밀면 다음 게시물 · 여러 장은 옆으로 · 점) · 가로 사진도 통째로(남는 곳은 같은 사진 흐리게) · 오른쪽 세로 단추 ♥ · 🍇 나도 기억해요 · 💬 기억 · 공유 · ⬇ 저장(새 · 전체 공개 = 누구나 · 그 밖 = 멤버만 · 가로 800) · ⋯ · 왼쪽 아래 얼굴 · 이름(프로필) · 글 두 줄(누르면 더) · 💬 = 밑에서 올라오는 기억 창(늘 펼친 「기억 남기기…」 걷음) · 한 번 톡 = 단추 숨김/보임 · 두 번 톡 = 큰 하트 + 짧은 진동 · 🍇 포도알 퍼짐 · 숫자 튐 · 소리 없음 · 두 손가락 = 전체 화면 확대 · 동그라미 글자 「(」 고침 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v204 · 261118 · [우리이야기] 고장 고침 — 마당 사진 칸이 빈 베이지로 남던 것: 드라이브가 치워진 사진(드라이브 번호 u 없음 · 네이버 n 만 있음)은 칸이 「불러올 사진」 표(data-pu · data-pb)를 못 받아 영영 비어 있었음(v192 duHas 를 마당 칸 두 곳 pzTile · pzCell 에 안 씀) → x.u||duHas(x.id) · 그 밖 v203 그대로 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v203 · 261118 · [우리이야기] 대표 OK 20:15 — 카톡 안 브라우저(휴대폰)로 열면 휴대폰 인터넷으로 자동 넘김(kakaotalk://web/openExternal · 로그인 열쇠 # 칸 같이 · v191 keyHash 그대로 · kx=1 되돌아 돌지 않음 · 넘어가면 카톡 창 닫음 · 안 넘어가면 「다른 브라우저로 열기」 단추) · 사랑흐름 사본 frame.js 의 열쇠 없는 넘기기는 쉬게 함(sessionStorage lf_kk_out 먼저 세움 · frame.js 손대지 않음) · 카카오 로그인 돌아오는 길은 넘기지 않음 · 10/7 v12 「자동 안 함」 거둠 · 그 밖 v202 그대로 -->
@@ -4013,7 +4014,7 @@ function spWire(el){ each(el,'[data-sp]',function(b){ if(b._w){ return; } b._w=1
 function spPaint(){ var full=SP.on.length>=SP_MAX; each(document,'.spk [data-sp]',function(b){ var k=SP.on.indexOf(b.getAttribute('data-sp')); b.classList.toggle('on',k>-1); b.setAttribute('data-n',k>-1?String(k+1):''); b.classList.toggle('dis',full&&k<0); });
   var n=$('spN'); if(n){ n.textContent=SP_MAX+'장 중 '+SP.on.length+'장'; } }
 function spDraw(){ var g=$('spG'); if(!g){ return; } var h='', last=null;
-  SP.items.forEach(function(p){ var hd=p.y?p.y+'년':'날짜 모름'; if(hd!==last){ h+=(last!==null?'</div>':'')+'<div class="dh">'+esc(hd)+'</div><div class="pg">'; last=hd; } h+=spBtn(p); });
+  SP.items.forEach(function(p){ var hd=p.y&&p.y<99999?Math.floor(p.y)+'년':'날짜 모름';   /* ★v207 「99999년」 고침(날짜 모르는 사진 = 99999) */ if(hd!==last){ h+=(last!==null?'</div>':'')+'<div class="dh">'+esc(hd)+'</div><div class="pg">'; last=hd; } h+=spBtn(p); });
   g.innerHTML=h+(last!==null?'</div>':''); spWire(g); spPaint(); }
 function spReset(){ SP.items=[]; SP.next=0; SP.more=1; SP.k++; var g=$('spG'); if(g){ g.innerHTML=''; } var t=SP.it?spPh(SP.it):[]; SP.seen={}; t.forEach(function(p){ SP.seen[p.id]=1; }); spMore(); }
 function spMore(){ if(!SP||SP.busy||!SP.more||!$('spG')){ return; } SP.busy=1; var k=SP.k, e=$('spE'); if(e){ e.textContent='사진을 불러오는 중입니다'; }
@@ -6723,7 +6724,7 @@ window.addEventListener('appinstalled',function(){ PWA_EV=null; var b=$('pwaGo')
 try{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js',{scope:'/'})['catch'](function(){});
   /* ★v62 375 새 화면 파일을 받아 오면 한 번 바꿔 엶 — 첫 화면 · 광장에서만(쓰는 중에는 기다렸다가 첫 화면으로 돌아올 때) */
   navigator.serviceWorker.addEventListener('message',function(ev){ if(!ev.data||ev.data.t!=='lf-new'){ return; } NEWV=1; newGo(); }); } }catch(e){}
-var NEWV=0, REC_VER=206;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
+var NEWV=0, REC_VER=207;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
 function newChk(){ try{ if(!window.caches){ return; } caches.open('lf-rec-shell-v2').then(function(c){ return c.match('/'); }).then(function(r){ return r?r.text():''; }).then(function(t){ var m=/rec\/index\.html · v(\d+)/.exec(String(t).slice(0,600)); if(m&&parseInt(m[1],10)>REC_VER){ NEWV=1; newGo(); } })['catch'](function(){}); }catch(e){} }   /* ★v62 375 알림을 놓쳐도 남겨 둔 파일 버전을 직접 봄 */
 setTimeout(newChk,5000); setTimeout(newChk,15000);
 document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible'){ setTimeout(newChk,1500); } });
