@@ -27,7 +27,7 @@ try {
   await p.evaluate(() => window.scrollTo(0, 0)); await p.waitForTimeout(500);
   // 첫 사진 눌러 게시물
   const clicked = await p.evaluate(() => { const el = [...document.querySelectorAll('#main *')].find(e => { const b = e.getBoundingClientRect(); return b.width > 100 && b.height > 100 && b.top > 150 && /url\(/.test(getComputedStyle(e).backgroundImage); }); if (!el) return false; el.click(); return true; });
-  if (clicked) { await p.waitForTimeout(2500); await snap(p, '09_게시물'); await textAt(p, /나도 기억해요/, '10_나도기억해요'); } else log.push('09 사진 못 누름');
+  if (clicked) { await p.waitForTimeout(2500); await snap(p, '09_게시물'); await p.locator('#pf.on .pfp [data-pa=write]').first().click().catch(() => {}); await snap(p, '10_기억창'); await p.keyboard.press('Escape').catch(() => {}); await p.evaluate(() => { const d = document.getElementById('dimTop'); if (d) d.remove(); const pf = document.getElementById('pf'); if (pf) pf.scrollTop = pf.clientHeight; }); await snap(p, '10b_다음게시물'); } else log.push('09 사진 못 누름');
   await p.goto(B + '?c=' + ROOM); await wait(p);
   const mt = await p.evaluate(() => { const e = [...document.querySelectorAll('button,a,[role=button]')].find(x => /☰|메뉴/.test((x.textContent || '') + (x.getAttribute('aria-label') || ''))); if (!e) return false; e.click(); return true; });
   if (mt) { await snap(p, '11_메뉴'); await textAt(p, /홈 화면에 추가/, '12_홈화면에추가'); } else log.push('11 메뉴 못 엶');

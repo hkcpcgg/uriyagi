@@ -91,6 +91,13 @@ if (recId) {
   put('사진 한 장 · 큰 사진', big, recId, big ? '' : '사진 칸이 비어 보임(v201 같은 꼴)');
   put('사진 한 장 · 화면 오류', r.errs.length === 0, r.errs.length + '건', r.errs.slice(0, 2).join(' / '));
   await r.ctx.close();
+  // 3-2 게시물 보기(휴대폰 · 쇼츠형 v205) — 사진 위 세로 단추 · 큰 사진
+  r = await openPage('게시물', BASE + '?c=' + ROOM + '&r=' + recId, mobile);
+  await r.p.waitForTimeout(2500);
+  const pfv = await r.p.evaluate(() => { const pf = document.getElementById('pf'); if (!pf || !pf.classList.contains('on')) return { on: false }; const a = pf.querySelector('.pfp'); const im = [...pf.querySelectorAll('.pfp img')].find(x => x.naturalWidth > 0 && x.getBoundingClientRect().width > 250); return { on: true, rail: a ? a.querySelectorAll('.pfa button').length : 0, big: !!im }; }).catch(e => ({ on: false, err: e.message }));
+  put('게시물 · 쇼츠 보기', pfv.on && pfv.rail >= 5 && pfv.big, pfv.on ? ('단추 ' + pfv.rail + ' · 사진 ' + (pfv.big ? '보임' : '안 보임')) : '게시물 창 안 열림', '');
+  put('게시물 · 화면 오류', r.errs.length === 0, r.errs.length + '건', r.errs.slice(0, 2).join(' / '));
+  await r.ctx.close();
 } else put('사진 한 장', false, '기록 번호 못 받음', '방 답에서 R- 번호가 안 옴');
 // 4 받은 방 링크(카톡 공유 · 초대 ?g=)
 if (roomG) {
