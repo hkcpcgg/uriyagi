@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v209 · 261119 · [우리이야기] 「우리 이야기 안내」 방 그림은 마당 사진칸에서 뺌(대표 261119 · 위 방 동그라미 줄엔 그대로) -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v210 · 261119 · [우리이야기] 안내 방 게시물 보기 — 화면 그림을 휴대폰 틀에 통째로 · 단추 틀 바깥 · 쪽수 · 저장 뺌(시안 v1 · 대표 261119 21:06 OK) -->
+<!-- (이전) ★ 현재 버전 ▶ rec/index.html · v209 · 261119 · [우리이야기] 「우리 이야기 안내」 방 그림은 마당 사진칸에서 뺌(대표 261119 · 위 방 동그라미 줄엔 그대로) -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v208 · 261119 · [우리이야기] 고장 고침 — 사진 한 장 게시물에서 💬 기억 창이 「기억을 불러오는 중입니다」에 멈춤 · 숫자(♥ · 🍇 · 💬)도 서버 값으로 안 바뀌던 것(같은 사진인지 묶음 대신 번호로 봄) · 그 밖 v207 그대로 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v207 · 261119 · [우리이야기] 고장 고침 — 보낼 사진 고르기 날짜 칸 「99999년」(날짜 모르는 사진) → 「날짜 모름」 · 그 밖 v206 그대로 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v206 · 261119 · [우리이야기] 💬 누르자마자 기억 창부터(불러오는 동안 기다림 표시) · 그 밖 v205 그대로 -->
@@ -1584,6 +1585,15 @@ body.pfon{overflow:hidden}
 .pf .vpop{z-index:5}
 .pf.bare .pfa,.pf.bare .pfo,.pf.bare .pfsh,.pf.bare .pftop,.pf.bare .pfc{opacity:0;pointer-events:none}
 .pf .pfend{color:#999;scroll-snap-align:end}
+/* ★v210 안내 방 — 찍어 둔 화면 그림을 휴대폰 틀에 통째로 · 단추는 틀 오른쪽 바깥 · 글은 틀 아래(시안 v1 · 대표 261119 21:06 OK) */
+.pf.guide .pfp{background:radial-gradient(circle at 40% 30%,#3a3a3a,#141414)}
+.pf.guide .pfm{inset:auto;left:16px;top:calc(56px + env(safe-area-inset-top));height:min(calc(var(--pfh,100vh) - 190px),calc(min(66vw,370px) * 2.164));width:auto;aspect-ratio:390/844;border:3px solid #fff;border-radius:18px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.55);background:#fff}
+.pf.guide .pfi .pfbg,.pf.guide .pfsh{display:none}
+.pf.guide .pfi{background:#fff}
+.pf.guide .pfc{top:8px;right:8px}
+.pf .pfgn{display:none}
+.pf.guide .pfgn{display:block;position:absolute;right:14px;top:calc(16px + env(safe-area-inset-top));z-index:7;color:#fff;font-size:12.5px;background:rgba(255,255,255,.18);padding:3px 9px;border-radius:11px;transition:opacity .2s}
+.pf.guide.bare .pfgn{opacity:0}
 @media (hover:none){ .pf .pfar{display:none} }
 .pfgb{position:fixed;width:0;height:0;pointer-events:none;z-index:3000}
 .pfgb i{position:absolute;left:-6px;top:-6px;width:12px;height:12px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#C9A7F5,#6B3FA0);animation:pfgb .7s cubic-bezier(.15,.7,.3,1) forwards}
@@ -3229,7 +3239,7 @@ function pfPost(it,i){   /* ★v205 쇼츠형 — 사진 위에 오른쪽 세로
   var n=vid?1:ps.length, txt=(it.text&&it.kind!=='글'&&it.kind!=='링크')?it.text:'', tt=it.title&&!(txt&&String(txt).indexOf(it.title)===0)?it.title:'';
   var hit=PF.fromPz?'':(by?' data-pa="who" data-who="'+esc(by)+'" role="button"':' data-pa="room" role="button"');
   return '<article class="pfp" data-pi="'+i+'"><div class="pfm"><div class="pfs" data-ps="'+i+'">'+sl+'</div>'+(n>1?'<span class="pfc" data-pc="'+i+'">1/'+n+'</span><button type="button" class="pfar l" data-pa="prev" aria-label="앞 사진">‹</button><button type="button" class="pfar r" data-pa="next" aria-label="다음 사진">›</button>':'')+'</div>'+
-    '<div class="pfsh"></div><div class="vpop" aria-hidden="true">♥</div><div class="pfa" data-pa0="'+i+'"></div>'+
+    '<div class="pfsh"></div><span class="pfgn" data-gn="'+i+'">'+(i+1)+' / '+PF.list.length+'</span><div class="vpop" aria-hidden="true">♥</div><div class="pfa" data-pa0="'+i+'"></div>'+
     '<div class="pfo"><header class="pfh"><span class="pfav'+(by&&it.bp&&picUrl(it.bp)?' pic':'')+'"'+(by&&it.bp?picBg(it.bp):'')+hit+(hit?' aria-label="'+esc(by?by+' 님 프로필':'방 첫 화면')+'"':'')+'>'+esc(pfIni(by||rn))+'</span><div class="pfnm"'+hit+'><b>'+esc(by||rn)+'</b><small>'+esc(it.when||'')+'</small></div></header>'+
     (tt||txt?'<div class="pft" data-pa="txt">'+esc([tt,txt].filter(Boolean).join('\n'))+'</div>':'')+
     (n>1?'<div class="pfd" data-pd="'+i+'">'+ps.map(function(p,k){ return '<i'+(k?'':' class="on"')+'></i>'; }).join('')+'</div>':'')+'</div></article>';
@@ -3243,7 +3253,7 @@ function pfAct(i,bump){ var it=PF.list[i], box=document.querySelector('#pfIn [da
     '<button type="button" data-pa="mem" aria-label="나도 기억해요"'+(mr?' class="on2"':'')+'><i>🍇</i>'+(rc?'<b>'+rc+'</b>':'<small>나도<br>기억해요</small>')+'</button>'+
     '<button type="button" data-pa="write" aria-label="기억"><i>💬</i><b>'+(mc||'기억')+'</b></button>'+
     '<button type="button" data-pa="send" aria-label="공유"><i><svg class="shg" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></i><b>공유</b></button>'+
-    (vid?'':'<button type="button" data-pa="save" aria-label="저장"><i><svg class="dlg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 19h14"/></svg></i><b>저장</b></button>')+
+    (vid||pfGuide()?'':'<button type="button" data-pa="save" aria-label="저장"><i><svg class="dlg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 19h14"/></svg></i><b>저장</b></button>')+
     '<button type="button" data-pa="more" aria-label="더 보기"><i>⋯</i></button>';
   if(bump){ var bb=box.querySelector('[data-pa="'+bump+'"] i'); if(bb){ bb.classList.add('bump'); } } }
 function pfMem(i,fresh,then){ var p=pfCur(i); if(!p){ return; }   /* ★v205 기억은 💬 를 누르면 밑에서 올라오는 창으로 — 여기서는 숫자 · 상태만 */
@@ -3275,17 +3285,18 @@ function pfWire(from){ var inn=$('pfIn');
   PFO=new IntersectionObserver(function(es){ es.forEach(function(en){ if(!en.isIntersecting){ var v=en.target.querySelector('iframe,video'); if(v&&v.tagName==='VIDEO'){ try{ v.pause(); }catch(x){} } return; } var i=+en.target.getAttribute('data-pi'), scN=en.target.querySelector('.pfs'); if(scN&&scN.children.length>1){ pfNudge(scN); } pfLoad(i); pfLoad(i+1); pfLoad(i+2); pfAct(i); pfMem(i);
     if(i>=PF.list.length-2&&!PF.fromPz&&VIEW==='feed'&&RG.more&&!RG.busy){ rgMore(); } }); },{root:$('pf'),rootMargin:'300px 0px',threshold:0.01});
   each(inn,'.pfp',function(a){ PFO.observe(a); }); }
+function pfGuide(){ return !!(PF.on&&!PF.fromPz&&ME&&PZ_OUT[ME.comName]); }   /* ★v210 안내 방인지 */
 function pfOpen(list,i,pid,pz){
   if(!list.length){ return; } pfBox(); PF.list=list.slice(); PF.ci={}; PF.on=true; PF.fromPz=pz?1:0;
   $('pfBk').textContent=pfLabel(); $('pfIn').innerHTML=PF.list.map(pfPost).join('')+'<div class="pfend" id="pfEnd"></div>';
-  $('pf').style.zIndex=String(1500+LAYS.length*2); $('pf').classList.remove('bare'); $('pf').classList.add('on'); document.body.classList.add('pfon'); btabDraw(); pfFit();
+  $('pf').style.zIndex=String(1500+LAYS.length*2); $('pf').classList.remove('bare'); $('pf').classList.toggle('guide',pfGuide()); $('pf').classList.add('on'); document.body.classList.add('pfon'); btabDraw(); pfFit();
   var art=document.querySelector('#pfIn [data-pi="'+i+'"]'); $('pf').scrollTop=art?art.offsetTop:0;
   if(pid){ var ps=pfPhotos(PF.list[i]); for(var k=0;k<ps.length;k++){ if(ps[k].id===pid){ PF.ci[i]=k; var sc=art&&art.querySelector('.pfs'); if(sc){ (function(sc,k){ setTimeout(function(){ sc.scrollLeft=k*sc.clientWidth; var c=document.querySelector('#pfIn [data-pc="'+i+'"]'); if(c){ c.textContent=(k+1)+'/'+sc.children.length; } var dd=document.querySelector('#pfIn [data-pd="'+i+'"]'); if(dd){ each(dd,'i',function(x,j){ x.classList.toggle('on',j===k); }); } },0); })(sc,k); }   /* ★v161 숫자 · 점도 그 사진에 맞춤 */ } } }
   pfWire(); pfLoad(i); pfAct(i); pfMem(i);
   lyPush(pfHide);
 }
 function pfSync(){ if(!PF.on||PF.fromPz){ return; } var have={}; PF.list.forEach(function(x){ have[x.id]=1; }); var add=vwRoomList().filter(function(x){ return !have[x.id]; }); if(!add.length){ return; }
-  var n=PF.list.length; PF.list=PF.list.concat(add); var e=$('pfEnd'); e.insertAdjacentHTML('beforebegin',add.map(function(x,k){ return pfPost(x,n+k); }).join('')); pfWire(); }
+  var n=PF.list.length; PF.list=PF.list.concat(add); var e=$('pfEnd'); e.insertAdjacentHTML('beforebegin',add.map(function(x,k){ return pfPost(x,n+k); }).join('')); each($('pfIn'),'[data-gn]',function(e){ e.textContent=(+e.getAttribute('data-gn')+1)+' / '+PF.list.length; }); pfWire(); }
 function pfHide(){ if(!PF.on){ return; } PF.on=false; if(PFO){ try{ PFO.disconnect(); }catch(e){} PFO=null; } var b=$('pf'); b.classList.remove('on'); b.classList.remove('bare'); b.style.bottom=''; document.body.classList.remove('pfon');
   var top=null, y=b.scrollTop+60; each($('pfIn'),'.pfp',function(a){ if(a.offsetTop<=y){ top=a; } }); var it=top&&PF.list[+top.getAttribute('data-pi')]; $('pfIn').innerHTML='';
   /* ★v151 마당 · 메인에서 연 게시물도 닫으면 그 방 첫 화면(한 걸음) */
@@ -6727,7 +6738,7 @@ window.addEventListener('appinstalled',function(){ PWA_EV=null; var b=$('pwaGo')
 try{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js',{scope:'/'})['catch'](function(){});
   /* ★v62 375 새 화면 파일을 받아 오면 한 번 바꿔 엶 — 첫 화면 · 광장에서만(쓰는 중에는 기다렸다가 첫 화면으로 돌아올 때) */
   navigator.serviceWorker.addEventListener('message',function(ev){ if(!ev.data||ev.data.t!=='lf-new'){ return; } NEWV=1; newGo(); }); } }catch(e){}
-var NEWV=0, REC_VER=209;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
+var NEWV=0, REC_VER=210;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
 function newChk(){ try{ if(!window.caches){ return; } caches.open('lf-rec-shell-v2').then(function(c){ return c.match('/'); }).then(function(r){ return r?r.text():''; }).then(function(t){ var m=/rec\/index\.html · v(\d+)/.exec(String(t).slice(0,600)); if(m&&parseInt(m[1],10)>REC_VER){ NEWV=1; newGo(); } })['catch'](function(){}); }catch(e){} }   /* ★v62 375 알림을 놓쳐도 남겨 둔 파일 버전을 직접 봄 */
 setTimeout(newChk,5000); setTimeout(newChk,15000);
 document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible'){ setTimeout(newChk,1500); } });
