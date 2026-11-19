@@ -7,6 +7,10 @@ on:
         description: '찍을 방 번호'
         required: false
         default: 'C-0294'
+      gn:
+        description: '안내 방 몇 번째 게시물을 더 찍을지(예: 2,5)'
+        required: false
+        default: ''
 permissions:
   contents: write
 jobs:
@@ -25,7 +29,7 @@ jobs:
           npm init -y >/dev/null
           npm i playwright-core@1.48.2 >/dev/null
           sudo apt-get install -y fonts-noto-cjk >/dev/null 2>&1 || true
-          ROOM="${{ inputs.room }}" node shots.mjs
+          ROOM="${{ inputs.room }}" GN="${{ inputs.gn }}" node shots.mjs
       - name: 그림을 shots 가지에 올림(사이트 main 과 따로 · 클로드가 받아 봄)
         run: |
           cd .github/selfcheck/shots
