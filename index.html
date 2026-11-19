@@ -1632,6 +1632,7 @@ body.pfon{overflow:hidden}
 .pfgmore{display:none;position:absolute;left:10px;right:10px;bottom:48px;z-index:4;pointer-events:none;border-radius:0 0 16px 16px;padding:22px 10px 9px;text-align:center;font-size:13.5px;font-weight:800;color:#FFD24A;background:linear-gradient(rgba(31,42,68,0),#1F2A44 55%)}
 .pf.guide .pfp.pfgL .pfgmore{display:block}.pfgmore.end{color:#fff}
 .pf .pfgrid{display:none}
+.pf.guide .pfgn{display:none}   /* ★v213 「⊞ 전체 보기」 자리 — 몇 번째는 설명 카드 딱지 · 23칸 막대로 */
 .pf.guide .pftop .pfgrid{display:block;margin-left:auto;margin-right:8px;background:#fff;color:#1F2A44;border-radius:16px;padding:6px 12px;font-size:14px;font-weight:800;box-shadow:0 1px 3px rgba(0,0,0,.15)}
 .pf.guide .pfgnv{bottom:6px;align-items:center}
 .pf.guide .pfgnv button{background:#1F2A44;color:#fff;border-radius:18px;padding:7px 15px;font-size:14px;font-weight:700;min-height:36px;white-space:nowrap}
@@ -3302,7 +3303,7 @@ function pfGPost(it,i,sl,n,ps){   /* ★v212 시안 v4 A안 — 그림 가운데
   var pv=L[i-1], nx=L[i+1];
   return '<article class="pfp" data-pi="'+i+'"><div class="pfgbar">'+bar+'</div><div class="pfm"><div class="pfs" data-ps="'+i+'">'+sl+'</div>'+(n>1?'<span class="pfc" data-pc="'+i+'">1/'+n+'</span><button type="button" class="pfar l" data-pa="prev" aria-label="앞 그림">‹</button><button type="button" class="pfar r" data-pa="next" aria-label="다음 그림">›</button>':'')+'</div>'+
     '<span class="pfgn" data-gn="'+i+'">'+(i+1)+' / '+N+'</span><div class="vpop" aria-hidden="true">♥</div>'+
-    '<div class="pfo pfgc"><div class="pfa" data-pa0="'+i+'"></div><span class="pfgch">'+(i+1)+'편'+(n>1?' · 그림 '+n+'장':'')+'</span><h3 class="pfgt">'+esc(it.title||'')+'</h3><div class="pfgx" data-gx="'+i+'"><p class="pfgw">설명을 불러오는 중입니다</p></div>'+
+    '<div class="pfo pfgc"><div class="pfa" data-pa0="'+i+'"></div><span class="pfgch">'+(i+1)+' / '+N+'편'+(n>1?' · 그림 '+n+'장':'')+'</span><h3 class="pfgt">'+esc(it.title||'')+'</h3><div class="pfgx" data-gx="'+i+'"><p class="pfgw">설명을 불러오는 중입니다</p></div>'+
     (n>1?'<div class="pfd" data-pd="'+i+'">'+ps.map(function(p,k){ return '<i'+(k?'':' class="on"')+'></i>'; }).join('')+'</div>':'')+'</div><div class="pfgmore" data-gm="'+i+'"></div>'+
     '<div class="pfgnv">'+(pv?'<button type="button" data-pa="gmv" data-to="'+(i-1)+'">‹ '+i+'편</button>':'<span class="pfgsp"></span>')+'<span class="pfgh">'+(nx?'☝ 위로 밀면 다음 편':'마지막 편이에요')+'</span>'+(nx?'<button type="button" data-pa="gmv" data-to="'+(i+1)+'">'+(i+2)+'편 ›</button>':'<button type="button" data-pa="gall">⊞ 전체 보기</button>')+'</div></article>';
 }
