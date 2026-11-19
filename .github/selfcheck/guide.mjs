@@ -12,13 +12,13 @@ async function wait(p) { for (let i = 0; i < 40; i++) { const ok = await p.evalu
 async function snap(p, n) { await p.waitForTimeout(1300); await p.screenshot({ path: 'guide/' + n + '.png' }); log.push(n); }
 // 누를 곳을 찾아 자리를 적고(그림에 동그라미용) 찍은 뒤 누름
 async function boxOf(p, find) { return p.evaluate(`(() => { const e = (${find})(); if (!e) return null; const b = e.getBoundingClientRect(); return { x: b.left, y: b.top, w: b.width, h: b.height }; })()`); }
-async function tapAt(p, n, find, after) {
+async function tapAt(p, n, find, after, more) {
   const ok = await p.evaluate(`(() => { const e = (${find})(); if (!e) return false; e.scrollIntoView({ block: 'nearest' }); return true; })()`);
   if (!ok) { log.push(n + ' (못 찾음)'); return false; }
   await p.waitForTimeout(500);
   boxes[n] = await boxOf(p, find); await snap(p, n);
   await p.evaluate(`(() => { const e = (${find})(); if (e) e.click(); })()`);
-  if (after) { await p.waitForTimeout(1800); await snap(p, after); }
+  if (after) { await p.waitForTimeout(1800); await snap(p, after); for (const [mn, mf] of (more || [])) { boxes[after + ':' + mn] = await boxOf(p, mf); } }
   return true;
 }
 const T = re => `() => [...document.querySelectorAll('button,a,[role=button],label')].filter(e => { const b = e.getBoundingClientRect(); return b.width > 0 && b.height > 0 && ${re}.test((e.textContent || '') + ' ' + (e.getAttribute('aria-label') || '')); }).pop()`;
@@ -27,34 +27,35 @@ const PIC = `() => [...document.querySelectorAll('#main *')].find(e => { const b
 try {
   // ── 손님
   let c = await newCtx(), p = await c.newPage();
-  await p.goto(B + '?plaza=1'); await wait(p); await snap(p, 'g01_마당');
+  await p.goto(B + '?plaza=1'); await wait(p); await snap(p, 'g01_마당'); boxes['g01_마당:tabs'] = await boxOf(p, Q('#btab'));
   await tapAt(p, 'g02_검색누름', Q('#btab [data-bt=fd]'), 'g02b_검색');
   await p.goto(B + '?plaza=1'); await wait(p);
   await tapAt(p, 'g03_방누름', `() => [...document.querySelectorAll('#main [data-pg],#main .pzr button,#main .rc')].filter(e=>e.getBoundingClientRect().width>30)[0]`, 'g03b_방첫화면');
   await p.goto(B + '?c=' + ROOM); await wait(p); await snap(p, 'g04_방첫화면');
   await tapAt(p, 'g05_사진누름', PIC, 'g05b_게시물');
   await p.mouse.wheel(0, 0);
-  boxes['g06_좋아요'] = await boxOf(p, Q('#pf.on .pfa [data-pa=like]')); await snap(p, 'g06_좋아요');   // 누르지 않음(견본 숫자 안 바꿈)
-  await tapAt(p, 'g07_기억누름', Q('#pf.on .pfa [data-pa=write]'), 'g07b_기억창');
+  boxes['g06_좋아요'] = await boxOf(p, Q('#pf.on .pfa [data-pa=like]')); boxes['g06_좋아요:mem'] = await boxOf(p, Q('#pf.on .pfa [data-pa=mem]')); await snap(p, 'g06_좋아요');   // 누르지 않음(견본 숫자 안 바꿈)
+  await tapAt(p, 'g07_기억누름', Q('#pf.on .pfa [data-pa=write]'), 'g07b_기억창', [['paW', Q('#paW')]]);
   await p.evaluate(() => { const d = document.getElementById('dimTop'); if (d) d.remove(); });
-  await tapAt(p, 'g08_공유누름', Q('#pf.on .pfa [data-pa=send]'), 'g08b_공유창');
+  await tapAt(p, 'g08_공유누름', Q('#pf.on .pfa [data-pa=send]'), 'g08b_공유창', [['kk', T('/카톡으로 보내기/')]]);
   await p.evaluate(() => { const d = document.getElementById('dimTop'); if (d) d.remove(); });
   boxes['g09_저장'] = await boxOf(p, Q('#pf.on .pfa [data-pa=save]')); await snap(p, 'g09_저장');
   await tapAt(p, 'g10_더보기', Q('#pf.on .pfa [data-pa=more]'), 'g10b_더보기창');
   await p.goto(B + '?c=' + ROOM); await wait(p);
-  await tapAt(p, 'g11_메뉴누름', T('/☰|메뉴/'), 'g11b_메뉴');
+  await tapAt(p, 'g11_메뉴누름', T('/☰|메뉴/'), 'g11b_메뉴', [['mk', T('/우리 이야기방 만들기/')]]);
   await tapAt(p, 'g12_홈화면누름', T('/홈 화면에 추가/'), 'g12b_홈화면');
   await p.goto(B + '?plaza=1'); await wait(p);
   const lk = await p.evaluate(() => !!document.querySelector('.lck'));
-  if (lk) await tapAt(p, 'g13_닫힌방', Q('.lck'), 'g13b_방두드리기'); else log.push('g13 닫힌 방 못 찾음');
+  if (lk) await tapAt(p, 'g13_닫힌방', Q('.lck'), 'g13b_방두드리기', [['knock', T('/방 두드리기/')]]); else log.push('g13 닫힌 방 못 찾음');
   await p.goto(B + '?c=' + ROOM); await wait(p);
-  await tapAt(p, 'g14_손님올리기', Q('#btab [data-bt=up]'), 'g14b_로그인안내');
+  await tapAt(p, 'g14_손님올리기', Q('#btab [data-bt=up]'), 'g14b_로그인안내', [['kakao', T('/카카오 로그인/')], ['age', `() => document.querySelector('input[type=checkbox]')`]]);
   await p.goto(B + '?open=form'); await p.waitForTimeout(3500); await snap(p, 'g15_방만들기');
   await c.close();
   // ── 멤버(시험 방 관리자 열쇠)
   if (/^[a-f0-9]{32}$/.test(KEY)) {
     c = await newCtx(); p = await c.newPage();
-    await p.goto(B + '?k=' + KEY); await wait(p); await snap(p, 'm01_방첫화면');
+    await p.goto(B + '?k=' + KEY); await wait(p); await p.goto(B + '?me=1'); await wait(p); await snap(p, 'm01_방첫화면');
+    boxes['m01_방첫화면:mgr'] = await boxOf(p, T('/방 관리/'));
     await tapAt(p, 'm02_초대누름', T('/초대하기/'), 'm02b_초대창');
     await p.goto(B + '?me=1'); await wait(p);
     await tapAt(p, 'm03_올리기누름', Q('#btab [data-bt=up]'), 'm03b_새게시물');
