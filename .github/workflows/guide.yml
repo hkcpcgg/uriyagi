@@ -1,0 +1,37 @@
+# 안내 방 그림 찍기 — 손으로만 돌림(261119) · 열쇠는 실행 입력으로만(가려서) · 그림은 guide 가지
+name: 안내 방 그림 찍기
+on:
+  workflow_dispatch:
+    inputs:
+      key:
+        description: '시험 방 열쇠(비우면 손님 화면만)'
+        required: false
+        default: ''
+permissions:
+  contents: write
+jobs:
+  guide:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: 열쇠 가리기
+        run: |
+          K=$(jq -r '.inputs.key // ""' "$GITHUB_EVENT_PATH")
+          if [ -n "$K" ]; then echo "::add-mask::$K"; echo "KEY=$K" >> "$GITHUB_ENV"; fi
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/selfcheck
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: |
+          cd .github/selfcheck
+          npm init -y >/dev/null
+          npm i playwright-core@1.48.2 >/dev/null
+          sudo apt-get install -y fonts-noto-cjk >/dev/null 2>&1 || true
+          node guide.mjs
+      - name: 그림을 guide 가지에 올림
+        run: |
+          cd .github/selfcheck/guide
+          git init -q -b guide && git add . && git -c user.name=guide -c user.email=guide@uriyagi.kr commit -q -m "guide $(date -u +%F_%H%M)"
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" guide
