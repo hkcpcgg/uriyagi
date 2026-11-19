@@ -10,7 +10,7 @@ const log = [], boxes = {};
 async function newCtx() { return browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, locale: 'ko-KR', userAgent: UA }); }
 async function wait(p) { for (let i = 0; i < 40; i++) { const ok = await p.evaluate(() => [...document.querySelectorAll('#main *')].some(el => /url\(/.test(getComputedStyle(el).backgroundImage) || (el.tagName === 'IMG' && el.naturalWidth > 0 && el.width > 60))); if (ok) break; await p.waitForTimeout(300); } await p.waitForTimeout(2500); }
 let REN = null;   // 멤버 화면: 시험 방 이름 · 이름을 보기용 이름으로 바꿔 찍음(안내 그림에 「지울 것」 같은 말이 안 나오게)
-async function ren(p) { if (!REN) return; await p.evaluate(R => { const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n; while ((n = w.nextNode())) { let v = n.nodeValue; for (const [a, b] of R) v = v.split(a).join(b); if (v !== n.nodeValue) n.nodeValue = v; } document.querySelectorAll('input,textarea').forEach(e => { for (const [a, b] of R) if (e.value) e.value = e.value.split(a).join(b); }); }, REN).catch(() => {}); }
+async function ren(p) { if (!REN) return; await p.evaluate(R => { const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n; while ((n = w.nextNode())) { let v = n.nodeValue; for (const [a, b] of R) v = v.replace(new RegExp(a, 'g'), b); if (v !== n.nodeValue) n.nodeValue = v; } document.querySelectorAll('input,textarea').forEach(e => { for (const [a, b] of R) if (e.value) e.value = e.value.replace(new RegExp(a, 'g'), b); }); }, REN).catch(() => {}); }
 async function snap(p, n) { await p.waitForTimeout(1300); await ren(p); await p.screenshot({ path: 'guide/' + n + '.png' }); log.push(n); }
 // 누를 곳을 찾아 자리를 적고(그림에 동그라미용) 찍은 뒤 누름
 async function boxOf(p, find) { return p.evaluate(`(() => { const e = (${find})(); if (!e) return null; const b = e.getBoundingClientRect(); return { x: b.left, y: b.top, w: b.width, h: b.height }; })()`); }
@@ -20,7 +20,7 @@ async function tapAt(p, n, find, after, more) {
   await p.waitForTimeout(500);
   boxes[n] = await boxOf(p, find); await snap(p, n);
   await p.evaluate(`(() => { const e = (${find})(); if (e) e.click(); })()`);
-  if (after) { await p.waitForTimeout(3200); await snap(p, after); for (const [mn, mf] of (more || [])) { boxes[after + ':' + mn] = await boxOf(p, mf); } }
+  if (after) { await p.waitForTimeout(3200); if (more && more[0]) { for (let i = 0; i < 25; i++) { if (await boxOf(p, more[0][1])) break; await p.waitForTimeout(400); } } await snap(p, after); for (const [mn, mf] of (more || [])) { boxes[after + ':' + mn] = await boxOf(p, mf); } }
   return true;
 }
 const T = re => `() => [...document.querySelectorAll('button,a,[role=button],label')].filter(e => { const b = e.getBoundingClientRect(); return b.width > 0 && b.height > 0 && ${re}.test((e.textContent || '') + ' ' + (e.getAttribute('aria-label') || '')); }).pop()`;
@@ -56,7 +56,7 @@ try {
   // ── 멤버(시험 방 관리자 열쇠)
   if (/^[a-f0-9]{32}$/.test(KEY)) {
     c = await newCtx(); p = await c.newPage();
-    REN = [['시험 v101 거들 방', '우리 동아리 방'], ['(지울 것)', ''], ['시험 관리자', '김우리']];
+    REN = [['시험\\s*v101\\s*거들\\s*방', '우리 동아리 방'], ['\\s*\\(지울\\s*것\\)', ''], ['시험\\s*관리자', '김우리']];
     await p.goto(B + '?k=' + KEY); await wait(p); await p.goto(B + '?me=1'); await wait(p); await snap(p, 'm01_방첫화면');
     boxes['m01_방첫화면:mgr'] = await boxOf(p, T('/방 관리/'));
     await tapAt(p, 'm02_초대누름', T('/초대하기/'), 'm02b_초대창');
