@@ -54,7 +54,7 @@ try {
   await p.evaluate(() => { const d = document.getElementById('dimTop'); if (d) d.remove(); });
   await tapAt(p, 'g10_더보기', Q('#pf.on .pfa [data-pa=more]'), 'g10b_더보기창', [['del', T('/삭제 요청/')]]);
   await p.goto(B + '?c=' + ROOM); await wait(p);
-  await tapAt(p, 'g11_메뉴누름', T('/☰|메뉴/'), 'g11b_메뉴', [['mk', T('/우리 이야기방 만들기/')]]);
+  await tapAt(p, 'g11_메뉴누름', T('/☰|메뉴/'), 'g11b_메뉴', [['mk', T('/^[^가-힣]*우리 이야기방 만들기/')]]);
   await tapAt(p, 'g12_홈화면누름', T('/홈 화면에 추가/'), 'g12b_홈화면', [['how', `() => [...document.querySelectorAll('#dimTop *')].find(e => /홈 화면에 추가/.test(e.textContent || '') && e.children.length >= 2 && e.getBoundingClientRect().height < 120 && e.getBoundingClientRect().top > 300)`]]);
   await p.goto(B + '?plaza=1'); await wait(p);
   const lk = await p.evaluate(() => !!document.querySelector('.lck'));
