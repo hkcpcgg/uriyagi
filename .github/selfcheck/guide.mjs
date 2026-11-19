@@ -20,7 +20,7 @@ async function tapAt(p, n, find, after, more) {
   await p.waitForTimeout(500);
   boxes[n] = await boxOf(p, find); await snap(p, n);
   await p.evaluate(`(() => { const e = (${find})(); if (e) e.click(); })()`);
-  if (after) { await p.waitForTimeout(3200); if (more && more[0]) { for (let i = 0; i < 25; i++) { if (await boxOf(p, more[0][1])) break; await p.waitForTimeout(400); } } await snap(p, after); for (const [mn, mf] of (more || [])) { boxes[after + ':' + mn] = await boxOf(p, mf); } }
+  if (after) { await p.waitForTimeout(3200); if (more && more[0]) { for (let i = 0; i < 50; i++) { if (await boxOf(p, more[0][1])) break; await p.waitForTimeout(400); } await p.waitForTimeout(600); } await snap(p, after); for (const [mn, mf] of (more || [])) { boxes[after + ':' + mn] = await boxOf(p, mf); } }
   return true;
 }
 const T = re => `() => [...document.querySelectorAll('button,a,[role=button],label')].filter(e => { const b = e.getBoundingClientRect(); return b.width > 0 && b.height > 0 && ${re}.test((e.textContent || '') + ' ' + (e.getAttribute('aria-label') || '')); }).pop()`;
@@ -56,7 +56,7 @@ try {
   // ── 멤버(시험 방 관리자 열쇠)
   if (/^[a-f0-9]{32}$/.test(KEY)) {
     c = await newCtx(); p = await c.newPage();
-    REN = [['시험\\s*v101\\s*거들\\s*방', '우리 동아리 방'], ['\\s*\\(지울\\s*것\\)', ''], ['시험\\s*관리자', '김우리']];
+    REN = [['시험\\s*관리자', '김우리'], ['시험\\s*v101', '우리 동아리'], ['거들\\s*방', '방'], ['\\s*\\(지울\\s*것\\)', '']];
     await p.goto(B + '?k=' + KEY); await wait(p); await p.goto(B + '?me=1'); await wait(p); await snap(p, 'm01_방첫화면');
     boxes['m01_방첫화면:mgr'] = await boxOf(p, T('/방 관리/'));
     await tapAt(p, 'm02_초대누름', T('/초대하기/'), 'm02b_초대창');
