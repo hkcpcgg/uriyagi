@@ -56,7 +56,7 @@ try {
   // ── 멤버(시험 방 관리자 열쇠)
   if (/^[a-f0-9]{32}$/.test(KEY)) {
     c = await newCtx(); p = await c.newPage();
-    REN = [['시험\\s*관리자', '김우리'], ['시험\\s*v101', '우리 동아리'], ['거들\\s*방', '방'], ['\\s*\\(지울\\s*것\\)', '']];
+    REN = [['시험\\s*관리자', '김우리'], ['시험\\s*v101', '우리 동아리'], ['거.\\s*방', '방'], ['\\s*\\(지울\\s*것\\)', '']];
     await p.goto(B + '?k=' + KEY); await wait(p); await p.goto(B + '?me=1'); await wait(p); await snap(p, 'm01_방첫화면');
     boxes['m01_방첫화면:mgr'] = await boxOf(p, T('/방 관리/'));
     await tapAt(p, 'm02_초대누름', T('/초대하기/'), 'm02b_초대창');
