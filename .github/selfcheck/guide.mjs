@@ -3,7 +3,8 @@
 // 손님 화면 + 시험 방(C-0294) 관리자 열쇠로 본 멤버 화면 · 열쇠는 실행 때 입력으로만 받고 어디에도 적지 않음
 import { chromium } from 'playwright-core';
 import fs from 'fs';
-const B = 'https://uriyagi.kr/', ROOM = process.env.ROOM || 'C-0294', KEY = (process.env.KEY || '').trim();
+const B = 'https://uriyagi.kr/', ROOM = process.env.ROOM || 'C-0294', KEY = (process.env.KEY || '').trim(), KEY2 = (process.env.KEY2 || '').trim(), PREP = process.env.PREP === '1';
+// ★v3 261120 — 18편(새 소식) · 20편(내 게시물 ⋯) 그림용 준비: PREP=1 이면 KEY(시험 방 관리자)가 견본 사진 한 장을 올리고, KEY2(같은 시험 방 다른 멤버)가 그 사진에 ♥ — 시험 방에서만
 fs.mkdirSync('guide', { recursive: true });
 const browser = await chromium.launch({ executablePath: process.env.CHROME || '/usr/bin/google-chrome' });
 const UA = 'Mozilla/5.0 (Linux; Android 14; SM-S918N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36';
@@ -68,10 +69,35 @@ try {
   const up = await p.evaluate(() => { const e = [...document.querySelectorAll('button,a')].find(x => /나도 사진 올리기/.test(x.textContent || '')); if (!e) return false; e.scrollIntoView({ block: 'center' }); return true; });
   if (up) { await p.waitForTimeout(800); await mark(p, 'g16_나도사진올리기', [['up', T('/나도 사진 올리기/')]]); await snap(p, 'g16_나도사진올리기'); } else log.push('g16 나도 사진 올리기 못 찾음');
   await c.close();
+  // ── ★v3 준비(시험 방에서만)
+  if (PREP && /^[a-f0-9]{32}$/.test(KEY) && /^[a-f0-9]{32}$/.test(KEY2)) {
+    c = await newCtx(); p = await c.newPage();
+    await p.goto(B + '?k=' + KEY); await wait(p); await p.goto(B + '?me=1'); await wait(p);
+    let fc = p.waitForEvent('filechooser', { timeout: 6000 }).catch(() => null);
+    await p.evaluate(() => { const e = document.querySelector('#btab [data-bt=up]'); if (e) e.click(); });
+    let ch = await fc;
+    if (!ch) { await p.waitForTimeout(1500); fc = p.waitForEvent('filechooser', { timeout: 6000 }).catch(() => null); await p.evaluate(() => { const e = document.getElementById('pk') || [...document.querySelectorAll('button')].find(x => /사진 선택/.test(x.textContent || '')); if (e) e.click(); }); ch = await fc; }
+    if (ch) {
+      await ch.setFiles('../../seed/run/r4.jpg'); await p.waitForTimeout(4000);
+      const go = await p.evaluate(() => { const e = [...document.querySelectorAll('button')].filter(x => /올리기/.test(x.textContent || '') && x.getBoundingClientRect().width > 200 && !x.disabled).pop(); if (!e) return ''; e.click(); return e.textContent.trim(); });
+      log.push('준비 · 올리기 단추 ' + (go || '못 찾음'));
+      let tt = ''; for (let i = 0; i < 60; i++) { await p.waitForTimeout(1000); tt = await p.evaluate(() => [...document.querySelectorAll('.toast,#toast,[class*=toast]')].map(e => e.textContent.trim()).filter(Boolean).join(' / ')); if (/올렸|올라|실렸|등록/.test(tt)) break; }
+      log.push('준비 · 알림 ' + (tt || '없음'));
+      await p.waitForTimeout(3000);
+    } else log.push('준비 · 사진 고르기 창 못 엶');
+    await c.close();
+    c = await newCtx(); p = await c.newPage();
+    await p.goto(B + '?k=' + KEY2); await wait(p); await p.goto(B + '?me=1'); await wait(p);
+    for (let i = 0; i < 3; i++) { await p.reload(); await wait(p); if (await p.evaluate(`(${PIC})()`.replace(/^/, '!!'))) break; }
+    const op = await p.evaluate(`(() => { const e = (${PIC})(); if (!e) return false; e.click(); return true; })()`);
+    if (op) { await p.waitForTimeout(3000); const lk = await p.evaluate(() => { const b = document.querySelector('#pf.on .pfa [data-pa=like]'); if (!b) return '단추 없음'; if (b.classList.contains('on')) return '이미 누름'; b.click(); return '누름'; }); await p.waitForTimeout(4000); log.push('준비 · 다른 멤버 ♥ ' + lk); }
+    else log.push('준비 · 다른 멤버 화면에 사진 없음');
+    await c.close();
+  }
   // ── 멤버(시험 방 관리자 열쇠)
   if (/^[a-f0-9]{32}$/.test(KEY)) {
     c = await newCtx(); p = await c.newPage();
-    REN = [['시험\\s*관리자', '김우리'], ['시험\\s*v101', '우리 동아리'], ['거.\\s*방', '방'], ['\\s*\\(지울\\s*것\\)', '']];
+    REN = [['시험\\s*위\\s*관리자', '김우리'], ['시험\\s*v101\\s*멤버', '이하나'], ['시험\\s*관리자', '김우리'], ['시험\\s*v101', '우리 동아리'], ['거.\\s*방', '방'], ['\\s*\\(지울\\s*것\\)', '']];
     await p.goto(B + '?k=' + KEY); await wait(p); await p.goto(B + '?me=1'); await wait(p); await snap(p, 'm01_방첫화면');
     boxes['m01_방첫화면:mgr'] = await boxOf(p, T('/방 관리/')); boxes['m01_방첫화면:inv'] = await boxOf(p, T('/초대하기/'));
     await tapAt(p, 'm02_초대누름', T('/초대하기/'), 'm02b_초대창');
@@ -85,7 +111,7 @@ try {
     await tapAt(p, 'm07_처리할일', T('/처리할 일/'), 'm07b_처리할일');
     await p.goto(B + '?me=1'); await wait(p);
     await tapAt(p, 'm08_사진누름', PIC, 'm08b_게시물');
-    await tapAt(p, 'm09_더보기', Q('#pf.on .pfa [data-pa=more]'), 'm09b_내게시물메뉴');
+    await tapAt(p, 'm09_더보기', Q('#pf.on .pfa [data-pa=more]'), 'm09b_내게시물메뉴', [['ed', T('/수정/')], ['del', T('/삭제/')]]);
     await c.close();
   } else log.push('멤버 화면은 건너뜀(열쇠 없음)');
 } catch (e) { log.push('오류 ' + e.message.slice(0, 160)); }
