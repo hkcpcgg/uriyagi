@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v214 · 261120 · [우리이야기] 안내 방 아래 길 시안 v6(대표 05:21 OK) — 아래 가운데 ‹ ⊞ › 셋만(바탕 없음 · 가는 선 · 흐림 · 사랑흐름 「← ⌂ →」 자리 · 간격) · 머리띠 「⊞ 전체 보기」 · 편 글씨 단추 · 「☝ 위로 밀면 다음 편」 뺌 -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v215 · 261120 · [우리이야기] 고장 고침(대표 08:38 「승인대로 쭉」) — 손님이 ＋ 누른 뒤 다른 방에 가도 로그인 창이 또 뜨던 것: lf_rec_plus 에 고른 방 이름 · 로그인 창 보였는지 같이 둠 → 고른 방에서만 · 한 번만 뜸 · 다른 방이면 버림 -->
+<!-- (이전) ★ 현재 버전 ▶ rec/index.html · v214 · 261120 · [우리이야기] 안내 방 아래 길 시안 v6(대표 05:21 OK) — 아래 가운데 ‹ ⊞ › 셋만(바탕 없음 · 가는 선 · 흐림 · 사랑흐름 「← ⌂ →」 자리 · 간격) · 머리띠 「⊞ 전체 보기」 · 편 글씨 단추 · 「☝ 위로 밀면 다음 편」 뺌 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v213 · 261120 · [우리이야기] 안내 방 넘기기(대표 261120 05:00 OK · 시안 없이) — 짧은 글 남색 칸도 밀면 넘어감 · 긴 글은 칸 안에서 읽고 끝에서 한 번 더 밀면 다음 편 · 「▼ 글이 더 있어요 / 다 읽었어요」 · 머리띠 「⊞ 전체 보기」 · 아래 큰 앞/다음 단추 + 「☝ 위로 밀면 다음 편」 · 처음 열 때 손가락 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v212 · 261119 · [우리이야기] 안내 방 설명 칸 시안 v4 A안(대표 23:44 OK) — 그림 가운데 · 남색 설명 카드 · 이름 줄 뺌 · 원고 전문 + ①②③ 노란 동그라미 · 23칸 막대 · 앞 편/다음 편 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v211 · 261119 · [우리이야기] 대표 지적 ①③④⑤(시안 v1 · v3 · 대표 22:45 「권고대로 · 치고 나가라」) — 오른쪽 단추 아이콘만 · ♥ 누르면 빨강 채움 · 🍇 제 색 · 누른 것 되돌아가던 고장 · 저장은 ⋯ 안 · 몇 번째 늘 보임 · 끌어내려 닫기 · 끝에 전체 보기 · 닫으면 보던 칸 주황 · 안내 방 노란 머리띠 · 크림 · 남색 틀 · 단추 ♥ · 💬 -->
@@ -2007,7 +2008,7 @@ function boot(){
   var f0=(sp.get('f')||'').trim(), f=(f0==='home')?'home':f0.replace(/[^a-f0-9]/gi,'').slice(0,10); if(f){ sset('lf_rec_f',f); } FROM=f||sget('lf_rec_f');   /* ★v27 home = 메인 화면에서 옴 */
   var tx=(sp.get('t')||'').slice(0,3000), w=(sp.get('w')||'');    /* ★v33 231 「텍스트로 변환」 길은 닫음 · t · w 는 옛 링크용으로 그대로 받음 */
   if(tx&&OPEN_R){ DRAFT_T=tx; } if(['사진','영상','글','링크'].indexOf(w)>-1){ PEND_ADD={type:w,title:(sp.get('tt')||'').slice(0,60),text:tx}; } if(sp.get('new')==='1'){ PEND_NEW=1; }   /* ★v70 막 연 방 → 올리기 네 가지 */
-  if(!PEND_ADD&&plusFlag()){ PEND_ADD={type:'사진',title:'',text:'',plus:1}; }   /* ★v133 566 다른 방에서 ＋ 로 고른 방 */
+  var pf0=PEND_ADD?false:plusFlag(); if(pf0){ PEND_ADD={type:'사진',title:'',text:'',plus:1,pn:pf0.n,seen:pf0.seen}; }   /* ★v133 566 다른 방에서 ＋ 로 고른 방 */
   if(sp.get('plus')==='1'){ PLUS_OPEN=1; }   /* ★v133 메인 ＋ */
   if(sp.get('share')==='1'){ shareFlag(+(sp.get('n')||0)>0); try{ history.replaceState(null,'',location.pathname+(sp.get('plaza')==='1'?'?plaza=1':'')); }catch(e){} if(!(+(sp.get('n')||0))){ setTimeout(function(){ toast('공유한 사진을 받지 못했습니다','사진첩에서 다시 공유해 주십시오'); },1200); } }   /* ★v152 674 사진첩 「공유」로 들어옴 */
   if(k||g||OPEN_R||f||tx||w||pl||PEND_NEW){ try{ history.replaceState(null,'',location.pathname+(g&&!k?'?g='+encodeURIComponent(g):'')); }catch(e){} }   /* 열쇠는 주소창에서 바로 지움(160) */
@@ -2046,7 +2047,7 @@ function guestShow(d,m){   /* ★v51 손님 첫 화면 그리기(guestIn · room
     render(); if(y){ window.scrollTo(0,y); }
     inLog('방');   /* ★v176 S3 */
     if(!by0&&FROM&&FROM!=='home'){ byLoad(g,function(r){ if(r.by&&ME&&ME.guest){ ME.by=r.by; byPaint(); } }); }   /* ★v175 S2 보낸 분 링크로 왔을 때만 */
-    if(PEND_ADD&&PEND_ADD.plus&&!OPEN_R){ PEND_ADD=null; setTimeout(plusJoin,400); } else if(shareFlag()&&!OPEN_R){ shareKick(); }   /* ★v152 674 · ★v133 566 ＋ 로 고른 방 — 손님이면 카카오 로그인 뒤 올리기 */
+    if(PEND_ADD&&PEND_ADD.plus&&!OPEN_R){ var pq=PEND_ADD; PEND_ADD=null; if(pq.pn&&pq.pn===ME.comName&&!pq.seen){ plusFlag(true,pq.pn,1); setTimeout(plusJoin,400); } else { plusClear(); } } else if(shareFlag()&&!OPEN_R){ shareKick(); }   /* ★v152 674 · ★v133 566 ＋ 로 고른 방 — 손님이면 카카오 로그인 뒤 올리기 */
 }
 var KREST='fe792945db813c2a38cacfbe273cba8d', KREDIR='https://uriyagi.kr/';   /* 카카오 REST API 키(앱 키 · 주소에 보이는 값) */
 var KICON='<svg viewBox="0 0 24 24"><path d="M12 3.5C6.8 3.5 2.6 6.8 2.6 10.9c0 2.6 1.7 4.9 4.3 6.2l-1 3.7c-.1.3.3.6.6.4l4.4-2.9c.4 0 .7.1 1.1.1 5.2 0 9.4-3.3 9.4-7.4S17.2 3.5 12 3.5z"/></svg>';
@@ -2146,7 +2147,8 @@ function loadMe(g,want){
 }
 function meShow(d,g,want,m){   /* ★v51 내 첫 화면 그리기(loadMe · roomPick 같이 씀) · ★v52 m = 1 남겨 둔 것 · 2 새 답 · 4 같음 */
     m=m||0;
-    function post(){ if(PEND_ADD&&canAdd()&&PEND_ADD.plus&&shareFlag()){ PEND_ADD=null; plusClear(); shareTake(); } else if(PEND_ADD&&canAdd()){ var pa=PEND_ADD; PEND_ADD=null; plusClear(); A=newA(); A.type=pa.type; A.title=pa.title; A.text=pa.text; go('add'); if(!pa.plus){ toast('작성 중이던 내용을 가져왔습니다'); } } else if(PEND_ADD&&PEND_ADD.plus){ PEND_ADD=null; plusClear(); } else if(PEND_NEW&&canAdd()){ PEND_NEW=0; setTimeout(newRoomSheet,400); } else if(shareFlag()){ shareKick(); }   /* ★v152 674 · ★v98 74차 묶음 1 — 막 연 방은 QR 받기부터 */
+    function post(){ if(PEND_ADD&&PEND_ADD.plus&&(!PEND_ADD.pn||!ME||PEND_ADD.pn!==ME.comName)){ PEND_ADD=null; plusClear(); }   /* ★v215 고른 방이 아니면 버림 */
+      if(PEND_ADD&&canAdd()&&PEND_ADD.plus&&shareFlag()){ PEND_ADD=null; plusClear(); shareTake(); } else if(PEND_ADD&&canAdd()){ var pa=PEND_ADD; PEND_ADD=null; plusClear(); A=newA(); A.type=pa.type; A.title=pa.title; A.text=pa.text; go('add'); if(!pa.plus){ toast('작성 중이던 내용을 가져왔습니다'); } } else if(PEND_ADD&&PEND_ADD.plus){ PEND_ADD=null; plusClear(); } else if(PEND_NEW&&canAdd()){ PEND_NEW=0; setTimeout(newRoomSheet,400); } else if(shareFlag()){ shareKick(); }   /* ★v152 674 · ★v98 74차 묶음 1 — 막 연 방은 QR 받기부터 */
       if(ME.wait){ toast('등록 신청이 접수되어 있습니다','관리자 승인 후 작성하실 수 있습니다'); } afterMe(); handAskShow(); }
     if(m===4){ post(); return; }
     rksPut(d.comName,K); if(d.main){ mainSet(d.g||'',d.comName); }
@@ -3010,7 +3012,7 @@ function pzSend(e){ var url=location.origin+'/?g='+e.g+'&r='+e.id;
   if(navigator.share){ navigator.share({title:(e.room||'우리 이야기')+' · 사랑흐름',text:'「'+(e.title||e.room||'우리 이야기')+'」',url:cardUrl?cardUrl(url):url}).catch(function(){}); return; }
   copyLink(url,'링크를 복사했습니다','카카오톡 대화방에 붙여 넣으세요'); }
 /* ══ ★v133 566 어디서든 ＋ — 「어디에 올릴까요?」 지금 보던 방 · 이 휴대폰의 내 방 · 새 이야기방 만들기 ══ */
-function plusFlag(on){ try{ if(on){ localStorage.setItem('lf_rec_plus',String(Date.now())); return true; } var t=parseInt(localStorage.getItem('lf_rec_plus'),10)||0; return !!t&&Date.now()-t<15*60000; }catch(e){ return false; } }
+function plusFlag(on,nm,seen){ try{ if(on){ localStorage.setItem('lf_rec_plus',Date.now()+'|'+encodeURIComponent(String(nm||''))+'|'+(seen?1:0)); return true; } var p=String(localStorage.getItem('lf_rec_plus')||'').split('|'), t=parseInt(p[0],10)||0; if(!t||Date.now()-t>=15*60000){ return false; } var n=''; try{ n=decodeURIComponent(p[1]||''); }catch(e){} return {n:n,seen:p[2]==='1'}; }catch(e){ return false; } }   /* ★v215 고른 방 이름 · 로그인 창 보였는지 같이 둠 — 다른 방에서 로그인 창이 또 뜨던 고장 */
 function plusClear(){ try{ localStorage.removeItem('lf_rec_plus'); }catch(e){} }
 function plusUpRole(n){ var m=myrOf(n); return !m||!m.role||m.role==='관리자'||m.role==='확인자'||m.role==='올리는 사람'; }
 function plusPick(cx){
@@ -3059,8 +3061,8 @@ function shareTake(){ shareFiles(function(fs){ shareClear(); if(!fs.length){ toa
 function shareKick(){ if(SHK||!shareFlag()){ return; } SHK=1; setTimeout(function(){ if($('dimTop')){ SHK=0; return; } plusPick(null); setTimeout(function(){ var x=$('pkX'); if(x){ var o=x.onclick; x.onclick=function(){ shareClear(); if(o){ o.apply(this,arguments); } }; } },60); },500); }
 function plusGo(x){
   if(x.here){ if(shareFlag()){ shareTake(); return; } addGo(); return; }
-  if(x.guest){ vwThen(function(){ plusFlag(true); plusJoin(); }); return; }
-  plusFlag(true);
+  if(x.guest){ vwThen(function(){ plusFlag(true,x.n,1); plusJoin(); }); return; }
+  plusFlag(true,x.n,0);
   if(x.k){ roomGo({n:x.n,k:x.k}); return; }
   location.href=location.pathname+'?g='+encodeURIComponent(x.g)+'&f=home';   /* 손님으로 그 방 → 카카오 로그인 창 · 받기 방식대로(①Code v67) */
 }
@@ -6828,7 +6830,7 @@ window.addEventListener('appinstalled',function(){ PWA_EV=null; var b=$('pwaGo')
 try{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js',{scope:'/'})['catch'](function(){});
   /* ★v62 375 새 화면 파일을 받아 오면 한 번 바꿔 엶 — 첫 화면 · 광장에서만(쓰는 중에는 기다렸다가 첫 화면으로 돌아올 때) */
   navigator.serviceWorker.addEventListener('message',function(ev){ if(!ev.data||ev.data.t!=='lf-new'){ return; } NEWV=1; newGo(); }); } }catch(e){}
-var NEWV=0, REC_VER=214;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
+var NEWV=0, REC_VER=215;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
 function newChk(){ try{ if(!window.caches){ return; } caches.open('lf-rec-shell-v2').then(function(c){ return c.match('/'); }).then(function(r){ return r?r.text():''; }).then(function(t){ var m=/rec\/index\.html · v(\d+)/.exec(String(t).slice(0,600)); if(m&&parseInt(m[1],10)>REC_VER){ NEWV=1; newGo(); } })['catch'](function(){}); }catch(e){} }   /* ★v62 375 알림을 놓쳐도 남겨 둔 파일 버전을 직접 봄 */
 setTimeout(newChk,5000); setTimeout(newChk,15000);
 document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible'){ setTimeout(newChk,1500); } });
