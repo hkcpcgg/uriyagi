@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v208 · 261119 · [우리이야기] 고장 고침 — 사진 한 장 게시물에서 💬 기억 창이 「기억을 불러오는 중입니다」에 멈춤 · 숫자(♥ · 🍇 · 💬)도 서버 값으로 안 바뀌던 것(같은 사진인지 묶음 대신 번호로 봄) · 그 밖 v207 그대로 -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v209 · 261119 · [우리이야기] 「우리 이야기 안내」 방 그림은 마당 사진칸에서 뺌(대표 261119 · 위 방 동그라미 줄엔 그대로) -->
+<!-- (이전) ★ 현재 버전 ▶ rec/index.html · v208 · 261119 · [우리이야기] 고장 고침 — 사진 한 장 게시물에서 💬 기억 창이 「기억을 불러오는 중입니다」에 멈춤 · 숫자(♥ · 🍇 · 💬)도 서버 값으로 안 바뀌던 것(같은 사진인지 묶음 대신 번호로 봄) · 그 밖 v207 그대로 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v207 · 261119 · [우리이야기] 고장 고침 — 보낼 사진 고르기 날짜 칸 「99999년」(날짜 모르는 사진) → 「날짜 모름」 · 그 밖 v206 그대로 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v206 · 261119 · [우리이야기] 💬 누르자마자 기억 창부터(불러오는 동안 기다림 표시) · 그 밖 v205 그대로 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v205 · 261119 · [우리이야기] 게시물 보기 쇼츠형(시안 v1 · 대표 261119 11:06 「승인 다 됨 · 쭉 가라」) — 사진 한 장 = 화면 하나(위아래로 밀면 다음 게시물 · 여러 장은 옆으로 · 점) · 가로 사진도 통째로(남는 곳은 같은 사진 흐리게) · 오른쪽 세로 단추 ♥ · 🍇 나도 기억해요 · 💬 기억 · 공유 · ⬇ 저장(새 · 전체 공개 = 누구나 · 그 밖 = 멤버만 · 가로 800) · ⋯ · 왼쪽 아래 얼굴 · 이름(프로필) · 글 두 줄(누르면 더) · 💬 = 밑에서 올라오는 기억 창(늘 펼친 「기억 남기기…」 걷음) · 한 번 톡 = 단추 숨김/보임 · 두 번 톡 = 큰 하트 + 짧은 진동 · 🍇 포도알 퍼짐 · 숫자 튐 · 소리 없음 · 두 손가락 = 전체 화면 확대 · 동그라미 글자 「(」 고침 -->
@@ -2497,8 +2498,9 @@ function pzGrow(n){
   }
 }
 function pzCellsOf(s){ var a=[], h=s.big?2:1; for(var r=0;r<h;r++){ for(var c=0;c<h;c++){ a.push((s.r+r)+':'+(s.c+c)); } } return a; }
+var PZ_OUT={'우리 이야기 안내':1};
 function pzAdd(items){
-  var g={}, n=0; (items||[]).forEach(function(x){ if(!PLZ.rooms[x.c]||PZL.seen[x.id]){ return; } PZL.seen[x.id]=1; if((PZL.rc[x.c]||0)>=PZ_CAP){ PZL.over.push(x); return; } PZL.rc[x.c]=(PZL.rc[x.c]||0)+1;   /* ★v187 방마다 12장 */ x._a=PZL.age++; (g[x.c]=g[x.c]||[]).push(x); n++; });
+  var g={}, n=0; (items||[]).forEach(function(x){ if(!PLZ.rooms[x.c]||PZL.seen[x.id]||PZ_OUT[PLZ.rooms[x.c].name]){ return; }   /* ★v209 안내 방 그림은 마당 사진칸에서 뺌(위 동그라미 줄엔 그대로) */ PZL.seen[x.id]=1; if((PZL.rc[x.c]||0)>=PZ_CAP){ PZL.over.push(x); return; } PZL.rc[x.c]=(PZL.rc[x.c]||0)+1;   /* ★v187 방마다 12장 */ x._a=PZL.age++; (g[x.c]=g[x.c]||[]).push(x); n++; });
   if(!n){ return; }
   var done=PZL.cells.length; pzGrow(done+n);
   var free=PZL.sl.filter(function(s){ return !s.make; }).slice(done,done+n);
@@ -6725,7 +6727,7 @@ window.addEventListener('appinstalled',function(){ PWA_EV=null; var b=$('pwaGo')
 try{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js',{scope:'/'})['catch'](function(){});
   /* ★v62 375 새 화면 파일을 받아 오면 한 번 바꿔 엶 — 첫 화면 · 광장에서만(쓰는 중에는 기다렸다가 첫 화면으로 돌아올 때) */
   navigator.serviceWorker.addEventListener('message',function(ev){ if(!ev.data||ev.data.t!=='lf-new'){ return; } NEWV=1; newGo(); }); } }catch(e){}
-var NEWV=0, REC_VER=208;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
+var NEWV=0, REC_VER=209;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
 function newChk(){ try{ if(!window.caches){ return; } caches.open('lf-rec-shell-v2').then(function(c){ return c.match('/'); }).then(function(r){ return r?r.text():''; }).then(function(t){ var m=/rec\/index\.html · v(\d+)/.exec(String(t).slice(0,600)); if(m&&parseInt(m[1],10)>REC_VER){ NEWV=1; newGo(); } })['catch'](function(){}); }catch(e){} }   /* ★v62 375 알림을 놓쳐도 남겨 둔 파일 버전을 직접 봄 */
 setTimeout(newChk,5000); setTimeout(newChk,15000);
 document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible'){ setTimeout(newChk,1500); } });
