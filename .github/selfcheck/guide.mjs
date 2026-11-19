@@ -28,8 +28,10 @@ async function tapAt(p, n, find, after, more) {
   if (after) { await p.waitForTimeout(3200); if (more && more[0]) { for (let i = 0; i < 50; i++) { if (await boxOf(p, more[0][1])) break; await p.waitForTimeout(400); } await p.waitForTimeout(600); } for (const [mn, mf] of (more || [])) { boxes[after + ':' + mn] = await boxOf(p, mf); } await snap(p, after); }
   return true;
 }
-const T = re => `() => [...document.querySelectorAll('button,a,[role=button],label')].filter(e => { const b = e.getBoundingClientRect(); return b.width > 0 && b.height > 0 && ${re}.test((e.textContent || '') + ' ' + (e.getAttribute('aria-label') || '')); }).pop()`;
-const Q = s => `() => [...document.querySelectorAll('${s}')].filter(e => { const b = e.getBoundingClientRect(); return b.width > 0 && b.height > 0 && b.top < innerHeight; })[0]`;
+// ★v2 맨 위에 보이는 것만(뒤에 깔린 같은 이름 단추를 잡아 동그라미가 엉뚱한 데 가던 고장 — 16편)
+const TOP = `(e => { const b = e.getBoundingClientRect(); const x = b.left + b.width / 2, y = b.top + Math.min(b.height / 2, 20); if (x < 0 || y < 0 || x > innerWidth || y > innerHeight) return true; const h = document.elementFromPoint(x, y); return !!h && (h === e || e.contains(h) || h.contains(e)); })`;
+const T = re => `() => [...document.querySelectorAll('button,a,[role=button],label')].filter(e => { const b = e.getBoundingClientRect(); return b.width > 0 && b.height > 0 && ${re}.test((e.textContent || '') + ' ' + (e.getAttribute('aria-label') || '')) && ${TOP}(e); }).pop()`;
+const Q = s => `() => [...document.querySelectorAll('${s}')].filter(e => { const b = e.getBoundingClientRect(); return b.width > 0 && b.height > 0 && b.top < innerHeight && ${TOP}(e); })[0]`;
 const PIC = `() => [...document.querySelectorAll('#main *')].find(e => { const b = e.getBoundingClientRect(); return b.width > 100 && b.height > 100 && b.top > 150 && /url\\(/.test(getComputedStyle(e).backgroundImage); })`;
 try {
   // ── 손님
@@ -44,9 +46,9 @@ try {
   await mark(p, 'g04_방첫화면', [['hd', `() => document.querySelector('#main .rph')`], ['tabs', `() => document.querySelector('#main .rtabs')`]]); await snap(p, 'g04_방첫화면');
   await tapAt(p, 'g05_사진누름', PIC, 'g05b_게시물');
   boxes['g06_좋아요'] = await boxOf(p, Q('#pf.on .pfa [data-pa=like]')); boxes['g06_좋아요:mem'] = await boxOf(p, Q('#pf.on .pfa [data-pa=mem]')); await snap(p, 'g06_좋아요');   // 누르지 않음(견본 숫자 안 바꿈)
-  await tapAt(p, 'g07_기억누름', Q('#pf.on .pfa [data-pa=write]'), 'g07b_기억창', [['paW', Q('#paW')], ['sh', `() => document.querySelector('#dimTop .sheet, #dimTop [class*=sheet], #dimTop h2')`]]);
+  await tapAt(p, 'g07_기억누름', Q('#pf.on .pfa [data-pa=write]'), 'g07b_기억창', [['paW', Q('#paW')], ['sh', `() => document.querySelector('#dimTop h2')`]]);
   await p.evaluate(() => { const d = document.getElementById('dimTop'); if (d) d.remove(); });
-  await tapAt(p, 'g08_공유누름', Q('#pf.on .pfa [data-pa=send]'), 'g08b_공유창', [['kk', T('/카톡으로 보내기/')], ['pick', `() => [...document.querySelectorAll('#dimTop *')].find(e => /보던 게시물/.test(e.textContent || '') && e.children.length < 3)`]]);
+  await tapAt(p, 'g08_공유누름', Q('#pf.on .pfa [data-pa=send]'), 'g08b_공유창', [['kk', T('/카톡으로 보내기/')], ['pick', `() => [...document.querySelectorAll('#dimTop img')].filter(e => e.getBoundingClientRect().width > 40)[0]`]]);
   await p.evaluate(() => { const d = document.getElementById('dimTop'); if (d) d.remove(); });
   await tapAt(p, 'g09_저장', Q('#pf.on .pfa [data-pa=more]'), 'g09b_저장', [['sv', Q('#mSv')]]);
   await p.evaluate(() => { const d = document.getElementById('dimTop'); if (d) d.remove(); });
@@ -62,6 +64,7 @@ try {
   await p.goto(B + '?open=form'); await p.waitForTimeout(3500);
   await mark(p, 'g15_방만들기', [['kind', `() => [...document.querySelectorAll('#main *')].find(e => /어떤 방인가요/.test(e.textContent || '') && e.children.length >= 2 && e.getBoundingClientRect().height < 260)`]]); await snap(p, 'g15_방만들기');
   await p.goto(B + '?c=' + ROOM); await wait(p);
+  await p.evaluate(() => { const d = document.getElementById('dimTop'); if (d) d.remove(); });   // 손님 올리기 뒤 남은 로그인 창(알려진 고장 · 대표 OK 대기) 걷고 찍음
   const up = await p.evaluate(() => { const e = [...document.querySelectorAll('button,a')].find(x => /나도 사진 올리기/.test(x.textContent || '')); if (!e) return false; e.scrollIntoView({ block: 'center' }); return true; });
   if (up) { await p.waitForTimeout(800); await mark(p, 'g16_나도사진올리기', [['up', T('/나도 사진 올리기/')]]); await snap(p, 'g16_나도사진올리기'); } else log.push('g16 나도 사진 올리기 못 찾음');
   await c.close();
