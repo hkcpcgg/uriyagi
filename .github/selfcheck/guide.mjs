@@ -78,19 +78,23 @@ try {
     let ch = await fc;
     if (!ch) { await p.waitForTimeout(1500); fc = p.waitForEvent('filechooser', { timeout: 6000 }).catch(() => null); await p.evaluate(() => { const e = document.getElementById('pk') || [...document.querySelectorAll('button')].find(x => /사진 선택/.test(x.textContent || '')); if (e) e.click(); }); ch = await fc; }
     if (ch) {
-      await ch.setFiles('../../seed/run/r4.jpg'); await p.waitForTimeout(4000);
+      await ch.setFiles('../../seed/run/r4.jpg');
+      for (let i = 0; i < 40; i++) { await p.waitForTimeout(500); if (await p.evaluate(() => !document.getElementById('pk') && [...document.querySelectorAll('#main img, #main canvas, #main [style*=url]')].some(e => e.getBoundingClientRect().width > 60))) break; }
+      await p.waitForTimeout(1500); await p.screenshot({ path: 'guide/x_prep1.png' });
       const go = await p.evaluate(() => { const e = [...document.querySelectorAll('button')].filter(x => /올리기/.test(x.textContent || '') && x.getBoundingClientRect().width > 200 && !x.disabled).pop(); if (!e) return ''; e.click(); return e.textContent.trim(); });
       log.push('준비 · 올리기 단추 ' + (go || '못 찾음'));
       let tt = ''; for (let i = 0; i < 60; i++) { await p.waitForTimeout(1000); tt = await p.evaluate(() => [...document.querySelectorAll('.toast,#toast,[class*=toast]')].map(e => e.textContent.trim()).filter(Boolean).join(' / ')); if (/올렸|올라|실렸|등록/.test(tt)) break; }
       log.push('준비 · 알림 ' + (tt || '없음'));
-      await p.waitForTimeout(3000);
+      await p.screenshot({ path: 'guide/x_prep2.png' });
+      let got = false; for (let i = 0; i < 6 && !got; i++) { await p.waitForTimeout(5000); await p.goto(B + '?me=1'); await wait(p); got = await p.evaluate(`!!(${PIC})()`); }
+      log.push('준비 · 방에 사진 ' + (got ? '보임' : '안 보임')); await p.screenshot({ path: 'guide/x_prep3.png' });
     } else log.push('준비 · 사진 고르기 창 못 엶');
     await c.close();
     c = await newCtx(); p = await c.newPage();
     await p.goto(B + '?k=' + KEY2); await wait(p); await p.goto(B + '?me=1'); await wait(p);
-    for (let i = 0; i < 3; i++) { await p.reload(); await wait(p); if (await p.evaluate(`(${PIC})()`.replace(/^/, '!!'))) break; }
+    for (let i = 0; i < 3; i++) { await p.reload(); await wait(p); if (await p.evaluate(`!!(${PIC})()`)) break; }
     const op = await p.evaluate(`(() => { const e = (${PIC})(); if (!e) return false; e.click(); return true; })()`);
-    if (op) { await p.waitForTimeout(3000); const lk = await p.evaluate(() => { const b = document.querySelector('#pf.on .pfa [data-pa=like]'); if (!b) return '단추 없음'; if (b.classList.contains('on')) return '이미 누름'; b.click(); return '누름'; }); await p.waitForTimeout(4000); log.push('준비 · 다른 멤버 ♥ ' + lk); }
+    if (op) { for (let i = 0; i < 20; i++) { await p.waitForTimeout(500); if (await p.evaluate(() => !!document.querySelector('#pf.on .pfa [data-pa=like]'))) break; } await p.screenshot({ path: 'guide/x_prep4.png' }); const lk = await p.evaluate(() => { const b = document.querySelector('#pf.on .pfa [data-pa=like]'); if (!b) return '단추 없음'; if (b.classList.contains('on')) return '이미 누름'; b.click(); return '누름'; }); await p.waitForTimeout(4000); log.push('준비 · 다른 멤버 ♥ ' + lk); }
     else log.push('준비 · 다른 멤버 화면에 사진 없음');
     await c.close();
   }
