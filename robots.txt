@@ -2,6 +2,8 @@
 User-agent: *
 Allow: /guide/
 Allow: /story/
+Allow: /terms/
+Allow: /privacy/
 Allow: /seed/
 Disallow: /*?
 Allow: /?c=C-0295$

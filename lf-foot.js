@@ -1,3 +1,4 @@
+/* [우리이야기] 261120 이용약관 · 개인정보처리방침 주소만 우리 페이지(/terms/ · /privacy/)로 바꿈(우리 이야기 전용 약관 시행) · 환불정책 · 소개는 사랑흐름 그대로 */
 /* [우리이야기] uriyagi.kr 사본 — 사랑흐름 lf-foot.js v10(loveflow 67a8e39)을 그대로 받음 · 바꾼 것: 본부 바로가기 → https://www.loveflow.ai.kr/hq/?hq=1 (다른 링크는 원본이 스스로 www.loveflow.ai.kr 을 붙임) */
 /* ═══════════════════════════════════════════════════════════════
    현재 버전 ▶ lf-foot.js · v10 · 261117 · [700 · 대표 OK 261117 07:36] 사업자 정보 양쪽 맞춤(줄이 넘치면 글자 사이가 벌어짐) → 왼쪽부터 이어 쓰기 · 글꼴이 온 뒤 · 화면을 다 연 뒤 · 2.5초 뒤 글자 크기를 다시 맞춤(실폰 결제 화면 세 줄 · © 줄 잘림). [무손] 그 밖 v9 전부.
@@ -57,8 +58,8 @@
     + '<div class="lfft">'
     +   '<div class="lfft-links">'
     +     '<a href="' + O + '/about.html">소개</a>'
-    +     '<a href="' + O + '/trust.html#terms">이용약관</a>'
-    +     '<a class="pv" href="' + O + '/trust.html#privacy">개인정보처리방침</a>'
+    +     '<a href="https://uriyagi.kr/terms/">이용약관</a>'
+    +     '<a class="pv" href="https://uriyagi.kr/privacy/">개인정보처리방침</a>'
     +     '<a href="' + O + '/trust.html#refund">환불정책</a>'
     +     '<a href="' + KAKAO + '" target="_blank" rel="noopener">문의</a>'
     +   '</div>'

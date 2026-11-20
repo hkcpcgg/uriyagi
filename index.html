@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v224 · 261120 · [우리이야기] 속도 2단계 ③ · ④ — 게시물 답(recGet)에 실려 온 닫힌 사진 큰 그림 서명 주소(mu)를 바로 씀 · 닫힌 방 바둑판(recPhotos)도 base64 대신 서명 주소(①Code v109 와 짝 · 옛 서버면 그대로) -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v225 · 261120 · [우리이야기] 전용 약관 시행 — 로그인 창 「개인정보 처리」 링크를 우리 처리방침(/privacy/)으로 · 푸터 이용약관 · 개인정보처리방침도 /terms/ · /privacy/ -->
+<!-- (이전) rec/index.html · v224 · 261120 · [우리이야기] 속도 2단계 ③ · ④ — 게시물 답(recGet)에 실려 온 닫힌 사진 큰 그림 서명 주소(mu)를 바로 씀 · 닫힌 방 바둑판(recPhotos)도 base64 대신 서명 주소(①Code v109 와 짝 · 옛 서버면 그대로) -->
 <!-- (이전) rec/index.html · v223 · 261120 · [우리이야기] 속도 2단계 ② — 내 방 첫 답(recHome n 20 · loadMe · roomPick)이 가는 중에 「나」만 묻는 recHome(n 1 · meqLoad)이 또 나가던 것 → 가는 답을 기다려 같이 씀(MEW · meqWait · meqDone) · ★검색 열기(대표 13:27 OK) — robots 메타 · 대표 주소를 주소에 따라(?c= 안내 · 활용 · 견본 여섯만 index · 나머지 noindex) + robots.txt · sitemap.xml · 정적 안내 페이지 /guide/ · /story/(build_pages.py) · 서버 변경 없음 · REC_VER 223 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v222 · 261120 · [우리이야기] 속도 2단계(대표 OK 방향 · 서버 ①Code v107 과 짝) — 목록 답에 실려 온 닫힌 사진 작은 그림 서명 주소(su · sx)를 받아 바둑판을 바로 그림 · recPvs 왕복(3.6초) 없앰 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v221 · 261120 · [우리이야기] 대표 13:58 OK(시안 v1) — ⑤ 위 띠 ☰ 바로 옆 📖 책 그림(bookTop · 모든 화면 · 안내 방으로) ③ 앱으로 열 때만 「포도 + 우리 이야기」 한 장(#appOpen · 다 열리면 걷힘 · 3초 넘지 않음) -->
@@ -1812,7 +1813,7 @@ body.btabon #fab,body.btabon #way3,body.btabon .fabtip{display:none!important}
 <div class="navbar" id="navbar" hidden><div class="in"><button class="btn warm" id="nNext" type="button">올리기</button></div><p class="nvnote" id="nvNote"></p></div>
 <script src="/lf/config.js?v=4"></script>
 <script src="/lf/pub.js?v=2"></script>
-<script src="/lf-foot.js?v=10" defer></script>
+<script src="/lf-foot.js?v=10u1" defer></script>
 <script>
 (function(){
 /* ★v203 사랑흐름 사본 lf/frame.js(v18~)도 카톡 안이면 바로 바깥으로 넘기는데 열쇠 없이 넘김 → 이 화면이 열쇠를 실어 넘기므로 frame.js 넘기기는 쉬게 함(frame.js 손대지 않음 · 그 「한 창에 한 번」 표를 먼저 세움) */
@@ -1941,7 +1942,7 @@ function joinGate(up){   /* ★v175 S2 A4 로그인 한 화면 */
   var nm=esc((ME&&ME.comName)||'우리 이야기');
   sheet('<div style="text-align:center"><span class="ci c-gold" style="width:52px;height:52px">'+ic(up?'photo':'heart')+'</span><h2 style="margin-top:8px">'+(up?'사진을 올리려면 카카오 로그인이 필요합니다':nm)+'</h2>'+(up?'<p class="lead">로그인 뒤 「'+nm+'」 새 게시물 화면으로 바로 갑니다.</p>':(ME&&ME.by?'<p class="lead">'+esc(ME.by)+' 님이 초대했습니다</p>':''))+'</div>'+
     '<label class="wab" style="font-size:15.5px;justify-content:center"><input type="checkbox" id="gja"> 만 14세 이상입니다</label>'+kakaoBtn('gjb')+'<div class="err" id="gje" style="text-align:center"></div>'+
-    '<p class="lead" style="text-align:center;margin-top:10px">닉네임만 받습니다 · 전화번호는 받지 않습니다 · <a href="https://www.loveflow.ai.kr/trust.html#rec8" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">개인정보처리방침</a></p><p class="lead" style="text-align:center">'+(up?'쓰시던 글은 그대로 남아 있습니다.':'보던 사진은 그대로 이어집니다.')+'</p><p class="lead" style="text-align:center;margin-top:6px"><button type="button" id="gjG" style="border:0;background:none;color:var(--navy);font:inherit;font-weight:700;text-decoration:underline;cursor:pointer">📖 우리 이야기 사용법 보기 ›</button></p>',function(){ $('gjG').onclick=function(){ closeSheet(); guideGo(); };   /* ★v216 초대 링크로 방에 바로 온 손님용 */
+    '<p class="lead" style="text-align:center;margin-top:10px">닉네임만 받습니다 · 전화번호는 받지 않습니다 · <a href="https://uriyagi.kr/privacy/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">개인정보처리방침</a></p><p class="lead" style="text-align:center">'+(up?'쓰시던 글은 그대로 남아 있습니다.':'보던 사진은 그대로 이어집니다.')+'</p><p class="lead" style="text-align:center;margin-top:6px"><button type="button" id="gjG" style="border:0;background:none;color:var(--navy);font:inherit;font-weight:700;text-decoration:underline;cursor:pointer">📖 우리 이야기 사용법 보기 ›</button></p>',function(){ $('gjG').onclick=function(){ closeSheet(); guideGo(); };   /* ★v216 초대 링크로 방에 바로 온 손님용 */
     $('gjb').onclick=function(){ if(!$('gja').checked){ $('gje').textContent='만 14세 이상인지 확인해 주십시오.'; return; } kakaoGo('join',{g:G,a:1,f:FROM,r:(VIEW==='item'?STACK[STACK.length-1].id:'')}); };
   });
 }
@@ -2141,7 +2142,7 @@ function joinForm(g,d){   /* ★v175 S2 A4 — 방 이름 · 초대한 분 · �
   d=d||{}; inLog('로그인 화면');   /* ★v176 S3 */
   $('main').innerHTML='<div class="card" style="text-align:center"><span class="ci c-gold" style="width:56px;height:56px">'+ic('heart')+'</span><h2 id="jnN" style="margin-top:10px">'+esc(d.comName||'우리 이야기')+'</h2><p class="lead" id="jnB" hidden></p><div id="jnP"></div>'+
     '<label class="wab" style="font-size:15.5px;justify-content:center"><input type="checkbox" id="ja"> 만 14세 이상입니다</label>'+kakaoBtn('jb')+rememberBox()+'<div class="err" id="je"></div>'+
-    '<p class="lead" style="margin-top:10px">닉네임만 받습니다 · 전화번호는 받지 않습니다 · <a href="https://www.loveflow.ai.kr/trust.html#rec8" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">개인정보처리방침</a></p></div>';
+    '<p class="lead" style="margin-top:10px">닉네임만 받습니다 · 전화번호는 받지 않습니다 · <a href="https://uriyagi.kr/privacy/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">개인정보처리방침</a></p></div>';
   $('jb').onclick=function(){ if(!$('ja').checked){ $('je').textContent='만 14세 이상인지 확인해 주십시오.'; return; } $('je').textContent=''; kakaoGo('join',{g:g,a:1}); };
   byLoad(g,function(r){ var n=$('jnN'), b=$('jnB'); if(!n){ return; } if(r.name){ n.textContent=r.name; } if(r.by&&b){ b.textContent=r.by+' 님이 초대했습니다'; b.hidden=false; } if(r.closed){ pvPaint(g,r); } });
 }
@@ -2676,7 +2677,7 @@ function lockSheet(x){ if(!x){ return; }
 function knockSheet(x){
   sheet('<h2>똑똑! 누구세요?</h2><textarea class="t one" rows="1" wrap="off" enterkeyhint="done" id="knS" maxlength="60" placeholder="저는 영희 조카예요" autocomplete="off" style="margin-top:10px"></textarea>'+
     '<label class="wab" style="font-size:15.5px;justify-content:center"><input type="checkbox" id="knA"> 만 14세 이상입니다</label><button type="button" class="btn kakao" id="knGo">'+KICON+'똑똑 두드리기</button><div class="err" id="knE" style="text-align:center"></div>'+
-    '<p class="lead" style="text-align:center;margin-top:10px">닉네임만 받습니다 · 전화번호는 받지 않습니다 · <a href="https://www.loveflow.ai.kr/trust.html#rec8" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">개인정보처리방침</a></p>',function(){
+    '<p class="lead" style="text-align:center;margin-top:10px">닉네임만 받습니다 · 전화번호는 받지 않습니다 · <a href="https://uriyagi.kr/privacy/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">개인정보처리방침</a></p>',function(){
     $('knGo').onclick=function(){ if(!$('knA').checked){ $('knE').textContent='만 14세 이상인지 확인해 주십시오.'; return; } kakaoGo('knock',{kc:x.com,sy:$('knS').value.trim().slice(0,60),a:1}); };
   }); }
 var KNK='lf_uri_knock';
@@ -2974,7 +2975,7 @@ function meGot(){ var el=$('meGot'); if(!el){ return; } if(!GM){ wait(el,'받은
     if(L.length){ try{ localStorage.setItem(GMK,String(L[0].at)); }catch(e){} btabDraw(); }
   },true); }
 function meGear(){ var R=meRows().map(function(r){ return r[0]==='me'?['me','heart','c-gold','내가 남긴 기억','내가 다른 사진에 남긴 기억 · 글']:r; });
-  sheet('<h2>설정</h2><div class="mlist mgear">'+R.map(function(r){ return '<button type="button" data-m="'+r[0]+'"'+(r[0]==='logout'||r[0]==='leave'?' class="red"':'')+'>'+ic(r[1])+'<span>'+r[3]+'</span></button>'; }).join('')+'</div><p class="note" style="text-align:center;margin:10px 0 0"><a href="https://www.loveflow.ai.kr/trust.html#rec8" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">개인정보처리방침</a></p><button class="btn line lv" id="mgX" type="button">닫기</button>',function(){
+  sheet('<h2>설정</h2><div class="mlist mgear">'+R.map(function(r){ return '<button type="button" data-m="'+r[0]+'"'+(r[0]==='logout'||r[0]==='leave'?' class="red"':'')+'>'+ic(r[1])+'<span>'+r[3]+'</span></button>'; }).join('')+'</div><p class="note" style="text-align:center;margin:10px 0 0"><a href="https://uriyagi.kr/privacy/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">개인정보처리방침</a></p><button class="btn line lv" id="mgX" type="button">닫기</button>',function(){
     $('mgX').onclick=closeSheet;
     each($('dimTop'),'[data-m]',function(b){ b.onclick=function(){ var m=b.getAttribute('data-m'); closeSheet(); if(m==='shr'||m==='open'||m==='guide'||m==='myname'||m==='kk'||m==='post'||m==='logout'||m==='leave'||m==='pwa'){ setTimeout(function(){ meDo(m); },60); return; } lyAll(function(){ meDo(m); }); }; });
   }); }
@@ -6874,7 +6875,7 @@ window.addEventListener('appinstalled',function(){ PWA_EV=null; var b=$('pwaGo')
 try{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js',{scope:'/'})['catch'](function(){});
   /* ★v62 375 새 화면 파일을 받아 오면 한 번 바꿔 엶 — 첫 화면 · 광장에서만(쓰는 중에는 기다렸다가 첫 화면으로 돌아올 때) */
   navigator.serviceWorker.addEventListener('message',function(ev){ if(!ev.data||ev.data.t!=='lf-new'){ return; } NEWV=1; newGo(); }); } }catch(e){}
-var NEWV=0, REC_VER=224;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
+var NEWV=0, REC_VER=225;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
 function newChk(){ try{ if(!window.caches){ return; } caches.open('lf-rec-shell-v2').then(function(c){ return c.match('/'); }).then(function(r){ return r?r.text():''; }).then(function(t){ var m=/rec\/index\.html · v(\d+)/.exec(String(t).slice(0,600)); if(m&&parseInt(m[1],10)>REC_VER){ NEWV=1; newGo(); } })['catch'](function(){}); }catch(e){} }   /* ★v62 375 알림을 놓쳐도 남겨 둔 파일 버전을 직접 봄 */
 setTimeout(newChk,5000); setTimeout(newChk,15000);
 document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible'){ setTimeout(newChk,1500); } });
