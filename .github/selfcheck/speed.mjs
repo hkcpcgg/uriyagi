@@ -9,8 +9,8 @@ function sum(L) { const g = {}; L.filter(x => x.a).forEach(x => { (g[x.a] = g[x.
 const T = ms => (ms / 1000).toFixed(1) + '초';
 async function ctx() { return browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, locale: 'ko-KR', userAgent: UA }); }
 function netlog(p) { const L = []; const st = new Map();
-  p.on('request', r => { if (/script\.google/.test(r.url())) { let a = ''; try { a = JSON.parse(r.postData() || '{}').action || ''; } catch (e) {} st.set(r, [Date.now(), a]); } });
-  p.on('requestfinished', r => { let root = r; while (root.redirectedFrom()) root = root.redirectedFrom(); const s = st.get(root); if (s && r === root) {} if (s && !r.redirectedTo()) L.push({ a: s[1], ms: Date.now() - s[0] }); });
+  p.on('request', r => { if (/script\.google/.test(r.url())) { let a = ''; try { a = JSON.parse(r.postData() || '{}').action || ''; } catch (e) {} st.set(r, [Date.now(), a]); } });   // 261120 시작 때도 남김
+  p.on('requestfinished', r => { let root = r; while (root.redirectedFrom()) root = root.redirectedFrom(); const s = st.get(root); if (s && r === root) {} if (s && !r.redirectedTo()) L.push({ a: s[1], ms: Date.now() - s[0], st: s[0] }); });
   p.on('response', r => { if (/ncloudstorage/.test(r.url())) { L.push({ a: (/X-Amz-Signature/.test(r.url()) ? '네이버 서명 ' : '네이버 ') + r.status(), ms: 0 }); } });
   return L; }
 async function until(p, fn, max = 30000) { const t0 = Date.now(); while (Date.now() - t0 < max) { if (await p.evaluate(`(${fn})()`).catch(() => false)) return Date.now() - t0; await p.waitForTimeout(100); } return -1; }
@@ -18,7 +18,7 @@ const firstPic = `() => [...document.querySelectorAll('#main .tl[data-tid],#main
 const curLoaded = `() => { const pf = document.querySelector('#pf.on'); if (!pf) return false; const arts = [...pf.querySelectorAll('.pfp')]; const a = arts.find(x => { const b = x.getBoundingClientRect(); return b.top > -50 && b.top < 200; }); if (!a) return false; const sc = a.querySelector('.pfs'); const w = sc.clientWidth || 1, k = Math.round(sc.scrollLeft / w); const im = sc.querySelectorAll('.pfi img')[k]; return !!im && im.complete && im.naturalWidth > 0 && !sc.children[k].querySelector('.pfw8'); }`;
 async function room(p, L, label, url) {
   L.length = 0; const t0 = Date.now(); await p.goto(url); const t1 = await until(p, firstPic, 40000);
-  out.push(`| ${label} | 방 열기 → 첫 사진 | ${t1 < 0 ? '★ 40초 넘음' : T(t1)} |`);
+  out.push(`| ${label} | 방 열기 → 첫 사진 | ${t1 < 0 ? '★ 40초 넘음' : T(t1)} | ${L.filter(x => x.a).map(x => x.a + '@' + T(x.st - t0) + '+' + T(x.ms)).join(' · ')} |`);
   // 여러 장 게시물 먼저 · 없으면 첫 칸
   const ok = await p.evaluate(() => { const ts = [...document.querySelectorAll('#main .tl[data-tid]')]; const t = ts.find(x => x.querySelector('.cnt.mul')) || ts[0]; if (!t) return 0; t.click(); return t.querySelector('.cnt.mul') ? 2 : 1; });
   if (!ok) { out.push(`| ${label} | 게시물 | 칸 없음 |`); return; }
