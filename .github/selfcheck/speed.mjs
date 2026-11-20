@@ -37,6 +37,9 @@ async function room(p, L, label, url) {
 // ★ 닫힌 사진 서명 주소 시험(KEY + PHOTO) — 서버에 url=1 로 묻고 그 주소를 바로 받아 봄
 if (/^[a-f0-9]{32}$/.test(KEY) && /^R-\d{6}$/.test(process.env.PHOTO || '')) {
   const GAS = 'https://script.google.com/macros/s/AKfycbyxGWMrhY9Ffihk56ve-8s_S87fdkg_WEMpJO7q3FZRkdlBZWwkWo8m2Gs-fBbrhoVMOg/exec';
+  { const h = await fetch(GAS, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action: 'recHome', k: KEY, lite: '1', n: '20' }) }).then(x => x.json()).catch(e => ({ err: e.message }));
+    const cards = []; (function walk(o, d) { if (!o || typeof o !== 'object' || d > 6) return; if (Array.isArray(o)) { o.forEach(x => walk(x, d + 1)); return; } if (o.id && o.photo !== undefined) cards.push(o); for (const k in o) if (o[k] && typeof o[k] === 'object') walk(o[k], d + 1); })(h, 0);
+    out.push(`| 목록 서명 주소 | 카드 ${cards.length} · su 있음 ${cards.filter(c => c.su).length} · n 있음 ${cards.filter(c => c.n).length} · ${cards.slice(0, 3).map(c => c.id + (c.su ? '(su)' : '') + (c.pv ? '(pv)' : '')).join(' ')} | ${Object.keys(h).slice(0, 12).join(',')} |`); }   // 261120 v107 확인
   for (const sm of ['', '1']) {
     const t0 = Date.now(); const d = await fetch(GAS, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action: 'recPhoto', k: KEY, id: process.env.PHOTO, small: sm, url: '1' }) }).then(x => x.json()).catch(e => ({ err: e.message }));
     const t1 = Date.now() - t0;
