@@ -36,11 +36,11 @@ const Q = s => `() => [...document.querySelectorAll('${s}')].filter(e => { const
 const PIC = `() => [...document.querySelectorAll('#main *')].find(e => { const b = e.getBoundingClientRect(); return b.width > 100 && b.height > 100 && b.top > 150 && /url\\(/.test(getComputedStyle(e).backgroundImage); })`;
 // ★v3 되돌리기 — UNDO=기기표|기록번호 : 그 기기로 누른 ♥ 를 한 번 더 눌러 거둠(준비 중 잘못 누른 것)
 if (process.env.UNDO) {
-  const [d, id] = process.env.UNDO.split('|');
+  const [d, id, g] = process.env.UNDO.split('|');
   const c = await newCtx(), p = await c.newPage();
   await p.goto(B + '?plaza=1'); await p.evaluate(v => localStorage.setItem('lf_dev', v), d);
-  await p.goto(B + '?k=' + KEY2); await wait(p); await p.goto(B + '?me=1'); await wait(p);
-  const r = await p.evaluate(id => new Promise(res => { if (typeof G === 'undefined' || !G) return res('G 없음'); anonLike(G, id, x => res(JSON.stringify(x))); setTimeout(() => res('답 없음'), 25000); }), id);
+  await p.goto(B + '?plaza=1'); await p.waitForTimeout(4000);
+  const r = await p.evaluate(([g, id]) => new Promise(res => { anonLike(g, id, x => res(JSON.stringify(x))); setTimeout(() => res('답 없음'), 25000); }), [g, id]);
   console.log('되돌리기 ' + id + ' → ' + r); await browser.close(); process.exit(0);
 }
 try {
