@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v219 · 261120 · [우리이야기] 속도(대표 11:58 OK · 서버 ①Code v106 과 짝) — 닫힌 사진은 서버가 10분짜리 서명 주소만 주고 네이버에서 바로 받음 · 8분 지나면 새 주소 · 안 열리면 옛 길 -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v220 · 261120 · [우리이야기] 고장 고침(대표 13:16 캡처 · 13:27 OK) — v219 의 10분 서명 주소가 작은 그림 창고(localStorage)에 담겨 다음에 열 때 닫힌 주소로 깨진 그림 · 「사진 3」 글자 · 끝없는 「불러오는 중」 → 서명 주소는 담지 않음(sigU · 열 때 옛것 치움) · 8분 지나면 버림(phFresh) · 깨지면 한 번 더 받고 그래도 안 되면 「다시 시도」 · 20초 지나도 없으면 「다시 시도」 · 네이버 9초 넘으면 옛 길 · 주소 없는 그림은 숨김 -->
+<!-- (이전) ★ 현재 버전 ▶ rec/index.html · v219 · 261120 · [우리이야기] 속도(대표 11:58 OK · 서버 ①Code v106 과 짝) — 닫힌 사진은 서버가 10분짜리 서명 주소만 주고 네이버에서 바로 받음 · 8분 지나면 새 주소 · 안 열리면 옛 길 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v218 · 261120 · [우리이야기] 바둑판 여러 장 표시 ⧉ 글자 → SVG 그림(인스타 꼴 · 글꼴 따라 □ 로 나오던 것) -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v217 · 261120 · [우리이야기] 대표 11:00 OK — 모든 방 · 마당 게시물 보기에도 안내 방과 같은 아래 가운데 ‹ ⊞ ›(pfNav · 흰 가는 선 · 흐림 · 끝은 더 흐림) · ⊞ = 그 방 바둑판(마당에서 열었으면 마당) · 맨 끝 「⊞ 전체 사진 보기」 뺌 · 이름 · 글 · 오른쪽 단추는 그만큼 위로 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v216 · 261120 · [우리이야기] 사용법 문 셋(대표 10:37 「소통 없이 개선해 진행」) — ① 마당 첫인사 카드 안 「📖 우리 이야기방을 소개합니다 · 사용법 보기 ›」(카드 닫으면 같이 사라짐) ② ☰ 도움 맨 위 「우리 이야기 사용법」(손님에게도) ③ 내 방 「📖 우리 이야기 사용법」 — 셋 다 「우리 이야기 안내」 방(GUIDE_G)으로 · helpSheet() = guideGo() · 동그라미 줄에서 안내 방 뺌 · 로그인 창 아래 한 줄 · 「쓰는 법」 → 「사용법」 -->
@@ -1571,6 +1572,7 @@ body.pfon{overflow:hidden}
 .pf .pfi,.pf .pfi.vid,.pf .pfi.vid.sh{aspect-ratio:auto;height:100%;max-height:none}
 .pf .pfi .pfbg{position:absolute;inset:-30px;background:#111 center/cover no-repeat;filter:blur(24px) brightness(.45);transform:scale(1.1)}
 .pf .pfi img{position:relative;width:100%;height:100%;object-fit:contain}
+.pfi img:not([src]){visibility:hidden}   /* ★v220 주소 없는 그림의 깨진 표시 · 이름 글자 숨김 */
 .pf .pfi.vid img{object-fit:contain;opacity:1}
 .pf .pfi .pfw8{color:#ddd;bottom:45%}
 .pf .pfc{top:calc(58px + env(safe-area-inset-top));right:12px;z-index:4}
@@ -2433,8 +2435,10 @@ var NCP_BASE='https://kr.object.ncloudstorage.com/uriyagi-photo/', NU={}; var PH
 function duUrl(id,w){ var n=NU[id], ww=w||480; if(n){ if(ww<=300&&n.t){ return NCP_BASE+n.t; } if(ww<=520&&n.s){ return NCP_BASE+n.s; } if(ww<=1000&&n.m){ return NCP_BASE+n.m; } if(ww<=1000&&DU[id]){ return 'https://drive.google.com/thumbnail?id='+encodeURIComponent(DU[id])+'&sz=w'+ww; } return NCP_BASE+(n.m||n.p); }   /* ★v184 작게 = 작은 그림 · 보통 = 가로 800 · 없으면 드라이브(원본을 통째로 받지 않음) */ return DU[id]?'https://drive.google.com/thumbnail?id='+encodeURIComponent(DU[id])+'&sz=w'+(w||480):''; }
 function duLoad(id,w,cb){ var u=duUrl(id,w); if(!u){ cb(''); return; } var im=new Image(), done=false; function fin(x){ if(done){ return; } done=true; cb(x); }
   im.onload=function(){ fin(im.naturalWidth>1?u:''); }; im.onerror=function(){ if(NU[id]&&DU[id]){ delete NU[id]; done=true; duLoad(id,w,cb); return; } fin(''); }; setTimeout(function(){ fin(''); },8000); im.src=u; }   /* ★v183 네이버가 안 되면 드라이브로 */
-try{ var pv0=JSON.parse(localStorage.getItem(PVK)||'{}'); for(var pk0 in pv0){ PVC[pk0]=pv0[pk0]; } }catch(e){}
-function pvKeep(id,u){ if(tmpOn()||!u||u.length>60000){ return; } PVC[id]=u; if(PVSAVE){ return; }
+function sigU(u){ return typeof u==='string'&&/[?&]X-Amz-Signature=/.test(u); }   /* ★v220 10분짜리 서명 주소는 담아 두지 않음(닫히면 깨진 그림) */
+function phFresh(k){ var u=PHC[k]; if(u&&PHT[k]&&Date.now()-PHT[k]>480000){ delete PHC[k]; delete PHT[k]; return ''; } return u||''; }
+try{ var pv0=JSON.parse(localStorage.getItem(PVK)||'{}'), pvBad=0; for(var pk0 in pv0){ if(sigU(pv0[pk0])){ delete pv0[pk0]; pvBad=1; continue; } PVC[pk0]=pv0[pk0]; } if(pvBad){ localStorage.setItem(PVK,JSON.stringify(pv0)); } }catch(e){}   /* ★v220 v219 때 담긴 닫힌 주소를 치움 */
+function pvKeep(id,u){ if(tmpOn()||!u||u.length>60000||sigU(u)){ return; } PVC[id]=u; if(PVSAVE){ return; }
   PVSAVE=setTimeout(function(){ PVSAVE=null; var o={}; try{ o=JSON.parse(localStorage.getItem(PVK)||'{}'); }catch(e){ o={}; }
     for(var k in PVC){ if(/^(data:image\/|https:\/\/drive\.google\.com\/thumbnail|https:\/\/kr\.object\.ncloudstorage\.com\/)/.test(PVC[k]||'')){ delete o[k]; o[k]=PVC[k]; } }
     var ks=Object.keys(o), tot=0, keep={}; for(var i=ks.length-1;i>=0;i--){ tot+=o[ks[i]].length; if(tot>1500000){ break; } keep[ks[i]]=1; }
@@ -2512,11 +2516,11 @@ function tile(it,big,cap,one){
   var pd=it.mineRec&&it.state==='기다림', pdT=pd?'<span class="pdt">승인 대기</span>':'';   /* ★v144 85차 8 승인 대기는 올린 분에게만 흐리게 */
   if(!one&&it.kind==='사진'&&!it.video&&it.photos&&it.photos.length>1){   /* ★v107 한 번에 올린 여러 장 — 한 장씩 칸으로(큰 첫 칸이면 첫 장은 크게 · 나머지는 이어서) */
     var head=''; if(big||cap){ var it0={}; for(var kk in it){ it0[kk]=it[kk]; } it0.photos=null; head=tile(it0,big,cap,1); }
-    return head+it.photos.map(function(p,k){ if(head&&!k){ return ''; } var bg=p.pv||PVC[p.id]||PHC['s:'+p.id]||duUrl(p.id,480)||(k?'':(it.pv||PVC[it.id]||''));
+    return head+it.photos.map(function(p,k){ if(head&&!k){ return ''; } var bg=p.pv||PVC[p.id]||phFresh('s:'+p.id)||duUrl(p.id,480)||(k?'':(it.pv||PVC[it.id]||''));
       return '<button type="button" class="tl'+(bg?'':' wait')+(pd?' pend':'')+'" data-tid="'+esc(it.id)+'" data-pid="'+esc(p.id)+'"'+(bg?'':' data-tpv="'+esc(p.id)+'"')+(bg?' style="background-image:url('+esc(bg)+')"':'')+' aria-label="'+esc(it.title||'사진')+' '+(k+1)+(pd?' · 승인 대기':'')+'">'+pdT+'</button>'; }).join('');
   }
   var bg='', cls='tl'+(big?' big':'')+(pd?' pend':''), vid=it.kind==='영상'&&it.video, p0=(!vid&&it.photos&&it.photos.length)?it.photos[0]:null, tpv=it.id;   /* ★v142 ⑤ 여러 장 한 칸 = 첫 장의 작은 사진을 바로 */
-  if(vid){ bg=it.video.thumb; } else if(it.pv||PVC[it.id]){ bg=it.pv||PVC[it.id]; } else if(p0&&(p0.pv||PVC[p0.id]||PHC['s:'+p0.id])){ bg=p0.pv||PVC[p0.id]||PHC['s:'+p0.id]; } else if(it.photo||p0){ cls+=' wait'; if(p0&&!it.photo){ tpv=p0.id; } }
+  if(vid){ bg=it.video.thumb; } else if(it.pv||PVC[it.id]){ bg=it.pv||PVC[it.id]; } else if(p0&&(p0.pv||PVC[p0.id]||phFresh('s:'+p0.id))){ bg=p0.pv||PVC[p0.id]||phFresh('s:'+p0.id); } else if(it.photo||p0){ cls+=' wait'; if(p0&&!it.photo){ tpv=p0.id; } }
   var n=it.photos&&it.photos.length>1?it.photos.length:0;
   var mv=!vid&&(it.mv||MV[it.id]);   /* ★v53 339 */
   return '<button type="button" class="'+cls+'" data-tid="'+esc(it.id)+'"'+((it.photo||p0)&&!vid&&!bg?' data-tpv="'+esc(tpv)+'"':'')+(bg?' style="background-image:url('+esc(bg)+')"':'')+' aria-label="'+esc(it.title||'사진')+'">'+
@@ -2524,7 +2528,7 @@ function tile(it,big,cap,one){
 }
 function pvLoad(el){
   var need=[]; each(el,'[data-tpv].wait',function(t){ var id=t.getAttribute('data-tpv'); if(need.indexOf(id)<0){ need.push(id); } });
-  function put(id,u){ spdPic(); PVC[id]=u; pvKeep(id,u); var l=findL(id); if(l&&!l.pv){ l.pv=u; } each(el,'[data-tpv="'+id+'"]',function(t){ t.style.backgroundImage='url('+u+')'; t.classList.remove('wait'); }); }
+  function put(id,u){ spdPic(); if(sigU(u)){ PHC['s:'+id]=u; PHT['s:'+id]=PHT['s:'+id]||Date.now(); } else { PVC[id]=u; pvKeep(id,u); var l=findL(id); if(l&&!l.pv){ l.pv=u; } } each(el,'[data-tpv="'+id+'"]',function(t){ t.style.backgroundImage='url('+u+')'; t.classList.remove('wait'); }); }
   function srvAsk(ids){ for(var i=0;i<ids.length;i+=9){ (function(part){ spdPend(1);
     api({action:'recPvs',ids:part.join(',')},function(d){ if(d.status!=='ok'){ spdPend(-1); return; } for(var k in (d.items||{})){ put(k,d.items[k]); }
       (d.miss||[]).forEach(function(id){ NEEDPV[id]=1; spdPend(1); photo(id,true,function(u){ if(u){ put(id,u); } spdPend(-1); },1); }); spdPend(-1); });
@@ -3289,7 +3293,7 @@ function vwRoom(id,pid){ var its=vwRoomList(); if(!its.length){ go('item',id); r
 /* ══ ★v141 시공 ④ 게시물(도식 2 2판) — 게시물 사이는 위아래 · 여러 장은 옆으로(점 · 1/9) · 기억 · ♥ · 🍇 는 지금 보는 사진에 · 사진을 누르면 전체 화면 ══ */
 var PF={on:false,list:[],ci:{},st:{},fromPz:0}, PFO=null, PFR='', PFP='';
 function pfPhotos(it){ if(it.video){ return [{id:it.id,vid:1}]; } if(it.photos&&it.photos.length){ return it.photos; } return [{id:it.id,pv:it.pv}]; }
-function pfTh(p,it){ return p.pv||PVC[p.id]||PHC['s:'+p.id]||duUrl(p.id,480)||(it&&p.id===it.id?(it.pv||''):''); }
+function pfTh(p,it){ return p.pv||PVC[p.id]||phFresh('s:'+p.id)||duUrl(p.id,480)||(it&&p.id===it.id?(it.pv||''):''); }
 function pfBox(){ var b=$('pf'); if(b){ return b; } b=document.createElement('div'); b.id='pf'; b.className='pf'; b.setAttribute('role','dialog'); b.setAttribute('aria-label','게시물');
   b.innerHTML='<div class="pftop"><button type="button" id="pfBk" aria-label="뒤로">‹ </button><button type="button" id="pfGrid" class="pfgrid">⊞ 전체 보기</button></div><div class="pfin" id="pfIn"></div>'; document.body.appendChild(b);
   $('pfBk').onclick=pfClose; $('pfGrid').onclick=pfClose; b.addEventListener('click',pfTap); pfPull(b); b.addEventListener('touchstart',pfPinch,{passive:true}); window.addEventListener('resize',function(){ if(PF.on){ pfFit(); } }); return b; }
@@ -3363,11 +3367,18 @@ function pfMem(i,fresh,then){ var p=pfCur(i); if(!p){ return; }   /* ★v205 기
     var o0=PF.st[p.id], ns={like:isGuest()?lkN(p.id,x.like||0):(x.like||0),myUp:upOf(x),react:x.react||0,mineReact:!!x.mineReact,mems:ms,item:x};
     if(o0&&o0.tk){ ns.like=o0.like; ns.myUp=o0.myUp; ns.react=o0.react; ns.mineReact=o0.mineReact; ns.tk=1; }   /* ★v211 대표 261119 ③ 「누른 뒤에도 같은 하트」 — 다시 볼 때 담아 둔 옛 답(누르기 전)으로 되돌리던 것 → 이 화면에서 누른 것은 그대로 */
     PF.st[p.id]=ns; pfAct(i); if(then){ then(); } },fresh); }
-function pfImg(id,cb){ if(PHC['m:'+id]){ cb(PHC['m:'+id]); return; } var cb0=cb; cb=function(u){ if(u&&/^https/.test(u)){ PHC['m:'+id]=u; } cb0(u); }; photo(id,false,cb); }   /* ★v142 ⑤ 실측(261114) — 구글 드라이브 작은 사진은 크기마다 따로 만들어 처음 받는 800 이 이미 만들어 둔 1600 보다 늦음(2.5~3.4초 : 1.2~1.8초) → 게시물도 1600 하나로 · 전체 화면은 같은 사진을 바로 씀 */
+function pfImg(id,cb){ var c0=phFresh('m:'+id); if(c0){ cb(c0); return; } var cb0=cb; cb=function(u){ if(u&&/^https/.test(u)){ PHC['m:'+id]=u; if(sigU(u)){ PHT['m:'+id]=Date.now(); } } cb0(u); }; photo(id,false,cb); }   /* ★v142 ⑤ 실측(261114) — 구글 드라이브 작은 사진은 크기마다 따로 만들어 처음 받는 800 이 이미 만들어 둔 1600 보다 늦음(2.5~3.4초 : 1.2~1.8초) → 게시물도 1600 하나로 · 전체 화면은 같은 사진을 바로 씀 */
 function pfLoad(i){ var art=document.querySelector('#pfIn [data-pi="'+i+'"]'); if(!art||art.getAttribute('data-ld')){ return; } art.setAttribute('data-ld','1');
   var k=PF.ci[i]||0; each(art,'img[data-fid]',function(im,j){ if(Math.abs(j-k)>1){ return; } pfImgOne(im); }); }
-function pfImgOne(im){ if(!im||im.getAttribute('data-ok')){ return; } im.setAttribute('data-ok','1'); var id=im.getAttribute('data-fid');
+function pfImgOne(im){ if(!im||im.getAttribute('data-ok')){ return; } im.setAttribute('data-ok','1'); var id=im.getAttribute('data-fid'); pfImgGuard(im,id);
   pfImg(id,function(u){ var w=im.parentNode&&im.parentNode.querySelector('.pfw8'); if(u){ im.src=u; var bg=im.parentNode&&im.parentNode.querySelector('.pfbg'); if(bg&&!bg.style.backgroundImage){ bg.style.backgroundImage='url("'+u+'")'; } if(w){ w.remove(); } } else if(!im.getAttribute('src')&&w){ w.innerHTML='사진을 불러오지 못했습니다<button type="button" data-pa="retry">다시 시도</button>'; im.removeAttribute('data-ok'); } }); }
+function pfImgGuard(im,id){ if(!im.getAttribute('data-eg')){ im.setAttribute('data-eg','1');   /* ★v220 깨진 그림 · 끝없는 「불러오는 중」 막기 */
+    im.addEventListener('error',function(){ var u=im.getAttribute('src')||''; im.removeAttribute('src'); delete PHC['m:'+id]; delete PHT['m:'+id]; delete PHC['s:'+id]; delete PHT['s:'+id]; if(PVC[id]===u){ delete PVC[id]; } if(PHC[id]===u){ delete PHC[id]; delete PHT[id]; }
+      var bg=im.parentNode&&im.parentNode.querySelector('.pfbg'); if(bg&&bg.style.backgroundImage.indexOf(u)>-1){ bg.style.backgroundImage=''; }
+      var w=im.parentNode&&im.parentNode.querySelector('.pfw8'); if(!w&&im.parentNode){ w=document.createElement('div'); w.className='pfw8'; im.parentNode.appendChild(w); }
+      if(+(im.getAttribute('data-rt')||0)<1){ im.setAttribute('data-rt','1'); if(w){ w.textContent='사진을 불러오는 중입니다'; } im.removeAttribute('data-ok'); pfImgOne(im); }
+      else if(w){ w.innerHTML='사진을 불러오지 못했습니다<button type="button" data-pa="retry">다시 시도</button>'; im.removeAttribute('data-ok'); im.removeAttribute('data-rt'); } }); }
+  setTimeout(function(){ if(!im.isConnected||im.getAttribute('src')){ return; } var w=im.parentNode&&im.parentNode.querySelector('.pfw8'); if(w&&!w.querySelector('button')){ w.innerHTML='사진을 불러오지 못했습니다<button type="button" data-pa="retry">다시 시도</button>'; im.removeAttribute('data-ok'); } },20000); }
 function pfSlide(sc){ var i=+sc.getAttribute('data-ps'), w=sc.clientWidth||1, k=Math.round(sc.scrollLeft/w); if((PF.ci[i]||0)===k){ return; } PF.ci[i]=k;
   var c=document.querySelector('#pfIn [data-pc="'+i+'"]'), n=sc.children.length; if(c){ c.textContent=(k+1)+'/'+n; } var d=document.querySelector('#pfIn [data-pd="'+i+'"]'); if(d){ each(d,'i',function(x,j){ x.classList.toggle('on',j===k); }); }
   each(sc,'img[data-fid]',function(im,j){ if(Math.abs(j-k)<=1){ pfImgOne(im); } }); pfAct(i); pfMem(i); }
@@ -3867,7 +3878,7 @@ function photo(id,small,cb,noDu){
   var k=(small?'s:':'')+id; if(PHC[k]&&PHT[k]&&Date.now()-PHT[k]>480000){ delete PHC[k]; delete PHT[k]; }   /* ★v219 서명 주소는 10분 — 8분 지나면 새로 받음 */ if(PHC[k]){ cb(PHC[k]); return; }
   if(!noDu){ if(PHW[k]){ PHW[k].push(cb); return; } PHW[k]=[cb]; var cb0=cb; cb=function(u){ var w=PHW[k]||[cb0]; delete PHW[k]; w.forEach(function(f){ try{ f(u); }catch(e){} }); }; }   /* ★v120 받는 중인 사진은 기다렸다 같이 받음 */
   if(duHas(id)&&!noDu){ duLoad(id,small?480:1600,function(u){ if(u){ PHC[k]=u; if(small){ PHN.s++; } else { PHN.b++; } cb(u); } else { photo(id,small,cb,1); } }); return; }   /* ★v53 333 서버를 거치지 않고 */
-  if(!noDu||noDu!==2){ api({action:'recPhoto',id:id,small:small?'1':'',url:'1',_quiet:1},function(d){ if(d&&d.status==='ok'&&d.url&&/^https:\/\/kr\.object\.ncloudstorage\.com\//.test(d.url)){ var im=new Image(); im.onload=function(){ PHC[k]=d.url; PHT[k]=Date.now(); if(small){ PHN.s++; } else { PHN.b++; } cb(d.url); }; im.onerror=function(){ photo(id,small,cb,2); }; im.src=d.url; return; } if(d&&d.status==='ok'&&d.data){ PHC[k]='data:'+d.type+';base64,'+d.data; pvHeal(id,PHC[k]); cb(PHC[k]); return; } photo(id,small,cb,2); }); return; }   /* ★v219 닫힌 사진 = 서버가 10분짜리 서명 주소만 → 네이버에서 바로(한 장 3~7초 → 짧게) · 안 되면 옛 길(서버가 받아 넘김) */
+  if(!noDu||noDu!==2){ api({action:'recPhoto',id:id,small:small?'1':'',url:'1',_quiet:1},function(d){ if(d&&d.status==='ok'&&d.url&&/^https:\/\/kr\.object\.ncloudstorage\.com\//.test(d.url)){ var im=new Image(), ok=0; im.onload=function(){ if(ok){ return; } ok=1; PHC[k]=d.url; PHT[k]=Date.now(); if(small){ PHN.s++; } else { PHN.b++; } cb(d.url); }; im.onerror=function(){ if(ok){ return; } ok=1; photo(id,small,cb,2); }; setTimeout(function(){ if(!ok){ ok=1; photo(id,small,cb,2); } },9000); im.src=d.url; return; }   /* ★v220 네이버가 9초 넘게 답 없으면 옛 길 */ if(d&&d.status==='ok'&&d.data){ PHC[k]='data:'+d.type+';base64,'+d.data; pvHeal(id,PHC[k]); cb(PHC[k]); return; } photo(id,small,cb,2); }); return; }   /* ★v219 닫힌 사진 = 서버가 10분짜리 서명 주소만 → 네이버에서 바로(한 장 3~7초 → 짧게) · 안 되면 옛 길(서버가 받아 넘김) */
   api({action:'recPhoto',id:id,small:small?'1':''},function(d){ if(d.status==='ok'){ if(small){ PHN.s++; } else { PHN.b++; } PHN.kb+=String(d.data||'').length*0.75/1024; PHC[k]='data:'+d.type+';base64,'+d.data; pvHeal(id,PHC[k]); cb(PHC[k]); } else { cb(''); } });
 }
 /* ★v25 스스로 채우기 — 미리보기 없는 옛 사진을 이 폰이 처음 열면 작은 사진을 만들어 서버에 남김(다음부터 모두 빨리) */
@@ -6845,7 +6856,7 @@ window.addEventListener('appinstalled',function(){ PWA_EV=null; var b=$('pwaGo')
 try{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js',{scope:'/'})['catch'](function(){});
   /* ★v62 375 새 화면 파일을 받아 오면 한 번 바꿔 엶 — 첫 화면 · 광장에서만(쓰는 중에는 기다렸다가 첫 화면으로 돌아올 때) */
   navigator.serviceWorker.addEventListener('message',function(ev){ if(!ev.data||ev.data.t!=='lf-new'){ return; } NEWV=1; newGo(); }); } }catch(e){}
-var NEWV=0, REC_VER=219;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
+var NEWV=0, REC_VER=220;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
 function newChk(){ try{ if(!window.caches){ return; } caches.open('lf-rec-shell-v2').then(function(c){ return c.match('/'); }).then(function(r){ return r?r.text():''; }).then(function(t){ var m=/rec\/index\.html · v(\d+)/.exec(String(t).slice(0,600)); if(m&&parseInt(m[1],10)>REC_VER){ NEWV=1; newGo(); } })['catch'](function(){}); }catch(e){} }   /* ★v62 375 알림을 놓쳐도 남겨 둔 파일 버전을 직접 봄 */
 setTimeout(newChk,5000); setTimeout(newChk,15000);
 document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible'){ setTimeout(newChk,1500); } });
