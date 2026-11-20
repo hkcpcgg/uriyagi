@@ -33,6 +33,7 @@ async function tapAt(p, n, find, after, more) {
 const TOP = `(e => { const b = e.getBoundingClientRect(); const x = b.left + b.width / 2, y = b.top + Math.min(b.height / 2, 20); if (x < 0 || y < 0 || x > innerWidth || y > innerHeight) return true; const h = document.elementFromPoint(x, y); return !!h && (h === e || e.contains(h) || h.contains(e)); })`;
 const T = re => `() => [...document.querySelectorAll('button,a,[role=button],label')].filter(e => { const b = e.getBoundingClientRect(); return b.width > 0 && b.height > 0 && ${re}.test((e.textContent || '') + ' ' + (e.getAttribute('aria-label') || '')) && ${TOP}(e); }).pop()`;
 const Q = s => `() => [...document.querySelectorAll('${s}')].filter(e => { const b = e.getBoundingClientRect(); return b.width > 0 && b.height > 0 && b.top < innerHeight && ${TOP}(e); })[0]`;
+const RPIC = `() => [...document.querySelectorAll('#main .tl[data-tid]')].find(e => e.getBoundingClientRect().width > 60 && /url\\(/.test(getComputedStyle(e).backgroundImage))`;   // ★v3 이 방 바둑판 칸만
 const PIC = `() => [...document.querySelectorAll('#main *')].find(e => { const b = e.getBoundingClientRect(); return b.width > 100 && b.height > 100 && b.top > 150 && /url\\(/.test(getComputedStyle(e).backgroundImage); })`;
 // ★v3 되돌리기 — UNDO=기기표|기록번호 : 그 기기로 누른 ♥ 를 한 번 더 눌러 거둠(준비 중 잘못 누른 것)
 if (process.env.UNDO) {
@@ -90,18 +91,23 @@ try {
       await p.waitForTimeout(1500); await p.screenshot({ path: 'guide/x_prep1.png' });
       const go = await p.evaluate(() => { const e = [...document.querySelectorAll('button')].filter(x => /올리기/.test(x.textContent || '') && x.getBoundingClientRect().width > 200 && !x.disabled).pop(); if (!e) return ''; e.click(); return e.textContent.trim(); });
       log.push('준비 · 올리기 단추 ' + (go || '못 찾음'));
+      await p.waitForTimeout(2000);
+      const ag = await p.evaluate(() => { const e = [...document.querySelectorAll('#dimTop button')].find(x => /동의하고 올리기/.test(x.textContent || '')); if (!e) return false; e.click(); return true; });
+      log.push('준비 · 동의하고 올리기 ' + (ag ? '누름' : '없음'));
       let tt = ''; for (let i = 0; i < 60; i++) { await p.waitForTimeout(1000); tt = await p.evaluate(() => [...document.querySelectorAll('.toast,#toast,[class*=toast]')].map(e => e.textContent.trim()).filter(Boolean).join(' / ')); if (/올렸|올라|실렸|등록/.test(tt)) break; }
       log.push('준비 · 알림 ' + (tt || '없음'));
       await p.screenshot({ path: 'guide/x_prep2.png' });
-      let got = false; for (let i = 0; i < 6 && !got; i++) { await p.waitForTimeout(5000); await p.goto(B + '?me=1'); await wait(p); got = await p.evaluate(`!!(${PIC})()`); }
+      let got = false; for (let i = 0; i < 6 && !got; i++) { await p.waitForTimeout(5000); await p.goto(B + '?me=1'); await wait(p); got = await p.evaluate(`!!(${RPIC})()`); }
       log.push('준비 · 방에 사진 ' + (got ? '보임' : '안 보임')); await p.screenshot({ path: 'guide/x_prep3.png' });
     } else log.push('준비 · 사진 고르기 창 못 엶');
     await c.close();
     c = await newCtx(); p = await c.newPage();
     await p.goto(B + '?k=' + KEY2); await wait(p); await p.goto(B + '?me=1'); await wait(p);
-    for (let i = 0; i < 3; i++) { await p.reload(); await wait(p); if (await p.evaluate(`!!(${PIC})()`)) break; }
-    const op = await p.evaluate(`(() => { const e = (${PIC})(); if (!e) return false; e.click(); return true; })()`);
-    if (op) { for (let i = 0; i < 20; i++) { await p.waitForTimeout(500); if (await p.evaluate(() => !!document.querySelector('#pf.on .pfa [data-pa=like]'))) break; } await p.screenshot({ path: 'guide/x_prep4.png' }); const lk = await p.evaluate(() => { const b = document.querySelector('#pf.on .pfa [data-pa=like]'); if (!b) return '단추 없음'; if (b.classList.contains('on')) return '이미 누름'; b.click(); return '누름'; }); await p.waitForTimeout(4000); log.push('준비 · 다른 멤버 ♥ ' + lk); }
+    for (let i = 0; i < 3; i++) { await p.reload(); await wait(p); if (await p.evaluate(`!!(${RPIC})()`)) break; }
+    const hd = await p.evaluate(() => (document.querySelector('#main .rph') || {}).textContent || '');
+    const op = /시험 v101/.test(hd) && await p.evaluate(`(() => { const e = (${RPIC})(); if (!e) return false; e.click(); return true; })()`);
+    log.push('준비 · 다른 멤버 방 ' + (hd.trim().slice(0, 30) || '모름'));
+    if (op) { for (let i = 0; i < 20; i++) { await p.waitForTimeout(500); if (await p.evaluate(() => !!document.querySelector('#pf.on .pfa [data-pa=like]'))) break; } await p.screenshot({ path: 'guide/x_prep4.png' }); const lk = await p.evaluate(() => { const b = document.querySelector('#pf.on .pfa [data-pa=like]'); if (!b) return '단추 없음'; if (!/시험 v101/.test((document.getElementById('pfBk') || {}).textContent || '')) return '시험 방이 아니라 안 누름'; if (b.classList.contains('on')) return '이미 누름'; b.click(); return '누름'; }); await p.waitForTimeout(4000); log.push('준비 · 다른 멤버 ♥ ' + lk); }
     else log.push('준비 · 다른 멤버 화면에 사진 없음');
     await c.close();
   }
@@ -121,7 +127,7 @@ try {
     await tapAt(p, 'm06_관리누름', T('/방 관리/'), 'm06b_방관리', [['ok', T('/카카오로 관리 확인/')]]);
     await tapAt(p, 'm07_처리할일', T('/처리할 일/'), 'm07b_처리할일');
     await p.goto(B + '?me=1'); await wait(p);
-    await tapAt(p, 'm08_사진누름', PIC, 'm08b_게시물');
+    await tapAt(p, 'm08_사진누름', RPIC, 'm08b_게시물');
     await tapAt(p, 'm09_더보기', Q('#pf.on .pfa [data-pa=more]'), 'm09b_내게시물메뉴', [['ed', T('/수정/')], ['del', T('/삭제/')]]);
     await c.close();
   } else log.push('멤버 화면은 건너뜀(열쇠 없음)');
