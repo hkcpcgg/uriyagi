@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v223 · 261120 · [우리이야기] 속도 2단계 ② — 내 방 첫 답(recHome n 20 · loadMe · roomPick)이 가는 중에 「나」만 묻는 recHome(n 1 · meqLoad)이 또 나가던 것 → 가는 답을 기다려 같이 씀(MEW · meqWait · meqDone) · ★검색 열기(대표 13:27 OK) — robots 메타 · 대표 주소를 주소에 따라(?c= 안내 · 활용 · 견본 여섯만 index · 나머지 noindex) + robots.txt · sitemap.xml · 정적 안내 페이지 /guide/ · /story/(build_pages.py) · 서버 변경 없음 · REC_VER 223 -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v224 · 261120 · [우리이야기] 속도 2단계 ③ · ④ — 게시물 답(recGet)에 실려 온 닫힌 사진 큰 그림 서명 주소(mu)를 바로 씀 · 닫힌 방 바둑판(recPhotos)도 base64 대신 서명 주소(①Code v109 와 짝 · 옛 서버면 그대로) -->
+<!-- (이전) rec/index.html · v223 · 261120 · [우리이야기] 속도 2단계 ② — 내 방 첫 답(recHome n 20 · loadMe · roomPick)이 가는 중에 「나」만 묻는 recHome(n 1 · meqLoad)이 또 나가던 것 → 가는 답을 기다려 같이 씀(MEW · meqWait · meqDone) · ★검색 열기(대표 13:27 OK) — robots 메타 · 대표 주소를 주소에 따라(?c= 안내 · 활용 · 견본 여섯만 index · 나머지 noindex) + robots.txt · sitemap.xml · 정적 안내 페이지 /guide/ · /story/(build_pages.py) · 서버 변경 없음 · REC_VER 223 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v222 · 261120 · [우리이야기] 속도 2단계(대표 OK 방향 · 서버 ①Code v107 과 짝) — 목록 답에 실려 온 닫힌 사진 작은 그림 서명 주소(su · sx)를 받아 바둑판을 바로 그림 · recPvs 왕복(3.6초) 없앰 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v221 · 261120 · [우리이야기] 대표 13:58 OK(시안 v1) — ⑤ 위 띠 ☰ 바로 옆 📖 책 그림(bookTop · 모든 화면 · 안내 방으로) ③ 앱으로 열 때만 「포도 + 우리 이야기」 한 장(#appOpen · 다 열리면 걷힘 · 3초 넘지 않음) -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v220 · 261120 · [우리이야기] 고장 고침(대표 13:16 캡처 · 13:27 OK) — v219 의 10분 서명 주소가 작은 그림 창고(localStorage)에 담겨 다음에 열 때 닫힌 주소로 깨진 그림 · 「사진 3」 글자 · 끝없는 「불러오는 중」 → 서명 주소는 담지 않음(sigU · 열 때 옛것 치움) · 8분 지나면 버림(phFresh) · 깨지면 한 번 더 받고 그래도 안 되면 「다시 시도」 · 20초 지나도 없으면 「다시 시도」 · 네이버 9초 넘으면 옛 길 · 주소 없는 그림은 숨김 -->
@@ -2440,6 +2441,7 @@ function duHas(id){ return !!(id&&(DU[id]||NU[id])); }   /* ★v192 S7 — 드�
 function duScan(o,d){ d=d||0; if(!o||typeof o!=='object'||d>6){ return; } if(Array.isArray(o)){ for(var i=0;i<o.length;i++){ duScan(o[i],d+1); } return; }
   if(o.id){ if(o.u&&/^[A-Za-z0-9_-]{10,80}$/.test(o.u)){ DU[o.id]=o.u; } if(o.n&&o.n.p&&/^p\/C-\d{4}\/[A-Za-z0-9-]+\.(jpg|png|webp|heic)$/.test(o.n.p)){ NU[o.id]=o.n; }   /* ★v183 S7 네이버(한국) */ if(o.mv&&/^https:\/\/www\.loveflow\.ai\.kr\/rec\/seed\/[A-Za-z0-9_\/-]+\.mp4$/.test(o.mv)){ MV[o.id]=o.mv; }
     if(o.su&&o.sx&&+o.sx-Date.now()>120000&&/^https:\/\/kr\.object\.ncloudstorage\.com\//.test(o.su)&&sigU(o.su)){ var sk0='s:'+o.id; if(!phFresh(sk0)){ PHC[sk0]=o.su; PHT[sk0]=+o.sx-600000; } } }   /* ★v222 속도 2단계 — 목록에 실려 온 닫힌 사진 작은 그림 서명 주소(받은 때 = 만료 − 10분 · 담아 둔 화면에서 와도 8분이면 버림) */
+    if(o.mu&&o.mx&&+o.mx-Date.now()>120000&&/^https:\/\/kr\.object\.ncloudstorage\.com\//.test(o.mu)&&sigU(o.mu)){ var t0m=+o.mx-600000; if(!phFresh('m:'+o.id)){ PHC['m:'+o.id]=o.mu; PHT['m:'+o.id]=t0m; } if(!phFresh(o.id)){ PHC[o.id]=o.mu; PHT[o.id]=t0m; } }   /* ★v224 속도 2단계 ③ — 게시물 답에 실려 온 닫힌 사진 큰 그림 서명 주소(서버에 따로 묻지 않음) */
   for(var k in o){ if(o[k]&&typeof o[k]==='object'){ duScan(o[k],d+1); } } }
 var NCP_BASE='https://kr.object.ncloudstorage.com/uriyagi-photo/', NU={}; var PHT={};   /* ★v219 서명 주소 받은 때 */   /* ★v183 S7 사진 국내 보관 — 공개 사진은 네이버에서 바로 */
 function duUrl(id,w){ var n=NU[id], ww=w||480; if(n){ if(ww<=300&&n.t){ return NCP_BASE+n.t; } if(ww<=520&&n.s){ return NCP_BASE+n.s; } if(ww<=1000&&n.m){ return NCP_BASE+n.m; } if(ww<=1000&&DU[id]){ return 'https://drive.google.com/thumbnail?id='+encodeURIComponent(DU[id])+'&sz=w'+ww; } return NCP_BASE+(n.m||n.p); }   /* ★v184 작게 = 작은 그림 · 보통 = 가로 800 · 없으면 드라이브(원본을 통째로 받지 않음) */ return DU[id]?'https://drive.google.com/thumbnail?id='+encodeURIComponent(DU[id])+'&sz=w'+(w||480):''; }
@@ -3914,7 +3916,7 @@ function lazyPhotos(el){
     var tiles=g.querySelectorAll('[data-phs]'), need=[], map={};
     Array.prototype.forEach.call(tiles,function(t){ var id=t.getAttribute('data-phs'); map[id]=t; if(PHC['s:'+id]){ t.style.backgroundImage='url('+PHC['s:'+id]+')'; t.classList.remove('wait'); } else if(duHas(id)){ photo(id,true,function(u){ if(u){ t.style.backgroundImage='url('+u+')'; t.classList.remove('wait'); } }); } else { need.push(id); } });   /* ★v53 333 */
     if(!need.length){ return; }
-    api({action:'recPhotos',ids:need.join(','),small:'1'},function(d){ if(d.status!=='ok'){ return; } d.items.forEach(function(x){ var u='data:'+x.type+';base64,'+x.data; PHC['s:'+x.id]=u; pvHeal(x.id,u); if(map[x.id]){ map[x.id].style.backgroundImage='url('+u+')'; map[x.id].classList.remove('wait'); } }); });
+    api({action:'recPhotos',ids:need.join(','),small:'1',url:'1'},function(d){ if(d.status!=='ok'){ return; } d.items.forEach(function(x){ var u; if(x.url&&sigU(x.url)&&/^https:\/\/kr\.object\.ncloudstorage\.com\//.test(x.url)){ u=x.url; PHC['s:'+x.id]=u; PHT['s:'+x.id]=Date.now(); } else if(x.data){ u='data:'+x.type+';base64,'+x.data; PHC['s:'+x.id]=u; pvHeal(x.id,u); } else { return; }   /* ★v224 ④ 닫힌 방 바둑판 = 서명 주소(옛 서버면 base64 그대로) */ if(map[x.id]){ map[x.id].style.backgroundImage='url('+u+')'; map[x.id].classList.remove('wait'); } }); });
   });
 }
 
@@ -6872,7 +6874,7 @@ window.addEventListener('appinstalled',function(){ PWA_EV=null; var b=$('pwaGo')
 try{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js',{scope:'/'})['catch'](function(){});
   /* ★v62 375 새 화면 파일을 받아 오면 한 번 바꿔 엶 — 첫 화면 · 광장에서만(쓰는 중에는 기다렸다가 첫 화면으로 돌아올 때) */
   navigator.serviceWorker.addEventListener('message',function(ev){ if(!ev.data||ev.data.t!=='lf-new'){ return; } NEWV=1; newGo(); }); } }catch(e){}
-var NEWV=0, REC_VER=223;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
+var NEWV=0, REC_VER=224;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
 function newChk(){ try{ if(!window.caches){ return; } caches.open('lf-rec-shell-v2').then(function(c){ return c.match('/'); }).then(function(r){ return r?r.text():''; }).then(function(t){ var m=/rec\/index\.html · v(\d+)/.exec(String(t).slice(0,600)); if(m&&parseInt(m[1],10)>REC_VER){ NEWV=1; newGo(); } })['catch'](function(){}); }catch(e){} }   /* ★v62 375 알림을 놓쳐도 남겨 둔 파일 버전을 직접 봄 */
 setTimeout(newChk,5000); setTimeout(newChk,15000);
 document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible'){ setTimeout(newChk,1500); } });
