@@ -81,10 +81,11 @@ try {
   if (PREP && /^[a-f0-9]{32}$/.test(KEY) && /^[a-f0-9]{32}$/.test(KEY2)) {
     c = await newCtx(); p = await c.newPage();
     await p.goto(B + '?k=' + KEY); await wait(p); await p.goto(B + '?me=1'); await wait(p);
-    let fc = p.waitForEvent('filechooser', { timeout: 6000 }).catch(() => null);
-    await p.evaluate(() => { const e = document.querySelector('#btab [data-bt=up]'); if (e) e.click(); });
+    const has0 = await p.evaluate(`!!(${RPIC})()`); log.push('준비 · 시험 방 사진 ' + (has0 ? '이미 있음 — 올리지 않음' : '없음 — 한 장 올림'));
+    let fc = has0 ? Promise.resolve(null) : p.waitForEvent('filechooser', { timeout: 6000 }).catch(() => null);
+    if (!has0) await p.evaluate(() => { const e = document.querySelector('#btab [data-bt=up]'); if (e) e.click(); });
     let ch = await fc;
-    if (!ch) { await p.waitForTimeout(1500); fc = p.waitForEvent('filechooser', { timeout: 6000 }).catch(() => null); await p.evaluate(() => { const e = document.getElementById('pk') || [...document.querySelectorAll('button')].find(x => /사진 선택/.test(x.textContent || '')); if (e) e.click(); }); ch = await fc; }
+    if (!ch && !has0) { await p.waitForTimeout(1500); fc = p.waitForEvent('filechooser', { timeout: 6000 }).catch(() => null); await p.evaluate(() => { const e = document.getElementById('pk') || [...document.querySelectorAll('button')].find(x => /사진 선택/.test(x.textContent || '')); if (e) e.click(); }); ch = await fc; }
     if (ch) {
       await ch.setFiles('../../seed/run/r4.jpg');
       for (let i = 0; i < 40; i++) { await p.waitForTimeout(500); if (await p.evaluate(() => !document.getElementById('pk') && [...document.querySelectorAll('#main img, #main canvas, #main [style*=url]')].some(e => e.getBoundingClientRect().width > 60))) break; }
@@ -99,10 +100,13 @@ try {
       await p.screenshot({ path: 'guide/x_prep2.png' });
       let got = false; for (let i = 0; i < 6 && !got; i++) { await p.waitForTimeout(5000); await p.goto(B + '?me=1'); await wait(p); got = await p.evaluate(`!!(${RPIC})()`); }
       log.push('준비 · 방에 사진 ' + (got ? '보임' : '안 보임')); await p.screenshot({ path: 'guide/x_prep3.png' });
-    } else log.push('준비 · 사진 고르기 창 못 엶');
+    } else if (!has0) log.push('준비 · 사진 고르기 창 못 엶');
     await c.close();
     c = await newCtx(); p = await c.newPage();
-    await p.goto(B + '?k=' + KEY2); await wait(p); await p.goto(B + '?me=1'); await wait(p);
+    await p.goto(B + '?k=' + KEY2); await wait(p); await p.screenshot({ path: 'guide/x_k2a.png' });
+    let hd0 = await p.evaluate(() => (document.querySelector('#main .rph') || {}).textContent || '');
+    if (!/시험 v101/.test(hd0)) { await p.goto(B + '?me=1'); await wait(p); }
+    await p.screenshot({ path: 'guide/x_k2b.png' });
     for (let i = 0; i < 3; i++) { await p.reload(); await wait(p); if (await p.evaluate(`!!(${RPIC})()`)) break; }
     const hd = await p.evaluate(() => (document.querySelector('#main .rph') || {}).textContent || '');
     const op = /시험 v101/.test(hd) && await p.evaluate(`(() => { const e = (${RPIC})(); if (!e) return false; e.click(); return true; })()`);
@@ -121,7 +125,7 @@ try {
     await p.goto(B + '?me=1'); await wait(p);
     await tapAt(p, 'm03_올리기누름', Q('#btab [data-bt=up]'), 'm03b_새게시물', [['pick', `() => [...document.querySelectorAll('body *')].filter(e => /사진 선택/.test(e.textContent || '') && e.getBoundingClientRect().height > 80 && e.getBoundingClientRect().height < 300).pop()`], ['go', `() => [...document.querySelectorAll('button')].filter(e => /올리기/.test(e.textContent || '') && e.getBoundingClientRect().top > 600 && e.getBoundingClientRect().width > 200).pop()`]]);
     await p.goto(B + '?me=1'); await wait(p);
-    await tapAt(p, 'm04_내방누름', Q('#btab [data-bt=me]'), 'm04b_내방', [['av', `() => [...document.querySelectorAll('#meP .av, #meP [data-me=pic], #meP img, #meP .mh .av')].filter(e => e.getBoundingClientRect().width > 30 && e.getBoundingClientRect().top < 260)[0]`], ['news', `() => [...document.querySelectorAll('#meP *')].find(e => /새 소식/.test(e.textContent || '') && e.children.length < 4 && e.getBoundingClientRect().height > 0)`]]);
+    await tapAt(p, 'm04_내방누름', Q('#btab [data-bt=me]'), 'm04b_내방', [['news', `() => [...document.querySelectorAll('#meP *')].find(e => /새 소식/.test(e.textContent || '') && e.children.length < 4 && e.getBoundingClientRect().height > 0)`], ['av', `() => [...document.querySelectorAll('#meP .av, #meP [data-me=pic], #meP img, #meP .mh .av')].filter(e => e.getBoundingClientRect().width > 30 && e.getBoundingClientRect().top < 260)[0]`], ['news', `() => [...document.querySelectorAll('#meP *')].find(e => /새 소식/.test(e.textContent || '') && e.children.length < 4 && e.getBoundingClientRect().height > 0)`]]);
     await tapAt(p, 'm05_내사진', `() => [...document.querySelectorAll('#meP .av, #meP [data-me=pic], #meP .mh .av')].filter(e=>e.getBoundingClientRect().width>20)[0]`, 'm05b_내사진창');
     await p.goto(B + '?me=1'); await wait(p);
     await tapAt(p, 'm06_관리누름', T('/방 관리/'), 'm06b_방관리', [['ok', T('/카카오로 관리 확인/')]]);
