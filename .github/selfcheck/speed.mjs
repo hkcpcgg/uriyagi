@@ -53,7 +53,12 @@ try {
   out.push('| 마당 | 첫 사진 | ' + (tp < 0 ? '★ 40초 넘음' : T(tp)) + ' |');
   for (const r of ROOMS) await room(p, L, '손님 ' + r, B + '?c=' + r);
   await c.close();
-  if (/^[a-f0-9]{32}$/.test(KEY)) { c = await ctx(); p = await c.newPage(); L = netlog(p); await p.goto(B + '?k=' + KEY); await p.waitForTimeout(3000); await room(p, L, '멤버 내 방', B + '?me=1'); await c.close(); }
+  if (/^[a-f0-9]{32}$/.test(KEY)) { c = await ctx(); p = await c.newPage(); L = netlog(p); await p.goto(B + '?k=' + KEY); await p.waitForTimeout(3000);
+    if (/^R-\d{6}$/.test(process.env.PHOTO || '')) { await p.evaluate(id => { const o = JSON.parse(localStorage.getItem('lf_rec_pv') || '{}'); o[id] = 'https://kr.object.ncloudstorage.com/uriyagi-photo/u/old.jpg?X-Amz-Signature=dead'; localStorage.setItem('lf_rec_pv', JSON.stringify(o)); }, process.env.PHOTO); }   // 261120 v220 — 닫힌 옛 주소를 일부러 넣어 둠
+    await room(p, L, '멤버 내 방', B + '?me=1');
+    const bad = await p.evaluate(() => ({ left: /X-Amz-Signature/.test(localStorage.getItem('lf_rec_pv') || ''), broken: [...document.querySelectorAll('#pf .pfi img[src]')].filter(i => i.complete && !i.naturalWidth).length, stuck: [...document.querySelectorAll('#pf .pfi .pfw8')].filter(w => !w.querySelector('button')).length }));
+    out.push(`| 멤버 내 방 | 닫힌 옛 주소 | 창고에 남음 ${bad.left ? '★ 있음' : '없음'} · 깨진 그림 ${bad.broken} · 불러오는 중 남음 ${bad.stuck} |`);
+    await c.close(); }
 } catch (e) { out.push('| 오류 | ' + e.message.slice(0, 150) + ' |'); }
 await browser.close();
 console.log('| 어디 | 무엇 | 걸린 때 | 서버에 물은 것 |\n|---|---|---|---|\n' + out.join('\n'));
