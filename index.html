@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v215 · 261120 · [우리이야기] 고장 고침(대표 08:38 「승인대로 쭉」) — 손님이 ＋ 누른 뒤 다른 방에 가도 로그인 창이 또 뜨던 것: lf_rec_plus 에 고른 방 이름 · 로그인 창 보였는지 같이 둠 → 고른 방에서만 · 한 번만 뜸 · 다른 방이면 버림 -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v216 · 261120 · [우리이야기] 사용법 문 셋(대표 10:37 「소통 없이 개선해 진행」) — ① 마당 첫인사 카드 안 「📖 우리 이야기방을 소개합니다 · 사용법 보기 ›」(카드 닫으면 같이 사라짐) ② ☰ 도움 맨 위 「우리 이야기 사용법」(손님에게도) ③ 내 방 「📖 우리 이야기 사용법」 — 셋 다 「우리 이야기 안내」 방(GUIDE_G)으로 · helpSheet() = guideGo() · 동그라미 줄에서 안내 방 뺌 · 로그인 창 아래 한 줄 · 「쓰는 법」 → 「사용법」 -->
+<!-- (이전) ★ 현재 버전 ▶ rec/index.html · v215 · 261120 · [우리이야기] 고장 고침(대표 08:38 「승인대로 쭉」) — 손님이 ＋ 누른 뒤 다른 방에 가도 로그인 창이 또 뜨던 것: lf_rec_plus 에 고른 방 이름 · 로그인 창 보였는지 같이 둠 → 고른 방에서만 · 한 번만 뜸 · 다른 방이면 버림 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v214 · 261120 · [우리이야기] 안내 방 아래 길 시안 v6(대표 05:21 OK) — 아래 가운데 ‹ ⊞ › 셋만(바탕 없음 · 가는 선 · 흐림 · 사랑흐름 「← ⌂ →」 자리 · 간격) · 머리띠 「⊞ 전체 보기」 · 편 글씨 단추 · 「☝ 위로 밀면 다음 편」 뺌 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v213 · 261120 · [우리이야기] 안내 방 넘기기(대표 261120 05:00 OK · 시안 없이) — 짧은 글 남색 칸도 밀면 넘어감 · 긴 글은 칸 안에서 읽고 끝에서 한 번 더 밀면 다음 편 · 「▼ 글이 더 있어요 / 다 읽었어요」 · 머리띠 「⊞ 전체 보기」 · 아래 큰 앞/다음 단추 + 「☝ 위로 밀면 다음 편」 · 처음 열 때 손가락 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v212 · 261119 · [우리이야기] 안내 방 설명 칸 시안 v4 A안(대표 23:44 OK) — 그림 가운데 · 남색 설명 카드 · 이름 줄 뺌 · 원고 전문 + ①②③ 노란 동그라미 · 23칸 막대 · 앞 편/다음 편 -->
@@ -1605,7 +1606,7 @@ body.pfon{overflow:hidden}
 .pf.guide .pftop{background:#FFD24A}.pf.guide .pftop button{color:#1F2A44;text-shadow:none}
 .pf.guide .pfp{background:#FFF6DC}
 .pf.guide .pfm{border:6px solid #1F2A44;box-shadow:0 3px 12px rgba(0,0,0,.2)}
-.pf.guide .pfm::after{content:'쓰는 법 그림';position:absolute;left:8px;top:8px;z-index:3;background:#FFD24A;color:#1F2A44;font-size:11.5px;font-weight:800;padding:2px 8px;border-radius:7px}
+.pf.guide .pfm::after{content:'사용법 그림';position:absolute;left:8px;top:8px;z-index:3;background:#FFD24A;color:#1F2A44;font-size:11.5px;font-weight:800;padding:2px 8px;border-radius:7px}
 .pf.guide .pfa button{color:#1F2A44;text-shadow:none}.pf.guide .pfa .pfic{filter:none}
 .pf.guide .pfo{background:#fff;border-radius:14px;padding:10px 12px;box-shadow:0 1px 6px rgba(0,0,0,.12);left:12px;right:70px}
 .pf.guide .pfo .pfnm b,.pf.guide .pfo .pft{color:#1F2A44;text-shadow:none}.pf.guide .pfo .pfnm small{color:#6B7280}
@@ -1671,6 +1672,7 @@ body.btabon #fab,body.btabon #way3,body.btabon .fabtip{display:none!important}
 .uin{position:relative;margin:4px 0 12px;padding:16px 40px 14px 16px;border-radius:16px;background:linear-gradient(135deg,#FFF6EA 0%,#FDF1E7 45%,#EEF3F8 100%);border:1px solid var(--line)}
 .uin b{display:block;font-family:var(--f-disp);font-size:18px;line-height:1.45;color:var(--navy2);word-break:keep-all}
 .uin p{margin:8px 0 0;font-size:14px;line-height:1.7;color:var(--ink);word-break:keep-all}
+.uin .uigo{display:flex;justify-content:space-between;align-items:center;gap:8px;width:100%;margin-top:12px;padding:11px 14px;border:0;border-radius:14px;background:var(--navy);color:#fff;font:inherit;font-size:14.5px;cursor:pointer;text-align:left}.uin .uigo b{white-space:nowrap;color:#FFD24A}   /* ★v216 */
 .uin .x{position:absolute;top:6px;right:6px;width:44px;height:44px;border:0;background:none;font-size:16px;color:var(--sub);cursor:pointer}
 .rtop{display:flex;align-items:center;gap:2px;padding:6px 0 8px;border-bottom:1px solid var(--line);margin-bottom:6px}
 .rtop .rb{border:0;background:none;font-size:22px;line-height:1;padding:8px 10px;flex:none;color:var(--ink);position:relative;cursor:pointer;font-family:inherit}
@@ -1921,7 +1923,7 @@ function joinGate(up){   /* ★v175 S2 A4 로그인 한 화면 */
   var nm=esc((ME&&ME.comName)||'우리 이야기');
   sheet('<div style="text-align:center"><span class="ci c-gold" style="width:52px;height:52px">'+ic(up?'photo':'heart')+'</span><h2 style="margin-top:8px">'+(up?'사진을 올리려면 카카오 로그인이 필요합니다':nm)+'</h2>'+(up?'<p class="lead">로그인 뒤 「'+nm+'」 새 게시물 화면으로 바로 갑니다.</p>':(ME&&ME.by?'<p class="lead">'+esc(ME.by)+' 님이 초대했습니다</p>':''))+'</div>'+
     '<label class="wab" style="font-size:15.5px;justify-content:center"><input type="checkbox" id="gja"> 만 14세 이상입니다</label>'+kakaoBtn('gjb')+'<div class="err" id="gje" style="text-align:center"></div>'+
-    '<p class="lead" style="text-align:center;margin-top:10px">닉네임만 받습니다 · 전화번호는 받지 않습니다 · <a href="https://www.loveflow.ai.kr/trust.html#rec8" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">개인정보처리방침</a></p><p class="lead" style="text-align:center">'+(up?'쓰시던 글은 그대로 남아 있습니다.':'보던 사진은 그대로 이어집니다.')+'</p>',function(){
+    '<p class="lead" style="text-align:center;margin-top:10px">닉네임만 받습니다 · 전화번호는 받지 않습니다 · <a href="https://www.loveflow.ai.kr/trust.html#rec8" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">개인정보처리방침</a></p><p class="lead" style="text-align:center">'+(up?'쓰시던 글은 그대로 남아 있습니다.':'보던 사진은 그대로 이어집니다.')+'</p><p class="lead" style="text-align:center;margin-top:6px"><button type="button" id="gjG" style="border:0;background:none;color:var(--navy);font:inherit;font-weight:700;text-decoration:underline;cursor:pointer">📖 우리 이야기 사용법 보기 ›</button></p>',function(){ $('gjG').onclick=function(){ closeSheet(); guideGo(); };   /* ★v216 초대 링크로 방에 바로 온 손님용 */
     $('gjb').onclick=function(){ if(!$('gja').checked){ $('gje').textContent='만 14세 이상인지 확인해 주십시오.'; return; } kakaoGo('join',{g:G,a:1,f:FROM,r:(VIEW==='item'?STACK[STACK.length-1].id:'')}); };
   });
 }
@@ -2563,6 +2565,8 @@ function pzGrow(n){
 }
 function pzCellsOf(s){ var a=[], h=s.big?2:1; for(var r=0;r<h;r++){ for(var c=0;c<h;c++){ a.push((s.r+r)+':'+(s.c+c)); } } return a; }
 var PZ_OUT={'우리 이야기 안내':1};
+var GUIDE_G='306bb8cd2b8d4dd1a384152d909913d8';   /* ★v216 「우리 이야기 안내」 방(C-0295 · 열린 방 초대 열쇠) — 사용법 문 셋(마당 첫인사 · ☰ · 내 방)이 모두 여기로 */
+function guideGo(){ if(ME&&PZ_OUT[ME.comName]&&VIEW==='feed'){ window.scrollTo(0,0); return; } location.href=location.pathname+'?g='+GUIDE_G+'&go=1'; }
 function pzAdd(items){
   var g={}, n=0; (items||[]).forEach(function(x){ if(!PLZ.rooms[x.c]||PZL.seen[x.id]||PZ_OUT[PLZ.rooms[x.c].name]){ return; }   /* ★v209 안내 방 그림은 마당 사진칸에서 뺌(위 동그라미 줄엔 그대로) */ PZL.seen[x.id]=1; if((PZL.rc[x.c]||0)>=PZ_CAP){ PZL.over.push(x); return; } PZL.rc[x.c]=(PZL.rc[x.c]||0)+1;   /* ★v187 방마다 12장 */ x._a=PZL.age++; (g[x.c]=g[x.c]||[]).push(x); n++; });
   if(!n){ return; }
@@ -2590,7 +2594,7 @@ function pzCell(o,i){
 function pzMake(r){ return '<div class="mkc"'+(r?' style="grid-row:'+r+' / span 2"':'')+'><h3>나의 일상부터 우리 모두의 이야기까지</h3>'+
     '<button type="button" class="go mkGo">＋ 우리 이야기방 만들기</button></div>'; }
 function pzRooms(){   /* ★v66 390 내 방 먼저(이 기기에서 들어가 본 방) · 마당에 없는 내 방(닫힌 방 · 나의 이야기)도 · 사이에 금 · 끝에 ＋ 만들기 */
-  var my=myRoomsL(), mine={}, rs=PLZ.rooms.slice(), h='', extra=[];
+  var my=myRoomsL().filter(function(x){ return !PZ_OUT[x.n]; }), mine={}, rs=PLZ.rooms.filter(function(r){ return !PZ_OUT[r.name]; }), h='', extra=[];   /* ★v216 안내 방은 동그라미 줄에서 뺌(사용법 문 셋으로) */
   my.forEach(function(x){ mine[x.n]=x; });
   function one(r,cls){ var cv=r.cover||{}, bg=cv.yt?pzCv(cv):(PVC[cv.id]||''); if(cls){ cls+=myrCls(r.name); }
     return '<button type="button" class="st'+cls+(r.main?' mn':'')+'" data-pg="'+esc(r.g)+'"><span class="c"><i class="'+(bg?'':'wait')+'"'+(!bg&&(cv.u||cv.n)?' data-pu="'+esc(cv.id)+'"':'')+(bg?' style="background-image:url('+esc(bg)+')"':'')+'>'+(bg||cv.u||cv.n?'':(FR_ICON[r.frame]||URI_GR))+'</i>'+(mkKindOf(r.frame)==='hall'?'<em class="hb" title="기록관">🏛</em>':'')+'</span><span class="n">'+esc(r.name)+(r.ok?'<i class="okb" title="인증">✓</i>':'')+'</span></button>'; }   /* ★v74 410-4 기록관 표시 · ★v80 422 인증 ✓ */
@@ -2678,8 +2682,8 @@ function invPaint(){ var t=$('invT'), b=$('invB'); if(!t||!b){ return; } if(!INV
 function invGo(){ if(!INV){ return; } var g=INV.g; try{ sessionStorage.removeItem('lf_uri_inv'); }catch(e){} location.href=location.pathname+'?g='+encodeURIComponent(g)+'&go=1'; }
 /* ★v180 15회차 마당 맨 위 도입부 — 네 줄(대표 확정 261116 15:21) · 처음 · ✕ 로 닫으면 이 기기에서 다시 안 뜸 · 그림 없음 */
 var URIIN='lf_uri_in';
-function uriIn(){ if(sget(URIIN)==='1'){ return ''; } return '<div class="uin" id="uIn"><button type="button" class="x" id="uInX" aria-label="닫기">✕</button><b>우리의 오늘이 모여, 소중한 추억이 됩니다.</b><p>우리만 아는 이야기도, 함께 나눌 이야기도.<br>간직하고 싶은 이야기는 우리끼리, 나누고 싶은 이야기는 모두와 함께.<br>가족과 친구, 모임과 동네, 그리고 나만의 방에서 사진과 이야기를 남겨 보세요.</p></div>'; }
-function uriInWire(){ var x=$('uInX'); if(x){ x.onclick=function(){ sset(URIIN,'1'); var b=$('uIn'); if(b){ b.remove(); } }; } }
+function uriIn(){ if(sget(URIIN)==='1'){ return ''; } return '<div class="uin" id="uIn"><button type="button" class="x" id="uInX" aria-label="닫기">✕</button><b>우리의 오늘이 모여, 소중한 추억이 됩니다.</b><p>우리만 아는 이야기도, 함께 나눌 이야기도.<br>간직하고 싶은 이야기는 우리끼리, 나누고 싶은 이야기는 모두와 함께.<br>가족과 친구, 모임과 동네, 그리고 나만의 방에서 사진과 이야기를 남겨 보세요.</p><button type="button" class="uigo" id="uInGo"><span>📖 우리 이야기방을 소개합니다</span><b>사용법 보기 ›</b></button></div>'; }   /* ★v216 사용법 문 ① — 카드를 닫으면 같이 사라짐 */
+function uriInWire(){ var gg=$('uInGo'); if(gg){ gg.onclick=guideGo; } var x=$('uInX'); if(x){ x.onclick=function(){ sset(URIIN,'1'); var b=$('uIn'); if(b){ b.remove(); } }; } }
 function plazaDraw(){
   var el=$('main'); if(!el){ return; }
   var mkIn=PZL.mk&&PZL.cells.length>=PZ_MAKE_AFTER*9, h='';
@@ -2902,7 +2906,7 @@ function meOpen(){
   if(!rooms.length){ h+='<div class="msec"><p class="note">아직 들어가 본 방이 없습니다.</p></div>'; }
   if(mem){ h+='<div class="mtabs" role="tablist"><button type="button" role="tab" data-mt="p"'+(MEP.tab==='p'?' class="on"':'')+'>내 게시물</button><button type="button" role="tab" data-mt="g"'+(MEP.tab==='g'?' class="on"':'')+'>받은 기억'+(gn?' <span class="mtn">새 기억 '+gn+'</span>':'')+'</button></div><div id="meUq"></div><div class="mpg" id="mePics"'+(MEP.tab==='p'?'':' hidden')+'></div><div id="meGot"'+(MEP.tab==='g'?'':' hidden')+'></div>'; }
   h+='<button type="button" class="bigb" id="meMk">＋ 우리 이야기방 만들기</button>'+
-    '<button type="button" class="btn line" id="meHelp" style="margin-top:12px">이용 안내</button>'+   /* ★v181 15회차 ⑨ 안내는 내 방 · ☰ 에서 */
+    '<button type="button" class="btn line" id="meHelp" style="margin-top:12px">📖 우리 이야기 사용법</button>'+   /* ★v181 15회차 ⑨ 안내는 내 방 · ☰ 에서 */
     '<div class="lfwrap"><a class="lfog" href="https://www.loveflow.ai.kr/"><img src="/lf-og-261118.jpg" alt="MBTI와 사랑흐름 LFRI로 두 사람 사이를 이어갑니다 — 사랑흐름" loading="lazy" width="1200" height="630"><span class="lfb">사랑흐름 바로 가기 ›</span></a></div>'+   /* ★v178 사랑흐름 메인 .ur 그대로 */
     '<div style="height:90px"></div>';
   pgOpen('meP',h); btabDraw(); if(mem){ var s1=gmSeen(); if(GM){ meNews(); } gmLoad(function(){ if(gmSeen()===s1){ meNews(); } },true); }   /* ★v199 새 소식 */
@@ -3287,7 +3291,7 @@ function pfPull(b){ var y0=0, x0=0, ok=0; b.addEventListener('touchstart',functi
 /* ★v205 게시물 한 칸 = 아래 탭 위 화면 한가득 */
 function pfFit(){ var b=$('pf'); if(!b){ return; } var t=$('btab'), h=t&&!t.hidden&&document.body.classList.contains('btabon')?t.offsetHeight:0; b.style.bottom=h+'px'; b.style.setProperty('--pfh',(b.clientHeight||window.innerHeight)+'px'); }
 function pfPinch(e){ if(!e.touches||e.touches.length!==2){ return; } var fi=e.target.closest&&e.target.closest('.pfi'), art=fi&&fi.closest('.pfp'); if(!fi||fi.classList.contains('vid')||!art){ return; } var i=+art.getAttribute('data-pi'); fsOpen(i,PF.ci[i]||0); }   /* 두 손가락 = 전체 화면 확대 보기 */
-function pfLabel(){ return '‹ '+(PF.fromPz?'마당':pfGuide()?'📖 우리 이야기 쓰는 법':((ME&&ME.comName)||'우리 이야기')); }   /* ★v211 ① 안내 방 머리띠 */
+function pfLabel(){ return '‹ '+(PF.fromPz?'마당':pfGuide()?'📖 우리 이야기 사용법':((ME&&ME.comName)||'우리 이야기')); }   /* ★v211 ① 안내 방 머리띠 */
 function pfIni(t){ t=String(t||'').replace(/^\s*\([^)]*\)\s*/,'').replace(/^[^0-9A-Za-z가-힣]+/,''); return t.charAt(0)||'?'; }   /* ★v205 동그라미 글자 「(」 고침 — (견본) · 기호 빼고 첫 글자 */
 function pfPost(it,i){   /* ★v205 쇼츠형 — 사진 위에 오른쪽 세로 단추 · 왼쪽 아래 얼굴 · 이름 · 글 두 줄 */
   var ps=pfPhotos(it), by=it.by||'', vid=it.kind==='영상'&&it.video, mv=!vid&&(it.mv||MV[it.id]), rn=(ME&&ME.comName)||'';
@@ -5380,7 +5384,7 @@ function meRows(){
   if(!ME.kakao){ R.push(['kk','share','c-violet','카카오 연결','다른 휴대폰에서도 카카오로 이어서 들어옵니다']); }
   R.push(['myname','pen','c-navy','보일 이름 바꾸기','지금 이름 · '+esc(ME.name||'')]);
   if(ME.room==='열린 모임'||ME.role==='관리자'){ R.splice(1,0,['post','share','c-peach','단톡방에 올릴 글','사진 제목 · 질문 · 링크를 한 번에 복사']); }
-  R.push(['guide','look','c-navy','이용 안내','처음 오신 분 · 멤버 · 승인 권한이 있는 멤버 · 관리자']);
+  R.push(['guide','look','c-navy','우리 이야기 사용법','그림으로 보는 안내 23편']);   /* ★v216 */
   R.push(['shr','share','c-green','공유하기','우리 이야기 마당 · 우리 이야기방 만들기 링크']); R.push(['open','plus','c-gold','우리 이야기방 만들기','📔 방 · 🏛 기록관']);   /* ★v42 308 */
   if(!pwaIn()){ R.push(['pwa','home','c-green','홈 화면에 추가','주소 찾지 않고 아이콘으로 바로 들어옵니다']); }   /* ★v42 309 */
   R.push(['out','out','c-gray','나가기','카카오톡으로 돌아갑니다']);
@@ -5458,7 +5462,7 @@ var HELP={
   '확인자':['방 첫 화면의 「⚙ 관리」(카카오로 한 번 확인) → 「처리할 일」에 뜬 것부터 처리합니다. 승인 대기는 「승인」 또는 「비공개」.','급할 때는 맨 위 「🚨 긴급 조치」 — 기록 가리기 · 쓰기 멈춤. 잘못했으면 「활동 기록」에서 되돌립니다.','새 멤버의 첫 게시물 3건과 등록 신청이 여기로 옵니다.','삭제 요청이 2건 쌓인 분은 자동으로 작성이 제한됩니다. 확인 뒤 「제한 해제」를 누르세요.'],
   '관리자':['방 첫 화면의 「⚙ 관리」(☰ 「관리」도 같음)는 카카오로 한 번 확인한 뒤 6시간 동안 열립니다. 관리 중에는 위 띠가 초록으로 바뀝니다.','맨 위 📍 줄을 누르면 「내 자리」 — 관리하는 방 · 함께하는 방을 오갑니다.','다른 방과 위 · 아래로 묶으려면 「설정 → 연결된 방」에서 연결 링크를 만들어 상대 관리자께 보냅니다.','「관리 → 방 이름 짓기」로 「○○초 59회 우리 친구들 이야기」처럼 이 방의 이름을 지으세요.','처음에 「저기 내가 있나?」 싶은 사진 9장을 먼저 올려 두세요.','「멤버 → 초대 링크」에서 보낼 곳마다 링크를 따로 만들어(예: 동창 단톡방 · 등산 밴드) 보내면, 어디서 몇 분이 열어 보고 참여했는지 보입니다.','「공개 설정」에서 공개 방 · 등록 신청 승인제 · 첫 게시물 승인을 고릅니다.','엉뚱한 사람이 오면 「내보내기」(게시물도 모두 비공개) · 링크가 엉뚱한 곳에 퍼졌으면 그 링크를 지우세요.']
 };
-function helpSheet(key){
+function helpSheet(key){ if(key!=='글'){ guideGo(); return; }   /* ★v216 이용 안내 = 「우리 이야기 안내」 방(그림 사용법) · 옛 글 창은 key '글' 로만 */
   var ks=Object.keys(HELP), cur=key||(isGuest()?'보는 분':ME.role==='관리자'?'관리자':ME.role==='확인자'?'확인자':'작성자');
   function draw(){
     $('hlB').innerHTML='<div class="strip" style="padding:0 0 10px;margin:0">'+ks.map(function(k){ return '<button type="button" class="chip s'+(k===cur?' on':'')+'" data-hk="'+k+'">'+k+'</button>'; }).join('')+'</div><ul class="chk">'+HELP[cur].map(function(x,i){ return '<li><b>'+(i+1)+'</b><span>'+esc(x)+'</span></li>'; }).join('')+'</ul>';
@@ -6026,7 +6030,7 @@ function recMenu(){
   mg.forEach(function(m,i){ var o=POSK[m.k]; h+='<button type="button" class="mrow" data-rg="'+i+'"><span class="sd '+o[0]+'" style="width:36px;height:36px">'+o[1]+'</span><span><b>'+esc(m.x.n)+' 관리</b><small>'+o[2]+(m.x.here?' · 지금 이 방':'')+'</small></span></button>'; });
   if(hqKnown()){ h+='<button type="button" class="mrow" data-rm="hq"><span class="sd p-hq" style="width:36px;height:36px">♛</span><span><b>본부</b><small>모든 방 · 오늘 처리할 일 · 관리자 지정</small></span></button>'; }
   h+='<div class="rsl">도움</div>';
-  if(ME&&!isGuest()){ h+=row('guide',ic('look'),'c-navy','이용 안내','처음 오신 분 · 멤버 · 관리자'); }
+  h+=row('guide','📖','c-navy','우리 이야기 사용법','그림으로 보는 안내 23편');   /* ★v216 손님에게도 · 도움 맨 위 */
   h+=row('shr',ic('share'),'c-green','공유하기','우리 이야기 마당 · 우리 이야기방 만들기 링크');
   if(!pwaIn()){ h+=row('pwa',ic('home'),'c-green','홈 화면에 추가','아이콘으로 바로 들어옵니다'); }
   if(ME&&!isGuest()){ h+=row('menu',ic('star'),'c-gray','이 방 설정 · 메뉴','보일 이름 · 카카오 연결 · 이 방에서 나가기'); }
@@ -6830,7 +6834,7 @@ window.addEventListener('appinstalled',function(){ PWA_EV=null; var b=$('pwaGo')
 try{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js',{scope:'/'})['catch'](function(){});
   /* ★v62 375 새 화면 파일을 받아 오면 한 번 바꿔 엶 — 첫 화면 · 광장에서만(쓰는 중에는 기다렸다가 첫 화면으로 돌아올 때) */
   navigator.serviceWorker.addEventListener('message',function(ev){ if(!ev.data||ev.data.t!=='lf-new'){ return; } NEWV=1; newGo(); }); } }catch(e){}
-var NEWV=0, REC_VER=215;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
+var NEWV=0, REC_VER=216;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
 function newChk(){ try{ if(!window.caches){ return; } caches.open('lf-rec-shell-v2').then(function(c){ return c.match('/'); }).then(function(r){ return r?r.text():''; }).then(function(t){ var m=/rec\/index\.html · v(\d+)/.exec(String(t).slice(0,600)); if(m&&parseInt(m[1],10)>REC_VER){ NEWV=1; newGo(); } })['catch'](function(){}); }catch(e){} }   /* ★v62 375 알림을 놓쳐도 남겨 둔 파일 버전을 직접 봄 */
 setTimeout(newChk,5000); setTimeout(newChk,15000);
 document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible'){ setTimeout(newChk,1500); } });
