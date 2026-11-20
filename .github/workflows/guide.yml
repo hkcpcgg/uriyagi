@@ -11,6 +11,10 @@ on:
         description: '(준비용) 같은 시험 방 다른 멤버 열쇠'
         required: false
         default: ''
+      undo:
+        description: '(되돌리기) 기기표|기록번호'
+        required: false
+        default: ''
       prep:
         description: '1 = 시험 방에 견본 사진 한 장 올리고 다른 멤버가 ♥ (18 · 20편 그림용)'
         required: false
@@ -28,6 +32,7 @@ jobs:
           if [ -n "$K" ]; then echo "::add-mask::$K"; echo "KEY=$K" >> "$GITHUB_ENV"; fi
           K2=$(jq -r '.inputs.key2 // ""' "$GITHUB_EVENT_PATH")
           if [ -n "$K2" ]; then echo "::add-mask::$K2"; echo "KEY2=$K2" >> "$GITHUB_ENV"; fi
+          echo "UNDO=$(jq -r '.inputs.undo // ""' "$GITHUB_EVENT_PATH")" >> "$GITHUB_ENV"
           echo "PREP=$(jq -r '.inputs.prep // "0"' "$GITHUB_EVENT_PATH")" >> "$GITHUB_ENV"
       - uses: actions/checkout@v4
         with:
