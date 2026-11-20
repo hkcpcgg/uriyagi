@@ -4,6 +4,7 @@
 # 새 꼴 = 전체를 어둡게 · 누를 곳만 원래 밝기 · 노란 테두리 · 노란 말풍선(남색 번호 + 「여기를 누르면 ○○」)
 # 번호는 원고 글 번호와 똑같이 · 말풍선은 서로 · 누를 곳과 겹치지 않게
 import json, sys, os
+ONLY = set(int(x) for x in os.environ.get('ONLY', '').split(',') if x)   # ★v3 몇 편만 다시 만들 때
 from PIL import Image, ImageDraw, ImageFont, ImageEnhance
 
 SRC, OUT = sys.argv[1], sys.argv[2]
@@ -33,7 +34,7 @@ SPEC = [
  (17, [('g13_닫힌방', [('g13_닫힌방', 1, '자물쇠 방을 눌러요')]), ('g13b_방두드리기', [('g13b_방두드리기:knock', 2, '「방 두드리기」를 눌러요')])]),
  (18, [('m04_내방누름', [('m04_내방누름', None, '아래 「내 방」')]), ('m04b_내방', [('m04b_내방:news', None, '새 소식이 모여요'), ('m04b_내방:av', None, '누르면 내 사진 바꾸기')])]),
  (19, [('m01_방첫화면', [('m01_방첫화면:mgr', 1, '「방 관리 ›」를 눌러요')]), ('m06b_방관리', [('m06b_방관리:ok', 2, '처음 한 번 카카오로 확인')])]),
- (20, [('g10_더보기', [('g10_더보기', 1, '더 보기(⋯)를 눌러요')])]),
+ (20, [('m09b_내게시물메뉴', [('m09b_내게시물메뉴:ed', 2, '고칠 때 「수정」'), ('m09b_내게시물메뉴:del', 2, '지울 때 「게시물 삭제」')])]),   # ★v3 261120 시험 방 내 게시물 ⋯ 창
  (21, [('g11_메뉴누름', [('g11_메뉴누름', 1, '메뉴 단추를 눌러요')]), ('g12_홈화면누름', [('g12_홈화면누름', 2, '「홈 화면에 추가」')]), ('g12b_홈화면', [('g12b_홈화면:how', 3, '안내대로 하면 포도 아이콘')])]),
  (22, [('g05b_게시물', [])]),
  (23, [('g04_방첫화면', [])]),
@@ -98,6 +99,7 @@ def draw(shot, targets):
 os.makedirs(OUT, exist_ok=True)
 counts = {}
 for k, imgs in SPEC:
+    if ONLY and k not in ONLY: continue
     for j, (shot, tg) in enumerate(imgs, 1):
         if not os.path.exists(os.path.join(SRC, shot + '.png')): print('  ★날 그림 없음', shot); continue
         im = draw(shot, tg)
