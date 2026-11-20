@@ -7,6 +7,10 @@ on:
         description: '잴 방(쉼표)'
         required: false
         default: 'C-0255,C-0031,C-0294'
+      photo:
+        description: '(서명 주소 시험) 닫힌 사진 기록번호'
+        required: false
+        default: ''
       key:
         description: '(멤버 눈) 시험 방 열쇠'
         required: false
@@ -23,6 +27,7 @@ jobs:
         run: |
           K=$(jq -r '.inputs.key // ""' "$GITHUB_EVENT_PATH")
           if [ -n "$K" ]; then echo "::add-mask::$K"; echo "KEY=$K" >> "$GITHUB_ENV"; fi
+          echo "PHOTO=$(jq -r '.inputs.photo // ""' "$GITHUB_EVENT_PATH")" >> "$GITHUB_ENV"
           R=$(jq -r '.inputs.rooms // ""' "$GITHUB_EVENT_PATH"); echo "ROOMS=${R:-C-0255,C-0031,C-0294}" >> "$GITHUB_ENV"
       - uses: actions/checkout@v4
         with:

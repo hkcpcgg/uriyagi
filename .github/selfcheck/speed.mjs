@@ -34,6 +34,19 @@ async function room(p, L, label, url) {
   await p.waitForTimeout(600); const t3 = await until(p, curLoaded, 30000);
   out.push(`| ${label} | › 다음 게시물 | ${t3 < 0 ? '★ 30초 넘음' : T(t3 + 600)} | ${sum(L)} |`);
 }
+// ★ 닫힌 사진 서명 주소 시험(KEY + PHOTO) — 서버에 url=1 로 묻고 그 주소를 바로 받아 봄
+if (/^[a-f0-9]{32}$/.test(KEY) && /^R-\d{6}$/.test(process.env.PHOTO || '')) {
+  const GAS = 'https://script.google.com/macros/s/AKfycbyxGWMrhY9Ffihk56ve-8s_S87fdkg_WEMpJO7q3FZRkdlBZWwkWo8m2Gs-fBbrhoVMOg/exec';
+  for (const sm of ['', '1']) {
+    const t0 = Date.now(); const d = await fetch(GAS, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action: 'recPhoto', k: KEY, id: process.env.PHOTO, small: sm, url: '1' }) }).then(x => x.json()).catch(e => ({ err: e.message }));
+    const t1 = Date.now() - t0;
+    if (d.url) { const t2 = Date.now(); const r = await fetch(d.url); const b = await r.arrayBuffer(); const r0 = await fetch(d.url.split('?')[0]);
+      out.push(`| 닫힌 사진 ${process.env.PHOTO}${sm ? ' 작게' : ''} | 서명 주소 받기 ${T(t1)} · 네이버 ${r.status} ${Math.round(b.byteLength / 1024)}KB ${T(Date.now() - t2)} | 서명 없이 ${r0.status} |`); }
+    else out.push(`| 닫힌 사진 ${process.env.PHOTO} | 주소 못 받음 ${T(t1)} | ${JSON.stringify(d).slice(0, 120)} |`);
+  }
+  const t3 = Date.now(); const d0 = await fetch(GAS, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action: 'recPhoto', k: KEY, id: process.env.PHOTO }) }).then(x => x.json()).catch(e => ({}));
+  out.push(`| 닫힌 사진 옛 길(서버가 받아 넘김) | ${T(Date.now() - t3)} | ${d0.data ? Math.round(d0.data.length * 0.75 / 1024) + 'KB' : '못 받음'} |`);
+}
 try {
   let c = await ctx(), p = await c.newPage(), L = netlog(p);
   const t0 = Date.now(); await p.goto(B + '?plaza=1'); const tp = await until(p, firstPic, 40000);
