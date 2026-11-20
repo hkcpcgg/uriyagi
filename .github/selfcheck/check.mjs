@@ -33,7 +33,8 @@ async function openPage(name, url, ctxOpt) {
       if (res.status() >= 300 && res.status() < 400) return;
       let root = rq; while (root.redirectedFrom()) root = root.redirectedFrom();   // 넘겨받은 요청은 처음 요청 때부터 잼(서버가 일하는 시간 포함)
       const t1 = reqStart.get(root) ?? reqStart.get(rq); if (t1 == null) return;
-      srvTimes.push({ page: name, ms: Date.now() - t1 });
+      let act = /docs\.google/.test(root.url()) ? '공개 목록' : ''; try { if (!act) act = JSON.parse(root.postData() || '{}').action || '서버'; } catch (e) { act = '서버'; }   // ★v4 어느 일이 느린지
+      srvTimes.push({ page: name, ms: Date.now() - t1, act });
       const tx = await res.text();
       if (!roomG && name === '방') { const m = tx.match(/"g"\s*:\s*"([A-Fa-f0-9]{32})"/); if (m) roomG = m[1].toLowerCase(); }
       if (!recId && name === '방') { const m = tx.match(/"(R-\d{6})"/); if (m) recId = m[1]; }
@@ -109,7 +110,8 @@ if (roomG) {
 // 5 서버 시간 — ① 화면이 받은 답(공개 목록 · 서버) ② 서버에 직접 recPing
 if (srvTimes.length) {
   const ms = srvTimes.map(x => x.ms).sort((a, b) => a - b), mx = ms[ms.length - 1], md = ms[Math.floor(ms.length / 2)];
-  put('화면이 받은 답 · 가장 느림', mx > LIM.srv ? false : mx > LIM.srvWarn ? 'w' : true, (mx / 1000).toFixed(1) + '초', '가운데 ' + (md / 1000).toFixed(1) + '초 · ' + ms.length + '번');
+  const top = srvTimes.slice().sort((a, b) => b.ms - a.ms).slice(0, 3).map(x => x.act + ' ' + (x.ms / 1000).toFixed(1) + '초').join(' · ');
+  put('화면이 받은 답 · 가장 느림', mx > LIM.srv ? false : mx > LIM.srvWarn ? 'w' : true, (mx / 1000).toFixed(1) + '초', '가운데 ' + (md / 1000).toFixed(1) + '초 · ' + ms.length + '번 · 느린 셋: ' + top);
 } else put('화면이 받은 답', false, '0번', '공개 목록 · 서버에서 답이 하나도 안 옴');
 try {
   const GAS = 'https://script.google.com/macros/s/AKfycbyxGWMrhY9Ffihk56ve-8s_S87fdkg_WEMpJO7q3FZRkdlBZWwkWo8m2Gs-fBbrhoVMOg/exec';
