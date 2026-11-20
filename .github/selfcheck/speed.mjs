@@ -11,6 +11,7 @@ async function ctx() { return browser.newContext({ viewport: { width: 390, heigh
 function netlog(p) { const L = []; const st = new Map();
   p.on('request', r => { if (/script\.google/.test(r.url())) { let a = ''; try { a = JSON.parse(r.postData() || '{}').action || ''; } catch (e) {} st.set(r, [Date.now(), a]); } });
   p.on('requestfinished', r => { let root = r; while (root.redirectedFrom()) root = root.redirectedFrom(); const s = st.get(root); if (s && r === root) {} if (s && !r.redirectedTo()) L.push({ a: s[1], ms: Date.now() - s[0] }); });
+  p.on('response', r => { if (/ncloudstorage/.test(r.url())) { L.push({ a: (/X-Amz-Signature/.test(r.url()) ? '네이버 서명 ' : '네이버 ') + r.status(), ms: 0 }); } });
   return L; }
 async function until(p, fn, max = 30000) { const t0 = Date.now(); while (Date.now() - t0 < max) { if (await p.evaluate(`(${fn})()`).catch(() => false)) return Date.now() - t0; await p.waitForTimeout(100); } return -1; }
 const firstPic = `() => [...document.querySelectorAll('#main .tl[data-tid],#main .tl[data-pz],#main .tl[data-vz]')].some(e => /url\\(/.test(getComputedStyle(e).backgroundImage) && e.getBoundingClientRect().top < innerHeight)`;
