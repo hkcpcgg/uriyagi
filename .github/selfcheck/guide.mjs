@@ -105,7 +105,8 @@ try {
     c = await newCtx(); p = await c.newPage();
     await p.goto(B + '?k=' + KEY2); await wait(p); await p.screenshot({ path: 'guide/x_k2a.png' });
     let hd0 = await p.evaluate(() => (document.querySelector('#main .rph') || {}).textContent || '');
-    if (!/시험 v101/.test(hd0)) { await p.goto(B + '?me=1'); await wait(p); }
+    if (!/시험 v101/.test(hd0)) { await p.goto(B + '?me=1'); for (let i = 0; i < 60; i++) { await p.waitForTimeout(500); if (await p.evaluate(() => !!document.querySelector('#main .rph') || /열지 못|다시 눌러/.test(document.getElementById('main')?.textContent || ''))) break; } await p.waitForTimeout(2500); }
+    log.push('준비 · 다른 멤버 화면 글 ' + (await p.evaluate(() => (document.getElementById('main')?.textContent || '').replace(/\s+/g, ' ').slice(0, 80))));
     await p.screenshot({ path: 'guide/x_k2b.png' });
     for (let i = 0; i < 3; i++) { await p.reload(); await wait(p); if (await p.evaluate(`!!(${RPIC})()`)) break; }
     const hd = await p.evaluate(() => (document.querySelector('#main .rph') || {}).textContent || '');
