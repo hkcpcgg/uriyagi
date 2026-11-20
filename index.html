@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v218 · 261120 · [우리이야기] 바둑판 여러 장 표시 ⧉ 글자 → SVG 그림(인스타 꼴 · 글꼴 따라 □ 로 나오던 것) -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v219 · 261120 · [우리이야기] 속도(대표 11:58 OK · 서버 ①Code v106 과 짝) — 닫힌 사진은 서버가 10분짜리 서명 주소만 주고 네이버에서 바로 받음 · 8분 지나면 새 주소 · 안 열리면 옛 길 -->
+<!-- (이전) ★ 현재 버전 ▶ rec/index.html · v218 · 261120 · [우리이야기] 바둑판 여러 장 표시 ⧉ 글자 → SVG 그림(인스타 꼴 · 글꼴 따라 □ 로 나오던 것) -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v217 · 261120 · [우리이야기] 대표 11:00 OK — 모든 방 · 마당 게시물 보기에도 안내 방과 같은 아래 가운데 ‹ ⊞ ›(pfNav · 흰 가는 선 · 흐림 · 끝은 더 흐림) · ⊞ = 그 방 바둑판(마당에서 열었으면 마당) · 맨 끝 「⊞ 전체 사진 보기」 뺌 · 이름 · 글 · 오른쪽 단추는 그만큼 위로 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v216 · 261120 · [우리이야기] 사용법 문 셋(대표 10:37 「소통 없이 개선해 진행」) — ① 마당 첫인사 카드 안 「📖 우리 이야기방을 소개합니다 · 사용법 보기 ›」(카드 닫으면 같이 사라짐) ② ☰ 도움 맨 위 「우리 이야기 사용법」(손님에게도) ③ 내 방 「📖 우리 이야기 사용법」 — 셋 다 「우리 이야기 안내」 방(GUIDE_G)으로 · helpSheet() = guideGo() · 동그라미 줄에서 안내 방 뺌 · 로그인 창 아래 한 줄 · 「쓰는 법」 → 「사용법」 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v215 · 261120 · [우리이야기] 고장 고침(대표 08:38 「승인대로 쭉」) — 손님이 ＋ 누른 뒤 다른 방에 가도 로그인 창이 또 뜨던 것: lf_rec_plus 에 고른 방 이름 · 로그인 창 보였는지 같이 둠 → 고른 방에서만 · 한 번만 뜸 · 다른 방이면 버림 -->
@@ -2428,7 +2429,7 @@ function duHas(id){ return !!(id&&(DU[id]||NU[id])); }   /* ★v192 S7 — 드�
 function duScan(o,d){ d=d||0; if(!o||typeof o!=='object'||d>6){ return; } if(Array.isArray(o)){ for(var i=0;i<o.length;i++){ duScan(o[i],d+1); } return; }
   if(o.id){ if(o.u&&/^[A-Za-z0-9_-]{10,80}$/.test(o.u)){ DU[o.id]=o.u; } if(o.n&&o.n.p&&/^p\/C-\d{4}\/[A-Za-z0-9-]+\.(jpg|png|webp|heic)$/.test(o.n.p)){ NU[o.id]=o.n; }   /* ★v183 S7 네이버(한국) */ if(o.mv&&/^https:\/\/www\.loveflow\.ai\.kr\/rec\/seed\/[A-Za-z0-9_\/-]+\.mp4$/.test(o.mv)){ MV[o.id]=o.mv; } }
   for(var k in o){ if(o[k]&&typeof o[k]==='object'){ duScan(o[k],d+1); } } }
-var NCP_BASE='https://kr.object.ncloudstorage.com/uriyagi-photo/', NU={};   /* ★v183 S7 사진 국내 보관 — 공개 사진은 네이버에서 바로 */
+var NCP_BASE='https://kr.object.ncloudstorage.com/uriyagi-photo/', NU={}; var PHT={};   /* ★v219 서명 주소 받은 때 */   /* ★v183 S7 사진 국내 보관 — 공개 사진은 네이버에서 바로 */
 function duUrl(id,w){ var n=NU[id], ww=w||480; if(n){ if(ww<=300&&n.t){ return NCP_BASE+n.t; } if(ww<=520&&n.s){ return NCP_BASE+n.s; } if(ww<=1000&&n.m){ return NCP_BASE+n.m; } if(ww<=1000&&DU[id]){ return 'https://drive.google.com/thumbnail?id='+encodeURIComponent(DU[id])+'&sz=w'+ww; } return NCP_BASE+(n.m||n.p); }   /* ★v184 작게 = 작은 그림 · 보통 = 가로 800 · 없으면 드라이브(원본을 통째로 받지 않음) */ return DU[id]?'https://drive.google.com/thumbnail?id='+encodeURIComponent(DU[id])+'&sz=w'+(w||480):''; }
 function duLoad(id,w,cb){ var u=duUrl(id,w); if(!u){ cb(''); return; } var im=new Image(), done=false; function fin(x){ if(done){ return; } done=true; cb(x); }
   im.onload=function(){ fin(im.naturalWidth>1?u:''); }; im.onerror=function(){ if(NU[id]&&DU[id]){ delete NU[id]; done=true; duLoad(id,w,cb); return; } fin(''); }; setTimeout(function(){ fin(''); },8000); im.src=u; }   /* ★v183 네이버가 안 되면 드라이브로 */
@@ -3863,9 +3864,10 @@ var PHN={s:0,b:0,kb:0};
 function phnSend(){ if(!(PHN.s||PHN.b||PHN.kb)){ return; } var m='작은 '+PHN.s+' · 큰 '+PHN.b+' · 서버 '+Math.round(PHN.kb)+'KB'; PHN={s:0,b:0,kb:0}; visSend('사진',m); }
 window.addEventListener('pagehide',phnSend); document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='hidden'){ phnSend(); } });
 function photo(id,small,cb,noDu){
-  var k=(small?'s:':'')+id; if(PHC[k]){ cb(PHC[k]); return; }
+  var k=(small?'s:':'')+id; if(PHC[k]&&PHT[k]&&Date.now()-PHT[k]>480000){ delete PHC[k]; delete PHT[k]; }   /* ★v219 서명 주소는 10분 — 8분 지나면 새로 받음 */ if(PHC[k]){ cb(PHC[k]); return; }
   if(!noDu){ if(PHW[k]){ PHW[k].push(cb); return; } PHW[k]=[cb]; var cb0=cb; cb=function(u){ var w=PHW[k]||[cb0]; delete PHW[k]; w.forEach(function(f){ try{ f(u); }catch(e){} }); }; }   /* ★v120 받는 중인 사진은 기다렸다 같이 받음 */
   if(duHas(id)&&!noDu){ duLoad(id,small?480:1600,function(u){ if(u){ PHC[k]=u; if(small){ PHN.s++; } else { PHN.b++; } cb(u); } else { photo(id,small,cb,1); } }); return; }   /* ★v53 333 서버를 거치지 않고 */
+  if(!noDu||noDu!==2){ api({action:'recPhoto',id:id,small:small?'1':'',url:'1',_quiet:1},function(d){ if(d&&d.status==='ok'&&d.url&&/^https:\/\/kr\.object\.ncloudstorage\.com\//.test(d.url)){ var im=new Image(); im.onload=function(){ PHC[k]=d.url; PHT[k]=Date.now(); if(small){ PHN.s++; } else { PHN.b++; } cb(d.url); }; im.onerror=function(){ photo(id,small,cb,2); }; im.src=d.url; return; } if(d&&d.status==='ok'&&d.data){ PHC[k]='data:'+d.type+';base64,'+d.data; pvHeal(id,PHC[k]); cb(PHC[k]); return; } photo(id,small,cb,2); }); return; }   /* ★v219 닫힌 사진 = 서버가 10분짜리 서명 주소만 → 네이버에서 바로(한 장 3~7초 → 짧게) · 안 되면 옛 길(서버가 받아 넘김) */
   api({action:'recPhoto',id:id,small:small?'1':''},function(d){ if(d.status==='ok'){ if(small){ PHN.s++; } else { PHN.b++; } PHN.kb+=String(d.data||'').length*0.75/1024; PHC[k]='data:'+d.type+';base64,'+d.data; pvHeal(id,PHC[k]); cb(PHC[k]); } else { cb(''); } });
 }
 /* ★v25 스스로 채우기 — 미리보기 없는 옛 사진을 이 폰이 처음 열면 작은 사진을 만들어 서버에 남김(다음부터 모두 빨리) */
@@ -6843,7 +6845,7 @@ window.addEventListener('appinstalled',function(){ PWA_EV=null; var b=$('pwaGo')
 try{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js',{scope:'/'})['catch'](function(){});
   /* ★v62 375 새 화면 파일을 받아 오면 한 번 바꿔 엶 — 첫 화면 · 광장에서만(쓰는 중에는 기다렸다가 첫 화면으로 돌아올 때) */
   navigator.serviceWorker.addEventListener('message',function(ev){ if(!ev.data||ev.data.t!=='lf-new'){ return; } NEWV=1; newGo(); }); } }catch(e){}
-var NEWV=0, REC_VER=218;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
+var NEWV=0, REC_VER=219;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
 function newChk(){ try{ if(!window.caches){ return; } caches.open('lf-rec-shell-v2').then(function(c){ return c.match('/'); }).then(function(r){ return r?r.text():''; }).then(function(t){ var m=/rec\/index\.html · v(\d+)/.exec(String(t).slice(0,600)); if(m&&parseInt(m[1],10)>REC_VER){ NEWV=1; newGo(); } })['catch'](function(){}); }catch(e){} }   /* ★v62 375 알림을 놓쳐도 남겨 둔 파일 버전을 직접 봄 */
 setTimeout(newChk,5000); setTimeout(newChk,15000);
 document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible'){ setTimeout(newChk,1500); } });
