@@ -61,6 +61,12 @@ try {
     await room(p, L, '멤버 내 방', B + '?me=1');
     const bad = await p.evaluate(() => ({ left: /X-Amz-Signature/.test(localStorage.getItem('lf_rec_pv') || ''), broken: [...document.querySelectorAll('#pf .pfi img[src]')].filter(i => i.complete && !i.naturalWidth).length, stuck: [...document.querySelectorAll('#pf .pfi .pfw8')].filter(w => !w.querySelector('button')).length }));
     out.push(`| 멤버 내 방 | 닫힌 옛 주소 | 창고에 남음 ${bad.left ? '★ 있음' : '없음'} · 깨진 그림 ${bad.broken} · 불러오는 중 남음 ${bad.stuck} |`);
+    // ★261120 다시 열기 — 휴대폰에서 앱을 닫았다 다시 여는 것과 같은 길(같은 주소 · 남겨 둔 첫 화면이 있음)
+    for (const [lb, u] of [['멤버 앱 다시 열기(/)', B], ['멤버 내 방 다시 열기', B + '?me=1']]) {
+      await p.goto('about:blank'); await p.goto(u); await p.waitForTimeout(4000);
+      await p.goto('about:blank'); L.length = 0; const t0 = Date.now(); await p.goto(u); const t1 = await until(p, firstPic, 40000);
+      out.push(`| ${lb} | 첫 사진(두 번째) | ${t1 < 0 ? '★ 40초 넘음' : T(t1)} | ${L.filter(x => x.a).map(x => x.a + '@' + T(x.st - t0) + '+' + T(x.ms)).join(' · ')} |`);
+    }
     await c.close(); }
 } catch (e) { out.push('| 오류 | ' + e.message.slice(0, 150) + ' |'); }
 await browser.close();
