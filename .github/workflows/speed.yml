@@ -1,0 +1,38 @@
+# 속도 재기 — 손으로 · 매일(261120 대표 「주기적으로 체크」)
+name: 속도 재기
+on:
+  workflow_dispatch:
+    inputs:
+      rooms:
+        description: '잴 방(쉼표)'
+        required: false
+        default: 'C-0255,C-0031,C-0294'
+      key:
+        description: '(멤버 눈) 시험 방 열쇠'
+        required: false
+        default: ''
+  schedule:
+    - cron: '17 0 * * *'   # 한국 09:17
+    - cron: '17 11 * * *'  # 한국 20:17
+jobs:
+  speed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: 열쇠 가리기
+        run: |
+          K=$(jq -r '.inputs.key // ""' "$GITHUB_EVENT_PATH")
+          if [ -n "$K" ]; then echo "::add-mask::$K"; echo "KEY=$K" >> "$GITHUB_ENV"; fi
+          R=$(jq -r '.inputs.rooms // ""' "$GITHUB_EVENT_PATH"); echo "ROOMS=${R:-C-0255,C-0031,C-0294}" >> "$GITHUB_ENV"
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/selfcheck
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: |
+          cd .github/selfcheck
+          npm init -y >/dev/null
+          npm i playwright-core@1.48.2 >/dev/null
+          node speed.mjs | tee speed.md
+          cat speed.md >> "$GITHUB_STEP_SUMMARY"
