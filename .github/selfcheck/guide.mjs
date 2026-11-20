@@ -104,7 +104,7 @@ try {
     await c.close();
     c = await newCtx(); p = await c.newPage();
     if (/^R-\d{6}$/.test(process.env.PREP_R || '')) {
-      await p.goto(B + '?k=' + KEY2 + '&r=' + process.env.PREP_R);
+      await p.goto(B + '?k=' + KEY2); await wait(p); await p.goto(B + '?me=1&r=' + process.env.PREP_R);
       let ok = false; for (let i = 0; i < 120 && !ok; i++) { await p.waitForTimeout(500); ok = await p.evaluate(() => !!document.querySelector('#pf.on .pfa [data-pa=like]')); }
       await p.waitForTimeout(1500); await p.screenshot({ path: 'guide/x_prep4.png' });
       const lk = !ok ? '게시물이 안 열림' : await p.evaluate(() => { const b = document.querySelector('#pf.on .pfa [data-pa=like]'); if (!/시험 v101/.test((document.getElementById('pfBk') || {}).textContent || '')) return '시험 방이 아니라 안 누름'; if (b.classList.contains('on')) return '이미 누름'; b.click(); return '누름'; });
