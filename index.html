@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v216 · 261120 · [우리이야기] 사용법 문 셋(대표 10:37 「소통 없이 개선해 진행」) — ① 마당 첫인사 카드 안 「📖 우리 이야기방을 소개합니다 · 사용법 보기 ›」(카드 닫으면 같이 사라짐) ② ☰ 도움 맨 위 「우리 이야기 사용법」(손님에게도) ③ 내 방 「📖 우리 이야기 사용법」 — 셋 다 「우리 이야기 안내」 방(GUIDE_G)으로 · helpSheet() = guideGo() · 동그라미 줄에서 안내 방 뺌 · 로그인 창 아래 한 줄 · 「쓰는 법」 → 「사용법」 -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v217 · 261120 · [우리이야기] 대표 11:00 OK — 모든 방 · 마당 게시물 보기에도 안내 방과 같은 아래 가운데 ‹ ⊞ ›(pfNav · 흰 가는 선 · 흐림 · 끝은 더 흐림) · ⊞ = 그 방 바둑판(마당에서 열었으면 마당) · 맨 끝 「⊞ 전체 사진 보기」 뺌 · 이름 · 글 · 오른쪽 단추는 그만큼 위로 -->
+<!-- (이전) ★ 현재 버전 ▶ rec/index.html · v216 · 261120 · [우리이야기] 사용법 문 셋(대표 10:37 「소통 없이 개선해 진행」) — ① 마당 첫인사 카드 안 「📖 우리 이야기방을 소개합니다 · 사용법 보기 ›」(카드 닫으면 같이 사라짐) ② ☰ 도움 맨 위 「우리 이야기 사용법」(손님에게도) ③ 내 방 「📖 우리 이야기 사용법」 — 셋 다 「우리 이야기 안내」 방(GUIDE_G)으로 · helpSheet() = guideGo() · 동그라미 줄에서 안내 방 뺌 · 로그인 창 아래 한 줄 · 「쓰는 법」 → 「사용법」 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v215 · 261120 · [우리이야기] 고장 고침(대표 08:38 「승인대로 쭉」) — 손님이 ＋ 누른 뒤 다른 방에 가도 로그인 창이 또 뜨던 것: lf_rec_plus 에 고른 방 이름 · 로그인 창 보였는지 같이 둠 → 고른 방에서만 · 한 번만 뜸 · 다른 방이면 버림 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v214 · 261120 · [우리이야기] 안내 방 아래 길 시안 v6(대표 05:21 OK) — 아래 가운데 ‹ ⊞ › 셋만(바탕 없음 · 가는 선 · 흐림 · 사랑흐름 「← ⌂ →」 자리 · 간격) · 머리띠 「⊞ 전체 보기」 · 편 글씨 단추 · 「☝ 위로 밀면 다음 편」 뺌 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v213 · 261120 · [우리이야기] 안내 방 넘기기(대표 261120 05:00 OK · 시안 없이) — 짧은 글 남색 칸도 밀면 넘어감 · 긴 글은 칸 안에서 읽고 끝에서 한 번 더 밀면 다음 편 · 「▼ 글이 더 있어요 / 다 읽었어요」 · 머리띠 「⊞ 전체 보기」 · 아래 큰 앞/다음 단추 + 「☝ 위로 밀면 다음 편」 · 처음 열 때 손가락 -->
@@ -1640,6 +1641,11 @@ body.pfon{overflow:hidden}
 .pf.guide .pfgnv{bottom:2px;justify-content:center;gap:26px;align-items:center}   /* ★v214 시안 v6 — 사랑흐름 「← ⌂ →」 자리 · 간격 · 바탕 없음 · 가는 선 · 흐림 */
 .pf.guide .pfgnv button,.pf.guide .pfgnv .pfgx0{width:44px;height:44px;padding:0;border:0;background:none;color:#1F2A44;opacity:.45;display:grid;place-items:center;min-height:0;cursor:pointer}
 .pf.guide .pfgnv .pfgx0{opacity:.15;cursor:default}
+.pf .pfnv{left:0;right:0;bottom:2px;justify-content:center;gap:26px;align-items:center;transition:opacity .2s}   /* ★v217 모든 방 · 마당 게시물 보기 — 안내 방과 같은 ‹ ⊞ › (사진 위라 흰 가는 선 · 흐림) */
+.pf .pfnv button,.pf .pfnv .pfgx0{width:44px;height:44px;padding:0;border:0;background:none;color:#fff;opacity:.6;display:grid;place-items:center;min-height:0;cursor:pointer;filter:drop-shadow(0 1px 2px rgba(0,0,0,.55))}
+.pf .pfnv .pfgx0{opacity:.2;cursor:default}
+.pf:not(.guide) .pfo{bottom:50px}.pf:not(.guide) .pfa{bottom:52px}
+.pf .pfend:empty{padding:0;height:1px}
 .pfgh{font-size:12.5px;font-weight:700;color:#1F2A44;opacity:.8;text-align:center;flex:1;padding:0 4px}.pfgsp{min-width:64px}
 .pfhand{position:absolute;left:50%;top:38%;transform:translateX(-50%);z-index:9;pointer-events:none;display:flex;flex-direction:column;align-items:center;gap:8px;animation:pfhf 3.2s ease forwards}
 .pfhand span{font-size:54px;line-height:1;filter:drop-shadow(0 2px 4px rgba(0,0,0,.4));animation:pfhu 1.3s ease-in-out 2}
@@ -3304,9 +3310,11 @@ function pfPost(it,i){   /* ★v205 쇼츠형 — 사진 위에 오른쪽 세로
     '<div class="pfsh"></div><span class="pfgn" data-gn="'+i+'">'+(i+1)+' / '+PF.list.length+'</span><div class="vpop" aria-hidden="true">♥</div><div class="pfa" data-pa0="'+i+'"></div>'+
     '<div class="pfo"><header class="pfh"><span class="pfav'+(by&&it.bp&&picUrl(it.bp)?' pic':'')+'"'+(by&&it.bp?picBg(it.bp):'')+hit+(hit?' aria-label="'+esc(by?by+' 님 프로필':'방 첫 화면')+'"':'')+'>'+esc(pfIni(by||rn))+'</span><div class="pfnm"'+hit+'><b>'+esc(by||rn)+'</b><small>'+esc(it.when||'')+'</small></div></header>'+
     (tt||txt?'<div class="pft" data-pa="txt">'+esc([tt,txt].filter(Boolean).join('\n'))+'</div>':'')+
-    (n>1?'<div class="pfd" data-pd="'+i+'">'+ps.map(function(p,k){ return '<i'+(k?'':' class="on"')+'></i>'; }).join('')+'</div>':'')+'</div></article>';
+    (n>1?'<div class="pfd" data-pd="'+i+'">'+ps.map(function(p,k){ return '<i'+(k?'':' class="on"')+'></i>'; }).join('')+'</div>':'')+'</div>'+pfNav(i,' pfnv','앞 게시물',PF.fromPz?'마당으로':'이 방 전체 보기','다음 게시물')+'</article>';   /* ★v217 아래 가운데 ‹ ⊞ › */
 }
 var PFG_L='<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>', PFG_R='<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>', PFG_G='<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4.5" y="4.5" width="15" height="15" rx="2"/><path d="M12 4.5v15M4.5 12h15"/></svg>';   /* ★v214 시안 v6 ‹ ⊞ › */
+function pfNav(i,cls,lp,lh,ln){ var L=PF.list, pv=L[i-1], nx=L[i+1];   /* ★v217 ‹ ⊞ › 한 꼴 — 안내 방(v214)과 모든 방 · 마당 게시물 보기가 같이 씀 */
+  return '<div class="pfgnv'+(cls||'')+'">'+(pv?'<button type="button" data-pa="gmv" data-to="'+(i-1)+'" aria-label="'+lp+'">'+PFG_L+'</button>':'<span class="pfgx0">'+PFG_L+'</span>')+'<button type="button" data-pa="gall" aria-label="'+lh+'">'+PFG_G+'</button>'+(nx?'<button type="button" data-pa="gmv" data-to="'+(i+1)+'" aria-label="'+ln+'">'+PFG_R+'</button>':'<span class="pfgx0">'+PFG_R+'</span>')+'</div>'; }
 function pfGPost(it,i,sl,n,ps){   /* ★v212 시안 v4 A안 — 그림 가운데 · 이름 줄 없음 · 원고 전문 · ①②③ 노란 동그라미 · 23칸 막대 · 앞 편/다음 편 */
   var L=PF.list, N=L.length, bar=''; for(var j=0;j<N;j++){ bar+='<i'+(j<=i?' class="on"':'')+'></i>'; }
   var pv=L[i-1], nx=L[i+1];
@@ -3314,7 +3322,7 @@ function pfGPost(it,i,sl,n,ps){   /* ★v212 시안 v4 A안 — 그림 가운데
     '<span class="pfgn" data-gn="'+i+'">'+(i+1)+' / '+N+'</span><div class="vpop" aria-hidden="true">♥</div>'+
     '<div class="pfo pfgc"><div class="pfa" data-pa0="'+i+'"></div><span class="pfgch">'+(i+1)+' / '+N+'편'+(n>1?' · 그림 '+n+'장':'')+'</span><h3 class="pfgt">'+esc(it.title||'')+'</h3><div class="pfgx" data-gx="'+i+'"><p class="pfgw">설명을 불러오는 중입니다</p></div>'+
     (n>1?'<div class="pfd" data-pd="'+i+'">'+ps.map(function(p,k){ return '<i'+(k?'':' class="on"')+'></i>'; }).join('')+'</div>':'')+'</div><div class="pfgmore" data-gm="'+i+'"></div>'+
-    '<div class="pfgnv">'+(pv?'<button type="button" data-pa="gmv" data-to="'+(i-1)+'" aria-label="앞 편">'+PFG_L+'</button>':'<span class="pfgx0">'+PFG_L+'</span>')+'<button type="button" data-pa="gall" aria-label="이 방 전체 보기">'+PFG_G+'</button>'+(nx?'<button type="button" data-pa="gmv" data-to="'+(i+1)+'" aria-label="다음 편">'+PFG_R+'</button>':'<span class="pfgx0">'+PFG_R+'</span>')+'</div></article>';
+    pfNav(i,'','앞 편','이 방 전체 보기','다음 편')+'</article>';
 }
 function pfGHtml(t){ var h='', ol=0, ul=0, cl=function(){ var o=(ol?'</ol>':'')+(ul?'</ul>':''); ol=ul=0; return o; };
   var mk=function(x){ return esc(x).replace(/「([^」]+)」/g,'<b>「$1」</b>'); };
@@ -3381,7 +3389,7 @@ function pfWire(from){ var inn=$('pfIn');
 function pfGuide(){ return !!(PF.on&&!PF.fromPz&&ME&&PZ_OUT[ME.comName]); }   /* ★v210 안내 방인지 */
 function pfOpen(list,i,pid,pz){
   if(!list.length){ return; } pfBox(); PF.list=list.slice(); PF.ci={}; PF.on=true; PF.fromPz=pz?1:0;
-  $('pfBk').textContent=pfLabel(); $('pfIn').innerHTML=PF.list.map(pfPost).join('')+'<div class="pfend" id="pfEnd">'+(PF.fromPz?'':'<button type="button" class="pfall" id="pfAll">⊞ 전체 사진 보기</button>')+'</div>'; if($('pfAll')){ $('pfAll').onclick=pfClose; }   /* ★v211 ⑤ 맨 끝 = 방 바둑판으로 */
+  $('pfBk').textContent=pfLabel(); $('pfIn').innerHTML=PF.list.map(pfPost).join('')+'<div class="pfend" id="pfEnd"></div>';   /* ★v217 맨 끝 「⊞ 전체 사진 보기」 뺌 → 아래 ⊞ 가 대신 */ if($('pfAll')){ $('pfAll').onclick=pfClose; }   /* ★v211 ⑤ 맨 끝 = 방 바둑판으로 */
   $('pf').style.zIndex=String(1500+LAYS.length*2); $('pf').classList.remove('bare'); $('pf').classList.toggle('guide',pfGuide()); if(pfGuide()){ pfGHand(); } $('pf').classList.add('on'); document.body.classList.add('pfon'); btabDraw(); pfFit();
   var art=document.querySelector('#pfIn [data-pi="'+i+'"]'); $('pf').scrollTop=art?art.offsetTop:0;
   if(pid){ var ps=pfPhotos(PF.list[i]); for(var k=0;k<ps.length;k++){ if(ps[k].id===pid){ PF.ci[i]=k; var sc=art&&art.querySelector('.pfs'); if(sc){ (function(sc,k){ setTimeout(function(){ sc.scrollLeft=k*sc.clientWidth; var c=document.querySelector('#pfIn [data-pc="'+i+'"]'); if(c){ c.textContent=(k+1)+'/'+sc.children.length; } var dd=document.querySelector('#pfIn [data-pd="'+i+'"]'); if(dd){ each(dd,'i',function(x,j){ x.classList.toggle('on',j===k); }); } },0); })(sc,k); }   /* ★v161 숫자 · 점도 그 사진에 맞춤 */ } } }
@@ -6834,7 +6842,7 @@ window.addEventListener('appinstalled',function(){ PWA_EV=null; var b=$('pwaGo')
 try{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js',{scope:'/'})['catch'](function(){});
   /* ★v62 375 새 화면 파일을 받아 오면 한 번 바꿔 엶 — 첫 화면 · 광장에서만(쓰는 중에는 기다렸다가 첫 화면으로 돌아올 때) */
   navigator.serviceWorker.addEventListener('message',function(ev){ if(!ev.data||ev.data.t!=='lf-new'){ return; } NEWV=1; newGo(); }); } }catch(e){}
-var NEWV=0, REC_VER=216;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
+var NEWV=0, REC_VER=217;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
 function newChk(){ try{ if(!window.caches){ return; } caches.open('lf-rec-shell-v2').then(function(c){ return c.match('/'); }).then(function(r){ return r?r.text():''; }).then(function(t){ var m=/rec\/index\.html · v(\d+)/.exec(String(t).slice(0,600)); if(m&&parseInt(m[1],10)>REC_VER){ NEWV=1; newGo(); } })['catch'](function(){}); }catch(e){} }   /* ★v62 375 알림을 놓쳐도 남겨 둔 파일 버전을 직접 봄 */
 setTimeout(newChk,5000); setTimeout(newChk,15000);
 document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible'){ setTimeout(newChk,1500); } });
