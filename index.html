@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v223 · 261120 · [우리이야기] 속도 2단계 ② — 내 방 첫 답(recHome n 20 · loadMe · roomPick)이 가는 중에 「나」만 묻는 recHome(n 1 · meqLoad)이 또 나가던 것 → 가는 답을 기다려 같이 씀(MEW · meqWait · meqDone) · 서버 변경 없음 · REC_VER 223 -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v223 · 261120 · [우리이야기] 속도 2단계 ② — 내 방 첫 답(recHome n 20 · loadMe · roomPick)이 가는 중에 「나」만 묻는 recHome(n 1 · meqLoad)이 또 나가던 것 → 가는 답을 기다려 같이 씀(MEW · meqWait · meqDone) · ★검색 열기(대표 13:27 OK) — robots 메타 · 대표 주소를 주소에 따라(?c= 안내 · 활용 · 견본 여섯만 index · 나머지 noindex) + robots.txt · sitemap.xml · 정적 안내 페이지 /guide/ · /story/(build_pages.py) · 서버 변경 없음 · REC_VER 223 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v222 · 261120 · [우리이야기] 속도 2단계(대표 OK 방향 · 서버 ①Code v107 과 짝) — 목록 답에 실려 온 닫힌 사진 작은 그림 서명 주소(su · sx)를 받아 바둑판을 바로 그림 · recPvs 왕복(3.6초) 없앰 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v221 · 261120 · [우리이야기] 대표 13:58 OK(시안 v1) — ⑤ 위 띠 ☰ 바로 옆 📖 책 그림(bookTop · 모든 화면 · 안내 방으로) ③ 앱으로 열 때만 「포도 + 우리 이야기」 한 장(#appOpen · 다 열리면 걷힘 · 3초 넘지 않음) -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v220 · 261120 · [우리이야기] 고장 고침(대표 13:16 캡처 · 13:27 OK) — v219 의 10분 서명 주소가 작은 그림 창고(localStorage)에 담겨 다음에 열 때 닫힌 주소로 깨진 그림 · 「사진 3」 글자 · 끝없는 「불러오는 중」 → 서명 주소는 담지 않음(sigU · 열 때 옛것 치움) · 8분 지나면 버림(phFresh) · 깨지면 한 번 더 받고 그래도 안 되면 「다시 시도」 · 20초 지나도 없으면 「다시 시도」 · 네이버 9초 넘으면 옛 길 · 주소 없는 그림은 숨김 -->
@@ -488,7 +488,8 @@
 <meta charset="UTF-8">
 <script>if(location.protocol==='http:'){location.replace('https:'+location.href.slice(5));}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="robots" content="noindex,nofollow">
+<script>/* ★v223 검색 열기(대표 261120 13:27 OK) — 열쇠 없는 손님 보기 주소(?c=)로 연 안내 · 활용 · 견본 방 여섯만 검색에 열고 나머지는 늘 닫음 · 방마다 제 주소가 대표 주소 */(function(){var m=/^\?c=(C-0(?:295|030|294|258|257|256))$/.exec(location.search||''),ok=!!(m&&location.pathname==='/');document.write('<meta name="robots" content="'+(ok?'index,follow':'noindex,nofollow')+'"><link rel="canonical" href="https://uriyagi.kr/'+(ok?'?c='+m[1]:'')+'">');})();</script>
+<noscript><meta name="robots" content="noindex,nofollow"></noscript>
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#1E4A76">
@@ -497,7 +498,6 @@
 <meta name="apple-mobile-web-app-title" content="우리 이야기">
 <title>우리 이야기</title>
 <meta name="description" content="사진과 이야기를 함께 남기는 곳 · 우리 이야기">
-<link rel="canonical" href="https://uriyagi.kr/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="우리 이야기">
 <meta property="og:title" content="우리 이야기">
