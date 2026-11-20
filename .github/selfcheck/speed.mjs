@@ -10,7 +10,7 @@ const T = ms => (ms / 1000).toFixed(1) + '초';
 async function ctx() { return browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, locale: 'ko-KR', userAgent: UA }); }
 function netlog(p) { const L = []; const st = new Map();
   p.on('request', r => { if (/script\.google/.test(r.url())) { let a = ''; try { a = JSON.parse(r.postData() || '{}').action || ''; } catch (e) {} st.set(r, [Date.now(), a]); } });   // 261120 시작 때도 남김
-  p.on('requestfinished', r => { let root = r; while (root.redirectedFrom()) root = root.redirectedFrom(); const s = st.get(root); if (s && r === root) {} if (s && !r.redirectedTo()) L.push({ a: s[1], ms: Date.now() - s[0], st: s[0] }); });
+  p.on('requestfinished', r => { let root = r; while (root.redirectedFrom()) root = root.redirectedFrom(); const s = st.get(root); if (s && r === root) {} if (s && !r.redirectedTo()) { st.delete(root); L.push({ a: s[1], ms: Date.now() - s[0], st: s[0] }); } });   // 261120 v223 한 번 부름을 두 번 적던 것 — 적고 나면 지움
   p.on('response', r => { if (/ncloudstorage/.test(r.url())) { L.push({ a: (/X-Amz-Signature/.test(r.url()) ? '네이버 서명 ' : '네이버 ') + r.status(), ms: 0 }); } });
   return L; }
 async function until(p, fn, max = 30000) { const t0 = Date.now(); while (Date.now() - t0 < max) { if (await p.evaluate(`(${fn})()`).catch(() => false)) return Date.now() - t0; await p.waitForTimeout(100); } return -1; }
