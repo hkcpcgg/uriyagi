@@ -137,6 +137,7 @@ u2 = page('/story/', '우리 이야기는 이렇게 쓰여요 — 나 · 가족 
           STORY, 'story', 's', ('/guide/', '우리 이야기 사용법'))
 
 urls = [(u1, '0.9'), (u2, '0.9')] + [(SITE + '/?c=' + c, '0.6') for c, _ in ROOMS]
+urls += [(SITE + '/terms/', '0.3'), (SITE + '/privacy/', '0.3')]  # 약관 · 처리방침(261120 시행) — 다시 돌려도 빠지지 않게
 sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(
     '  <url><loc>%s</loc><lastmod>%s</lastmod><priority>%s</priority></url>\n' % (html.escape(u), TODAY, p) for u, p in urls) + '</urlset>\n'
 open(os.path.join(ROOT, 'sitemap.xml'), 'w', encoding='utf-8').write(sm)
