@@ -1,9 +1,9 @@
-# 검색용 방 소개 페이지 — 공개 방 게시물을 받아 /room/C-xxxx/ · sitemap 을 새로 만듦(261121) · 매주 월요일 + 손으로
+# 검색용 방 소개 페이지 — 공개 방 게시물을 받아 /room/C-xxxx/ · sitemap 을 새로 만듦(261121) · 매일 새벽 + 손으로 · IndexNow 로 네이버 · 빙에 바로 알림
 name: 방 소개 페이지 만들기
 on:
   workflow_dispatch:
   schedule:
-    - cron: '23 18 * * 0'   # 월요일 03:23 KST
+    - cron: '23 18 * * *'   # 매일 03:23 KST(261121 · 매주 → 매일)
 permissions:
   contents: write
 concurrency: room-pages
