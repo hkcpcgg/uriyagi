@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v225 · 261120 · [우리이야기] 전용 약관 시행 — 로그인 창 「개인정보 처리」 링크를 우리 처리방침(/privacy/)으로 · 푸터 이용약관 · 개인정보처리방침도 /terms/ · /privacy/ -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v226 · 261121 · [우리이야기] 닫힌 방 고정 주소(?c= · AI 협업 사진 띠 링크) — 이 방 사람이면 바로 열림(서버 ①Code v115) · 아니면 「초대받은 분만」 화면에 마당과 같은 🔒 판을 바로 띄우고 「🚪 방 두드리기」 단추를 둠 → 카카오 → 관리자 승인 뒤에만 열림(대표 261121 12:34) · REC_VER 226 -->
+<!-- (이전) rec/index.html · v225 · 261120 · [우리이야기] 전용 약관 시행 — 로그인 창 「개인정보 처리」 링크를 우리 처리방침(/privacy/)으로 · 푸터 이용약관 · 개인정보처리방침도 /terms/ · /privacy/ -->
 <!-- (이전) rec/index.html · v224 · 261120 · [우리이야기] 속도 2단계 ③ · ④ — 게시물 답(recGet)에 실려 온 닫힌 사진 큰 그림 서명 주소(mu)를 바로 씀 · 닫힌 방 바둑판(recPhotos)도 base64 대신 서명 주소(①Code v109 와 짝 · 옛 서버면 그대로) -->
 <!-- (이전) rec/index.html · v223 · 261120 · [우리이야기] 속도 2단계 ② — 내 방 첫 답(recHome n 20 · loadMe · roomPick)이 가는 중에 「나」만 묻는 recHome(n 1 · meqLoad)이 또 나가던 것 → 가는 답을 기다려 같이 씀(MEW · meqWait · meqDone) · ★검색 열기(대표 13:27 OK) — robots 메타 · 대표 주소를 주소에 따라(?c= 안내 · 활용 · 견본 여섯만 index · 나머지 noindex) + robots.txt · sitemap.xml · 정적 안내 페이지 /guide/ · /story/(build_pages.py) · 서버 변경 없음 · REC_VER 223 -->
 <!-- (이전) ★ 현재 버전 ▶ rec/index.html · v222 · 261120 · [우리이야기] 속도 2단계(대표 OK 방향 · 서버 ①Code v107 과 짝) — 목록 답에 실려 온 닫힌 사진 작은 그림 서명 주소(su · sx)를 받아 바둑판을 바로 그림 · recPvs 왕복(3.6초) 없앰 -->
@@ -2223,7 +2224,8 @@ function roomC(c){
 function cMiss(d){
   var msg=(d&&d.status==='err'&&d.msg)?d.msg:'방을 열지 못했습니다. 잠시 후 다시 열어 주십시오.';
   $('main').innerHTML='<div class="card cmiss"><span class="ci c-navy">'+ic('home')+'</span><h2>'+esc(msg)+'</h2>'+
-    '<button class="btn" id="cmP" type="button">'+ic('grape')+'우리 이야기 마당으로</button>'+(K?'<button class="btn line" id="cmM" type="button">내 방으로</button>':'')+'</div>';
+    (d&&d.lock?'<button type="button" class="btn warm" id="cmK">🚪 방 두드리기</button>':'')+'<button class="btn'+(d&&d.lock?' line':'')+'" id="cmP" type="button">'+ic('grape')+'우리 이야기 마당으로</button>'+(K?'<button class="btn line" id="cmM" type="button">내 방으로</button>':'')+'</div>';   /* ★v226 닫힌 방 주소 · 사진 띠 링크 = 🔒 판 · 방 두드리기(마당과 같은 판) */
+  if(d&&d.lock&&$('cmK')){ $('cmK').onclick=function(){ lockSheet(d.lock); }; setTimeout(function(){ lockSheet(d.lock); },120); }
   $('cmP').onclick=function(){ location.href=location.pathname+'?plaza=1'; };
   if($('cmM')){ $('cmM').onclick=function(){ try{ history.replaceState(null,'',location.pathname); }catch(e){} loadMe(); }; }
 }
@@ -6875,7 +6877,7 @@ window.addEventListener('appinstalled',function(){ PWA_EV=null; var b=$('pwaGo')
 try{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js',{scope:'/'})['catch'](function(){});
   /* ★v62 375 새 화면 파일을 받아 오면 한 번 바꿔 엶 — 첫 화면 · 광장에서만(쓰는 중에는 기다렸다가 첫 화면으로 돌아올 때) */
   navigator.serviceWorker.addEventListener('message',function(ev){ if(!ev.data||ev.data.t!=='lf-new'){ return; } NEWV=1; newGo(); }); } }catch(e){}
-var NEWV=0, REC_VER=225;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
+var NEWV=0, REC_VER=226;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
 function newChk(){ try{ if(!window.caches){ return; } caches.open('lf-rec-shell-v2').then(function(c){ return c.match('/'); }).then(function(r){ return r?r.text():''; }).then(function(t){ var m=/rec\/index\.html · v(\d+)/.exec(String(t).slice(0,600)); if(m&&parseInt(m[1],10)>REC_VER){ NEWV=1; newGo(); } })['catch'](function(){}); }catch(e){} }   /* ★v62 375 알림을 놓쳐도 남겨 둔 파일 버전을 직접 봄 */
 setTimeout(newChk,5000); setTimeout(newChk,15000);
 document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible'){ setTimeout(newChk,1500); } });
