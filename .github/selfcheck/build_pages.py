@@ -98,6 +98,7 @@ FRAME_BIZ = {'F-01': ['가게'], 'F-03': ['단체'], 'F-04': ['학교'], 'F-05':
 HOBBY = ('자전거', '러닝', '산행', '수영', '등산', '마라톤', '독서', '텃밭', '합창', '캠핑', '낚시', '골프', '탁구', '배드민턴')
 STOP = {'우리들의', '이야기', '방', '우리', '견본', '모임방', '이야기방', '함께', '하는', '소중한', '분들과', '사진으로', '남기는', '방입니다', '한곳에', '모읍니다', '공간들의'}
 SEO_EXTRA = {  # 손으로 더할 태그(가게 쪽 말씀이 있을 때만)
+    'C-0030': ['사랑흐름', '추억 기록', '사진 기록', '우리 이야기'],
 }
 
 
@@ -116,6 +117,8 @@ def room_tags(d):
     for r in list(regions):
         for up in REGION_UP.get(r, []):
             if up not in regions: regions.append(up)
+    regions = [r for r in regions if r != '경기']
+    regions.sort(key=lambda r: 0 if r in ('파주', '고양', '김포', '양주', '서울') else 1)   # 찾는 사람이 많은 시 이름 먼저(파주 복요리)
     biz = []
     for w in _toks(name):
         for r in REGIONS: w = w.replace(r + '마을', '').replace(r, '') if w != r else w
@@ -139,6 +142,7 @@ def room_tags(d):
     for r in regions: add(r)
     for w in core:
         for r in regions[:2]: add(r + ' ' + w)  # 지역 + 상호(예: 파주 다복)
+        for b in biz[:2]: add(w + ' ' + b)     # 상호 + 업종(예: 다복 복요리)
     for x in SEO_EXTRA.get(d.get('com', ''), []): add(x)
     return tags[:24]
 
@@ -172,9 +176,11 @@ def room_page(d):
     c = d['com']; path = '/room/%s/' % c; url = SITE + path; name = d['name']; intro = d.get('intro') or ''
     tags = room_tags(d); shop = d.get('frame') == 'F-01'
     nm = _re.sub(r'\(견본\)\s*', '', name).strip()
+    core0 = [t for t in tags if ' ' not in t and t not in REGIONS]
+    short = core0[0] if (shop and core0 and len(nm) > 12) else nm   # 가게는 짧은 상호를 앞에(다복)
     _nw = set(nm.split())
     head_tags = ' · '.join([t for t in tags if ' ' in t and t != nm][:3]) or ' · '.join([t for t in tags if t != nm and t not in _nw][:3])
-    title = ('%s — %s 사진 · 우리 이야기' % (nm, head_tags)) if head_tags else ('%s — 사진으로 보는 이야기 · 우리 이야기' % nm)
+    title = ('%s — %s 사진 · 우리 이야기' % (short, head_tags)) if head_tags else ('%s — 사진으로 보는 이야기 · 우리 이야기' % short)
     tops = [i['title'] for i in d['items'] if i.get('title')][:5]
     desc = ' '.join(x for x in [intro, (' · '.join(tags[:6]) + '.') if tags else '', ' · '.join(tops)] if x)[:160]
     arts, imgs_all = [], []
