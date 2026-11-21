@@ -22,8 +22,17 @@ for c in ROOMS:
         print(c, '못 받음', e); continue
     if d.get('status') != 'ok' or d.get('room') != '열린 모임':
         print(c, '건너뜀', d.get('status'), d.get('room')); continue
-    items = []
-    for it in d.get('list') or []:
+    items = []; seen = set(); cand = []
+    def walk(o, dep=0):
+        if dep > 6: return
+        if isinstance(o, dict):
+            if str(o.get('id', '')).startswith('R-') and o.get('kind') and o.get('id') not in seen:
+                seen.add(o['id']); cand.append(o)
+            for v in o.values(): walk(v, dep + 1)
+        elif isinstance(o, list):
+            for v in o: walk(v, dep + 1)
+    walk(d.get('list')); walk(d.get('grid'))
+    for it in cand:
         ims = []
         if it.get('photo'):
             u = img(it.get('n'));
@@ -33,7 +42,7 @@ for c in ROOMS:
             if u and u not in ims: ims.append(u)
         if it.get('video') and isinstance(it['video'], dict) and it['video'].get('thumb') and 'ytimg' in it['video']['thumb']:
             ims.append(it['video']['thumb'])
-        t = (it.get('title') or '').strip(); x = (it.get('text') or '').strip()
+        t = (it.get('title') or '').strip(); x = str(it.get('text') or it.get('body') or '').strip()
         if not ims and not x: continue
         items.append({'id': it.get('id'), 'title': t, 'text': x[:400], 'when': it.get('when') or '', 'cat': it.get('cat') or '', 'imgs': ims[:6]})
     ups = [{'c': u.get('com'), 'name': u.get('name')} for u in (d.get('ups') or []) if u.get('com')]
