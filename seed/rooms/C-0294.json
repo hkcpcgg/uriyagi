@@ -15,39 +15,9 @@
  "downs": [],
  "items": [
   {
-   "id": "R-000608",
-   "title": "오늘 함께 달린 길",
-   "text": "",
-   "when": "",
-   "cat": "모임 날",
-   "imgs": [
-    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0294/R-000608.jpg"
-   ]
-  },
-  {
-   "id": "R-000609",
-   "title": "잠깐 쉬어 가는 시간",
-   "text": "",
-   "when": "",
-   "cat": "활동",
-   "imgs": [
-    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0294/R-000609.jpg"
-   ]
-  },
-  {
-   "id": "R-000610",
-   "title": "오늘의 작은 발견",
-   "text": "",
-   "when": "",
-   "cat": "활동",
-   "imgs": [
-    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0294/R-000610.jpg"
-   ]
-  },
-  {
    "id": "R-000612",
    "title": "함께라서 끝까지",
-   "text": "",
+   "text": "혼자였다면 반환점에서 돌아왔을지도 몰라요. 함께 달린 분들께 기억을 남겨 볼까요?",
    "when": "",
    "cat": "사람",
    "imgs": [
@@ -57,11 +27,41 @@
   {
    "id": "R-000611",
    "title": "다음에는 어디로 달릴까요?",
-   "text": "",
+   "text": "노을 지는 강변길도 좋고, 처음 가 보는 길도 좋습니다.\n\n다음에 함께 달리고 싶은 길을 추천해 주세요.",
    "when": "",
    "cat": "소식",
    "imgs": [
     "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0294/R-000611.jpg"
+   ]
+  },
+  {
+   "id": "R-000610",
+   "title": "오늘의 작은 발견",
+   "text": "멀리 있는 명소가 아니어도 괜찮아요. 아침 햇살 한 조각도 오늘의 기록이 됩니다.\n\n오늘 달리며 발견한 작은 장면을 한 가지 남겨 주세요.",
+   "when": "",
+   "cat": "활동",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0294/R-000610.jpg"
+   ]
+  },
+  {
+   "id": "R-000609",
+   "title": "잠깐 쉬어 가는 시간",
+   "text": "달리다 잠시 멈춰 물 한 모금. 이런 짧은 쉼도 나중에는 좋은 기억이 됩니다.\n\n달리다가 가장 좋아하는 쉬는 순간은 언제인가요?",
+   "when": "",
+   "cat": "활동",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0294/R-000609.jpg"
+   ]
+  },
+  {
+   "id": "R-000608",
+   "title": "오늘 함께 달린 길",
+   "text": "어서 오세요! 주말 아침, 함께 달린 길을 사진으로 남기는 방입니다.\n같은 길을 달려도 사람마다 기억하는 장면은 다르지요.\n\n오늘 사진에서 가장 먼저 눈에 들어오는 것은 무엇인가요? ♥를 누르거나 기억을 남겨 보세요.",
+   "when": "",
+   "cat": "모임 날",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0294/R-000608.jpg"
    ]
   }
  ]

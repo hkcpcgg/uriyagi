@@ -20,13 +20,43 @@
  "downs": [],
  "items": [
   {
-   "id": "R-000722",
-   "title": "헤이리 아트팩토리",
-   "text": "",
-   "when": "",
+   "id": "R-000739",
+   "title": "향기 가득한 산책",
+   "text": "2023. 11. 8 – 12. 3",
+   "when": "2023년 11월",
    "cat": "가게 이야기",
    "imgs": [
-    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0297/R-000722.jpg"
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0297/R-000739.jpg"
+   ]
+  },
+  {
+   "id": "R-000738",
+   "title": "인공물 Artifact",
+   "text": "2023. 12. 13 – 2024. 1. 14",
+   "when": "2023년 12월",
+   "cat": "가게 이야기",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0297/R-000738.jpg"
+   ]
+  },
+  {
+   "id": "R-000737",
+   "title": "한생곤 — 산수",
+   "text": "2024. 4. 20 – 5. 19",
+   "when": "2024년 4월",
+   "cat": "가게 이야기",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0297/R-000737.jpg"
+   ]
+  },
+  {
+   "id": "R-000736",
+   "title": "5점을 잇는 선",
+   "text": "2024. 5. 25 – 6. 30",
+   "when": "2024년 5월",
+   "cat": "가게 이야기",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0297/R-000736.jpg"
    ]
   },
   {
@@ -40,9 +70,29 @@
    ]
   },
   {
+   "id": "R-000734",
+   "title": "회화의 맛",
+   "text": "2024. 9. 11 – 10. 13",
+   "when": "2024년 9월",
+   "cat": "가게 이야기",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0297/R-000734.jpg"
+   ]
+  },
+  {
+   "id": "R-000733",
+   "title": "나의 인공낙원 — 김서울 개인전",
+   "text": "2024. 10. 19 – 11. 17",
+   "when": "2024년 10월",
+   "cat": "가게 이야기",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0297/R-000733.jpg"
+   ]
+  },
+  {
    "id": "R-000732",
    "title": "주얼리: 손끝에서 피어나다",
-   "text": "",
+   "text": "12. 11 – 12. 16",
    "when": "2025년 12월",
    "cat": "가게 이야기",
    "imgs": [
@@ -62,7 +112,7 @@
   {
    "id": "R-000730",
    "title": "내 삶의 구두점, 엄마",
-   "text": "",
+   "text": "5. 1 – 5. 18",
    "when": "2025년 5월",
    "cat": "가게 이야기",
    "imgs": [
@@ -72,7 +122,7 @@
   {
    "id": "R-000729",
    "title": "도자기 이야기 Ceramic Story — 태인",
-   "text": "",
+   "text": "2025. 5. 23 – 6. 22",
    "when": "2025년 5월",
    "cat": "가게 이야기",
    "imgs": [
@@ -82,7 +132,7 @@
   {
    "id": "R-000728",
    "title": "내 섬의 집 — 박들 개인전",
-   "text": "",
+   "text": "2025. 8. 2 – 8. 31",
    "when": "2025년 8월",
    "cat": "가게 이야기",
    "imgs": [
@@ -92,7 +142,7 @@
   {
    "id": "R-000727",
    "title": "마주한 풍경",
-   "text": "",
+   "text": "2025. 9. 18 – 10. 12",
    "when": "2025년 9월",
    "cat": "가게 이야기",
    "imgs": [
@@ -102,7 +152,7 @@
   {
    "id": "R-000726",
    "title": "꽃의 시간 Flower Time",
-   "text": "",
+   "text": "2026. 4. 18 – 5. 31",
    "when": "2026년 4월",
    "cat": "가게 이야기",
    "imgs": [
@@ -112,7 +162,7 @@
   {
    "id": "R-000725",
    "title": "예술_너머_이야기",
-   "text": "",
+   "text": "2026. 6. 13 – 7. 12",
    "when": "2026년 6월",
    "cat": "가게 이야기",
    "imgs": [
@@ -120,63 +170,13 @@
    ]
   },
   {
-   "id": "R-000739",
-   "title": "향기 가득한 산책",
+   "id": "R-000722",
+   "title": "헤이리 아트팩토리",
    "text": "",
-   "when": "2023년 11월",
+   "when": "",
    "cat": "가게 이야기",
    "imgs": [
-    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0297/R-000739.jpg"
-   ]
-  },
-  {
-   "id": "R-000738",
-   "title": "인공물 Artifact",
-   "text": "",
-   "when": "2023년 12월",
-   "cat": "가게 이야기",
-   "imgs": [
-    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0297/R-000738.jpg"
-   ]
-  },
-  {
-   "id": "R-000737",
-   "title": "한생곤 — 산수",
-   "text": "",
-   "when": "2024년 4월",
-   "cat": "가게 이야기",
-   "imgs": [
-    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0297/R-000737.jpg"
-   ]
-  },
-  {
-   "id": "R-000736",
-   "title": "5점을 잇는 선",
-   "text": "",
-   "when": "2024년 5월",
-   "cat": "가게 이야기",
-   "imgs": [
-    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0297/R-000736.jpg"
-   ]
-  },
-  {
-   "id": "R-000734",
-   "title": "회화의 맛",
-   "text": "",
-   "when": "2024년 9월",
-   "cat": "가게 이야기",
-   "imgs": [
-    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0297/R-000734.jpg"
-   ]
-  },
-  {
-   "id": "R-000733",
-   "title": "나의 인공낙원 — 김서울 개인전",
-   "text": "",
-   "when": "2024년 10월",
-   "cat": "가게 이야기",
-   "imgs": [
-    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0297/R-000733.jpg"
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0297/R-000722.jpg"
    ]
   }
  ]
