@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v227 · 261121 · [우리이야기] 영상 파일 올리기(1분 이내 · 150MB 까지) — 영상 칸 맨 위 「휴대폰 영상 고르기」 · 휴대폰 안에서 길이 · 크기 재기 · 넘으면 양해 창 → 유튜브 칸 · 고르는 순간 네이버로 바로 올림(서버 ①Code v116 recVidUp · 30분 서명 주소) · 첫 장면 그림 · 게시물에서 영상 바로 재생(vidTag) · 유튜브 칸은 그대로 (대표 261121 17:14) -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v228 · 261121 · [우리이야기] 영상 파일도 마당 · 위 방 띠에 — 서버 ①Code v119 의 vt(첫 장면) · vu(영상) 고정 주소로 칸 그림 · 누르면 그 자리에서 재생(vwYt vfile) · 보기 화면 · 받은 장면 화면도 같이 (대표 261121 17:46) -->
+<!-- (이전) rec/index.html · v227 · 261121 · [우리이야기] 영상 파일 올리기(1분 이내 · 150MB 까지) — 영상 칸 맨 위 「휴대폰 영상 고르기」 · 휴대폰 안에서 길이 · 크기 재기 · 넘으면 양해 창 → 유튜브 칸 · 고르는 순간 네이버로 바로 올림(서버 ①Code v116 recVidUp · 30분 서명 주소) · 첫 장면 그림 · 게시물에서 영상 바로 재생(vidTag) · 유튜브 칸은 그대로 (대표 261121 17:14) -->
 <!-- (이전) rec/index.html · v226 · 261121 · [우리이야기] 닫힌 방 고정 주소(?c= · AI 협업 사진 띠 링크) — 이 방 사람이면 바로 열림(서버 ①Code v115) · 아니면 「초대받은 분만」 화면에 마당과 같은 🔒 판을 바로 띄우고 「🚪 방 두드리기」 단추를 둠 → 카카오 → 관리자 승인 뒤에만 열림(대표 261121 12:34) · REC_VER 226 -->
 <!-- (이전) rec/index.html · v225 · 261120 · [우리이야기] 전용 약관 시행 — 로그인 창 「개인정보 처리」 링크를 우리 처리방침(/privacy/)으로 · 푸터 이용약관 · 개인정보처리방침도 /terms/ · /privacy/ -->
 <!-- (이전) rec/index.html · v224 · 261120 · [우리이야기] 속도 2단계 ③ · ④ — 게시물 답(recGet)에 실려 온 닫힌 사진 큰 그림 서명 주소(mu)를 바로 씀 · 닫힌 방 바둑판(recPhotos)도 base64 대신 서명 주소(①Code v109 와 짝 · 옛 서버면 그대로) -->
@@ -2571,7 +2572,7 @@ function findList(){ var f=(ME&&ME.finds)||[]; return f.length?f.slice(0,4):['70
 /* ══ ★v55 344 우리 이야기 광장 — 여러 방의 공개 사진 · 영상이 섞여 나옴 · 누르면 그 방의 그 사진 ══ */
 var PLZ={rooms:[],items:[],more:0,next:0,busy:0}, PZO=null;
 function pzCv(c){ return !c?'':c.yt?'https://i.ytimg.com/vi/'+encodeURIComponent(c.yt)+'/mqdefault.jpg':(c.id&&NU[c.id]&&duUrl(c.id,240))||(c.id&&PVC[c.id])||(c.u?'https://drive.google.com/thumbnail?id='+encodeURIComponent(c.u)+'&sz=w480':''); }
-function pzTile(x,room){ var yt=x.yt?'https://i.ytimg.com/vi/'+encodeURIComponent(x.yt)+'/mqdefault.jpg':'', bg=yt||PVC[x.id]||'', mv=!x.yt&&MV[x.id];
+function pzTile(x,room){ var yt=x.yt?'https://i.ytimg.com/vi/'+encodeURIComponent(x.yt)+'/mqdefault.jpg':(x.vt||''), bg=yt||PVC[x.id]||'', mv=!x.yt&&MV[x.id];
   return '<button type="button" class="tl'+(bg?'':' wait')+'" data-pz="'+esc(x.id)+'" data-pg="'+esc(room.g)+'"'+(!bg&&(x.u||duHas(x.id))?' data-pu="'+esc(x.id)+'"':'')+(bg?' style="background-image:url('+esc(bg)+')"':'')+' aria-label="'+esc((x.t||'사진')+' · '+room.name)+'">'+
     (mv?'<video class="tv" muted loop playsinline preload="none" data-mv="'+esc(mv)+'"></video>':'')+(x.yt?'<span class="pl"></span>':'')+'<i class="rt">'+esc(room.name)+'</i></button>'; }
 /* ★v117 방 아래 「우리 이야기 마당」 — 다른 방 공개 사진 12장을 옆으로 밀어 보기 · 누르면 마당 */
@@ -2617,7 +2618,7 @@ function pzAdd(items){
 }
 function pzCell(o,i){
   var x=o.x, s=o.s, r=PLZ.rooms[x.c]; if(!r){ return ''; }
-  var big=!!s.big, yt=x.yt?'https://i.ytimg.com/vi/'+encodeURIComponent(x.yt)+'/'+(big?'hqdefault':'mqdefault')+'.jpg':'', bg=yt||PVC[x.id]||'', mv=!x.yt&&MV[x.id];
+  var big=!!s.big, yt=x.yt?'https://i.ytimg.com/vi/'+encodeURIComponent(x.yt)+'/'+(big?'hqdefault':'mqdefault')+'.jpg':(x.vt||''), bg=yt||PVC[x.id]||'', mv=!x.yt&&MV[x.id];
   var pos='grid-row:'+s.r+(big?' / span 2':'')+';grid-column:'+s.c+(big?' / span 2':'');
   return '<button type="button" class="tl'+(big?' big':'')+(bg?'':' wait')+'" data-vz="'+i+'"'+(!bg&&(x.u||duHas(x.id))?' data-pu="'+esc(x.id)+'"':'')+(big&&(x.u||duHas(x.id))?' data-pb="'+esc(x.id)+'"':'')+' style="'+pos+(bg?';background-image:url('+esc(bg)+')':'')+'" aria-label="'+esc((x.t||'사진')+' · '+r.name)+'">'+
     (mv?'<video class="tv" muted loop playsinline preload="none" data-mv="'+esc(mv)+'"></video><span class="mvi">▶</span>':'')+(x.yt?'<span class="pl"></span>':'')+'<i class="rt go"><span>🏠 '+esc(r.name)+'</span><b>›</b></i></button>';   /* ★v106 563 누르면 그 방 */
@@ -2830,7 +2831,7 @@ function rcvDraw(){
     el.innerHTML='<div class="rv"><div class="br">🍇 사랑흐름 우리 이야기</div><p class="lead">'+esc(d&&d.msg?d.msg:'지금은 연결되지 않습니다. 잠시 후 다시 열어 주십시오.')+'</p><button class="btn" id="rvPz" type="button">우리 이야기 마당 둘러보기</button></div>';
     $('rvPz').onclick=function(){ location.href=location.pathname+'?plaza=1'; }; return; }
   var it=d.item||{}, to=d.to, from=d.from||'', mine=d.mine||[];
-  var media=it.yt?'<div class="ph2" style="background-image:url(https://i.ytimg.com/vi/'+encodeURIComponent(it.yt)+'/hqdefault.jpg)"><button type="button" class="ytb" id="rvYt" aria-label="유튜브로 보기"></button></div>'
+  var media=(it.yt||it.vfile)?'<div class="ph2" style="background-image:url('+(it.yt?'https://i.ytimg.com/vi/'+encodeURIComponent(it.yt)+'/hqdefault.jpg':esc(it.th||''))+')"><button type="button" class="ytb" id="rvYt" aria-label="유튜브로 보기"></button></div>'
     :it.mv?'<div class="ph2"><video muted loop playsinline autoplay src="'+esc(it.mv)+'"></video></div>':'<div class="ph2 wait" id="rvPh"></div>';
   el.innerHTML='<div class="rv"><div class="br">🍇 사랑흐름 우리 이야기</div>'+
     '<p class="lead">'+esc(to?to+'님,':'안녕하세요,')+'<br>'+(from?esc(from)+' 님이 ':'')+'이 장면을 함께 기억하고 싶어<br>보내 드렸습니다.</p>'+media+
@@ -3114,14 +3115,14 @@ function plusJoin(){ if(!isGuest()){ plusClear(); return; } joinGate(1); setTime
    글 · 링크 · 기억은 넣지 않음(지금 기록 보기 그대로) */
 var VW={list:[],i:0,src:''}, VWON=false, VWO=null;
 function vwFromPz(x){ var r=PLZ.rooms[x.c]||{};
-  return {id:x.id,src:'plaza',g:r.g||'',room:r.name||'',title:x.t||'',when:'',yt:x.yt||'',mv:!x.yt&&MV[x.id]||'',th:x.yt?'https://i.ytimg.com/vi/'+encodeURIComponent(x.yt)+'/hqdefault.jpg':(PVC[x.id]||''),u:!!x.u}; }
+  return {id:x.id,src:'plaza',g:r.g||'',room:r.name||'',title:x.t||'',when:'',yt:x.yt||'',vfile:x.vu?1:0,yu:x.vu||'',mv:!x.yt&&!x.vu&&MV[x.id]||'',th:x.yt?'https://i.ytimg.com/vi/'+encodeURIComponent(x.yt)+'/hqdefault.jpg':(x.vt||PVC[x.id]||''),u:!!x.u}; }
 function vwFromIt(it){
   var yt=it.video?(ytId(it.video.url)||''):'';
   return {id:it.id,src:'room',g:G||'',room:(ME&&ME.comName)||'',title:it.title||'',when:it.when||'',yt:yt,vfile:it.video&&it.video.file?1:0,yu:it.video?it.video.url:'',mv:!it.video&&(it.mv||MV[it.id])||'',
     th:it.video?it.video.thumb:(it.pv||PVC[it.id]||PHC['s:'+it.id]||duUrl(it.id,480)||''),   /* ★v101 495 바로 주소 작은 사진 먼저 */n:it.photos&&it.photos.length>1?it.photos.length:0,it:it}; }
 function vwSlide(e,i){
   var media;
-  if(e.yt){ media='<img alt="" src="'+esc(e.th)+'"><button type="button" class="ytb" data-yt="'+i+'" aria-label="유튜브로 보기"></button>'; }
+  if(e.yt||e.vfile){ media='<img alt="" src="'+esc(e.th)+'"><button type="button" class="ytb" data-yt="'+i+'" aria-label="'+(e.vfile?'영상 보기':'유튜브로 보기')+'"></button>'; }   /* ★v228 영상 파일도 */
   else if(e.mv){ media='<video muted loop playsinline preload="none"'+(e.th?' poster="'+esc(e.th)+'"':'')+' data-src="'+esc(e.mv)+'"></video>'; }
   else { media='<img alt=""'+(e.th?' src="'+esc(e.th)+'"':' class="wait"')+' data-full="'+i+'">'+(e.th?'':'<div class="vwait">'+LFH+'<b>사진을 불러오는 중입니다</b></div>'); }   /* ★v101 497 */
   var side;
@@ -4606,7 +4607,7 @@ function pickSheet(o){   /* o = {title, lead, items:[{id,yt,tag}], on:{}, acts:[
   function bar(){ return o.acts.map(function(a,i){ return '<button type="button" class="btn '+(a.cls||'')+'" data-sa="'+i+'"'+(n()?'':' disabled')+'>'+a.t+(n()?' ('+n()+')':'')+'</button>'; }).join(''); }
   sheet('<h2>'+esc(o.title)+'</h2>'+(o.lead?'<p class="lead" style="margin-top:4px">'+o.lead+'</p>':'')+
     '<div class="slhd"><span id="slN">'+n()+'장 골랐습니다</span><button type="button" class="sbtn" id="slAll">모두 선택</button></div>'+
-    '<div class="slg" id="slG">'+its.map(function(x){ return '<button type="button" class="slt'+(on[x.id]?' on':'')+'" data-sl="'+esc(x.id)+'"'+(x.yt?' style="background-image:url(https://i.ytimg.com/vi/'+encodeURIComponent(x.yt)+'/mqdefault.jpg)"':' data-ph="'+esc(x.id)+'" data-small="1"')+'>'+(x.tag?'<em>'+x.tag+'</em>':'')+'</button>'; }).join('')+'</div>'+
+    '<div class="slg" id="slG">'+its.map(function(x){ return '<button type="button" class="slt'+(on[x.id]?' on':'')+'" data-sl="'+esc(x.id)+'"'+(x.yt||x.vt?' style="background-image:url('+(x.yt?'https://i.ytimg.com/vi/'+encodeURIComponent(x.yt)+'/mqdefault.jpg':esc(x.vt))+')"':' data-ph="'+esc(x.id)+'" data-small="1"')+'>'+(x.tag?'<em>'+x.tag+'</em>':'')+'</button>'; }).join('')+'</div>'+
     (o.foot||'')+'<div class="slbar" id="slB">'+bar()+'</div><button class="btn line lv" id="slX" type="button" style="margin-top:8px">닫기</button>',function(){
     lazyPhotos($('slG'));
     function redraw(){ $('slN').textContent=n()+'장 골랐습니다'; $('slAll').textContent=n()===its.length?'모두 빼기':'모두 선택'; $('slB').innerHTML=bar(); bindB(); }
@@ -6938,7 +6939,7 @@ window.addEventListener('appinstalled',function(){ PWA_EV=null; var b=$('pwaGo')
 try{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js',{scope:'/'})['catch'](function(){});
   /* ★v62 375 새 화면 파일을 받아 오면 한 번 바꿔 엶 — 첫 화면 · 광장에서만(쓰는 중에는 기다렸다가 첫 화면으로 돌아올 때) */
   navigator.serviceWorker.addEventListener('message',function(ev){ if(!ev.data||ev.data.t!=='lf-new'){ return; } NEWV=1; newGo(); }); } }catch(e){}
-var NEWV=0, REC_VER=227;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
+var NEWV=0, REC_VER=228;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
 function newChk(){ try{ if(!window.caches){ return; } caches.open('lf-rec-shell-v2').then(function(c){ return c.match('/'); }).then(function(r){ return r?r.text():''; }).then(function(t){ var m=/rec\/index\.html · v(\d+)/.exec(String(t).slice(0,600)); if(m&&parseInt(m[1],10)>REC_VER){ NEWV=1; newGo(); } })['catch'](function(){}); }catch(e){} }   /* ★v62 375 알림을 놓쳐도 남겨 둔 파일 버전을 직접 봄 */
 setTimeout(newChk,5000); setTimeout(newChk,15000);
 document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible'){ setTimeout(newChk,1500); } });
