@@ -33,35 +33,14 @@ for meta in rooms:
         print(c, '못 받음', e); continue
     if d.get('status') != 'ok' or d.get('room') != '열린 모임':
         print(c, '건너뜀', d.get('status'), d.get('room')); continue
-    items, seen, cand = [], set(), []
-
-    def walk(o, dep=0):
-        if dep > 6: return
-        if isinstance(o, dict):
-            if str(o.get('id', '')).startswith('R-') and o.get('kind') and o.get('id') not in seen:
-                seen.add(o['id']); cand.append(o)
-            for v in o.values(): walk(v, dep + 1)
-        elif isinstance(o, list):
-            for v in o: walk(v, dep + 1)
-    walk(d.get('list')); walk(d.get('grid'))
-    for it in cand:
-        ims = []
-        if it.get('photo'):
-            u = img(it.get('n'))
-            if u: ims.append(u)
-        for p in (it.get('photos') or [])[:8]:
-            u = img(p.get('n')) if isinstance(p, dict) else ''
-            if u and u not in ims: ims.append(u)
-        v = it.get('video') if isinstance(it.get('video'), dict) else None
-        if v and v.get('thumb') and 'ytimg' in v['thumb']: ims.append(v['thumb'])
-        t = (it.get('title') or '').strip(); x = str(it.get('text') or it.get('body') or '').strip()
-        if not ims and not x: continue
-        items.append({'id': it.get('id'), 'title': t, 'text': x[:400], 'when': it.get('when') or '', 'cat': it.get('cat') or '', 'imgs': ims[:8]})
-    for x in d.get('downs') or []:   # 위 방(기록관)은 아래 방에서 올라온 공개 사진도
-        if not isinstance(x, dict) or not str(x.get('id', '')).startswith('R-') or x['id'] in seen: continue
-        u = img(x.get('n'))
-        if not u: continue
-        seen.add(x['id']); items.append({'id': x['id'], 'title': (x.get('t') or '').strip(), 'text': '', 'when': '', 'cat': x.get('room') or '', 'imgs': [u]})
+    items = []
+    try:
+        f = call({'action': 'recSeoRoom', 'c': c})
+        for it in (f.get('items') or []) if f.get('status') == 'ok' else []:
+            ims = [NCP + k for k in (it.get('imgs') or []) if k]
+            if ims: items.append({'id': it.get('id'), 'title': (it.get('title') or '').strip(), 'text': str(it.get('text') or '').strip()[:400], 'when': it.get('when') or '', 'cat': it.get('cat') or '', 'imgs': ims})
+    except Exception as e:
+        print(c, '사진 목록 못 받음', e)
     ups = [{'c': u.get('com'), 'name': u.get('name')} for u in (d.get('ups') or []) if u.get('com')]
     downs = [{'c': u.get('com'), 'name': u.get('name')} for u in (d.get('subs') or []) if isinstance(u, dict) and u.get('com')]
     o = {'com': c, 'name': d.get('comName') or meta.get('name') or c, 'intro': d.get('intro') or meta.get('intro') or '', 'frame': meta.get('frame') or '',

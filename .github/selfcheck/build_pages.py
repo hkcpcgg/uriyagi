@@ -188,7 +188,7 @@ def room_page(d):
                 esc(u), esc(('%s %s %s' % (nm, h, alt_tail)).strip() + ('' if j == 0 else ' (%d)' % (j + 1))), 'eager' if i < 2 else 'lazy') for j, u in enumerate(it['imgs'])) + '</div>'
             imgs_all += it['imgs']
         arts.append('<article id="%s"><h2>%s</h2>%s%s%s</article>' % (esc(it.get('id') or ''), esc(h), ('<p class="lead" style="margin:0 0 6px">%s</p>' % esc(meta)) if meta else '', ('<p>%s</p>' % esc(it['text'])) if it.get('text') else '', ph))
-    ROOM_IMGS[url] = imgs_all[:200]
+    ROOM_IMGS[url] = imgs_all[:300]
     tagh = ''.join('<a class="tg" href="/room/#t-%s">#%s</a>' % (esc(t.replace(' ', '')), esc(t.replace(' ', ''))) for t in tags)
     gos = ''.join('<a class="gob" href="%s" rel="nofollow noopener" target="_blank">%s</a>' % (esc(g['url']), esc(g['name'])) for g in d.get('gos', []) if g.get('url'))
     rel = ''.join('<a href="%s">↑ %s ›</a>' % (room_url(u['c']), esc(u['name'])) for u in d.get('ups', []) if u.get('c')) + ''.join('<a href="%s">↓ %s ›</a>' % (room_url(u['c']), esc(u['name'])) for u in d.get('downs', []) if u.get('c'))
@@ -341,6 +341,6 @@ urls += [(SITE + '/room/%s/' % d['com'], '0.7') for d, _ in _made]
 urls += [(SITE + '/heyri/', '0.8')]  # 261121 헤이리 공간 운영자 안내 한 장
 urls += [(SITE + '/terms/', '0.3'), (SITE + '/privacy/', '0.3')]  # 약관 · 처리방침(261120 시행) — 다시 돌려도 빠지지 않게
 sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n' + ''.join(
-    '  <url><loc>%s</loc><lastmod>%s</lastmod><priority>%s</priority>%s</url>\n' % (html.escape(u), TODAY, p, ''.join('<image:image><image:loc>%s</image:loc></image:image>' % html.escape(i) for i in ROOM_IMGS.get(u, [])[:100])) for u, p in urls) + '</urlset>\n'
+    '  <url><loc>%s</loc><lastmod>%s</lastmod><priority>%s</priority>%s</url>\n' % (html.escape(u), TODAY, p, ''.join('<image:image><image:loc>%s</image:loc></image:image>' % html.escape(i) for i in ROOM_IMGS.get(u, [])[:300])) for u, p in urls) + '</urlset>\n'
 open(os.path.join(ROOT, 'sitemap.xml'), 'w', encoding='utf-8').write(sm)
 print('ok', u1, u2, len(urls), 'urls')
