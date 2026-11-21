@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v226 · 261121 · [우리이야기] 닫힌 방 고정 주소(?c= · AI 협업 사진 띠 링크) — 이 방 사람이면 바로 열림(서버 ①Code v115) · 아니면 「초대받은 분만」 화면에 마당과 같은 🔒 판을 바로 띄우고 「🚪 방 두드리기」 단추를 둠 → 카카오 → 관리자 승인 뒤에만 열림(대표 261121 12:34) · REC_VER 226 -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v227 · 261121 · [우리이야기] 영상 파일 올리기(1분 이내 · 150MB 까지) — 영상 칸 맨 위 「휴대폰 영상 고르기」 · 휴대폰 안에서 길이 · 크기 재기 · 넘으면 양해 창 → 유튜브 칸 · 고르는 순간 네이버로 바로 올림(서버 ①Code v116 recVidUp · 30분 서명 주소) · 첫 장면 그림 · 게시물에서 영상 바로 재생(vidTag) · 유튜브 칸은 그대로 (대표 261121 17:14) -->
+<!-- (이전) rec/index.html · v226 · 261121 · [우리이야기] 닫힌 방 고정 주소(?c= · AI 협업 사진 띠 링크) — 이 방 사람이면 바로 열림(서버 ①Code v115) · 아니면 「초대받은 분만」 화면에 마당과 같은 🔒 판을 바로 띄우고 「🚪 방 두드리기」 단추를 둠 → 카카오 → 관리자 승인 뒤에만 열림(대표 261121 12:34) · REC_VER 226 -->
 <!-- (이전) rec/index.html · v225 · 261120 · [우리이야기] 전용 약관 시행 — 로그인 창 「개인정보 처리」 링크를 우리 처리방침(/privacy/)으로 · 푸터 이용약관 · 개인정보처리방침도 /terms/ · /privacy/ -->
 <!-- (이전) rec/index.html · v224 · 261120 · [우리이야기] 속도 2단계 ③ · ④ — 게시물 답(recGet)에 실려 온 닫힌 사진 큰 그림 서명 주소(mu)를 바로 씀 · 닫힌 방 바둑판(recPhotos)도 base64 대신 서명 주소(①Code v109 와 짝 · 옛 서버면 그대로) -->
 <!-- (이전) rec/index.html · v223 · 261120 · [우리이야기] 속도 2단계 ② — 내 방 첫 답(recHome n 20 · loadMe · roomPick)이 가는 중에 「나」만 묻는 recHome(n 1 · meqLoad)이 또 나가던 것 → 가는 답을 기다려 같이 씀(MEW · meqWait · meqDone) · ★검색 열기(대표 13:27 OK) — robots 메타 · 대표 주소를 주소에 따라(?c= 안내 · 활용 · 견본 여섯만 index · 나머지 noindex) + robots.txt · sitemap.xml · 정적 안내 페이지 /guide/ · /story/(build_pages.py) · 서버 변경 없음 · REC_VER 223 -->
@@ -1801,6 +1802,7 @@ body.btabon #fab,body.btabon #way3,body.btabon .fabtip{display:none!important}
 .btab .bdn{position:absolute;top:-2px;left:calc(50% + 6px);min-width:18px;height:18px;border-radius:9px;background:#E5484D;color:#fff;font-size:11px;font-weight:800;display:grid;place-items:center;padding:0 5px;border:2px solid #fff;line-height:1}
 #meP .lfwrap{margin:18px 16px 0}#meP .lfwrap .lfog{margin:0 0 10px}
 #meHelp{display:block;width:calc(100% - 32px);margin:12px auto 0!important;min-height:56px;border-radius:26px;font-size:16px;font-weight:800}
+.vfor{display:flex;align-items:center;gap:8px;color:#aaa;font-size:12.5px;margin:14px 0 10px}.vfor:before,.vfor:after{content:"";flex:1;height:1px;background:var(--line,#E6DFD3)}
 </style>
 <body data-lf-title="우리 이야기" data-lf-fab="off">
 <div id="appOpen" hidden><img src="/uri-icon-192.png" alt="" width="96" height="96"><b>우리 이야기</b><small>우리의 오늘이 모여, 소중한 추억이 됩니다</small></div>
@@ -2841,7 +2843,7 @@ function rcvDraw(){
     '<div class="lo lo3" style="margin-top:28px"><div class="brand">🍇 사랑흐름 · 우리 이야기</div></div></div>';
   if($('rvPh')){ var ph=$('rvPh'), put=function(u){ if(u){ ph.style.backgroundImage='url('+u+')'; ph.classList.remove('wait'); } };
     if(it.u){ DU[it.id]=it.u; } if(duHas(it.id)){ duLoad(it.id,1600,function(u){ if(u){ put(u); } else { rcvBig(put,it); } }); } else { put(it.pv); rcvBig(put,it); } }
-  if($('rvYt')){ $('rvYt').onclick=function(){ vwYt({yt:it.yt}); }; }
+  if($('rvYt')){ $('rvYt').onclick=function(){ vwYt(it.vfile?{vfile:1,yu:it.yu,th:it.th}:{yt:it.yt}); }; }
   if($('rvRm')){ $('rvRm').onclick=function(){ location.href=location.pathname+'?g='+encodeURIComponent(d.room.g)+'&r='+encodeURIComponent(it.id); }; }
   $('rvGo').onclick=function(){ var v=$('rvT').value.trim(), b=this; if(!v){ toast('기억을 한 줄 적어 주세요'); $('rvT').focus(); return; }
     b.disabled=true; api({action:'recShowTell',s:RCV.s,text:v,_hq:1,_busy:'기억을 남기는 중입니다'},function(r){ b.disabled=false;
@@ -3115,7 +3117,7 @@ function vwFromPz(x){ var r=PLZ.rooms[x.c]||{};
   return {id:x.id,src:'plaza',g:r.g||'',room:r.name||'',title:x.t||'',when:'',yt:x.yt||'',mv:!x.yt&&MV[x.id]||'',th:x.yt?'https://i.ytimg.com/vi/'+encodeURIComponent(x.yt)+'/hqdefault.jpg':(PVC[x.id]||''),u:!!x.u}; }
 function vwFromIt(it){
   var yt=it.video?(ytId(it.video.url)||''):'';
-  return {id:it.id,src:'room',g:G||'',room:(ME&&ME.comName)||'',title:it.title||'',when:it.when||'',yt:yt,yu:it.video?it.video.url:'',mv:!it.video&&(it.mv||MV[it.id])||'',
+  return {id:it.id,src:'room',g:G||'',room:(ME&&ME.comName)||'',title:it.title||'',when:it.when||'',yt:yt,vfile:it.video&&it.video.file?1:0,yu:it.video?it.video.url:'',mv:!it.video&&(it.mv||MV[it.id])||'',
     th:it.video?it.video.thumb:(it.pv||PVC[it.id]||PHC['s:'+it.id]||duUrl(it.id,480)||''),   /* ★v101 495 바로 주소 작은 사진 먼저 */n:it.photos&&it.photos.length>1?it.photos.length:0,it:it}; }
 function vwSlide(e,i){
   var media;
@@ -3285,6 +3287,7 @@ function vwMore(e){
   });
 }
 function vwYt(e){
+  if(e&&e.vfile){ sheet('<div style="margin:-6px -4px 0">'+vidTag({url:e.yu,thumb:e.th||''})+'</div><div class="pair" style="margin-top:12px"><button class="btn line" id="vfC" type="button">닫기</button></div>',function(){ $('vfC').onclick=closeSheet; }); return; }   /* ★v227 영상 파일은 이 자리에서 */
   var u=e.yu||('https://www.youtube.com/watch?v='+encodeURIComponent(e.yt));
   sheet('<h2>유튜브로 갑니다</h2><p class="lead" style="margin-top:6px">유튜브에서 영상을 엽니다.</p><div class="pair" style="margin-top:16px"><button class="btn line" id="yNo" type="button">취소</button><a class="btn" style="text-decoration:none" href="'+esc(u)+'" target="_blank" rel="noopener noreferrer" id="yGo">열기</a></div>',function(){ $('yNo').onclick=closeSheet; $('yGo').onclick=function(){ setTimeout(closeSheet,200); }; });
 }
@@ -3467,7 +3470,7 @@ function pfSave(i){ var p=pfCur(i), it=PF.list[i]; if(!p||!it){ return; } var st
   if(!window.fetch){ open2(); return; } busyOn('사진을 받는 중입니다'); fetch(u,{mode:'cors'}).then(function(r){ if(!r.ok){ throw 0; } return r.blob(); }).then(function(bl){ busyOff(); var f=null; try{ f=new File([bl],nm,{type:bl.type||'image/jpeg'}); }catch(e){}
     if(f&&navigator.canShare&&navigator.canShare({files:[f]})){ navigator.share({files:[f]}).catch(function(){}); return; }
     var a=document.createElement('a'), ou=URL.createObjectURL(bl); a.href=ou; a.download=nm; document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(ou); a.remove(); },4000); toast('사진을 저장했습니다'); }).catch(function(){ busyOff(); open2(); }); }
-function pfPlay(i,box){ var it=PF.list[i]; if(!it||!it.video){ return; } var id=ytId(it.video.url); if(!id){ vwYt({yu:it.video.url}); return; }
+function pfPlay(i,box){ var it=PF.list[i]; if(!it||!it.video){ return; } if(it.video.file){ box.innerHTML=vidTag(it.video); return; } var id=ytId(it.video.url); if(!id){ vwYt({yu:it.video.url}); return; }
   box.innerHTML='<iframe src="https://www.youtube.com/embed/'+encodeURIComponent(id)+'?autoplay=1&playsinline=1&rel=0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen title="유튜브 영상"></iframe>'; }
 function pfTap(ev){ var t=ev.target, art=t.closest&&t.closest('.pfp'); if(!art){ return; } var i=+art.getAttribute('data-pi'), it=PF.list[i]; var b=t.closest('[data-pa]');
   if(b){ var a=b.getAttribute('data-pa');
@@ -3984,7 +3987,7 @@ function drawItem(it,fresh){
   if(it.pdate){ h+='<div class="when2 pd">'+ic('photo','sm')+'사진 날짜 · '+esc(pdFmt(it.pdate))+'</div>'; }   /* ★v92 A-3 있었던 때로 단정하지 않음 */
   if(it.kind!=='글'&&it.text&&it.kind!=='링크'){ h+='<p style="white-space:pre-wrap;margin-top:6px">'+esc(it.text)+'</p>'; }
   if(it.kind==='링크'&&it.link){ h+='<button class="btn line" id="goLink" type="button">'+ic('ext')+'링크 열기</button><p class="note">바깥 사이트에 있는 글이라, 그쪽에서 지우면 열리지 않습니다.</p>'; }
-  if(it.video){ h+='<p class="note">누르면 유튜브로 이동합니다</p>'; }
+  if(it.video&&!it.video.file){ h+='<p class="note">누르면 유튜브로 이동합니다</p>'; }
   h+='<div class="ln" style="margin-top:8px">'+(it.voice?voiceBtn('data-vr="'+esc(it.id)+'"'):'')+upDown(it)+'</div></div></div>';
   if(mineP(it)){ h+='<div class="mymg"><button type="button" id="mgEd">✎ '+(it.text||it.title?'글 고치기':'글 쓰기')+'</button><button type="button" id="mgSl">☑ 사진 고르기'+(itPs(it)?' ('+itPs(it).length+'장)':'')+'</button></div>'; }   /* ★v137 내 게시물 */
   h+='<div id="askc"></div>';   /* ★v91 425 사진 바로 아래 질문 한 줄 · ★v126 613 둘러보기 · 올리기 단추보다 위로(사진에 바로 붙여 묻기) */
@@ -4033,7 +4036,7 @@ function drawItem(it,fresh){
   if(itPs(it)){ spdPend(1); piShow(it,function(){ spdPic(); spdPend(-1); }); }   /* ★v97 여러 장 — 지금 차례의 사진 한 장 */
   else if(it.photo){ spdPend(1); photo(it.id,false,function(src){ if(src&&$('ph')){ $('ph').src=src; $('ph').style.minHeight=''; if($('pfb')){ $('pfb').style.backgroundImage='url('+src+')'; } spdPic(); } spdPend(-1); }); } else { spdPend(0); }   /* ★v50 330 */
   each($('body'),'.big [data-z]',function(z){ z.onclick=function(){ zoom(it.photos,+z.getAttribute('data-z')); }; });
-  if($('yt')){ $('yt').onclick=function(){ sheet('<h2>유튜브로 갑니다</h2><p class="lead" style="margin-top:6px">유튜브에서 영상을 엽니다.</p><div class="pair" style="margin-top:16px"><button class="btn line" id="yNo" type="button">취소</button><a class="btn" style="text-decoration:none" href="'+esc(it.video.url)+'" target="_blank" rel="noopener noreferrer" id="yGo">열기</a></div>',function(){ $('yNo').onclick=closeSheet; $('yGo').onclick=function(){ setTimeout(closeSheet,200); }; }); }; }
+  if($('yt')){ $('yt').onclick=function(){ if(it.video&&it.video.file){ vwYt({vfile:1,yu:it.video.url,th:it.video.thumb}); return; } sheet('<h2>유튜브로 갑니다</h2><p class="lead" style="margin-top:6px">유튜브에서 영상을 엽니다.</p><div class="pair" style="margin-top:16px"><button class="btn line" id="yNo" type="button">취소</button><a class="btn" style="text-decoration:none" href="'+esc(it.video.url)+'" target="_blank" rel="noopener noreferrer" id="yGo">열기</a></div>',function(){ $('yNo').onclick=closeSheet; $('yGo').onclick=function(){ setTimeout(closeSheet,200); }; }); }; }
   each($('body'),'[data-oid]',function(z){ z.onclick=function(){ go('item',z.getAttribute('data-oid')); }; });
   $('rx').onclick=function(){ if(!gate()){ return; } react(it); };
   if($('itUp')){ $('itUp').onclick=function(){ if(isGuest()){ joinGate(1); return; } addGo(); }; }   /* ★v99 */
@@ -4715,7 +4718,7 @@ function voiceBtn(){ return ''; }
  *   사진 · 한마디(비워도 됨) → 「올리기」 · 제목 칸 없음(한마디 앞부분이 제목 자리에 — 서버) · 출처는 고르지 않음(⋯ 수정에서) · 공개 범위 = 위 작은 단추
  *   사진 날짜 = 휴대폰 안에서 사진 속 찍은 날을 읽어 「사진 날짜」로만(없으면 사진 아래 「언제」 질문 — 칸 6) · 약속은 처음 한 번 · 누구나 보기로 넓힐 때 한 번 */
 var PMAX=20;   /* ★v138 642 9 → 20(인스타그램과 같게 · 서버 ①Code v70 REC_BUNDLE_MAX 20) */
-function newA(){ return {step:1,type:'사진',photos:[],title:'',text:'',video:'',vsrc:'',link:{url:'',mine:'',org:'',terms:''},when:'',where:'',who:'',what:'',scope:(openRoom()?'공개':'공동체'),all:'',cat:'',kid:0,agreePub:0}; }   /* ★v110 이사회 11.10 Q1 — 열린 모임은 기본 「누구나 보기」(닫힌 방은 그대로) */   /* ★v67 392 kid · ★v92 사진이 기본 */
+function newA(){ return {step:1,type:'사진',photos:[],title:'',text:'',video:'',vsrc:'',vf:null,link:{url:'',mine:'',org:'',terms:''},when:'',where:'',who:'',what:'',scope:(openRoom()?'공개':'공동체'),all:'',cat:'',kid:0,agreePub:0}; }   /* ★v110 이사회 11.10 Q1 — 열린 모임은 기본 「누구나 보기」(닫힌 방은 그대로) */   /* ★v67 392 kid · ★v92 사진이 기본 */
 var A=newA(), PICKING=false;
 function dirty(){ return !!(A.photos.length||A.title||A.text||A.video||A.link.url)||ADD_V.some(function(i){ return !!VOICE[i]; }); }
 function scopeIc(sc){ return sc==='공개'?'home':(sc==='비공개'?'look':'ppl'); }
@@ -4786,7 +4789,7 @@ function upBody(){
     if(A.kakaoOne&&A.photos.length&&A.photos.length<PMAX){ x+='<p class="note">카카오톡 화면에서는 여러 장을 골라도 한 장만 담길 수 있습니다. 「더하기」로 이어서 담아 주십시오.</p>'; }
     x+='<div id="askB">'+askArea()+'</div><div class="mf" style="margin-top:10px"><textarea id="ax2" placeholder="이 사진에 얽힌 이야기">'+esc(A.text)+'</textarea>'+micBtn('ax2')+'</div><div class="hear" id="hear_ax2"></div>'+kbGo();   /* ★v123 칸 A — 고르는 순간 올리기 시작 · 살핌이 아이 · 노출을 알려 주면 바로 묻기 · 아이 물음을 위로 */
   } else if(t==='영상'){
-    x='<label class="f">유튜브 주소</label><textarea class="t one" rows="1" wrap="off" enterkeyhint="done" id="av" inputmode="url" placeholder="https://youtube.com/shorts/…" autocomplete="off">'+esc(A.video)+'</textarea>'+
+    x=vfHtml()+'<div class="vfor">또는</div><label class="f" style="margin-top:0">유튜브 주소 <span style="font-weight:400;color:var(--sub)">(1분이 넘는 영상)</span></label><textarea class="t one" rows="1" wrap="off" enterkeyhint="done" id="av" inputmode="url" placeholder="https://youtube.com/shorts/…" autocomplete="off">'+esc(A.video)+'</textarea>'+
       '<p class="note">유튜브에서 「공유」 → 「링크 복사」 하신 뒤, 이 칸을 길게 눌러 「붙여넣기」 하시면 됩니다.</p><div id="avp"></div>'+
       '<label class="f">누가 만든 영상인가요?</label>'+srcChips([['직접 만든 영상','본인 제작'],['다른 사람 영상','타인 제작']],A.vsrc)+
       '<div class="mf" style="margin-top:10px"><textarea id="ax2" placeholder="이 영상에 얽힌 이야기">'+esc(A.text)+'</textarea>'+micBtn('ax2')+'</div><div class="hear" id="hear_ax2"></div>'+kbGo();
@@ -4806,6 +4809,7 @@ function upBody(){
   each($('main'),'[data-kid]',function(b){ b.onclick=function(){ var v=+b.getAttribute('data-kid'); if((A.kid?1:0)===v){ return; } A.kid=v; scopeFix(); addView(); }; });   /* ★v99 */
   if($('ax2')){ $('ax2').oninput=function(){ A.text=this.value; }; }
   if($('aT')){ $('aT').oninput=function(){ A.text=this.value; }; }
+  vfBind();
   if($('av')){ $('av').oninput=function(){ A.video=this.value.trim(); var y=ytId(A.video); $('avp').innerHTML=y?'<div class="pic vid" style="border-radius:14px;margin-top:8px;background-image:url(https://i.ytimg.com/vi/'+y+'/hqdefault.jpg)"><span class="play"></span><span class="badge">영상을 찾았습니다</span></div>':(A.video?'<p class="note" style="color:var(--red)">유튜브 영상을 찾지 못했습니다 · 주소를 확인해 주십시오</p>':''); }; $('av').oninput(); }
   if($('lkU')){ $('lkU').oninput=function(){ var u=this.value.trim(); if(u!==A.link.url){ A.link.img=''; A.link.site=''; A.link.pvU=''; } A.link.url=u; lkPvAsk(); }; $('lkT').oninput=function(){ A.title=this.value; }; $('lkX').oninput=function(){ A.text=this.value; }; orgBind($('kb'),A.link,function(){ upBody(); }); }
 }
@@ -4916,6 +4920,60 @@ function next(){
   if(!(ME&&ME.agreed)){ agreeSheet(publish); return; }
   publish();
 }
+/* ★v227 영상 파일(1분 이내) — 고르는 순간 휴대폰 안에서 길이 · 크기를 재고 → 서버에 올릴 자리를 받아(recVidUp) → 네이버로 바로 올림 · 첫 장면 그림(vth)
+ *   1분 · 150MB 를 넘으면 올리지 않고 양해 창 → 「유튜브 주소로 넣기」 */
+var VF_SEC=60.9, VF_MAX=150*1024*1024;
+function vidTag(v){ return '<video class="vfv" src="'+esc(v.url)+'"'+(v.thumb?' poster="'+esc(v.thumb)+'"':'')+' controls playsinline autoplay preload="metadata" style="width:100%;max-height:78vh;background:#000;border-radius:12px;display:block"></video>'; }
+function vfBarHtml(f){
+  var mb=Math.max(1,Math.round(f.size/1048576));
+  if(f.st==='ok'){ return '<p class="note" style="color:#1E7B3A">올라갔습니다 · '+mb+'MB — 아래를 채우고 「올리기」를 눌러 주세요</p>'; }
+  if(f.st==='err'){ return '<p class="note" style="color:#B3261E">'+esc(f.msg||'올리지 못했습니다')+' · <a href="#" id="vfRe">다시 고르기</a></p>'; }
+  return '<div style="height:6px;border-radius:4px;background:#EEE;overflow:hidden;margin-top:8px"><i style="display:block;height:100%;width:'+(f.pct||0)+'%;background:#E8771E"></i></div><p class="note">올리는 중 '+(f.pct||0)+'% · '+mb+'MB — 다른 칸을 먼저 채우셔도 됩니다</p>';
+}
+function vfHtml(){
+  var f=A.vf;
+  if(!f){ return '<button type="button" class="upbig2" id="vfPk"><b>🎬</b>휴대폰 영상 고르기<small style="display:block;font-weight:400;font-size:13px;color:var(--sub)">1분 이내 영상 한 편</small></button><p class="upi" style="text-align:center">영상은 1분 이내만 바로 올릴 수 있어요. 더 긴 영상은 유튜브에 올린 뒤 주소를 붙여 주세요.<br>용량이 커서 와이파이에서 올리시길 권해요.</p><input type="file" id="vfIn" accept="video/*" style="display:none">'; }
+  var mm=Math.floor(f.dur/60), ss=('0'+Math.round(f.dur%60)).slice(-2);
+  return '<div class="pic vid" style="border-radius:14px;margin-top:12px;'+(f.th?'background-image:url('+f.th+');':'background:#333;')+'"><span class="play"></span><span class="badge">'+mm+':'+ss+'</span></div><div id="vfBar">'+vfBarHtml(f)+'</div>'+(f.st!=='go'?'<p class="note"><a href="#" id="vfX">이 영상 빼기</a></p>':'')+
+    '<input type="file" id="vfIn" accept="video/*" style="display:none"><label class="f">누가 만든 영상인가요?</label>'+srcChips([['직접 만든 영상','본인 제작'],['다른 사람 영상','타인 제작']],A.vsrc);
+}
+function vfRedraw(){ if(A.type!=='영상'||!A.vf){ return; } var b=$('vfBar'); if(b&&A.vf.st==='go'){ b.innerHTML=vfBarHtml(A.vf); return; } if($('kb')){ upBody(); bindMics(); } }
+function vfBind(){
+  if($('vfPk')){ $('vfPk').onclick=function(){ $('vfIn').click(); }; }
+  if($('vfIn')){ $('vfIn').onchange=function(){ var fl=this.files&&this.files[0]; this.value=''; if(fl){ vfPick(fl); } }; }
+  if($('vfX')){ $('vfX').onclick=function(e){ e.preventDefault(); A.vf=null; upBody(); bindMics(); }; }
+  if($('vfRe')){ $('vfRe').onclick=function(e){ e.preventDefault(); A.vf=null; upBody(); bindMics(); setTimeout(function(){ if($('vfIn')){ $('vfIn').click(); } },50); }; }
+}
+function vfSorry(title,body){
+  sheet('<h2>'+esc(title)+'</h2><p class="lead" style="margin-top:6px">'+body+'</p><div class="pair" style="margin-top:16px"><button class="btn line" id="vsNo" type="button">다른 영상 고르기</button><button class="btn" id="vsYt" type="button">유튜브 주소로 넣기</button></div>',function(){
+    $('vsNo').onclick=function(){ closeSheet(); setTimeout(function(){ if($('vfIn')){ $('vfIn').click(); } },80); };
+    $('vsYt').onclick=function(){ closeSheet(); setTimeout(function(){ var a=$('av'); if(a){ a.scrollIntoView({block:'center'}); a.focus(); } },120); }; });
+}
+function vfPick(fl){
+  if(!/^video\//.test(fl.type||'')&&!/\.(mp4|mov|m4v|webm)$/i.test(fl.name||'')){ toast('영상 파일을 골라 주십시오'); return; }
+  var u=URL.createObjectURL(fl), v=document.createElement('video'), done=0; v.preload='metadata'; v.muted=true; v.playsInline=true; v.setAttribute('playsinline','');
+  function fin(dur,th){ if(done){ return; } done=1; try{ v.removeAttribute('src'); v.load(); URL.revokeObjectURL(u); }catch(e){}
+    if(!(dur>0)){ toast('영상 길이를 읽지 못했습니다','다른 영상을 고르시거나 유튜브 주소로 넣어 주십시오'); return; }
+    var mm=Math.floor(dur/60), ss=Math.round(dur%60);
+    if(dur>VF_SEC){ vfSorry((mm?mm+'분 ':'')+ss+'초짜리 영상이에요','우리 이야기에는 1분 이내 영상만 바로 올릴 수 있어요. 양해 부탁드립니다.<br>긴 영상은 유튜브에 올린 뒤 주소를 붙여 주시면 이 방에서 똑같이 보입니다.'); return; }
+    if(fl.size>VF_MAX){ vfSorry('영상이 너무 커요 ('+Math.round(fl.size/1048576)+'MB)','150MB 까지 바로 올릴 수 있어요. 휴대폰 카메라 화질을 1080p 이하로 찍으시거나, 유튜브에 올린 뒤 주소를 붙여 주세요.'); return; }
+    A.vf={st:'go',pct:0,dur:dur,size:fl.size,th:th||'',file:fl}; upBody(); bindMics(); vfSend(); }
+  v.onloadedmetadata=function(){ var d=v.duration; if(!isFinite(d)||d<=0){ fin(0,''); return; } try{ v.currentTime=Math.min(0.5,d/3); }catch(e){ fin(d,''); } setTimeout(function(){ fin(d,''); },4000); };
+  v.onseeked=function(){ var th=''; try{ var W=480, sc=Math.min(1,W/Math.max(v.videoWidth,v.videoHeight)), c=document.createElement('canvas'); c.width=Math.max(1,Math.round(v.videoWidth*sc)); c.height=Math.max(1,Math.round(v.videoHeight*sc)); c.getContext('2d').drawImage(v,0,0,c.width,c.height); th=c.toDataURL('image/jpeg',0.72); }catch(e){ th=''; } fin(v.duration,th); };
+  v.onerror=function(){ fin(0,''); }; v.src=u;
+}
+function vfSend(){
+  var f=A.vf; if(!f){ return; }
+  api({action:'recVidUp',size:String(f.size),dur:String(f.dur),type:f.file.type||'video/mp4'},function(d){
+    if(A.vf!==f){ return; }
+    if(!d||d.status!=='ok'||!d.url){ f.st='err'; f.msg=(d&&d.msg)||'올릴 자리를 받지 못했습니다'; vfRedraw(); return; }
+    var x=new XMLHttpRequest(); f.tok=d.tok; x.open('PUT',d.url,true); x.setRequestHeader('Content-Type',f.file.type||'video/mp4');
+    x.upload.onprogress=function(e){ if(e.lengthComputable&&A.vf===f){ var n=Math.floor(e.loaded*100/e.total); if(n!==f.pct){ f.pct=n; vfRedraw(); } } };
+    x.onload=function(){ if(A.vf!==f){ return; } if(x.status>=200&&x.status<300){ f.st='ok'; f.file=null; } else { f.st='err'; f.msg='올리지 못했습니다('+x.status+')'; } vfRedraw(); };
+    x.onerror=function(){ if(A.vf!==f){ return; } f.st='err'; f.msg='연결이 끊겼습니다'; vfRedraw(); };
+    x.send(f.file);
+  });
+}
 function ytId(s){ s=String(s||'').trim(); if(/^[A-Za-z0-9_-]{11}$/.test(s)){ return s; } var m=/^(?:https?:\/\/)?(?:www\.|m\.|music\.)?(?:youtube\.com\/(?:watch\?(?:.*&)?v=|shorts\/|embed\/|live\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/.exec(s); return m?m[1]:''; }
 function goUrl(u){ u=String(u||'').trim(); if(/^tel:/i.test(u)){ u='tel:'+u.slice(4).replace(/[^0-9+]/g,''); } else if(/^\+?[0-9][0-9\s().-]{6,}$/.test(u)){ u='tel:'+u.replace(/[^0-9+]/g,''); } else if(u&&!/^https?:\/\//i.test(u)&&/^[a-z0-9.-]+\.[a-z]{2,}([\/?#].*)?$/i.test(u)){ u='https://'+u; } return u; }   /* ★v40 300 전화번호 · 주소 앞 https 채움 */
 function telOk(u){ return /^tel:\+?[0-9]{7,15}$/.test(u); }
@@ -4934,7 +4992,8 @@ function lkPvAsk(){ clearTimeout(LKPT); var l=A.link; l.pvBad=0; if(!urlOk(l.url
 function urlOk(u){ if(telOk(u)){ return true; }  return /^https?:\/\/[a-z0-9.-]+\.[a-z]{2,}(:\d{2,5})?([\/?#][^\s<>"'`]*)?$/i.test(u)&&!/^https?:\/\/[^\/?#]*@/i.test(u)&&u.length<=300; }
 function check(){
   if(A.type==='사진'&&!A.photos.length){ return '사진을 골라 주십시오'; }
-  if(A.type==='영상'){ if(!ytId(A.video)){ return A.video?'유튜브 영상을 찾지 못했습니다 · 주소를 확인해 주십시오':'유튜브 주소를 넣어 주십시오'; } if(!A.vsrc){ return '본인 제작인지 타인 제작인지 골라 주십시오'; } }
+  if(A.type==='영상'&&A.vf){ if(A.vf.st!=='ok'){ return A.vf.st==='err'?'영상을 올리지 못했습니다 · 다시 골라 주십시오':'영상을 올리는 중입니다 · 조금만 기다려 주십시오'; } if(!A.vsrc){ return '본인 제작인지 타인 제작인지 골라 주십시오'; } }
+  else if(A.type==='영상'){ if(!ytId(A.video)){ return A.video?'유튜브 영상을 찾지 못했습니다 · 주소를 확인해 주십시오':'유튜브 주소를 넣어 주십시오'; } if(!A.vsrc){ return '본인 제작인지 타인 제작인지 골라 주십시오'; } }
   if(A.type==='글'&&!(A.text||'').trim()){ return '글을 적어 주십시오'; }
   if(A.type==='링크'){ if(!urlOk(A.link.url)){ return '링크 주소를 확인해 주십시오 (https:// 로 시작)'; } if(!(A.title||'').trim()){ return '링크 제목을 적어 주십시오'; } if(!A.link.mine){ return '내가 쓴 글인지 다른 사람 글인지 골라 주십시오'; } }
   return '';
@@ -5219,7 +5278,7 @@ function publish2(voice){
     var many=A.photos.length>1;
     A.photos.forEach(function(ph,i){ var q={}; for(var k in p){ q[k]=p[k]; } if(i>0){ delete q.voice; } q.kind='사진'; q.pv=ph.pv||''; q.src=ph.src||''; if(ph.pd){ q.pdate=ph.pd; }
       if(ph.stg){ q.stg=ph.stg; q._ph=ph.u; } else { q.photo=ph.u; } if(ph.kid){ q.kid='1'; delete q.up; }   /* ★v123 미리 담아 둔 사진은 표만 보냄 · 아이로 본 사진은 아이 표시 */   /* ★v92 출처 · 제목 없이 · 사진 날짜 */ list.push(q); });
-  } else if(A.type==='영상'){ p.video=A.video; p.src=A.vsrc; list=[p]; }
+  } else if(A.type==='영상'){ if(A.vf&&A.vf.st==='ok'){ p.vtok=A.vf.tok; p.vth=A.vf.th||''; p.pv=A.vf.th||''; } else { p.video=A.video; } p.src=A.vsrc; list=[p]; }   /* ★v227 영상 파일 */
   else if(A.type==='링크'){ p.kind='링크'; p.url=A.link.url; p.src=A.link.mine; if(A.link.img){ p.limg=A.link.img; } if(A.link.site){ p.lsite=A.link.site; } if(A.link.mine==='다른 사람 글'){ p.org=A.link.org||''; p.terms=A.link.terms||''; } list=[p]; }
   else { p.kind='글'; list=[p]; }
   sendAll(list,A.type==='사진'&&list.length>1,function(okN,pub,errs,bad,dupN){
@@ -6879,7 +6938,7 @@ window.addEventListener('appinstalled',function(){ PWA_EV=null; var b=$('pwaGo')
 try{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js',{scope:'/'})['catch'](function(){});
   /* ★v62 375 새 화면 파일을 받아 오면 한 번 바꿔 엶 — 첫 화면 · 광장에서만(쓰는 중에는 기다렸다가 첫 화면으로 돌아올 때) */
   navigator.serviceWorker.addEventListener('message',function(ev){ if(!ev.data||ev.data.t!=='lf-new'){ return; } NEWV=1; newGo(); }); } }catch(e){}
-var NEWV=0, REC_VER=226;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
+var NEWV=0, REC_VER=227;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
 function newChk(){ try{ if(!window.caches){ return; } caches.open('lf-rec-shell-v2').then(function(c){ return c.match('/'); }).then(function(r){ return r?r.text():''; }).then(function(t){ var m=/rec\/index\.html · v(\d+)/.exec(String(t).slice(0,600)); if(m&&parseInt(m[1],10)>REC_VER){ NEWV=1; newGo(); } })['catch'](function(){}); }catch(e){} }   /* ★v62 375 알림을 놓쳐도 남겨 둔 파일 버전을 직접 봄 */
 setTimeout(newChk,5000); setTimeout(newChk,15000);
 document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible'){ setTimeout(newChk,1500); } });
