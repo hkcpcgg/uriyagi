@@ -1,0 +1,264 @@
+{
+ "com": "C-0255",
+ "name": "규찬이의 사랑방",
+ "intro": "안녕하세요\n규찬이의 사랑방입니다.",
+ "frame": "F-10",
+ "frameName": "나의 이야기",
+ "gos": [
+  {
+   "name": "사랑흐름 홈페이지",
+   "url": "https://www.loveflow.ai.kr"
+  }
+ ],
+ "cats": [
+  "오늘",
+  "가족",
+  "사람",
+  "여행",
+  "마음"
+ ],
+ "ups": [],
+ "downs": [],
+ "items": [
+  {
+   "id": "R-000607",
+   "title": "",
+   "text": "",
+   "when": "",
+   "cat": "",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0255/R-000607.jpg"
+   ]
+  },
+  {
+   "id": "R-000622",
+   "title": "",
+   "text": "",
+   "when": "",
+   "cat": "",
+   "imgs": [
+    "https://i.ytimg.com/vi/V0Jey1l4z6Q/hqdefault.jpg"
+   ]
+  },
+  {
+   "id": "R-000563",
+   "title": "",
+   "text": "",
+   "when": "",
+   "cat": "",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0255/R-000563.jpg"
+   ]
+  },
+  {
+   "id": "R-000542",
+   "title": "",
+   "text": "",
+   "when": "",
+   "cat": "",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0255/R-000542.jpg"
+   ]
+  },
+  {
+   "id": "R-000395",
+   "title": "",
+   "text": "",
+   "when": "",
+   "cat": "",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0255/R-000395.jpg"
+   ]
+  },
+  {
+   "id": "R-000394",
+   "title": "",
+   "text": "",
+   "when": "",
+   "cat": "",
+   "imgs": [
+    "https://i.ytimg.com/vi/QAQi6YBvM0U/hqdefault.jpg"
+   ]
+  },
+  {
+   "id": "R-000512",
+   "title": "",
+   "text": "",
+   "when": "",
+   "cat": "",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0255/R-000512.jpg"
+   ]
+  },
+  {
+   "id": "R-000505",
+   "title": "",
+   "text": "",
+   "when": "",
+   "cat": "",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0255/R-000505.jpg"
+   ]
+  },
+  {
+   "id": "R-000393",
+   "title": "",
+   "text": "",
+   "when": "",
+   "cat": "",
+   "imgs": [
+    "https://i.ytimg.com/vi/gtj7CfZFSyc/hqdefault.jpg"
+   ]
+  },
+  {
+   "id": "R-000392",
+   "title": "",
+   "text": "",
+   "when": "",
+   "cat": "",
+   "imgs": [
+    "https://i.ytimg.com/vi/Y3SQhXGgBDQ/hqdefault.jpg"
+   ]
+  },
+  {
+   "id": "R-000391",
+   "title": "",
+   "text": "",
+   "when": "",
+   "cat": "",
+   "imgs": [
+    "https://i.ytimg.com/vi/7CG4Daa2Mpw/hqdefault.jpg"
+   ]
+  },
+  {
+   "id": "R-000390",
+   "title": "",
+   "text": "",
+   "when": "",
+   "cat": "",
+   "imgs": [
+    "https://i.ytimg.com/vi/ahBdncPNLts/hqdefault.jpg"
+   ]
+  },
+  {
+   "id": "R-000389",
+   "title": "",
+   "text": "",
+   "when": "",
+   "cat": "",
+   "imgs": [
+    "https://i.ytimg.com/vi/rK3ce-R2kxs/hqdefault.jpg"
+   ]
+  },
+  {
+   "id": "R-000388",
+   "title": "",
+   "text": "",
+   "when": "",
+   "cat": "",
+   "imgs": [
+    "https://i.ytimg.com/vi/xiEz-wFVX4o/hqdefault.jpg"
+   ]
+  },
+  {
+   "id": "R-000387",
+   "title": "",
+   "text": "",
+   "when": "",
+   "cat": "",
+   "imgs": [
+    "https://i.ytimg.com/vi/hvQpPNHwQD0/hqdefault.jpg"
+   ]
+  },
+  {
+   "id": "R-000449",
+   "title": "",
+   "text": "",
+   "when": "",
+   "cat": "",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0255/R-000449.jpg"
+   ]
+  },
+  {
+   "id": "R-000467",
+   "title": "",
+   "text": "",
+   "when": "",
+   "cat": "",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0255/R-000467.jpg"
+   ]
+  },
+  {
+   "id": "R-000474",
+   "title": "김치사랑 따봉이",
+   "text": "",
+   "when": "",
+   "cat": "",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0255/R-000474.jpg"
+   ]
+  },
+  {
+   "id": "R-000458",
+   "title": "",
+   "text": "",
+   "when": "",
+   "cat": "",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0255/R-000458.jpg"
+   ]
+  },
+  {
+   "id": "R-000478",
+   "title": "",
+   "text": "",
+   "when": "",
+   "cat": "",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0255/R-000478.jpg"
+   ]
+  },
+  {
+   "id": "R-000487",
+   "title": "",
+   "text": "",
+   "when": "",
+   "cat": "",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0255/R-000487.jpg"
+   ]
+  },
+  {
+   "id": "R-000448",
+   "title": "",
+   "text": "",
+   "when": "",
+   "cat": "",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0255/R-000448.jpg"
+   ]
+  },
+  {
+   "id": "R-000250",
+   "title": "",
+   "text": "",
+   "when": "",
+   "cat": "",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0255/R-000250.jpg"
+   ]
+  },
+  {
+   "id": "R-000203",
+   "title": "",
+   "text": "",
+   "when": "",
+   "cat": "",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0255/R-000203.jpg"
+   ]
+  }
+ ]
+}

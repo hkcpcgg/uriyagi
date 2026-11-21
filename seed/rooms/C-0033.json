@@ -1,0 +1,88 @@
+{
+ "com": "C-0033",
+ "name": "장파초등학교 동문이야기 방",
+ "intro": "하루에 추억을 들려주세요",
+ "frame": "F-04",
+ "frameName": "학교 · 동문회",
+ "gos": [],
+ "cats": [
+  "학창 시절",
+  "모임",
+  "사람",
+  "소식"
+ ],
+ "ups": [],
+ "downs": [],
+ "items": [
+  {
+   "id": "R-000085",
+   "title": "",
+   "text": "",
+   "when": "",
+   "cat": "",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0033/R-000085.jpg"
+   ]
+  },
+  {
+   "id": "R-000086",
+   "title": "",
+   "text": "",
+   "when": "",
+   "cat": "",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0033/R-000086.jpg"
+   ]
+  },
+  {
+   "id": "R-000087",
+   "title": "",
+   "text": "",
+   "when": "",
+   "cat": "",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0033/R-000087.jpg"
+   ]
+  },
+  {
+   "id": "R-000088",
+   "title": "",
+   "text": "",
+   "when": "",
+   "cat": "",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0033/R-000088.jpg"
+   ]
+  },
+  {
+   "id": "R-000089",
+   "title": "",
+   "text": "",
+   "when": "",
+   "cat": "",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0033/R-000089.jpg"
+   ]
+  },
+  {
+   "id": "R-000223",
+   "title": "",
+   "text": "",
+   "when": "",
+   "cat": "",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0033/R-000223.jpg"
+   ]
+  },
+  {
+   "id": "R-000216",
+   "title": "",
+   "text": "",
+   "when": "",
+   "cat": "",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0033/R-000216.jpg"
+   ]
+  }
+ ]
+}

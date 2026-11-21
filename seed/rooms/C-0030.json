@@ -1,0 +1,172 @@
+{
+ "com": "C-0030",
+ "name": "사랑흐름 우리 이야기",
+ "intro": "",
+ "frame": "F-03",
+ "frameName": "기관 · 단체",
+ "gos": [
+  {
+   "name": "여행 고르기",
+   "url": "https://www.loveflow.ai.kr/showcase.html"
+  },
+  {
+   "name": "함께하기 상담",
+   "url": "https://pf.kakao.com/_ExndxfX"
+  },
+  {
+   "name": "마음 한마디",
+   "url": "https://www.loveflow.ai.kr/"
+  }
+ ],
+ "cats": [
+  "하는 일",
+  "흐름과 상품",
+  "함께한 기록",
+  "사람",
+  "체험"
+ ],
+ "ups": [],
+ "downs": [],
+ "items": [
+  {
+   "id": "R-000709",
+   "title": "방 하나가 다른 방을 비춥니다",
+   "text": "",
+   "when": "",
+   "cat": "활용",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0030/R-000709.jpg"
+   ]
+  },
+  {
+   "id": "R-000708",
+   "title": "우리 이야기가 잘하는 것",
+   "text": "",
+   "when": "",
+   "cat": "활용",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0030/R-000708.jpg"
+   ]
+  },
+  {
+   "id": "R-000707",
+   "title": "나의 하루가 나의 역사가 됩니다",
+   "text": "",
+   "when": "",
+   "cat": "활용",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0030/R-000707.jpg"
+   ]
+  },
+  {
+   "id": "R-000706",
+   "title": "멀리 있어도 한 지붕 아래",
+   "text": "",
+   "when": "",
+   "cat": "활용",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0030/R-000706.jpg"
+   ]
+  },
+  {
+   "id": "R-000705",
+   "title": "함께한 날이 쌓이면 우리의 자랑이 됩니다",
+   "text": "",
+   "when": "",
+   "cat": "활용",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0030/R-000705.jpg"
+   ]
+  },
+  {
+   "id": "R-000704",
+   "title": "그때 그 친구들, 그리고 우리 학교",
+   "text": "",
+   "when": "",
+   "cat": "활용",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0030/R-000704.jpg"
+   ]
+  },
+  {
+   "id": "R-000703",
+   "title": "저마다의 이야기가 마을의 이야기로",
+   "text": "",
+   "when": "",
+   "cat": "활용",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0030/R-000703.jpg"
+   ]
+  },
+  {
+   "id": "R-000702",
+   "title": "어디로든 뻗어 나갑니다",
+   "text": "",
+   "when": "",
+   "cat": "활용",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0030/R-000702.jpg"
+   ]
+  },
+  {
+   "id": "R-000701",
+   "title": "시작해 보세요",
+   "text": "",
+   "when": "",
+   "cat": "활용",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0030/R-000701.jpg"
+   ]
+  },
+  {
+   "id": "R-000066",
+   "title": "사랑이 흘러 사랑을 부르다",
+   "text": "",
+   "when": "",
+   "cat": "흐름과 상품",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0030/R-000066.jpg"
+   ]
+  },
+  {
+   "id": "R-000065",
+   "title": "마을에 불이 켜지다",
+   "text": "",
+   "when": "",
+   "cat": "하는 일",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0030/R-000065.jpg"
+   ]
+  },
+  {
+   "id": "R-000064",
+   "title": "한 송이가 차오르다",
+   "text": "",
+   "when": "",
+   "cat": "흐름과 상품",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0030/R-000064.jpg"
+   ]
+  },
+  {
+   "id": "R-000063",
+   "title": "어디서 시작해도",
+   "text": "",
+   "when": "",
+   "cat": "흐름과 상품",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0030/R-000063.jpg"
+   ]
+  },
+  {
+   "id": "R-000062",
+   "title": "흐르는 길",
+   "text": "",
+   "when": "",
+   "cat": "하는 일",
+   "imgs": [
+    "https://kr.object.ncloudstorage.com/uriyagi-photo/s/C-0030/R-000062.jpg"
+   ]
+  }
+ ]
+}
