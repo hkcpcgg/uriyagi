@@ -45,8 +45,14 @@ for c in ROOMS:
         t = (it.get('title') or '').strip(); x = str(it.get('text') or it.get('body') or '').strip()
         if not ims and not x: continue
         items.append({'id': it.get('id'), 'title': t, 'text': x[:400], 'when': it.get('when') or '', 'cat': it.get('cat') or '', 'imgs': ims[:6]})
+    # 위 방(기록관)은 아래 방에서 올라온 공개 사진(downs)도 실음 — 어느 방 것인지 갈래 자리에
+    for x in d.get('downs') or []:
+        if not isinstance(x, dict) or not str(x.get('id', '')).startswith('R-') or x['id'] in seen: continue
+        u = img(x.get('n'))
+        if not u: continue
+        seen.add(x['id']); items.append({'id': x['id'], 'title': (x.get('t') or '').strip(), 'text': '', 'when': '', 'cat': x.get('room') or '', 'imgs': [u]})
     ups = [{'c': u.get('com'), 'name': u.get('name')} for u in (d.get('ups') or []) if u.get('com')]
-    downs = [{'c': u.get('com'), 'name': u.get('name')} for u in (d.get('downs') or []) if isinstance(u, dict) and u.get('com')]
+    downs = [{'c': u.get('com'), 'name': u.get('name')} for u in (d.get('subs') or []) if isinstance(u, dict) and u.get('com')]
     o = {'com': c, 'name': d.get('comName') or c, 'intro': d.get('intro') or '', 'ups': ups, 'downs': downs, 'items': items}
     json.dump(o, open(os.path.join(out_dir, c + '.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     print(c, o['name'], '게시물', len(items), '그림', sum(len(i['imgs']) for i in items))
