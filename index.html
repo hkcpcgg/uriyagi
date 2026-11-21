@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v228 · 261121 · [우리이야기] 영상 파일도 마당 · 위 방 띠에 — 서버 ①Code v119 의 vt(첫 장면) · vu(영상) 고정 주소로 칸 그림 · 누르면 그 자리에서 재생(vwYt vfile) · 보기 화면 · 받은 장면 화면도 같이 (대표 261121 17:46) -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v229 · 261121 · [우리이야기] 방 관리 「이용 · 요금」에 영상 줄(편 · MB) — 쓴 양에 영상도 들어감(서버 ③본부 v43) -->
+<!-- (이전) rec/index.html · v228 · 261121 · [우리이야기] 영상 파일도 마당 · 위 방 띠에 — 서버 ①Code v119 의 vt(첫 장면) · vu(영상) 고정 주소로 칸 그림 · 누르면 그 자리에서 재생(vwYt vfile) · 보기 화면 · 받은 장면 화면도 같이 (대표 261121 17:46) -->
 <!-- (이전) rec/index.html · v227 · 261121 · [우리이야기] 영상 파일 올리기(1분 이내 · 150MB 까지) — 영상 칸 맨 위 「휴대폰 영상 고르기」 · 휴대폰 안에서 길이 · 크기 재기 · 넘으면 양해 창 → 유튜브 칸 · 고르는 순간 네이버로 바로 올림(서버 ①Code v116 recVidUp · 30분 서명 주소) · 첫 장면 그림 · 게시물에서 영상 바로 재생(vidTag) · 유튜브 칸은 그대로 (대표 261121 17:14) -->
 <!-- (이전) rec/index.html · v226 · 261121 · [우리이야기] 닫힌 방 고정 주소(?c= · AI 협업 사진 띠 링크) — 이 방 사람이면 바로 열림(서버 ①Code v115) · 아니면 「초대받은 분만」 화면에 마당과 같은 🔒 판을 바로 띄우고 「🚪 방 두드리기」 단추를 둠 → 카카오 → 관리자 승인 뒤에만 열림(대표 261121 12:34) · REC_VER 226 -->
 <!-- (이전) rec/index.html · v225 · 261120 · [우리이야기] 전용 약관 시행 — 로그인 창 「개인정보 처리」 링크를 우리 처리방침(/privacy/)으로 · 푸터 이용약관 · 개인정보처리방침도 /terms/ · /privacy/ -->
@@ -5991,7 +5992,7 @@ function planView(){
   var lim=p.limitMB||0, pct=lim?(p.pct||0):0, cls=pct>=100?'full':pct>=80?'near':'';
   h+='<div class="card"><h2>사진 용량</h2>'+
     (lim?'<div class="pbar '+cls+'"><i style="width:'+Math.min(100,pct)+'%"></i></div><p class="pbt"><b>'+usedTx(p)+'</b> / '+mbTx(lim)+' · '+pct+'%</p>'+(pct>=100?'<div class="err">사진 용량이 다 찼습니다</div>':''):'')+
-    row('사진',(p.photos||0)+'장')+row('쓴 양',usedTx(p))+row('용량 한도',lim?mbTx(lim):'정하지 않음')+(p.miss?row('크기 확인 중',p.miss+'장'):'')+'</div>';
+    row('사진',(p.photos||0)+'장')+(p.videos?row('영상',p.videos+'편 · '+mbTx(p.videoMB||0)):'')+row('쓴 양',usedTx(p))+row('용량 한도',lim?mbTx(lim):'정하지 않음')+(p.miss?row('크기 확인 중',p.miss+'장'):'')+'</div>';
   h+='<div class="card"><h2>문의</h2><p class="note" style="margin:0 0 4px">이용 기간 · 사진 용량은 사랑흐름 카카오톡 채널로 문의해 주십시오.</p><button class="btn kakao" id="plQ" type="button">'+KICON+'카카오톡으로 문의하기</button></div>';
   $('body').innerHTML=h; planBind();
   $('plQ').onclick=function(){ window.open('https://pf.kakao.com/_ExndxfX/chat','_blank'); };
@@ -6939,7 +6940,7 @@ window.addEventListener('appinstalled',function(){ PWA_EV=null; var b=$('pwaGo')
 try{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js',{scope:'/'})['catch'](function(){});
   /* ★v62 375 새 화면 파일을 받아 오면 한 번 바꿔 엶 — 첫 화면 · 광장에서만(쓰는 중에는 기다렸다가 첫 화면으로 돌아올 때) */
   navigator.serviceWorker.addEventListener('message',function(ev){ if(!ev.data||ev.data.t!=='lf-new'){ return; } NEWV=1; newGo(); }); } }catch(e){}
-var NEWV=0, REC_VER=228;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
+var NEWV=0, REC_VER=229;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
 function newChk(){ try{ if(!window.caches){ return; } caches.open('lf-rec-shell-v2').then(function(c){ return c.match('/'); }).then(function(r){ return r?r.text():''; }).then(function(t){ var m=/rec\/index\.html · v(\d+)/.exec(String(t).slice(0,600)); if(m&&parseInt(m[1],10)>REC_VER){ NEWV=1; newGo(); } })['catch'](function(){}); }catch(e){} }   /* ★v62 375 알림을 놓쳐도 남겨 둔 파일 버전을 직접 봄 */
 setTimeout(newChk,5000); setTimeout(newChk,15000);
 document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible'){ setTimeout(newChk,1500); } });
