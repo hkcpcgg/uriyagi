@@ -1,0 +1,32 @@
+# 공개 방 사진 모아 보기 — 손으로만 돌림(261121 · 클로드 확인용 · 공개 사진만)
+name: 공개 사진 모아 보기
+on:
+  workflow_dispatch:
+    inputs:
+      room:
+        description: '방 번호'
+        required: true
+      ids:
+        description: '기록 번호들(빈칸으로)'
+        required: true
+permissions:
+  contents: write
+jobs:
+  peek:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - run: |
+          mkdir -p out && cd out
+          B=https://kr.object.ncloudstorage.com/uriyagi-photo
+          for id in ${{ inputs.ids }}; do
+            for p in "s/${{ inputs.room }}/$id.jpg" "s/${{ inputs.room }}/$id.png" "u/${{ inputs.room }}/$id.jpg" "m/${{ inputs.room }}/$id.jpg"; do
+              c=$(curl -s -o "$id.img" -w '%{http_code}' "$B/$p"); if [ "$c" = 200 ]; then echo "$id $p"; break; fi; rm -f "$id.img"
+            done
+          done
+          ls
+          montage -label '%t' *.img -tile 4x -geometry 300x300+6+6 sheet.jpg || true
+          rm -f *.img
+      - run: |
+          cd out && git init -q -b pics && git add . && git -c user.name=shots -c user.email=shots@uriyagi.kr commit -q -m pics
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" pics
