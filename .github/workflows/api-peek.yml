@@ -1,0 +1,20 @@
+# 서버 답 모양 보기(공개 방 · 열쇠 없이) — 손으로만 · 클로드 확인용
+name: 서버 답 보기
+on:
+  workflow_dispatch:
+    inputs:
+      body:
+        description: '보낼 JSON'
+        required: true
+jobs:
+  peek:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - env:
+          B: ${{ github.event.inputs.body }}
+        run: |
+          G=https://script.google.com/macros/s/AKfycbyxGWMrhY9Ffihk56ve-8s_S87fdkg_WEMpJO7q3FZRkdlBZWwkWo8m2Gs-fBbrhoVMOg/exec
+          curl -sL -H 'Content-Type: text/plain;charset=utf-8' --data "$B" "$G" > r.json
+          jq -c 'keys' r.json; jq -c 'del(.items,.list,.recs)|tostring|.[0:1500]' r.json
+          jq -c '(.items // .list // .recs // [])|.[0:3]|tostring|.[0:3000]' r.json
