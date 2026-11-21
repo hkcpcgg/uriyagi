@@ -100,7 +100,7 @@ def room_page(c):
     path = '/room/%s/' % c; url = SITE + path; name = d['name']; intro = d.get('intro') or ''
     tops = [i['title'] for i in d['items'] if i.get('title')][:6]
     title = '%s — 사진으로 보는 이야기 · 우리 이야기' % name
-    desc = (intro + ' ' if intro else '') + ('· '.join(tops) if tops else '') 
+    desc = (intro + ' ' if intro else '') + (' · '.join(tops) if tops else '') 
     desc = (desc.strip() or name + ' 의 사진 이야기')[:155]
     arts = []
     for i, it in enumerate(d['items']):
