@@ -2,7 +2,7 @@
 # 261120 검색에 여는 안내 페이지 — /guide/ (사용법 · 안내 방 C-0295) · /story/ (활용 · 강점 · C-0030)
 # 쓰는 법: python3 .github/selfcheck/build_pages.py  (저장소 맨 위에서) → guide/index.html · story/index.html · sitemap.xml
 # 글은 시트 「기록」 의 안내 방 · 활용 방 게시물과 같게 맞춰 둠(방 글을 고치면 여기도 고쳐 다시 돌림)
-import os, glob, html, datetime
+import os, glob, html, datetime, json
 
 ROOT = os.getcwd()
 SITE = 'https://uriyagi.kr'
@@ -82,6 +82,74 @@ def imgs(folder, n):
     return out
 
 
+def room_json(c):
+    f = os.path.join(ROOT, 'seed', 'rooms', c + '.json')
+    if not os.path.exists(f): return None
+    import json
+    try: return json.load(open(f, encoding='utf-8'))
+    except Exception: return None
+
+
+def room_url(c):
+    return '/room/%s/' % c if room_json(c) and room_json(c).get('items') else '/?c=%s' % c
+
+
+def room_page(c):
+    d = room_json(c)
+    if not d or not d.get('items'): return None
+    path = '/room/%s/' % c; url = SITE + path; name = d['name']; intro = d.get('intro') or ''
+    tops = [i['title'] for i in d['items'] if i.get('title')][:6]
+    title = '%s — 사진으로 보는 이야기 · 우리 이야기' % name
+    desc = (intro + ' ' if intro else '') + ('· '.join(tops) if tops else '') 
+    desc = (desc.strip() or name + ' 의 사진 이야기')[:155]
+    arts = []
+    for i, it in enumerate(d['items']):
+        h = it.get('title') or it.get('cat') or name
+        meta = ' · '.join(x for x in [it.get('when'), it.get('cat')] if x)
+        ph = ''
+        if it.get('imgs'):
+            ph = '<div class="ph">' + ''.join('<img src="%s" alt="%s" loading="%s" decoding="async">' % (esc(u), esc(h if j == 0 else '%s (%d)' % (h, j + 1)), 'eager' if i < 2 else 'lazy') for j, u in enumerate(it['imgs'])) + '</div>'
+        arts.append('<article id="%s"><h2>%s</h2>%s%s%s</article>' % (esc(it.get('id') or ''), esc(h), ('<p class="lead" style="margin:0 0 6px">%s</p>' % esc(meta)) if meta else '', ('<p>%s</p>' % esc(it['text'])) if it.get('text') else '', ph))
+    rel = ''.join('<a href="%s">↑ %s ›</a>' % (room_url(u['c']), esc(u['name'])) for u in d.get('ups', []) if u.get('c')) + ''.join('<a href="%s">↓ %s ›</a>' % (room_url(u['c']), esc(u['name'])) for u in d.get('downs', []) if u.get('c'))
+    rooms = ''.join('<a href="%s">%s ›</a>' % (room_url(rc), esc(rn)) for rc, rn in ROOMS if rc != c)
+    imgs0 = [u for it in d['items'] for u in it.get('imgs', [])][:1]
+    ld = json.dumps({'@context': 'https://schema.org', '@type': 'CollectionPage', 'name': name, 'description': desc, 'url': url, 'inLanguage': 'ko',
+                     'image': imgs0, 'isPartOf': {'@type': 'WebSite', 'name': '우리 이야기', 'url': SITE + '/'}}, ensure_ascii=False)
+    og = imgs0[0] if imgs0 else SITE + '/uri-og.png'
+    h = f'''<!DOCTYPE html>
+<!-- 우리 이야기 · {path} · build_pages.py 로 만듦({TODAY}) · 재료 seed/rooms/{c}.json(fetch_rooms.py) · 손으로 고치지 않음 -->
+<html lang="ko"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{esc(title)}</title>
+<meta name="description" content="{esc(desc)}">
+<link rel="canonical" href="{url}">
+<meta property="og:type" content="website"><meta property="og:site_name" content="우리 이야기">
+<meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}">
+<meta property="og:url" content="{url}"><meta property="og:image" content="{esc(og)}">
+<meta name="theme-color" content="#1E4A76">
+<link rel="icon" type="image/png" sizes="48x48" href="/uri-favicon-48.png?v=261118"><link rel="apple-touch-icon" href="/uri-apple-180.png?v=261118">
+<script type="application/ld+json">{ld}</script>
+<style>{CSS}</style></head>
+<body class="s">
+<header><a href="/"><img src="/uri-icon-192.png" alt=""></a><a href="/"><b>우리 이야기</b></a><nav><a href="/guide/">사용법</a><a href="/story/">활용 · 강점</a></nav></header>
+<main>
+<h1>{esc(name)}</h1>
+<p class="lead">{esc(intro)}</p>
+<a class="go" style="margin:0 0 22px" href="/?c={c}">우리 이야기에서 이 방 보기 ›</a>
+{''.join(arts)}
+<a class="go" href="/?c={c}">이 방에 사진 남기러 가기 ›</a>
+{('<section class="rooms"><h2>이어진 방</h2>' + rel + '</section>') if rel else ''}
+<section class="rooms"><h2>둘러볼 수 있는 방</h2>{rooms}</section>
+</main>
+<footer>우리 이야기 · uriyagi.kr</footer>
+</body></html>
+'''
+    dd = os.path.join(ROOT, 'room', c)
+    os.makedirs(dd, exist_ok=True)
+    open(os.path.join(dd, 'index.html'), 'w', encoding='utf-8').write(h)
+    return url
+
+
 def page(path, title, desc, h1, lead, posts, folder, cls, other):
     url = SITE + path
     toc = ''.join('<a href="#p%d"><span class="no">%d</span>%s</a>' % (i + 1, i + 1, esc(t)) for i, (t, _) in enumerate(posts))
@@ -92,7 +160,7 @@ def page(path, title, desc, h1, lead, posts, folder, cls, other):
         if ims:
             ph = '<div class="ph">' + ''.join('<img src="%s" alt="%s" loading="%s" decoding="async">' % (u, esc(t), 'eager' if i == 0 else 'lazy') for u in ims) + '</div>'
         arts.append('<article id="p%d"><h2><span class="no">%d</span>%s</h2><p>%s</p>%s</article>' % (i + 1, i + 1, esc(t), esc(body), ph))
-    rooms = ''.join('<a href="/?c=%s">%s ›</a>' % (c, esc(n)) for c, n in ROOMS)
+    rooms = ''.join('<a href="%s">%s ›</a>' % (room_url(c), esc(n)) for c, n in ROOMS)
     ld = '{"@context":"https://schema.org","@type":"WebPage","name":%s,"description":%s,"url":"%s","inLanguage":"ko","isPartOf":{"@type":"WebSite","name":"우리 이야기","url":"%s/"}}' % (
         '"' + title.replace('"', '') + '"', '"' + desc.replace('"', '') + '"', url, SITE)
     h = f"""<!DOCTYPE html>
@@ -139,6 +207,7 @@ u2 = page('/story/', '우리 이야기는 이렇게 쓰여요 — 나 · 가족 
           STORY, 'story', 's', ('/guide/', '우리 이야기 사용법'))
 
 urls = [(u1, '0.9'), (u2, '0.9')] + [(SITE + '/?c=' + c, '0.6') for c, _ in ROOMS]
+urls += [(u, '0.7') for u in (room_page(c) for c, _ in ROOMS) if u]  # 261121 방 소개 페이지
 urls += [(SITE + '/heyri/', '0.8')]  # 261121 헤이리 공간 운영자 안내 한 장
 urls += [(SITE + '/terms/', '0.3'), (SITE + '/privacy/', '0.3')]  # 약관 · 처리방침(261120 시행) — 다시 돌려도 빠지지 않게
 sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(

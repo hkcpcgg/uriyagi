@@ -1,0 +1,26 @@
+# 검색용 방 소개 페이지 — 공개 방 게시물을 받아 /room/C-xxxx/ · sitemap 을 새로 만듦(261121) · 매주 월요일 + 손으로
+name: 방 소개 페이지 만들기
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 18 * * 0'   # 월요일 03:23 KST
+permissions:
+  contents: write
+concurrency: room-pages
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: 받기 · 만들기
+        run: |
+          python3 .github/selfcheck/fetch_rooms.py
+          python3 .github/selfcheck/build_pages.py
+      - name: 바뀐 것만 올림
+        run: |
+          git config user.name 'room-pages'; git config user.email 'room-pages@uriyagi.kr'
+          git add room seed/rooms sitemap.xml guide/index.html story/index.html
+          if git diff --cached --quiet; then echo '바뀐 것 없음'; exit 0; fi
+          git commit -q -m "[우리이야기] 방 소개 페이지 새로 $(date -u +%F)"
+          git pull -q --rebase origin main && git push -q origin HEAD:main

@@ -6,6 +6,7 @@ Allow: /terms/
 Allow: /privacy/
 Allow: /seed/
 Allow: /heyri/
+Allow: /room/
 Disallow: /*?
 Allow: /?c=C-0295$
 Allow: /?c=C-0030$
