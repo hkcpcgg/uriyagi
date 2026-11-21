@@ -53,6 +53,8 @@ ROOMS = [  # 검색에 여는 방(손님 보기 주소 ?c= · 초대 열쇠 없�
  ("C-0258", "(견본) 주말 산행 모임"),
  ("C-0257", "(견본) 평생학습관 수영 동호회"),
  ("C-0256", "(견본) 문산 자전거 동호회"),
+ ("C-0246", "헤이리기록관"),  # 261121 헤이리 견본 공간(열린 모임)
+ ("C-0297", "헤이리 아트팩토리"),
 ]
 
 CSS = """*{box-sizing:border-box}body{margin:0;background:#f6f4ef;color:#1d2433;font:16px/1.75 -apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;word-break:keep-all}
@@ -137,6 +139,7 @@ u2 = page('/story/', '우리 이야기는 이렇게 쓰여요 — 나 · 가족 
           STORY, 'story', 's', ('/guide/', '우리 이야기 사용법'))
 
 urls = [(u1, '0.9'), (u2, '0.9')] + [(SITE + '/?c=' + c, '0.6') for c, _ in ROOMS]
+urls += [(SITE + '/heyri/', '0.8')]  # 261121 헤이리 공간 운영자 안내 한 장
 urls += [(SITE + '/terms/', '0.3'), (SITE + '/privacy/', '0.3')]  # 약관 · 처리방침(261120 시행) — 다시 돌려도 빠지지 않게
 sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(
     '  <url><loc>%s</loc><lastmod>%s</lastmod><priority>%s</priority></url>\n' % (html.escape(u), TODAY, p) for u, p in urls) + '</urlset>\n'

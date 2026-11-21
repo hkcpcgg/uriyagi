@@ -1,10 +1,11 @@
-# 우리 이야기 · 261120 — 안내 페이지와 손님 보기 주소(?c=)만 둘러보게 · 초대 열쇠 · 개인 주소는 막음
+# 우리 이야기 · 261120 (261121 헤이리 더함) — 안내 페이지와 손님 보기 주소(?c=)만 둘러보게 · 초대 열쇠 · 개인 주소는 막음
 User-agent: *
 Allow: /guide/
 Allow: /story/
 Allow: /terms/
 Allow: /privacy/
 Allow: /seed/
+Allow: /heyri/
 Disallow: /*?
 Allow: /?c=C-0295$
 Allow: /?c=C-0030$
@@ -12,6 +13,8 @@ Allow: /?c=C-0294$
 Allow: /?c=C-0258$
 Allow: /?c=C-0257$
 Allow: /?c=C-0256$
+Allow: /?c=C-0246$
+Allow: /?c=C-0297$
 Disallow: /lf/
 Disallow: /print.html
 
