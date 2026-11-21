@@ -24,3 +24,19 @@ jobs:
           if git diff --cached --quiet; then echo '바뀐 것 없음'; exit 0; fi
           git commit -q -m "[우리이야기] 방 소개 페이지 새로 $(date -u +%F)"
           git pull -q --rebase origin main && git push -q origin HEAD:main
+      - name: 검색에 바로 알리기(IndexNow — 네이버 · 빙)
+        run: |
+          sleep 75   # 페이지가 실사이트에 올라갈 때까지
+          python3 - <<'PY'
+          import json, re, urllib.request
+          K = 'ff37e4880aa3be980f16fe865be5b8b5'
+          urls = re.findall(r'<loc>(https://uriyagi\.kr/[^<]*)</loc>', open('sitemap.xml', encoding='utf-8').read())
+          urls = [u for u in urls if '?' not in u]
+          body = json.dumps({'host': 'uriyagi.kr', 'key': K, 'keyLocation': 'https://uriyagi.kr/' + K + '.txt', 'urlList': urls}).encode()
+          for ep in ('https://searchadvisor.naver.com/indexnow', 'https://api.indexnow.org/indexnow'):
+              try:
+                  r = urllib.request.urlopen(urllib.request.Request(ep, data=body, headers={'Content-Type': 'application/json; charset=utf-8'}), timeout=30)
+                  print(ep, r.status, len(urls), '주소')
+              except Exception as e:
+                  print(ep, '알림 못 함', getattr(e, 'code', ''), str(e)[:120])
+          PY
