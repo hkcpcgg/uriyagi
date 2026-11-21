@@ -17,4 +17,5 @@ jobs:
           G=https://script.google.com/macros/s/AKfycbyxGWMrhY9Ffihk56ve-8s_S87fdkg_WEMpJO7q3FZRkdlBZWwkWo8m2Gs-fBbrhoVMOg/exec
           curl -sL -H 'Content-Type: text/plain;charset=utf-8' --data "$B" "$G" > r.json
           jq -c 'keys' r.json; jq -c 'del(.items,.list,.recs)|tostring|.[0:1500]' r.json
-          jq -c '(.items // .list // .recs // [])|.[0:3]|tostring|.[0:3000]' r.json
+          jq -c '(.grid|keys), (.list|type), (.list|.[0:3]|tostring|.[0:600]), (.grid|to_entries|map({k:.key,t:(.value|type),n:(.value|length)}))' r.json || true
+          jq -c '.grid.all // .grid.items // .grid.list // empty | .[0:2] | tostring | .[0:1500]' r.json || true
