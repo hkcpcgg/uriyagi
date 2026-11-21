@@ -82,46 +82,137 @@ def imgs(folder, n):
     return out
 
 
+import re as _re
+
+# ── ★261121 검색 엔진 — 공개 방마다 태그를 저절로 만듦(상호 · 지역 · 업종 · 지역×업종) · 대표 18:49 「태그를 엔진으로 장착」 ──
+REGION_UP = {  # 작은 곳 → 넓은 곳(지역 이름이 방 이름에 없어도 「파주」가 붙게)
+    '프로방스': ['파주'], '헤이리': ['파주'], '문산': ['파주'], '탄현': ['파주'], '운정': ['파주'], '금촌': ['파주'], '교하': ['파주'],
+    '통일동산': ['파주'], '출판도시': ['파주'], '임진각': ['파주'], '장파': ['파주'], '적성': ['파주'], '법원읍': ['파주'],
+    '일산': ['고양'], '파주': ['경기'], '고양': ['경기'], '김포': ['경기'], '양주': ['경기'],
+}
+REGIONS = ['파주', '헤이리', '프로방스', '문산', '탄현', '운정', '금촌', '교하', '통일동산', '출판도시', '임진각', '장파', '적성', '법원읍', '일산', '고양', '김포', '양주', '서울', '경기']
+BIZ_END = ('요리', '맛집', '식당', '카페', '갤러리', '공방', '미술관', '박물관', '체험관', '체험', '펜션', '농장', '베이커리', '빵집', '횟집', '국밥', '정식', '한식', '중식', '일식', '전시관', '책방', '서점', '학교', '동문', '동호회', '모임', '종중', '기록관', '아트팩토리')
+BIZ_SYN = {'복요리': ['복어요리', '복어'], '갤러리': ['미술 전시', '전시'], '아트팩토리': ['갤러리', '전시'], '맛집': ['식당'], '러닝': ['달리기'], '산행': ['등산'],
+           '자전거': ['라이딩'], '수영': ['수영장']}
+FRAME_BIZ = {'F-01': ['가게'], 'F-03': ['단체'], 'F-04': ['학교'], 'F-05': ['마을'], 'F-06': ['가족'], 'F-08': ['회사'], 'F-09': ['기관'], 'F-12': ['모임'], 'F-14': ['기록관']}
+HOBBY = ('자전거', '러닝', '산행', '수영', '등산', '마라톤', '독서', '텃밭', '합창', '캠핑', '낚시', '골프', '탁구', '배드민턴')
+STOP = {'우리들의', '이야기', '방', '우리', '견본', '모임방', '이야기방', '함께', '하는', '소중한', '분들과', '사진으로', '남기는', '방입니다', '한곳에', '모읍니다', '공간들의'}
+SEO_EXTRA = {  # 손으로 더할 태그(가게 쪽 말씀이 있을 때만)
+}
+
+
+def _toks(s):
+    s = _re.sub(r'\(견본\)|[()\[\]「」·,.!?~—\-]', ' ', s or '')
+    return [w for w in s.split() if len(w) >= 2 and w not in STOP]
+
+
+def room_tags(d):
+    name = d.get('name', ''); words = _toks(name) + _toks(d.get('intro', ''))
+    titles = ' '.join(i.get('title', '') for i in d.get('items', []))
+    regions = []
+    for w in words:   # 지역은 방 이름 · 소개에서만(게시물 제목의 사람 이름 「김서울」 같은 것에 걸리지 않게)
+        for r in REGIONS:
+            if r in w and r not in regions: regions.append(r)
+    for r in list(regions):
+        for up in REGION_UP.get(r, []):
+            if up not in regions: regions.append(up)
+    biz = []
+    for w in _toks(name):
+        for r in REGIONS: w = w.replace(r + '마을', '').replace(r, '') if w != r else w
+        if w and (w.endswith(BIZ_END) or w in HOBBY) and w not in biz and w not in REGIONS: biz.append(w)
+    for b in list(biz):
+        for s in BIZ_SYN.get(b, []):
+            if s not in biz: biz.append(s)
+    for b in FRAME_BIZ.get(d.get('frame', ''), []):
+        if b not in biz and not biz: biz.append(b)
+    core = [w for w in _toks(name) if w not in REGIONS and not any(w.startswith(r) for r in REGIONS) and w not in biz]
+    tags = []
+    def add(x):
+        x = x.strip()
+        if x and x not in tags: tags.append(x)
+    nm0 = _re.sub(r'\(견본\)\s*', '', name).replace(' 이야기', '').strip()
+    if 2 <= len(nm0) <= 14: add(nm0)          # 방 이름 그대로(예: 헤이리 아트팩토리)
+    for w in core: add(w)                      # 상호(예: 다복)
+    for r in regions[:4]:
+        for b in biz[:4]: add(r + ' ' + b)      # 지역 × 업종(예: 파주 복요리)
+    for b in biz: add(b)
+    for r in regions: add(r)
+    for w in core:
+        for r in regions[:2]: add(r + ' ' + w)  # 지역 + 상호(예: 파주 다복)
+    for x in SEO_EXTRA.get(d.get('com', ''), []): add(x)
+    return tags[:24]
+
+
 def room_json(c):
     f = os.path.join(ROOT, 'seed', 'rooms', c + '.json')
     if not os.path.exists(f): return None
-    import json
     try: return json.load(open(f, encoding='utf-8'))
     except Exception: return None
 
 
+def all_rooms():
+    out = []
+    for f in sorted(glob.glob(os.path.join(ROOT, 'seed', 'rooms', 'C-*.json'))):
+        try:
+            d = json.load(open(f, encoding='utf-8'))
+            if d.get('items'): out.append(d)
+        except Exception: pass
+    return out
+
+
 def room_url(c):
-    return '/room/%s/' % c if room_json(c) and room_json(c).get('items') else '/?c=%s' % c
-
-
-def room_page(c):
     d = room_json(c)
-    if not d or not d.get('items'): return None
-    path = '/room/%s/' % c; url = SITE + path; name = d['name']; intro = d.get('intro') or ''
-    tops = [i['title'] for i in d['items'] if i.get('title')][:6]
-    title = '%s — 사진으로 보는 이야기 · 우리 이야기' % name
-    desc = (intro + ' ' if intro else '') + (' · '.join(tops) if tops else '') 
-    desc = (desc.strip() or name + ' 의 사진 이야기')[:155]
-    arts = []
+    return '/room/%s/' % c if d and d.get('items') else '/?c=%s' % c
+
+
+ROOM_IMGS = {}   # 페이지 주소 → 그림 주소들(그림 사이트맵)
+
+
+def room_page(d):
+    c = d['com']; path = '/room/%s/' % c; url = SITE + path; name = d['name']; intro = d.get('intro') or ''
+    tags = room_tags(d); shop = d.get('frame') == 'F-01'
+    nm = _re.sub(r'\(견본\)\s*', '', name).strip()
+    _nw = set(nm.split())
+    head_tags = ' · '.join([t for t in tags if ' ' in t and t != nm][:3]) or ' · '.join([t for t in tags if t != nm and t not in _nw][:3])
+    title = ('%s — %s 사진 · 우리 이야기' % (nm, head_tags)) if head_tags else ('%s — 사진으로 보는 이야기 · 우리 이야기' % nm)
+    tops = [i['title'] for i in d['items'] if i.get('title')][:5]
+    desc = ' '.join(x for x in [intro, (' · '.join(tags[:6]) + '.') if tags else '', ' · '.join(tops)] if x)[:160]
+    arts, imgs_all = [], []
     for i, it in enumerate(d['items']):
-        h = it.get('title') or it.get('cat') or name
+        h = it.get('title') or it.get('cat') or nm
         meta = ' · '.join(x for x in [it.get('when'), it.get('cat')] if x)
+        alt_tail = ' '.join(tags[1:3]) if len(tags) > 1 else ''
         ph = ''
         if it.get('imgs'):
-            ph = '<div class="ph">' + ''.join('<img src="%s" alt="%s" loading="%s" decoding="async">' % (esc(u), esc(h if j == 0 else '%s (%d)' % (h, j + 1)), 'eager' if i < 2 else 'lazy') for j, u in enumerate(it['imgs'])) + '</div>'
+            ph = '<div class="ph">' + ''.join('<figure><img src="%s" alt="%s" loading="%s" decoding="async"></figure>' % (
+                esc(u), esc(('%s %s %s' % (nm, h, alt_tail)).strip() + ('' if j == 0 else ' (%d)' % (j + 1))), 'eager' if i < 2 else 'lazy') for j, u in enumerate(it['imgs'])) + '</div>'
+            imgs_all += it['imgs']
         arts.append('<article id="%s"><h2>%s</h2>%s%s%s</article>' % (esc(it.get('id') or ''), esc(h), ('<p class="lead" style="margin:0 0 6px">%s</p>' % esc(meta)) if meta else '', ('<p>%s</p>' % esc(it['text'])) if it.get('text') else '', ph))
+    ROOM_IMGS[url] = imgs_all[:200]
+    tagh = ''.join('<a class="tg" href="/room/#t-%s">#%s</a>' % (esc(t.replace(' ', '')), esc(t.replace(' ', ''))) for t in tags)
+    gos = ''.join('<a class="gob" href="%s" rel="nofollow noopener" target="_blank">%s</a>' % (esc(g['url']), esc(g['name'])) for g in d.get('gos', []) if g.get('url'))
     rel = ''.join('<a href="%s">↑ %s ›</a>' % (room_url(u['c']), esc(u['name'])) for u in d.get('ups', []) if u.get('c')) + ''.join('<a href="%s">↓ %s ›</a>' % (room_url(u['c']), esc(u['name'])) for u in d.get('downs', []) if u.get('c'))
-    rooms = ''.join('<a href="%s">%s ›</a>' % (room_url(rc), esc(rn)) for rc, rn in ROOMS if rc != c)
-    imgs0 = [u for it in d['items'] for u in it.get('imgs', [])][:1]
-    ld = json.dumps({'@context': 'https://schema.org', '@type': 'CollectionPage', 'name': name, 'description': desc, 'url': url, 'inLanguage': 'ko',
-                     'image': imgs0, 'isPartOf': {'@type': 'WebSite', 'name': '우리 이야기', 'url': SITE + '/'}}, ensure_ascii=False)
-    og = imgs0[0] if imgs0 else SITE + '/uri-og.png'
+    others = ''.join('<a href="/room/%s/">%s ›</a>' % (x['com'], esc(x['name'])) for x in all_rooms() if x['com'] != c)
+    tel = next((g['url'][4:] for g in d.get('gos', []) if str(g.get('url', '')).startswith('tel:')), '')
+    mp = next((g['url'] for g in d.get('gos', []) if 'map.naver.com' in str(g.get('url', ''))), '')
+    typ = 'CollectionPage'
+    if shop: typ = 'Restaurant' if any(k in name for k in ('요리', '맛집', '식당', '국밥', '횟집')) else 'LocalBusiness'
+    if any(k in name for k in ('갤러리', '아트팩토리', '미술관')): typ = 'ArtGallery'
+    ldo = {'@context': 'https://schema.org', '@type': typ, 'name': nm, 'description': desc, 'url': url, 'image': imgs_all[:10], 'keywords': ', '.join(tags), 'inLanguage': 'ko'}
+    if typ == 'CollectionPage': ldo['isPartOf'] = {'@type': 'WebSite', 'name': '우리 이야기', 'url': SITE + '/'}
+    if tel: ldo['telephone'] = tel
+    if mp: ldo['hasMap'] = mp
+    if any(r in tags for r in ('파주',)): ldo['address'] = {'@type': 'PostalAddress', 'addressLocality': '파주시', 'addressRegion': '경기도', 'addressCountry': 'KR'}
+    ld = json.dumps(ldo, ensure_ascii=False)
+    og = imgs_all[0] if imgs_all else SITE + '/uri-og.png'
+    css2 = '.tags{margin:0 0 16px;display:flex;flex-wrap:wrap;gap:6px}.tg{background:#fff;border:1px solid #e3dccf;border-radius:16px;padding:3px 10px;font-size:13px;text-decoration:none;color:#555}.gos{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}.gob{background:#1E4A76;color:#fff;border-radius:18px;padding:7px 14px;font-size:14px;text-decoration:none}figure{margin:0;flex:0 0 auto}'
     h = f'''<!DOCTYPE html>
 <!-- 우리 이야기 · {path} · build_pages.py 로 만듦({TODAY}) · 재료 seed/rooms/{c}.json(fetch_rooms.py) · 손으로 고치지 않음 -->
 <html lang="ko"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
+<meta name="keywords" content="{esc(', '.join(tags))}">
 <link rel="canonical" href="{url}">
 <meta property="og:type" content="website"><meta property="og:site_name" content="우리 이야기">
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}">
@@ -129,23 +220,55 @@ def room_page(c):
 <meta name="theme-color" content="#1E4A76">
 <link rel="icon" type="image/png" sizes="48x48" href="/uri-favicon-48.png?v=261118"><link rel="apple-touch-icon" href="/uri-apple-180.png?v=261118">
 <script type="application/ld+json">{ld}</script>
-<style>{CSS}</style></head>
+<style>{CSS}{css2}</style></head>
 <body class="s">
-<header><a href="/"><img src="/uri-icon-192.png" alt=""></a><a href="/"><b>우리 이야기</b></a><nav><a href="/guide/">사용법</a><a href="/story/">활용 · 강점</a></nav></header>
+<header><a href="/"><img src="/uri-icon-192.png" alt=""></a><a href="/"><b>우리 이야기</b></a><nav><a href="/room/">방 둘러보기</a><a href="/guide/">사용법</a></nav></header>
 <main>
 <h1>{esc(name)}</h1>
 <p class="lead">{esc(intro)}</p>
+<div class="tags">{tagh}</div>
+{('<div class="gos">' + gos + '</div>') if gos else ''}
 <a class="go" style="margin:0 0 22px" href="/?c={c}">우리 이야기에서 이 방 보기 ›</a>
 {''.join(arts)}
 <a class="go" href="/?c={c}">이 방에 사진 남기러 가기 ›</a>
 {('<section class="rooms"><h2>이어진 방</h2>' + rel + '</section>') if rel else ''}
-<section class="rooms"><h2>둘러볼 수 있는 방</h2>{rooms}</section>
+<section class="rooms"><h2>다른 방 둘러보기</h2>{others}</section>
 </main>
 <footer>우리 이야기 · uriyagi.kr</footer>
 </body></html>
 '''
-    dd = os.path.join(ROOT, 'room', c)
-    os.makedirs(dd, exist_ok=True)
+    dd = os.path.join(ROOT, 'room', c); os.makedirs(dd, exist_ok=True)
+    open(os.path.join(dd, 'index.html'), 'w', encoding='utf-8').write(h)
+    return url, tags
+
+
+def room_hub(made):
+    """/room/ — 모든 공개 방 · 태그 모음(안쪽 링크)"""
+    path = '/room/'; url = SITE + path
+    cards, bytag = [], {}
+    for d, tags in made:
+        im = next((u for it in d['items'] for u in it.get('imgs', [])), '')
+        cards.append('<a class="rc" href="/room/%s/">%s<b>%s</b><small>%s</small><span>%s</span></a>' % (
+            d['com'], ('<img src="%s" alt="%s" loading="lazy">' % (esc(im), esc(d['name']))) if im else '', esc(d['name']), esc(d.get('intro') or ''), esc(' · '.join('#' + t.replace(' ', '') for t in tags[:6]))))
+        for t in tags: bytag.setdefault(t.replace(' ', ''), []).append(d)
+    tagsec = ''.join('<div class="tgs" id="t-%s"><b>#%s</b> %s</div>' % (esc(t), esc(t), ' '.join('<a href="/room/%s/">%s</a>' % (x['com'], esc(x['name'])) for x in ds)) for t, ds in sorted(bytag.items(), key=lambda kv: -len(kv[1])))
+    title = '방 둘러보기 — 동호회 · 가게 · 갤러리 · 마을 사진 이야기 · 우리 이야기'
+    desc = '우리 이야기에 열린 방들 — ' + ' · '.join(d['name'] for d, _ in made)[:120]
+    css2 = '.rc{display:block;background:#fff;border-radius:16px;margin:0 0 14px;padding:0 0 12px;overflow:hidden;text-decoration:none;color:#1d2433;box-shadow:0 1px 3px rgba(0,0,0,.06)}.rc img{width:100%;height:180px;object-fit:cover;display:block}.rc b{display:block;padding:10px 14px 0;font-size:18px}.rc small{display:block;padding:2px 14px;color:#666}.rc span{display:block;padding:2px 14px;color:#1E4A76;font-size:13px}.tgs{background:#fff;border-radius:12px;padding:8px 12px;margin:0 0 8px;font-size:14px}.tgs a{margin-right:8px}'
+    h = f'''<!DOCTYPE html>
+<!-- 우리 이야기 · /room/ · build_pages.py 로 만듦({TODAY}) -->
+<html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{esc(title)}</title><meta name="description" content="{esc(desc)}"><link rel="canonical" href="{url}">
+<meta property="og:type" content="website"><meta property="og:site_name" content="우리 이야기"><meta property="og:title" content="{esc(title)}"><meta property="og:url" content="{url}"><meta property="og:image" content="{SITE}/uri-og.png">
+<meta name="theme-color" content="#1E4A76"><link rel="icon" type="image/png" sizes="48x48" href="/uri-favicon-48.png?v=261118">
+<style>{CSS}{css2}</style></head><body class="s">
+<header><a href="/"><img src="/uri-icon-192.png" alt=""></a><a href="/"><b>우리 이야기</b></a><nav><a href="/guide/">사용법</a><a href="/story/">활용 · 강점</a></nav></header>
+<main><h1>방 둘러보기</h1><p class="lead">누구나 볼 수 있게 열어 둔 방들입니다. 사진을 누르면 그 방 이야기로 갑니다.</p>
+{''.join(cards)}
+<h2 style="font-size:19px;margin:26px 0 10px">태그로 찾기</h2>{tagsec}
+<a class="go" href="/">우리 이야기 마당으로 가기 ›</a></main><footer>우리 이야기 · uriyagi.kr</footer></body></html>
+'''
+    dd = os.path.join(ROOT, 'room'); os.makedirs(dd, exist_ok=True)
     open(os.path.join(dd, 'index.html'), 'w', encoding='utf-8').write(h)
     return url
 
@@ -160,7 +283,7 @@ def page(path, title, desc, h1, lead, posts, folder, cls, other):
         if ims:
             ph = '<div class="ph">' + ''.join('<img src="%s" alt="%s" loading="%s" decoding="async">' % (u, esc(t), 'eager' if i == 0 else 'lazy') for u in ims) + '</div>'
         arts.append('<article id="p%d"><h2><span class="no">%d</span>%s</h2><p>%s</p>%s</article>' % (i + 1, i + 1, esc(t), esc(body), ph))
-    rooms = ''.join('<a href="%s">%s ›</a>' % (room_url(c), esc(n)) for c, n in ROOMS)
+    rooms = ''.join('<a href="/room/%s/">%s ›</a>' % (x['com'], esc(x['name'])) for x in all_rooms()) or ''.join('<a href="/?c=%s">%s ›</a>' % (c, esc(n)) for c, n in ROOMS)
     ld = '{"@context":"https://schema.org","@type":"WebPage","name":%s,"description":%s,"url":"%s","inLanguage":"ko","isPartOf":{"@type":"WebSite","name":"우리 이야기","url":"%s/"}}' % (
         '"' + title.replace('"', '') + '"', '"' + desc.replace('"', '') + '"', url, SITE)
     h = f"""<!DOCTYPE html>
@@ -207,10 +330,17 @@ u2 = page('/story/', '우리 이야기는 이렇게 쓰여요 — 나 · 가족 
           STORY, 'story', 's', ('/guide/', '우리 이야기 사용법'))
 
 urls = [(u1, '0.9'), (u2, '0.9')] + [(SITE + '/?c=' + c, '0.6') for c, _ in ROOMS]
-urls += [(u, '0.7') for u in (room_page(c) for c, _ in ROOMS) if u]  # 261121 방 소개 페이지
+# ★261121 검색 엔진 — 공개 방 페이지 · 허브 · 낡은 페이지 지우기
+import shutil
+_made = [(d, room_page(d)[1]) for d in all_rooms()]
+_live = {d['com'] for d, _ in _made}
+for _dd in glob.glob(os.path.join(ROOT, 'room', 'C-*')):
+    if os.path.basename(_dd) not in _live: shutil.rmtree(_dd, ignore_errors=True)
+if _made: urls += [(room_hub(_made), '0.8')]
+urls += [(SITE + '/room/%s/' % d['com'], '0.7') for d, _ in _made]
 urls += [(SITE + '/heyri/', '0.8')]  # 261121 헤이리 공간 운영자 안내 한 장
 urls += [(SITE + '/terms/', '0.3'), (SITE + '/privacy/', '0.3')]  # 약관 · 처리방침(261120 시행) — 다시 돌려도 빠지지 않게
-sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(
-    '  <url><loc>%s</loc><lastmod>%s</lastmod><priority>%s</priority></url>\n' % (html.escape(u), TODAY, p) for u, p in urls) + '</urlset>\n'
+sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n' + ''.join(
+    '  <url><loc>%s</loc><lastmod>%s</lastmod><priority>%s</priority>%s</url>\n' % (html.escape(u), TODAY, p, ''.join('<image:image><image:loc>%s</image:loc></image:image>' % html.escape(i) for i in ROOM_IMGS.get(u, [])[:100])) for u, p in urls) + '</urlset>\n'
 open(os.path.join(ROOT, 'sitemap.xml'), 'w', encoding='utf-8').write(sm)
 print('ok', u1, u2, len(urls), 'urls')
