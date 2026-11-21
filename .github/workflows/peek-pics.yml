@@ -26,15 +26,17 @@ jobs:
           done
           ls
           pip install -q pillow
-          python3 -c "
-import glob
-from PIL import Image,ImageDraw
-fs=sorted(glob.glob('*.img'));W=300;cols=4;rows=(len(fs)+cols-1)//cols
-sh=Image.new('RGB',(cols*W,rows*(W+24)),'white');d=ImageDraw.Draw(sh)
-for i,f in enumerate(fs):
-  im=Image.open(f).convert('RGB');im.thumbnail((W-8,W-8));x=(i%cols)*W;y=(i//cols)*(W+24)
-  sh.paste(im,(x+4,y+4));d.text((x+6,y+W+4),f[:-4],fill='black')
-sh.save('sheet.jpg',quality=80)"
+          cat > /tmp/sheet.py <<'PY'
+          import glob
+          from PIL import Image, ImageDraw
+          fs = sorted(glob.glob('*.img')); W = 300; cols = 4; rows = (len(fs) + cols - 1) // cols
+          sh = Image.new('RGB', (cols * W, rows * (W + 24)), 'white'); d = ImageDraw.Draw(sh)
+          for i, f in enumerate(fs):
+              im = Image.open(f).convert('RGB'); im.thumbnail((W - 8, W - 8)); x = (i % cols) * W; y = (i // cols) * (W + 24)
+              sh.paste(im, (x + 4, y + 4)); d.text((x + 6, y + W + 4), f[:-4], fill='black')
+          sh.save('sheet.jpg', quality=80)
+          PY
+          python3 /tmp/sheet.py
           rm -f *.img
       - run: |
           cd out && git init -q -b pics && git add . && git -c user.name=shots -c user.email=shots@uriyagi.kr commit -q -m pics
