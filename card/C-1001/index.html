@@ -65,8 +65,12 @@ a{color:inherit;text-decoration:none}
 .ft{background:#2E3A46;color:#c4c9cf;font-weight:300;font-size:10px;line-height:1.55;padding:10px 14px calc(10px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:10px}
 .ft .tx{flex:1}.ft b{color:#fff;font-weight:500}
 .ft .rp{flex:0 0 auto;border:1px solid #6c7682;border-radius:8px;padding:3px 10px;color:#e0e0e0;font-size:11.5px}
-#toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:rgba(30,30,30,.92);color:#fff;font-size:14px;padding:10px 16px;border-radius:20px;opacity:0;transition:opacity .25s;pointer-events:none;max-width:86vw;text-align:center}
-#toast.on{opacity:1}
+#toast{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:opacity .2s;z-index:9}
+#toast.on{opacity:1;pointer-events:auto}
+#toast div{background:#fff;border-radius:18px;padding:26px 24px;width:min(86vw,360px);text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+#toast b{display:block;font-size:21px;color:#1E4A76;margin-bottom:8px}
+#toast p{margin:0;font-size:16.5px;color:#444;line-height:1.5}
+#toast button{margin-top:18px;border:0;border-radius:12px;background:#E8771E;color:#fff;font:inherit;font-size:17px;font-weight:700;padding:12px 0;width:100%}
 </style></head>
 <body><div class="pg">
 <div class="band"></div>
@@ -118,12 +122,13 @@ a{color:inherit;text-decoration:none}
 </div>
 <footer class="ft"><div class="tx"><a href="https://www.loveflow.ai.kr/"><b>사랑흐름</b></a> · <a href="https://uriyagi.kr/">우리 이야기</a> · 디지털 명함 © 2026 사랑흐름 · LFRI™ · 무단 복제 · 배포 · 상업적 이용 금지 · All rights reserved</div><a class="rp" href="https://pf.kakao.com/_ExndxfX/chat">신고</a></footer>
 </div>
-<div id="toast"></div>
+<div id="toast"><div><b id="tB"></b><p id="tP"></p><button type="button" id="tX">확인</button></div></div>
 <script>
 (function(){
 var URL='https://uriyagi.kr/card/C-1001/', VCF=URL+'hwang-gyuchan.vcf';
 var ua=navigator.userAgent||'', kakao=/KAKAOTALK/i.test(ua), android=/Android/i.test(ua), ios=/iPhone|iPad|iPod/i.test(ua);
-function toast(m){var t=document.getElementById('toast');t.textContent=m;t.className='on';clearTimeout(t._h);t._h=setTimeout(function(){t.className=''},2400);}
+function toast(b,p){var t=document.getElementById('toast');document.getElementById('tB').textContent=b;document.getElementById('tP').textContent=p||'';t.className='on';}
+document.getElementById('tX').onclick=function(){document.getElementById('toast').className='';};
 /* 카톡 안 브라우저는 파일 받기를 막는 일이 있어 휴대폰 기본 브라우저로 넘겨 엶 */
 document.getElementById('save').addEventListener('click',function(e){
   if(!kakao) return;
@@ -135,7 +140,7 @@ document.getElementById('save').addEventListener('click',function(e){
 document.getElementById('share').addEventListener('click',function(){
   var d={title:'사랑흐름 대표 황규찬 · 디지털 명함',text:'종이 명함을 찍으면 내 디지털 명함이 됩니다',url:URL};
   if(navigator.share){ navigator.share(d).catch(function(){}); return; }
-  try{ navigator.clipboard.writeText(URL).then(function(){toast('주소를 복사했습니다. 카톡 대화창에 붙여 넣으세요');}); }catch(x){ toast(URL); }
+  try{ navigator.clipboard.writeText(URL).then(function(){toast('링크를 복사했습니다','카카오톡이나 문자 대화창을 열고 길게 눌러 「붙여넣기」 하세요');}); }catch(x){ toast('이 주소를 보내 주세요',URL); }
 });
 [].forEach.call(document.querySelectorAll('[data-soon]'),function(a){a.addEventListener('click',function(e){e.preventDefault();toast(a.getAttribute('data-soon'));});});
 })();
