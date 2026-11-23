@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- [우리이야기] 디지털 명함 만들기 · card/new · v1 · 261123 · 직접 제작(무료) · 주문 제작(유료 · 준비 중) 한 장 · 대표 17:48 · 아직 만들기 서버 없음 → 「만들기」는 곧 열립니다 -->
+<!-- [우리이야기] 디지털 명함 만들기 · card/new · v2 · 261123 · 동의 항목마다 「보기」(약관 요지 · 개인정보 무엇 · 왜 · 언제까지 · 전문 링크) · 검색은 [선택] (대표 18:01) · (v1) 직접 제작(무료) · 주문 제작(유료 · 준비 중) 한 장 · 대표 17:48 · 아직 만들기 서버 없음 → 「만들기」는 곧 열립니다 -->
 <html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>디지털 명함 만들기 · 사랑흐름</title>
@@ -41,6 +41,7 @@ a{color:inherit;text-decoration:none}.pg{max-width:520px;margin:0 auto;backgroun
 #toast.on{opacity:1;pointer-events:auto}#toast div{background:#fff;border-radius:18px;padding:26px 24px;width:min(86vw,360px);text-align:center}
 #toast b{display:block;font-size:20px;color:var(--navy);margin-bottom:8px}#toast p{margin:0;font-size:15.5px;color:#444}
 #toast button{margin-top:18px;border:0;border-radius:12px;background:var(--or);color:#fff;font:inherit;font-size:17px;font-weight:700;padding:12px 0;width:100%}
+.dt{margin:-4px 0 8px 28px;font-size:13px;color:#555}.dt summary{color:var(--navy);font-weight:700;cursor:pointer;font-size:13px}.dt p{margin:6px 0}.dt table{border-collapse:collapse;width:100%;font-size:12.5px;margin:6px 0}.dt td,.dt th{border:1px solid var(--line);padding:4px 6px;text-align:left;vertical-align:top}.dt th{background:#FBF8F3}.dt a{color:var(--navy);font-weight:700}
 </style></head><body><div class="pg">
 <div class="band"></div>
 <div class="hd"><h1>디지털 명함 만들기</h1><p>가지고 계신 종이 명함 그대로 시작합니다</p></div>
@@ -97,10 +98,29 @@ a{color:inherit;text-decoration:none}.pg{max-width:520px;margin:0 auto;backgroun
 <div class="sec"><h3><i>9</i>확인 · 동의</h3>
 <label class="chk all"><input type="checkbox" id="all"><span>전체 동의</span></label>
 <label class="chk"><input type="checkbox" class="c"><span><b>[필수]</b> 제 명함이거나, 주인의 허락을 받았습니다</span></label>
-<label class="chk"><input type="checkbox" class="c"><span><b>[필수]</b> 이용약관(디지털 명함 조항 포함)</span></label>
-<label class="chk"><input type="checkbox" class="c"><span><b>[필수]</b> 개인정보 수집 · 이용</span></label>
+<details class="dt"><summary>보기</summary>남의 이름 · 연락처 · 로고 · 사진을 허락 없이 쓰면 안 됩니다. 명함에 담긴 내용이 맞는지, 쓸 권한이 있는지는 만드는 분이 책임집니다. 다른 분이 권리 침해를 알려 오면 그 명함을 바로 가리고 양쪽에 알립니다.</details>
+<label class="chk"><input type="checkbox" class="c"><span><b>[필수]</b> 이용약관 동의</span></label>
+<details class="dt"><summary>보기</summary>
+<p>종이 명함을 찍으면 글자를 읽어 칸을 채워 드립니다. 읽은 내용은 틀릴 수 있으니, 만드는 분이 확인하고 고친 뒤 만들어 주십시오.</p>
+<p>「작성자 본인 확인」 표시는 만든 분이 로그인해 내용을 확인했다는 뜻입니다. 전화번호 주인이나 회사의 공식 권한을 확인했다는 뜻은 아닙니다.</p>
+<p>만든 분은 언제든 명함을 고치거나 내릴 수 있습니다. 사랑흐름의 고의 또는 과실로 생긴 책임 등 법에 따라 사랑흐름이 지는 책임은 줄어들지 않습니다.</p>
+<p><a href="https://uriyagi.kr/terms/" target="_blank" rel="noopener">이용약관 전문 보기 ›</a></p></details>
+<label class="chk"><input type="checkbox" class="c"><span><b>[필수]</b> 개인정보 수집 · 이용 동의</span></label>
+<details class="dt"><summary>보기</summary>
+<p>명함은 이름과 연락처를 담아 다른 분께 보여 드리는 것이라, 그 정보를 받아 두어야 명함을 보여 드릴 수 있습니다.</p>
+<table>
+<tr><th>무엇을</th><th>왜</th><th>언제까지</th></tr>
+<tr><td>명함에 담는 정보(상호 · 이름 · 직함 · 전화 · 이메일 · 주소 · 명함 그림)</td><td>디지털 명함을 보여 드리려고</td><td>명함을 내리거나 탈퇴할 때까지</td></tr>
+<tr><td>휴대폰 번호(명함에는 안 보임)</td><td>「명함 보내기」 문자를 받으시려고</td><td>명함을 내릴 때까지</td></tr>
+<tr><td>동의 기록(로그인 식별값 · 시각 · 약관 판 · 체크한 항목)</td><td>동의하셨다는 기록 · 다툼에 대비</td><td>명함을 내린 뒤 1년</td></tr>
+<tr><td>찍은 종이 명함 원본 사진 · 글자 읽기 임시 결과</td><td>칸을 채워 드리려고</td><td>명함을 만든 뒤 7일</td></tr>
+</table>
+<p>명함을 받은 분이 찍어 저장하는 남의 명함은 그분 휴대폰 연락처로만 넘어가고, 우리 서버에 남기지 않습니다. 동의하지 않으실 수 있으나, 그러면 명함을 만들 수 없습니다.</p>
+<p><a href="https://uriyagi.kr/privacy/" target="_blank" rel="noopener">개인정보처리방침 전문 보기 ›</a></p></details>
 <label class="chk p"><input type="checkbox" class="c cp"><span><b>[필수 · 주문 제작]</b> 시안을 확인하고 확정하면, 그 뒤로는 고칠 수 없습니다</span></label>
-<label class="chk"><input type="checkbox" id="seo"><span>네이버 · 구글 검색에 제 명함을 엽니다</span></label></div>
+<label class="chk"><input type="checkbox" id="seo"><span><b style="color:var(--sub)">[선택]</b> 네이버 · 구글 검색에 제 명함을 엽니다</span></label>
+<details class="dt"><summary>보기</summary>체크하시면 검색에서 내 명함이 보일 수 있습니다. 체크하지 않으셔도 명함은 똑같이 만들어지고, 주소나 QR을 받은 분만 보게 됩니다. 나중에 바꿀 수 있습니다.</details>
+</div>
 
 <button type="button" class="go" id="go" disabled>무료 명함 만들기</button>
 <footer class="ft"><a href="https://www.loveflow.ai.kr/"><b>사랑흐름</b></a> · 디지털 명함 · 모바일 홈페이지 제작 © 2026 사랑흐름 · LFRI™ · 무단 복제 · 배포 · 상업적 이용 금지 · All rights reserved</footer>
