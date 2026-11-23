@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!-- [우리이야기] 내 명함 · card/my · v1 · 261123 · 시안 mycard_v1 그대로(대표 20:03 「진행합시다」) · 카카오로 들어온 분(명함 열쇠 uri_card_ck)의 명함 목록 · 보기 · 보내기 · 고치기 · 내리기 · 다시 열기 · 서버 recCardMine · recCardSet -->
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>내 명함 · 사랑흐름</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/uri-favicon-48.png">
+<style>
+:root{--or:#E8771E;--or2:#D9661A;--navy:#1E4A76;--ink:#2B2B2B;--sub:#6F6A62;--line:#ECE4D8;--sand:#F4EEE4}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;background:var(--sand)}
+body{font-family:-apple-system,'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;color:var(--ink);line-height:1.55}
+a{color:inherit;text-decoration:none}.pg{max-width:520px;margin:0 auto;background:#fff;min-height:100vh}
+.band{height:7px;background:linear-gradient(90deg,#2E8B57,#6BA548 30%,#C9B43A 65%,#E8771E)}
+.hd{padding:18px 18px 6px}.hd h1{margin:0;font-size:22px;color:var(--navy)}.hd p{margin:4px 0 0;color:var(--sub);font-size:14px}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px 16px}
+.tabs button{font:inherit;border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:10px 6px;font-weight:700;font-size:15px;cursor:pointer;color:#444}
+.tabs button small{display:block;font-weight:500;font-size:12px;color:var(--sub)}
+.tabs button.on{border-color:var(--navy);background:var(--navy);color:#fff}.tabs button.on small{color:#dfe7f5}
+.cmp{margin:0 16px 6px;border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:13.5px}
+.cmp table{border-collapse:collapse;width:100%}.cmp td,.cmp th{padding:6px 8px;border-top:1px solid var(--line);text-align:left;vertical-align:top}.cmp tr:first-child th{border-top:0;background:#FBF8F3}
+.y{color:#2E8B57;font-weight:700}.n{color:#aaa}
+.sec{padding:14px 16px;border-top:8px solid var(--sand)}
+.sec h3{margin:0 0 10px;font-size:16px;color:var(--navy);display:flex;align-items:center;gap:8px}
+.sec h3 i{font-style:normal;background:var(--or);color:#fff;border-radius:50%;width:22px;height:22px;display:grid;place-items:center;font-size:12px;flex:0 0 auto}
+.tag{margin-left:auto;font-size:11.5px;font-weight:700;border-radius:999px;padding:2px 9px}
+.tag.me{background:#E8F3EC;color:#2E8B57}.tag.pay{background:#FFF1E4;color:var(--or2)}
+.sec.lock{opacity:.45;pointer-events:none;background:#F2F0EC;padding-top:10px;padding-bottom:10px}.sec.lock>*:not(h3){display:none!important}.sec.lock h3{margin:0}
+.f{margin-bottom:10px}.f label{display:block;font-size:13px;color:var(--sub);margin-bottom:3px}.f label b{color:#D12C2C}
+.f input,.f textarea{width:100%;font:inherit;font-size:15px;border:1px solid #DCCFB6;border-radius:10px;padding:10px 11px;background:#fff}
+.f small{display:block;font-size:12px;color:var(--sub);margin-top:3px}
+.up{display:block;border:1.5px dashed #cbbfae;border-radius:12px;padding:18px;text-align:center;color:var(--sub);background:#FBF8F3;cursor:pointer}
+.up b{display:block;color:var(--navy);font-size:16px}
+.add{display:block;width:100%;font:inherit;font-size:14.5px;border:1.5px dashed #cbbfae;background:#fff;border-radius:10px;padding:10px;color:var(--navy);font-weight:700;cursor:pointer}
+.mi{border:1px solid var(--line);border-radius:12px;padding:10px;margin-bottom:8px;background:#FDFBF8}
+.chk{display:flex;gap:8px;align-items:flex-start;font-size:14.5px;margin:8px 0}.chk input{width:20px;height:20px;margin-top:2px;flex:0 0 auto}
+.chk b{color:#D12C2C}.chk.all{font-weight:800;border-bottom:1px solid var(--line);padding-bottom:8px}
+.go{display:block;width:calc(100% - 32px);margin:16px;border:0;border-radius:13px;padding:16px;font:inherit;font-size:17px;font-weight:800;background:var(--or);color:#fff;cursor:pointer}
+.go:disabled{background:#ccc}
+.ft{background:#2E3A46;color:#c4c9cf;font-weight:300;font-size:10px;line-height:1.55;padding:10px 14px calc(10px + env(safe-area-inset-bottom))}.ft b{color:#fff;font-weight:500}
+#toast{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:opacity .2s;z-index:9}
+#toast.on{opacity:1;pointer-events:auto}#toast div{background:#fff;border-radius:18px;padding:26px 24px;width:min(86vw,360px);text-align:center}
+#toast b{display:block;font-size:20px;color:var(--navy);margin-bottom:8px}#toast p{margin:0;font-size:15.5px;color:#444}
+#toast button{margin-top:18px;border:0;border-radius:12px;background:var(--or);color:#fff;font:inherit;font-size:17px;font-weight:700;padding:12px 0;width:100%}
+.dt{margin:-4px 0 8px 28px;font-size:13px;color:#555}.dt summary{color:var(--navy);font-weight:700;cursor:pointer;font-size:13px}.dt p{margin:6px 0}.dt table{border-collapse:collapse;width:100%;font-size:12.5px;margin:6px 0}.dt td,.dt th{border:1px solid var(--line);padding:4px 6px;text-align:left;vertical-align:top}.dt th{background:#FBF8F3}.dt a{color:var(--navy);font-weight:700}
+.smpb{display:block;margin:10px 16px 0;width:calc(100% - 32px);font:inherit;font-weight:700;font-size:15px;border:1.5px solid var(--navy);color:var(--navy);background:#fff;border-radius:12px;padding:11px;cursor:pointer}
+.smp{display:none;grid-template-columns:1fr 1fr;gap:10px;padding:12px 16px 4px}.smp.on{display:grid}
+.smp .soon{border:1px dashed var(--line);border-radius:12px;overflow:hidden;background:#fff;opacity:.6}.smp .soon img{filter:grayscale(1)}
+.smp a{display:block;border:1px solid var(--line);border-radius:12px;overflow:hidden;text-decoration:none;color:#222;background:#fff}
+.smp img{display:block;width:100%;aspect-ratio:1.91/1;object-fit:cover;background:#F3EEE6}
+.smp b{display:block;font-size:14px;padding:7px 9px 0}.smp small{display:block;font-size:12px;color:var(--sub);padding:2px 9px 9px}
+.smp .k{display:inline-block;font-size:11px;font-weight:700;border-radius:6px;padding:1px 6px;margin:8px 9px 0;background:#EEF3FB;color:var(--navy)}.smp .k.pay{background:#FDEEE2;color:#D9661A}
+.kk{margin:6px 16px 0;padding:14px;border:1.5px solid #F2E3A0;background:#FFFBE6;border-radius:14px;font-size:14px;color:#5a4a00}
+.kk b{display:block;font-size:15px;margin-bottom:6px;color:#3b3000}
+.kbtn{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;margin-top:10px;font:inherit;font-weight:700;font-size:16px;border:0;border-radius:12px;padding:12px;background:#FEE500;color:#191919;cursor:pointer}
+.kbtn svg{width:20px;height:20px;fill:#191919}
+.kk .mine a{display:inline-block;margin:6px 6px 0 0;padding:4px 10px;border-radius:8px;background:#fff;border:1px solid #E9D98A;font-weight:700;color:var(--navy)}
+.pv{display:none;margin-top:10px;width:100%;border-radius:10px;border:1px solid var(--line)}.pv.on{display:block}
+.rd{display:none;margin-top:8px;font-size:13px;color:var(--navy);font-weight:700}.rd.on{display:block}
+.done{position:fixed;inset:0;background:rgba(20,20,20,.55);display:none;align-items:center;justify-content:center;z-index:30;padding:20px}.done.on{display:flex}
+.done>div{background:#fff;border-radius:18px;max-width:420px;width:100%;padding:22px 20px;text-align:center}
+.done h2{margin:0 0 6px;color:var(--navy);font-size:20px}.done p{margin:4px 0;color:var(--sub);font-size:14px;word-break:break-all}
+.done a,.done button{display:block;width:100%;margin-top:10px;font:inherit;font-weight:700;font-size:16px;border-radius:12px;padding:12px;border:0;cursor:pointer}
+.done .a1{background:var(--or);color:#fff}.done .a2{background:#fff;color:var(--navy);border:1.5px solid var(--navy)}
+</style>
+<style>
+.cd{margin:12px 16px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
+.cd img{display:block;width:100%;max-height:220px;object-fit:cover;background:#F3EEE6}
+.cd .in{padding:10px 12px}.cd .in b{font-size:16px}.cd .in small{display:block;color:var(--sub);font-size:12.5px;word-break:break-all}
+.st{display:inline-block;font-size:11.5px;font-weight:700;padding:1px 8px;border-radius:6px;margin-left:6px;vertical-align:2px}
+.st.on{background:#E6F4EA;color:#2E7D4F}.st.off{background:#eee;color:#777}.st.hid{background:#FDEDEA;color:#C0392B}
+.bt{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:0 12px 12px}
+.bt a,.bt button{border:1px solid var(--line);border-radius:10px;text-align:center;font:inherit;font-size:13.5px;padding:9px 0;font-weight:700;color:var(--navy);background:#fff;cursor:pointer}
+.bt .o{background:var(--or);color:#fff;border-color:var(--or)}.bt [disabled]{color:#bbb}
+.newc{display:block;margin:6px 16px 16px;border:1.5px dashed #cbbfae;border-radius:12px;padding:13px;text-align:center;color:var(--navy);font-weight:700}
+.ed{padding:4px 12px 12px;border-top:1px solid var(--line);display:none}.ed.on{display:block}
+.note{margin:0 16px 14px;font-size:12.5px;color:var(--sub)}
+</style>
+<script src="/lf/config.js?v=5"></script>
+</head><body><div class="pg">
+<div class="band"></div>
+<div class="hd"><h1>내 명함</h1><p id="who">불러오는 중입니다…</p></div>
+<div id="list"></div>
+<a class="newc" href="/card/new/">＋ 새 명함 만들기</a>
+<p class="note">무료 명함은 한 분에 3장까지 · 내린 명함은 아무도 볼 수 없고 언제든 다시 열 수 있습니다</p>
+<footer class="ft"><a href="https://www.loveflow.ai.kr/"><b>사랑흐름</b></a> · 디지털 명함 · 모바일 홈페이지 제작 © 2026 사랑흐름 · LFRI™ · 무단 복제 · 배포 · 상업적 이용 금지 · All rights reserved</footer>
+</div>
+<div id="toast"><div><b id="tB"></b><p id="tP"></p><button type="button" id="tX">확인</button></div></div>
+<script>
+(function(){
+function $(i){return document.getElementById(i);}
+function toast(b,p){$('tB').textContent=b;$('tP').textContent=p||'';$('toast').className='on';}
+$('tX').onclick=function(){$('toast').className='';};
+function esc(v){ return String(v||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+var GAS=(window.LF_CONFIG&&LF_CONFIG.gas&&LF_CONFIG.gas.rec)||'', CK=''; try{ CK=localStorage.getItem('uri_card_ck')||''; }catch(e){}
+function post(o,cb){ fetch(GAS,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(o)}).then(function(r){return r.json();}).then(cb).catch(function(){ cb({status:'err',msg:'지금은 연결되지 않습니다. 잠시 후 다시 해 주세요.'}); }); }
+function shrink(file,max,cb){ var fr=new FileReader(); fr.onload=function(){ var im=new Image(); im.onload=function(){ var w=im.naturalWidth,h=im.naturalHeight,k=Math.min(1,max/Math.max(w,h)),c=document.createElement('canvas'); c.width=Math.round(w*k); c.height=Math.round(h*k); var x=c.getContext('2d'); x.fillStyle='#fff'; x.fillRect(0,0,c.width,c.height); x.drawImage(im,0,0,c.width,c.height); cb(c.toDataURL('image/jpeg',0.86)); }; im.onerror=function(){ cb(''); }; im.src=fr.result; }; fr.readAsDataURL(file); }
+if(!CK){ $('who').innerHTML='카카오로 들어온 뒤에 볼 수 있습니다. <a href="/card/new/" style="color:var(--or);font-weight:700">명함 만들기 화면에서 카카오로 시작하기 ›</a>'; return; }
+var F=[['co','상호 · 회사'],['name','이름'],['title','직함'],['tel','전화(명함에 보임)'],['mobile','휴대폰(명함 보내기 문자 받는 번호 · 명함에 안 보임)'],['mail','이메일'],['addr','주소']];
+function load(){ post({action:'recCardMine',ck:CK},function(r){ if(r.status!=='ok'){ $('who').innerHTML=esc(r.msg||'다시 들어와 주세요')+' <a href="/card/new/" style="color:var(--or);font-weight:700">카카오로 시작하기 ›</a>'; try{ localStorage.removeItem('uri_card_ck'); }catch(e){} return; }
+  var cs=(r.cards||[]).filter(function(c){ return c.state!=='지움'; }); $('who').textContent=(r.name?r.name+'님 · ':'')+'명함 '+cs.length+'장';
+  $('list').innerHTML=cs.map(function(c,i){ var st=c.state==='열림'?'<span class="st on">열림</span>':c.state==='가림'?'<span class="st hid">살피는 중</span>':'<span class="st off">내림</span>';
+    return '<div class="cd" data-i="'+i+'">'+(c.front?'<img src="'+esc(c.front)+'" alt="">':'')+'<div class="in"><b>'+esc(c.no)+' · '+esc(c.co||c.name)+'</b>'+st+'<small>'+esc(c.url)+'</small>'+(c.state==='가림'?'<small style="color:#C0392B">신고가 들어와 살피는 중입니다. 살핀 뒤 다시 열어 드립니다.</small>':'')+'</div>'+
+      '<div class="bt"><a href="/card/'+esc(c.no)+'/" class="o">보기</a><button type="button" data-a="send"'+(c.state!=='열림'?' disabled':'')+'>보내기</button><button type="button" data-a="edit">고치기</button>'+(c.state==='열림'?'<button type="button" data-a="off">내리기</button>':'<button type="button" data-a="on"'+(c.state==='가림'?' disabled':'')+' class="'+(c.state==='가림'?'':'o')+'">다시 열기</button>')+'</div>'+
+      '<div class="ed"><div class="f" style="margin-top:10px"><label>종이 명함 사진</label><label class="up" style="padding:10px"><input type="file" accept="image/*" hidden class="nf"><b style="font-size:14px">📷 다시 찍기 (안 바꾸면 그대로)</b></label></div>'+F.map(function(f){ return '<div class="f"><label>'+f[1]+'</label><input data-f="'+f[0]+'" value="'+esc(c[f[0]])+'"></div>'; }).join('')+
+      '<label class="chk"><input type="checkbox" class="sf"><span><b>[필수]</b> 위 칸을 모두 확인했습니다</span></label><button type="button" class="go" data-a="save" style="width:100%;margin:10px 0 0">고친 내용 저장</button></div></div>'; }).join('');
+  [].forEach.call(document.querySelectorAll('.cd'),function(el){ var c=cs[+el.getAttribute('data-i')], nf='';
+    var fi=el.querySelector('.nf'); if(fi){ fi.onchange=function(){ if(fi.files[0]){ shrink(fi.files[0],1600,function(d){ nf=d; fi.parentNode.querySelector('b').textContent='✓ 새 사진을 골랐습니다'; }); } }; }
+    [].forEach.call(el.querySelectorAll('[data-a]'),function(b){ b.onclick=function(){ var a=b.getAttribute('data-a');
+      if(a==='send'){ if(navigator.share){ navigator.share({title:(c.name||c.co)+' · 디지털 명함',url:c.url}).catch(function(){}); } else { try{ navigator.clipboard.writeText(c.url); toast('주소를 복사했습니다','카카오톡이나 문자 대화창에 붙여넣기 하세요'); }catch(e){ toast('이 주소를 보내 주세요',c.url); } } }
+      else if(a==='edit'){ el.querySelector('.ed').classList.toggle('on'); }
+      else if(a==='off'){ ask('이 명함을 내릴까요?','내리면 받은 분들도 이 명함을 볼 수 없습니다. 이 화면에서 언제든 다시 열 수 있습니다.','내리기',function(){ set(c.no,'off',{}); }); }
+      else if(a==='on'){ set(c.no,'on',{}); }
+      else if(a==='save'){ if(!el.querySelector('.sf').checked){ toast('「위 칸을 모두 확인했습니다」에 체크해 주세요'); return; } var o={self:'1'}; [].forEach.call(el.querySelectorAll('[data-f]'),function(i){ o[i.getAttribute('data-f')]=i.value.trim(); }); if(nf){ o.front=nf; } b.disabled=true; b.textContent='저장하는 중…'; set(c.no,'edit',o); }
+    }; }); }); }); }
+function set(no,act,o){ o.action='recCardSet'; o.ck=CK; o.no=no; o.act=act; post(o,function(r){ if(r.status!=='ok'){ toast('하지 못했습니다',r.msg||''); load(); return; } toast(act==='off'?'명함을 내렸습니다':act==='on'?'명함을 다시 열었습니다':'고친 내용을 저장했습니다'); load(); }); }
+function ask(h,p,yes,fn){ $('tB').textContent=h; $('tP').innerHTML=esc(p)+'<button type="button" id="aY" style="display:block;width:100%;margin-top:16px;border:0;border-radius:12px;background:#E8771E;color:#fff;font:inherit;font-size:17px;font-weight:700;padding:12px 0">'+esc(yes)+'</button>'; var x=$('tX'); x.textContent='그만두기'; x.style.background='#f3f3f3'; x.style.color='#555'; $('toast').className='on';
+  function reset(){ x.textContent='확인'; x.style.background=''; x.style.color=''; $('toast').className=''; x.onclick=function(){ $('toast').className=''; }; }
+  x.onclick=reset; $('aY').onclick=function(){ reset(); fn(); }; }
+load();
+})();
+</script>
+</body></html>
