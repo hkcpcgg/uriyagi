@@ -1,4 +1,4 @@
-/* [우리이야기] card/send.js · v1 · 261123 · 「명함 보내기」 — 받은 명함 자리에서 내 명함을 그 명함 주인 휴대폰으로 문자로 바로 보냄(대표 OK 14:54)
+/* [우리이야기] card/send.js · v2 · 261123 · 日本語 더함 · (v1) · 「명함 보내기」 — 받은 명함 자리에서 내 명함을 그 명함 주인 휴대폰으로 문자로 바로 보냄(대표 OK 14:54)
    + 이 휴대폰이 기억한 내 명함(localStorage uri_my_card)이 있으면 그 주소를 실어 보냄
    + 내 명함 주인이 처음 한 번 `내명함주소?me=1` 로 열면 이 휴대폰이 내 명함으로 기억
    + 내 명함을 내가 보고 있으면 휴대폰 공유 창(아무에게나 보내기)
@@ -9,6 +9,7 @@ var KEY='uri_my_card';
 var W={
  ko:{body1:'명함 잘 받았습니다. 제 명함 보내 드립니다. ',body0:'명함 잘 받았습니다.',me:'내 명함으로 기억했습니다',me2:'이제 다른 분 명함에서 「명함 보내기」를 누르면 이 명함이 문자로 바로 갑니다.',cp:'링크를 복사했습니다',cp2:'카카오톡이나 문자 대화창을 열고 길게 눌러 「붙여넣기」 하세요'},
  en:{body1:'Thank you for your card. Here is mine: ',body0:'Thank you for your card.',me:'Saved as my card',me2:'Now tap “Send My Card” on any card and this card goes by text message right away.',cp:'Link copied',cp2:'Open a chat or message, press and hold, then paste'},
+ ja:{body1:'名刺をいただきありがとうございます。私の名刺をお送りします：',body0:'名刺をいただきありがとうございます。',me:'自分の名刺として保存しました',me2:'他の方の名刺で「名刺を送る」を押すと、この名刺がすぐにメッセージで送られます。',cp:'リンクをコピーしました',cp2:'トークやメッセージを開き、長押しして貼り付けてください'},
  zh:{body1:'已收到您的名片，这是我的名片：',body0:'已收到您的名片。',me:'已设为我的名片',me2:'在任何名片上点击「发送名片」，即可通过短信立即发送此名片。',cp:'链接已复制',cp2:'打开聊天窗口，长按后粘贴'}
 };
 function lg(){ var l=(document.documentElement.lang||'ko').slice(0,2); return W[l]?l:'ko'; }
