@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<!-- [우리이야기] 디지털 명함 만들기 · card/new · v1 · 261123 · 직접 제작(무료) · 주문 제작(유료 · 준비 중) 한 장 · 대표 17:48 · 아직 만들기 서버 없음 → 「만들기」는 곧 열립니다 -->
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>디지털 명함 만들기 · 사랑흐름</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/uri-favicon-48.png">
+<style>
+:root{--or:#E8771E;--or2:#D9661A;--navy:#1E4A76;--ink:#2B2B2B;--sub:#6F6A62;--line:#ECE4D8;--sand:#F4EEE4}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;background:var(--sand)}
+body{font-family:-apple-system,'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;color:var(--ink);line-height:1.55}
+a{color:inherit;text-decoration:none}.pg{max-width:520px;margin:0 auto;background:#fff;min-height:100vh}
+.band{height:7px;background:linear-gradient(90deg,#2E8B57,#6BA548 30%,#C9B43A 65%,#E8771E)}
+.hd{padding:18px 18px 6px}.hd h1{margin:0;font-size:22px;color:var(--navy)}.hd p{margin:4px 0 0;color:var(--sub);font-size:14px}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px 16px}
+.tabs button{font:inherit;border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:10px 6px;font-weight:700;font-size:15px;cursor:pointer;color:#444}
+.tabs button small{display:block;font-weight:500;font-size:12px;color:var(--sub)}
+.tabs button.on{border-color:var(--navy);background:var(--navy);color:#fff}.tabs button.on small{color:#dfe7f5}
+.cmp{margin:0 16px 6px;border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:13.5px}
+.cmp table{border-collapse:collapse;width:100%}.cmp td,.cmp th{padding:6px 8px;border-top:1px solid var(--line);text-align:left;vertical-align:top}.cmp tr:first-child th{border-top:0;background:#FBF8F3}
+.y{color:#2E8B57;font-weight:700}.n{color:#aaa}
+.sec{padding:14px 16px;border-top:8px solid var(--sand)}
+.sec h3{margin:0 0 10px;font-size:16px;color:var(--navy);display:flex;align-items:center;gap:8px}
+.sec h3 i{font-style:normal;background:var(--or);color:#fff;border-radius:50%;width:22px;height:22px;display:grid;place-items:center;font-size:12px;flex:0 0 auto}
+.tag{margin-left:auto;font-size:11.5px;font-weight:700;border-radius:999px;padding:2px 9px}
+.tag.me{background:#E8F3EC;color:#2E8B57}.tag.pay{background:#FFF1E4;color:var(--or2)}
+.sec.lock{opacity:.5;pointer-events:none}
+.f{margin-bottom:10px}.f label{display:block;font-size:13px;color:var(--sub);margin-bottom:3px}.f label b{color:#D12C2C}
+.f input,.f textarea{width:100%;font:inherit;font-size:15px;border:1px solid #DCCFB6;border-radius:10px;padding:10px 11px;background:#fff}
+.f small{display:block;font-size:12px;color:var(--sub);margin-top:3px}
+.up{display:block;border:1.5px dashed #cbbfae;border-radius:12px;padding:18px;text-align:center;color:var(--sub);background:#FBF8F3;cursor:pointer}
+.up b{display:block;color:var(--navy);font-size:16px}
+.add{display:block;width:100%;font:inherit;font-size:14.5px;border:1.5px dashed #cbbfae;background:#fff;border-radius:10px;padding:10px;color:var(--navy);font-weight:700;cursor:pointer}
+.mi{border:1px solid var(--line);border-radius:12px;padding:10px;margin-bottom:8px;background:#FDFBF8}
+.chk{display:flex;gap:8px;align-items:flex-start;font-size:14.5px;margin:8px 0}.chk input{width:20px;height:20px;margin-top:2px;flex:0 0 auto}
+.chk b{color:#D12C2C}.chk.all{font-weight:800;border-bottom:1px solid var(--line);padding-bottom:8px}
+.go{display:block;width:calc(100% - 32px);margin:16px;border:0;border-radius:13px;padding:16px;font:inherit;font-size:17px;font-weight:800;background:var(--or);color:#fff;cursor:pointer}
+.go:disabled{background:#ccc}
+.ft{background:#2E3A46;color:#c4c9cf;font-weight:300;font-size:10px;line-height:1.55;padding:10px 14px calc(10px + env(safe-area-inset-bottom))}.ft b{color:#fff;font-weight:500}
+#toast{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:opacity .2s;z-index:9}
+#toast.on{opacity:1;pointer-events:auto}#toast div{background:#fff;border-radius:18px;padding:26px 24px;width:min(86vw,360px);text-align:center}
+#toast b{display:block;font-size:20px;color:var(--navy);margin-bottom:8px}#toast p{margin:0;font-size:15.5px;color:#444}
+#toast button{margin-top:18px;border:0;border-radius:12px;background:var(--or);color:#fff;font:inherit;font-size:17px;font-weight:700;padding:12px 0;width:100%}
+</style></head><body><div class="pg">
+<div class="band"></div>
+<div class="hd"><h1>디지털 명함 만들기</h1><p>가지고 계신 종이 명함 그대로 시작합니다</p></div>
+
+<div class="tabs" role="tablist">
+<button type="button" class="on" data-m="me">직접 제작<small>무료</small></button>
+<button type="button" data-m="pay">주문 제작<small>유료 · 준비 중</small></button>
+</div>
+
+<div class="cmp"><table>
+<tr><th></th><th>직접 제작</th><th>주문 제작</th></tr>
+<tr><td>명함 모양</td><td>종이 명함 사진 그대로</td><td>최고급 명함</td></tr>
+<tr><td>연락처 저장 · 명함 보내기 · 공유</td><td class="y">있음</td><td class="y">있음</td></tr>
+<tr><td>받은 명함 연락처 저장</td><td class="y">있음</td><td class="y">있음</td></tr>
+<tr><td>예약 · 전화 · 길찾기 · SNS 단추</td><td class="n">없음</td><td class="y">있음</td></tr>
+<tr><td>메뉴 · 서비스 · 약도</td><td class="n">없음</td><td class="y">있음</td></tr>
+<tr><td>영어 · 중국어 · 일본어</td><td class="n">없음</td><td class="y">있음</td></tr>
+<tr><td>검색 등록</td><td class="n">없음</td><td class="y">있음</td></tr>
+<tr><td>모바일 홈페이지</td><td class="n">없음</td><td>추가</td></tr>
+</table></div>
+
+<div class="sec"><h3><i>1</i>지금 쓰시는 종이 명함<span class="tag me">직접 작성</span></h3>
+<label class="up"><input type="file" accept="image/*" id="paper" hidden><b>📷 종이 명함 사진 올리기</b>앨범에서 고르거나 바로 찍기 · 네 모서리가 보이게</label></div>
+
+<div class="sec"><h3><i>2</i>이름과 소개<span class="tag me">직접 작성</span></h3>
+<div class="f"><label>상호 · 회사 <b>*</b></label><input class="req" id="co"></div>
+<div class="f"><label>이름 <b>*</b></label><input class="req" id="nm"></div>
+<div class="f"><label>직함 <b>*</b></label><input class="req" id="ti"></div>
+<div class="f p"><label>영문 이름(여권 철자)</label><input id="en"></div>
+<div class="f p"><label>자격이나 한 줄 소개</label><input id="one"></div></div>
+
+<div class="sec"><h3><i>3</i>연락<span class="tag me">직접 작성</span></h3>
+<div class="f"><label>전화(명함에 보임) <b>*</b></label><input class="req" id="tel" inputmode="tel"></div>
+<div class="f"><label>휴대폰(「명함 보내기」 문자 받는 번호 · 명함에 안 보임) <b>*</b></label><input class="req" id="mob" inputmode="tel"></div>
+<div class="f"><label>이메일</label><input id="em" inputmode="email"></div>
+<div class="f"><label>주소</label><input id="ad"></div></div>
+
+<div class="sec pay"><h3><i>4</i>영업<span class="tag pay">유료</span></h3>
+<div class="f"><label>영업시간 · 쉬는 날 · 공휴일</label><input placeholder="예: 오전 11시 ~ 오후 3시 · 수요일 휴무 · 공휴일 정상 영업"></div></div>
+
+<div class="sec pay"><h3><i>5</i>대표 메뉴 · 서비스 (최대 10)<span class="tag pay">유료</span></h3>
+<div id="ml"></div><button type="button" class="add" id="madd">＋ 메뉴 · 서비스 더하기</button></div>
+
+<div class="sec pay"><h3><i>6</i>사진<span class="tag pay">유료</span></h3>
+<div class="f"><label>얼굴 사진 · 로고 (있는 그대로 씁니다)</label><input type="file" accept="image/*"></div></div>
+
+<div class="sec pay"><h3><i>7</i>링크<span class="tag pay">유료</span></h3>
+<div id="ll"></div><button type="button" class="add" id="ladd">＋ 링크 더하기</button>
+<small style="display:block;font-size:12px;color:var(--sub);margin-top:6px">예약 · 지도(네이버 플레이스) · 인스타 · 블로그 · 카카오 채널 · 지금 홈페이지 · 주소를 넣으면 아이콘이 붙습니다</small></div>
+
+<div class="sec pay"><h3><i>8</i>모바일 홈페이지<span class="tag pay">유료 · 추가</span></h3>
+<label class="chk"><input type="checkbox"><span>명함과 같은 자료로 모바일 홈페이지도 만듭니다</span></label></div>
+
+<div class="sec"><h3><i>9</i>확인 · 동의</h3>
+<label class="chk all"><input type="checkbox" id="all"><span>전체 동의</span></label>
+<label class="chk"><input type="checkbox" class="c"><span><b>[필수]</b> 제 명함이거나, 주인의 허락을 받았습니다</span></label>
+<label class="chk"><input type="checkbox" class="c"><span><b>[필수]</b> 이용약관(디지털 명함 조항 포함)</span></label>
+<label class="chk"><input type="checkbox" class="c"><span><b>[필수]</b> 개인정보 수집 · 이용</span></label>
+<label class="chk p"><input type="checkbox" class="c cp"><span><b>[필수 · 주문 제작]</b> 시안을 확인하고 확정하면, 그 뒤로는 고칠 수 없습니다</span></label>
+<label class="chk"><input type="checkbox" id="seo"><span>네이버 · 구글 검색에 제 명함을 엽니다</span></label></div>
+
+<button type="button" class="go" id="go" disabled>무료 명함 만들기</button>
+<footer class="ft"><a href="https://www.loveflow.ai.kr/"><b>사랑흐름</b></a> · 디지털 명함 · 모바일 홈페이지 제작 © 2026 사랑흐름 · LFRI™ · 무단 복제 · 배포 · 상업적 이용 금지 · All rights reserved</footer>
+</div>
+<div id="toast"><div><b id="tB"></b><p id="tP"></p><button type="button" id="tX">확인</button></div></div>
+<script>
+(function(){
+function $(i){return document.getElementById(i);}
+function toast(b,p){$('tB').textContent=b;$('tP').textContent=p||'';$('toast').className='on';}
+$('tX').onclick=function(){$('toast').className='';};
+var mode='me';
+function setMode(m){ mode=m;
+  [].forEach.call(document.querySelectorAll('.tabs button'),function(b){b.classList.toggle('on',b.getAttribute('data-m')===m);});
+  [].forEach.call(document.querySelectorAll('.sec.pay'),function(s){s.classList.toggle('lock',m==='me');});
+  [].forEach.call(document.querySelectorAll('.p'),function(s){s.style.display=m==='me'?'none':'';});
+  $('go').textContent=m==='me'?'무료 명함 만들기':'주문 넣기';
+  chk(); }
+[].forEach.call(document.querySelectorAll('.tabs button'),function(b){ b.onclick=function(){ var m=b.getAttribute('data-m'); if(m==='pay'){ toast('주문 제작은 준비 중입니다','지금은 직접 제작(무료)만 됩니다. 주문 제작이 열리면 알려 드립니다.'); } setMode(m); }; });
+function row(box,max,html){ var el=$(box); if(el.children.length>=max){ toast('최대 '+max+'개까지입니다'); return; } var d=document.createElement('div'); d.className='mi'; d.innerHTML=html; el.appendChild(d); }
+$('madd').onclick=function(){ row('ml',10,'<div class="f"><label>이름</label><input></div><div class="f"><label>구성 · 설명</label><input></div><div class="f"><label>값</label><input inputmode="numeric"></div><div class="f"><label>사진</label><input type="file" accept="image/*"></div>'); };
+$('ladd').onclick=function(){ row('ll',8,'<div class="f"><label>링크 주소</label><input inputmode="url" placeholder="https://"></div>'); };
+function boxes(){ return [].filter.call(document.querySelectorAll('.c'),function(c){ return !(mode==='me'&&c.classList.contains('cp')); }); }
+function chk(){ var ok=[].every.call(document.querySelectorAll('.req'),function(i){return i.value.trim();}) && boxes().every(function(c){return c.checked;}) && $('paper').files.length>0;
+  $('go').disabled=!ok; $('all').checked=boxes().every(function(c){return c.checked;}); }
+$('all').onchange=function(){ var v=$('all').checked; boxes().forEach(function(c){c.checked=v;}); chk(); };
+document.addEventListener('input',chk); document.addEventListener('change',chk);
+$('paper').addEventListener('change',function(){ var l=document.querySelector('.up b'); if(this.files.length){ l.textContent='✓ 종이 명함 사진을 골랐습니다'; } });
+$('go').onclick=function(){ if(mode==='pay'){ toast('주문 제작은 준비 중입니다','지금은 직접 제작(무료)만 됩니다.'); return; } toast('디지털 명함 만들기는 곧 열립니다','적어 주신 내용은 아직 보내지지 않습니다. 열리면 다시 해 주세요.'); };
+setMode('me');
+})();
+</script>
+</body></html>
