@@ -8,6 +8,7 @@ Allow: /seed/
 Allow: /heyri/
 Allow: /room/
 Allow: /card/
+Allow: /home/
 Disallow: /*?
 Allow: /?c=C-0295$
 Allow: /?c=C-0030$
