@@ -4,6 +4,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>디지털 명함 · 사랑흐름</title>
 <meta name="robots" content="noindex">
+<meta property="og:title" content="디지털 명함">
+<meta property="og:description" content="종이 명함 그대로 · 연락처 저장 · 명함 보내기">
+<meta property="og:image" content="https://uriyagi.kr/og-image.png">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="/uri-favicon-48.png">
 <style>
@@ -101,7 +104,7 @@ jsonp({action:'recCardGet',no:NO},function(c){
     (c.self?'<div class="selfb">✓ 작성자 본인 확인</div>':'')+
     '<div class="pad two"><a class="btn navy" id="save" href="#">연락처 저장</a><a class="btn org" id="send" href="#" data-card="'+esc(c.no)+'" data-tel="'+esc(c.st||c.tel)+'" data-name="'+esc(nm)+'">명함 보내기</a></div>'+
     '<div class="gap"></div><div class="pad"><button class="btn ln" id="share"><svg class="shg" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>이 명함 공유</button><a class="btn org" href="/card/new/">나도 디지털 명함 만들기</a></div>'+FT;
-  document.getElementById('save').onclick=function(e){ e.preventDefault(); var b=new Blob([vcf(c)],{type:'text/vcard;charset=utf-8'}), a=document.createElement('a'); a.href=window.URL.createObjectURL(b); a.download=nm+'.vcf'; document.body.appendChild(a); a.click(); setTimeout(function(){ a.remove(); },500); };
+  document.getElementById('save').onclick=function(e){ e.preventDefault(); var ua=navigator.userAgent||''; if(/KAKAOTALK/i.test(ua)){ var here=location.href; if(/Android/i.test(ua)){ location.href='intent://'+here.replace(/^https:\/\//,'')+'#Intent;scheme=https;package=com.android.chrome;end'; } else { location.href='kakaotalk://web/openExternal?url='+encodeURIComponent(here); } return; } var b=new Blob([vcf(c)],{type:'text/vcard;charset=utf-8'}), a=document.createElement('a'); a.href=window.URL.createObjectURL(b); a.download=nm+'.vcf'; document.body.appendChild(a); a.click(); setTimeout(function(){ a.remove(); },500); };
   document.getElementById('share').onclick=function(){ var d={title:nm+' · 디지털 명함',url:CU}; if(navigator.share){ navigator.share(d).catch(function(){}); return; } try{ navigator.clipboard.writeText(CU).then(function(){ toast('링크를 복사했습니다','카카오톡이나 문자 대화창에 붙여넣기 하세요'); }); }catch(x){ toast('이 주소를 보내 주세요',CU); } };
   document.getElementById('rp').onclick=function(e){ e.preventDefault(); var t=document.getElementById('toast'); document.getElementById('tB').textContent='이 명함 신고'; document.getElementById('tP').innerHTML='남의 명함을 허락 없이 쓰는 등 문제가 있으면 적어 주세요. 확인하는 동안 명함을 가려 둡니다.<span class="rpt"><textarea id="rw" maxlength="200"></textarea></span>'; var bt=document.getElementById('tX'); bt.textContent='신고하기'; t.className='on';
     bt.onclick=function(){ var w=(document.getElementById('rw')||{}).value||''; if(!w.trim()){ t.className=''; bt.textContent='확인'; bt.onclick=function(){ t.className=''; }; return; } fetch(GAS,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'recCardReport',no:c.no,why:w})}).then(function(r){return r.json();}).then(function(d){ bt.textContent='확인'; bt.onclick=function(){ t.className=''; location.reload(); }; document.getElementById('tB').textContent=d.status==='ok'?'신고를 받았습니다':'신고하지 못했습니다'; document.getElementById('tP').textContent=d.status==='ok'?'확인하는 동안 명함을 가려 둡니다.':(d.msg||''); }); }; };

@@ -1,4 +1,4 @@
-/* 사랑흐름 우리 이야기 · sw.js · v5 · 261114 · ★v5 674 사진첩 · 캡처 「공유」 → 「우리 이야기」 — 공유로 받은 사진(POST /rec/?share=1 · media)을 이 기기 담음칸 lf-rec-share 에 잠깐 담고 /rec/?share=1 로 넘김(화면이 꺼내 새 게시물로 · 서버는 그대로)
+/* 사랑흐름 우리 이야기 · sw.js · v6 · 261123 · ★v6 카카오가 state=card 로 돌려보낸 첫 화면은 남겨 둔 것을 쓰지 않음(디지털 명함 만들기) · (이전) v5 · 261114 · ★v5 674 사진첩 · 캡처 「공유」 → 「우리 이야기」 — 공유로 받은 사진(POST /rec/?share=1 · media)을 이 기기 담음칸 lf-rec-share 에 잠깐 담고 /rec/?share=1 로 넘김(화면이 꺼내 새 게시물로 · 서버는 그대로)
    (이전) v4 · 261114 · ★v4 남겨 둔 화면이 없을 때(처음 · 지운 뒤) 휴대폰 신호가 잠깐 끊기면 실패를 그대로 넘겨 「사이트에 연결할 수 없음 · ERR_FAILED」가 뜨던 것 → 1.5초 뒤 한 번 더 받고, 그래도 안 되면 「연결이 잠시 고르지 않습니다」(3초마다 다시 엶)
    (이전) v3 · 261015 · [대표 OK 261015 22:35 · 375 · 화면 rec v62 와 짝]
    다시 오는 분은 화면 파일(우리 이야기 화면 · 설정 · 꾸밈)을 이 기기에 남겨 둔 것으로 바로 열고, 뒤에서 새것을 받아 둠.
@@ -40,6 +40,7 @@ self.addEventListener('fetch', function (e) {
   if (r.method !== 'GET') { return; }
   var u; try { u = new URL(r.url); } catch (x) { return; }
   if (!isShell(u)) { return; }
+  if (u.searchParams.get('state') === 'card') { return; }   /* ★v6 디지털 명함 카카오 돌아옴은 늘 새 화면(남겨 둔 옛 화면이 받으면 길을 모름) */
   var k = keyOf(u), page = (k === '/');
   e.respondWith(caches.open(SHELL).then(function (c) {
     return c.match(k).then(function (hit) {
