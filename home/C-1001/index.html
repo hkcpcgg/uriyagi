@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!-- [우리이야기] 모바일 홈페이지 견본 · home/C-1001 · v1 · 261123 · 사랑흐름 대표 황규찬(명함 C-1001 내용 그대로) · 다복 홈페이지(home/C-1003) 꼴 · 시안 · noindex · 견본 보기에 걸기 전 대표 OK -->
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>사랑흐름 · 모바일 홈페이지</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="사랑과 추억이 흐르는 곳 · 사랑흐름">
+<link rel="icon" href="/uri-favicon-48.png">
+<style>
+:root{--or:#E8771E;--or2:#D9661A;--navy:#1E3A6E;--ink:#2B2B2B;--sub:#6F6A62;--line:#ECE4D8;--sand:#F4EEE4}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;background:var(--sand)}
+body{font-family:-apple-system,'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;color:var(--ink);line-height:1.55}
+a{color:inherit;text-decoration:none}.pg{max-width:520px;margin:0 auto;background:#fff;min-height:100vh}
+.hero{background:linear-gradient(160deg,#1E3A6E,#2D5A9A);color:#fff;padding:10px 18px 22px;text-align:center}
+.lang{display:flex;gap:4px;justify-content:flex-end;flex-wrap:wrap;margin-bottom:8px}.lang button{border:1px solid #7f95bd;background:transparent;color:#dfe7f5;border-radius:999px;padding:2px 9px;font:inherit;font-size:12px;cursor:pointer}.lang button.on{background:#fff;color:var(--navy);border-color:#fff}
+.hero .lg{width:150px;background:#fff;border-radius:18px;padding:6px}.hero h1{margin:10px 0 2px;font-size:25px}.hero p{margin:0;font-size:14.5px;opacity:.92}
+.own{display:flex;align-items:center;gap:10px;justify-content:center;margin-top:14px;font-size:14px}.own img{width:46px;height:46px;border-radius:50%;object-fit:cover;border:2px solid #fff}
+.acts{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:16px 10px 6px}.acts a{display:flex;flex-direction:column;align-items:center;font-size:13px;gap:5px;color:#333}
+.circ{width:52px;height:52px;border-radius:50%;border:1px solid #E7DFD3;background:#fff;box-shadow:0 1px 5px rgba(0,0,0,.09);display:grid;place-items:center;color:#1E4A76}
+.circ svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.acts .hi .circ{background:var(--or);border-color:var(--or);color:#fff}.acts .hi{font-weight:700;color:var(--or2)}
+h2{margin:18px 16px 10px;font-size:18px;color:var(--navy)}
+.mcs{display:flex;gap:10px;overflow-x:auto;padding:0 16px 8px;scroll-snap-type:x mandatory}.mc{flex:0 0 210px;scroll-snap-align:start;background:#FBF8F3;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.mc img{width:100%;height:140px;object-fit:cover;display:block}.mc b{display:block;padding:8px 10px 0;font-size:15.5px}.mc small{display:block;padding:2px 10px;color:var(--sub);font-size:12.5px;line-height:1.45}.mc em{display:block;padding:4px 10px 10px;font-style:normal;font-weight:800;color:var(--or2)}
+.box{margin:10px 16px;background:#FBF8F3;border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:14.5px}.box b{display:block;color:var(--navy)}
+.map{padding:0 16px}.map img{width:100%;max-width:440px;display:block;margin:0 auto;border:1px solid var(--line);border-radius:12px}
+.ph{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}.ph img{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:#eee}
+.note{font-size:12.5px;color:var(--sub);margin:-4px 16px 8px}
+.btn{display:flex;align-items:center;justify-content:center;margin:10px 16px;border-radius:13px;padding:15px;font-weight:800;font-size:16.5px}.navy{background:#1E4A76;color:#fff}.org{background:var(--or);color:#fff}.ln{border:1.5px solid #1E4A76;color:#1E4A76;background:#fff}
+.bund{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:6px 16px 16px}.bund a{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 4px;text-align:center;font-size:14px;color:#333}.bund svg{display:block;margin:0 auto 5px;width:22px;height:22px;stroke:#1E4A76;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ft{background:#2E3A46;color:#c4c9cf;font-weight:300;font-size:10px;line-height:1.55;padding:10px 14px calc(10px + env(safe-area-inset-bottom))}.ft b{color:#fff;font-weight:500}
+</style>
+<style>
+.svs{display:grid;gap:10px;padding:4px 16px 8px}
+.sv{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}
+.svi{flex:0 0 40px;height:40px;border-radius:12px;background:#FDEEE2;display:grid;place-items:center}
+.svi svg{width:22px;height:22px;stroke:#D9661A;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.sv b{display:block;font-size:16px}.sv small{display:block;font-size:13.5px;color:var(--sub);margin-top:2px}
+.with{margin:4px 16px 8px;background:#FBF8F3;border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:14.5px;line-height:1.7}
+.pic2 img{display:block;width:calc(100% - 32px);margin:8px 16px;border-radius:14px}
+</style></head><body><div class="pg">
+<header class="hero">
+<img class="lg" src="../../card/C-1001/logo.png" alt="사랑흐름" width="120" height="85">
+<h1>사랑흐름</h1><p>사랑과 추억이 흐르는 곳</p>
+<div class="own"><img src="../../card/C-1001/face.jpg" alt="황규찬 대표" width="46" height="46"><span>대표 <b>황규찬</b> · 黃圭燦</span></div>
+</header>
+<nav class="acts">
+<a class="hi" href="https://www.loveflow.ai.kr/proposal.html"><span class="circ"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 16h7"/></svg></span><span>제안서</span></a>
+<a href="tel:010-2355-3565"><span class="circ"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"/></svg></span><span>전화</span></a>
+<a href="https://pf.kakao.com/_ExndxfX"><span class="circ"><svg viewBox="0 0 24 24"><path d="M12 4C7 4 3 7.1 3 11c0 2.4 1.6 4.6 4 5.8L6 20l4-2.3c.7.1 1.3.2 2 .2 5 0 9-3.1 9-7s-4-7-9-7z"/></svg></span><span>카카오</span></a>
+<a href="https://map.naver.com/p/entry/place/1748542679"><span class="circ"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><span>길찾기</span></a>
+</nav>
+<h2>하는 일</h2>
+<div class="svs"><div class="sv"><span class="svi"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 16h7"/></svg></span><div><b>기록 콘텐츠 제작 및 운영</b><small>마음여행 · 한 편의 기록 · 미리 써 보는 나의 자서전 · 우리 이야기 · 기관 맞춤 기록</small></div></div><div class="sv"><span class="svi"><svg viewBox="0 0 24 24"><path d="M3 6h18v12H3z"/><path d="M7 10h5M7 14h3"/></svg></span><div><b>디지털 명함 · 모바일 홈페이지 · 시즌 카드</b><small>명함과 모바일 홈페이지 제작 · 한 해 시즌 카드 제작과 발송</small></div></div><div class="sv"><span class="svi"><svg viewBox="0 0 24 24"><path d="M3 8l9-4 9 4-9 4z"/><path d="M7 10v5c3 2 7 2 10 0v-5"/></svg></span><div><b>디지털 문해 · AI 교육</b><small>디지털 문해 교육 · 현장 실무 AI · 사랑흐름 안내자 양성</small></div></div><div class="sv"><span class="svi"><svg viewBox="0 0 24 24"><path d="M4 5h11v8H8l-4 3z"/><path d="M15 9h5v8l-3-2h-5v-2"/></svg></span><div><b>다문화 · 현장 소통 솔루션</b><small>다문화 가정 · 농업 · 공업 · 건설 현장</small></div></div><div class="sv"><span class="svi"><svg viewBox="0 0 24 24"><path d="M8 8l-4 4 4 4"/><path d="M16 8l4 4-4 4"/><path d="M13 6l-2 12"/></svg></span><div><b>소프트웨어 개발</b><small>기록 · 소통 서비스 개발</small></div></div></div>
+<h2>함께하는 곳</h2>
+<div class="with">공공기관 · 교육기관 · 군부대 · 기업 · 복지기관 · 농협 · 축협 · 수협 · 산림조합</div>
+<div class="pic2"><img src="../../card/C-1001/photo.jpg" alt="좋은 사람들과, 좋은 이야기로 행복한 세상을 만들어가요" loading="lazy"></div>
+<h2>오시는 길</h2>
+<div class="box">경기도 파주시 매봉길 17-13<br><span style="color:var(--sub)">T 070-4158-7786 · M 010-2355-3565</span></div>
+<a class="btn org" href="tel:010-2355-3565">상담 문의 010-2355-3565</a>
+<div class="bund">
+<a href="https://uriyagi.kr/?c=C-0030"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 10h8M8 14h5"/></svg><span>우리 이야기 방</span></a>
+<a href="https://www.loveflow.ai.kr/"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7M5 10v10h14V10"/></svg><span>홈페이지</span></a>
+<a href="https://uriyagi.kr/card/C-1001/"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="8.5" cy="12" r="2"/><path d="M13 10h5M13 14h4"/></svg><span>디지털 명함</span></a>
+</div>
+<footer class="ft"><div><a href="https://www.loveflow.ai.kr/"><b>사랑흐름</b></a> · 디지털 명함 · 모바일 홈페이지 제작 © 2026 사랑흐름 · LFRI™ · 무단 복제 · 배포 · 상업적 이용 금지 · All rights reserved</div></footer>
+</div></body></html>
