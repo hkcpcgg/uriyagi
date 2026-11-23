@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- [우리이야기] 디지털 명함 시험판 · card/C-1001 · v3 · 261123 · 한국어 · English · 中文 단추(사랑흐름-총괄-010 · 대표 OK 14:03 · 이름 HWANG KYUCHAN · 간체 · 상품 이름은 한글 그대로 · 고른 말은 기기에 기억) · (v2) 하는 일 다섯 줄 · 함께하는 곳 순서(대표 OK 13:50 · 시안 v13 · 소통) · (v1 261122) · 사랑흐름 대표 황규찬 · 대표 OK 23:12 「이대로 지으세요」 · 시안 v9 바탕 · 메일은 뺌(대표 23:20) -->
+<!-- [우리이야기] 디지털 명함 시험판 · card/C-1001 · v4 · 261123 · 영어 · 중국어 화면 모두 옮김(LOVE FLOW · Hwang KyuChan · 상품 이름 옮김 · 주소 영어 · 푸터 · 대표 OK 14:26) · (v3) 한국어 · English · 中文 단추(사랑흐름-총괄-010 · 대표 OK 14:03 · 이름 HWANG KYUCHAN · 간체 · 상품 이름은 한글 그대로 · 고른 말은 기기에 기억) · (v2) 하는 일 다섯 줄 · 함께하는 곳 순서(대표 OK 13:50 · 시안 v13 · 소통) · (v1 261122) · 사랑흐름 대표 황규찬 · 대표 OK 23:12 「이대로 지으세요」 · 시안 v9 바탕 · 메일은 뺌(대표 23:20) -->
 <html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>사랑흐름 대표 황규찬 · 디지털 명함</title>
@@ -72,15 +72,17 @@ a{color:inherit;text-decoration:none}
 #toast p{margin:0;font-size:16.5px;color:#444;line-height:1.5}
 #toast button{margin-top:18px;border:0;border-radius:12px;background:#E8771E;color:#fff;font:inherit;font-size:17px;font-weight:700;padding:12px 0;width:100%}
 .brand{position:relative}
-.lang{position:absolute;right:0;top:2px;display:flex;gap:4px}
+.brand{flex-wrap:wrap}
+.lang{order:-1;width:100%;display:flex;justify-content:flex-end;gap:4px;margin:-8px 0 2px}
 .lang button{border:1px solid #E7DFD3;background:#fff;color:#6F6A62;border-radius:999px;padding:3px 9px;font:inherit;font-size:12px;cursor:pointer}
 .lang button.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.brand .k.lat{font-size:22px;letter-spacing:1px}
 .who .nm.lat{font-family:inherit;font-size:24px;letter-spacing:1px;font-weight:800}
 </style></head>
 <body><div class="pg">
 <div class="band"></div>
 <div class="front">
-<div class="brand"><img src="logo.png" alt="사랑흐름" width="62" height="44"><div><div class="k">사랑흐름</div><div class="e">LOVE FLOW</div></div><div class="lang" role="group" aria-label="언어"><button type="button" data-l="ko">한국어</button><button type="button" data-l="en">English</button><button type="button" data-l="zh">中文</button></div></div>
+<div class="brand"><img src="logo.png" alt="사랑흐름" width="62" height="44"><div><div class="k" data-t="brand">사랑흐름</div><div class="e" data-t="brand2">LOVE FLOW</div></div><div class="lang" role="group" aria-label="언어"><button type="button" data-l="ko">한국어</button><button type="button" data-l="en">English</button><button type="button" data-l="zh">中文</button></div></div>
 <div class="who"><img class="av" src="face.jpg" alt="황규찬 대표" width="108" height="108">
 <div><div class="ti" data-t="ti">대표</div><div class="nm" data-t="nm">황규찬</div><div class="hj">黃圭燦</div></div></div>
 <div class="info">
@@ -111,20 +113,20 @@ a{color:inherit;text-decoration:none}
 <li><b data-t="s5">소프트웨어 개발</b><span data-t="d5">기록 · 소통 서비스 개발</span></li>
 </ul>
 <div class="with"><b data-t="with">함께하는 곳</b><span data-t="wl">공공기관 · 교육기관 · 군부대 · 기업 · 복지기관 · 농협 · 축협 · 수협 · 산림조합</span></div>
-<div class="qrw"><img src="qr.png" alt="이 명함 QR" width="104" height="104"><p><b>사랑흐름</b><span data-t="tag" data-h="1">사랑과 추억이<br>흐르는 곳</span></p></div>
+<div class="qrw"><img src="qr.png" alt="이 명함 QR" width="104" height="104"><p><b data-t="qb">사랑흐름</b><span data-t="tag" data-h="1">사랑과 추억이<br>흐르는 곳</span></p></div>
 </section>
 <div class="gap"></div>
 <div class="pad"><div class="bund">
 <a href="https://www.loveflow.ai.kr/"><svg class="ic" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7M5 10v10h14V10"/></svg><span data-t="home">홈페이지</span></a>
 <a href="https://uriyagi.kr/?c=C-0030"><svg class="ic" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 10h8M8 14h5"/></svg><span data-t="room">우리 이야기 방</span></a>
-<a href="#" data-soon="soon1"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>마음 카드</a>
+<a href="#" data-soon="soon1"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span data-t="card">마음 카드</span></a>
 </div></div>
 <div class="gap"></div>
 <div class="pad">
 <button class="btn ln" id="share"><svg class="shg" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg><span data-t="share">디지털 명함 만들기 공유</span></button>
 <a class="btn org" href="#" data-soon="soon2"><span data-t="free">무료 디지털 명함 만들기</span></a>
 </div>
-<footer class="ft"><div class="tx"><a href="https://www.loveflow.ai.kr/"><b>사랑흐름</b></a> · <a href="https://uriyagi.kr/">우리 이야기</a> · <span data-t="dc">디지털 명함</span> © 2026 사랑흐름 · LFRI™ · 무단 복제 · 배포 · 상업적 이용 금지 · All rights reserved</div><a class="rp" href="https://pf.kakao.com/_ExndxfX/chat"><span data-t="rep">신고</span></a></footer>
+<footer class="ft"><div class="tx" data-t="ft"><a href="https://www.loveflow.ai.kr/"><b>사랑흐름</b></a> · <a href="https://uriyagi.kr/">우리 이야기</a> · <span data-t="dc">디지털 명함</span> © 2026 사랑흐름 · LFRI™ · 무단 복제 · 배포 · 상업적 이용 금지 · All rights reserved</div><a class="rp" href="https://pf.kakao.com/_ExndxfX/chat"><span data-t="rep">신고</span></a></footer>
 </div>
 <div id="toast"><div><b id="tB"></b><p id="tP"></p><button type="button" id="tX" data-t="ok">확인</button></div></div>
 <script>
@@ -132,31 +134,31 @@ a{color:inherit;text-decoration:none}
 var URL='https://uriyagi.kr/card/C-1001/', VCF=URL+'hwang-gyuchan.vcf';
 var ua=navigator.userAgent||'', kakao=/KAKAOTALK/i.test(ua), android=/Android/i.test(ua), ios=/iPhone|iPad|iPod/i.test(ua);
 var T={
-en:{ti:'CEO',nm:'HWANG KYUCHAN',addr:'17-13 Maebong-gil, Paju-si, Gyeonggi-do, Korea',home:'Website',call:'Call',prop:'Proposal',map:'Directions',save:'Save Contact',what:'WHAT WE DO',
-s1:'Story & Record Content: Production and Operation',d1:'마음여행 · 한 편의 기록 · 미리 써 보는 나의 자서전 · 우리 이야기 · Custom records for organizations',
+en:{brand:'LOVE FLOW',brand2:'',qb:'LOVE FLOW',card:'Heart Card',ti:'CEO',nm:'Hwang KyuChan',addr:'17-13 Maebong-gil, Paju-si, Gyeonggi-do, Korea',home:'Website',call:'Call',prop:'Proposal',map:'Directions',save:'Save Contact',what:'WHAT WE DO',
+s1:'Story & Record Content: Production and Operation',d1:'Heart Journey · One Story · My Autobiography in Advance · Uriyagi · Custom records for organizations',
 s2:'Digital Business Cards · Mobile Websites · Season Cards',d2:'Business card and mobile website production · Year-round season card production and delivery',
-s3:'Digital Literacy & AI Education',d3:'Digital literacy education · Hands-on AI for Work · 사랑흐름 guide training',
+s3:'Digital Literacy & AI Education',d3:'Digital literacy education · Hands-on AI for Work · LOVE FLOW Guide training',
 s4:'Multicultural & On-site Communication Solutions',d4:'Multicultural Families · Agriculture · Industry · Construction Sites',
 s5:'Software Development',d5:'Record and communication services',
 with:'Partners',wl:'Public institutions · Educational institutions · Military · Companies · Welfare organizations · Agricultural, Livestock, Fisheries and Forestry Cooperatives',
-tag:'Where love and<br>memories flow',room:'우리 이야기 Room',share:'Share: Make a Digital Card',free:'Make a Free Digital Card',dc:'Digital Card',rep:'Report',ok:'OK',
-soon1:'마음 카드 opens in December',soon2:'Digital card making opens soon',cp1:'Link copied',cp2:'Open a chat or message, press and hold, then paste',cp3:'Please send this address'},
-zh:{ti:'代表',nm:'HWANG KYUCHAN',addr:'17-13 Maebong-gil, Paju-si, Gyeonggi-do, 韩国',home:'网站',call:'电话',prop:'提案书',map:'导航',save:'保存联系人',what:'业务范围',
-s1:'记录内容制作与运营',d1:'마음여행 · 한 편의 기록 · 미리 써 보는 나의 자서전 · 우리 이야기 · 机构定制记录',
+tag:'Where love and<br>memories flow',room:'Uriyagi Room',share:'Share: Make a Digital Card',free:'Make a Free Digital Card',dc:'Digital Card',rep:'Report',ok:'OK',
+soon1:'Heart Card opens in December',ft:'<a href="https://www.loveflow.ai.kr/"><b>LOVE FLOW</b></a> · <a href="https://uriyagi.kr/">Uriyagi</a> · Digital Card © 2026 LOVE FLOW · LFRI™ · No unauthorized copying, distribution or commercial use · All rights reserved',soon2:'Digital card making opens soon',cp1:'Link copied',cp2:'Open a chat or message, press and hold, then paste',cp3:'Please send this address'},
+zh:{brand:'LOVE FLOW',brand2:'',qb:'LOVE FLOW',card:'心意卡',ti:'代表',nm:'Hwang KyuChan',addr:'17-13 Maebong-gil, Paju-si, Gyeonggi-do, Korea',home:'网站',call:'电话',prop:'提案书',map:'导航',save:'保存联系人',what:'业务范围',
+s1:'记录内容制作与运营',d1:'心灵之旅 · 一篇记录 · 提前写的自传 · 我们的故事 · 机构定制记录',
 s2:'数字名片 · 移动主页 · 季节贺卡',d2:'名片与移动主页制作 · 全年季节贺卡制作与寄送',
-s3:'数字素养 · AI 教育',d3:'数字素养教育 · 现场实务 AI · 사랑흐름 向导培养',
+s3:'数字素养 · AI 教育',d3:'数字素养教育 · 现场实务 AI · LOVE FLOW 向导培养',
 s4:'多元文化 · 现场沟通解决方案',d4:'多元文化家庭 · 农业 · 工业 · 建筑工地',
 s5:'软件开发',d5:'记录 · 沟通服务开发',
 with:'合作伙伴',wl:'公共机构 · 教育机构 · 军队 · 企业 · 福利机构 · 农协 · 畜协 · 水协 · 山林组合',
-tag:'爱与回忆<br>流淌的地方',room:'우리 이야기 空间',share:'分享：制作数字名片',free:'免费制作数字名片',dc:'数字名片',rep:'举报',ok:'确定',
-soon1:'마음 카드 将于12月开放',soon2:'数字名片制作即将开放',cp1:'链接已复制',cp2:'打开聊天窗口，长按后粘贴',cp3:'请发送此地址'},
+tag:'爱与回忆<br>流淌的地方',room:'我们的故事空间',share:'分享：制作数字名片',free:'免费制作数字名片',dc:'数字名片',rep:'举报',ok:'确定',
+soon1:'心意卡将于12月开放',ft:'<a href="https://www.loveflow.ai.kr/"><b>LOVE FLOW</b></a> · <a href="https://uriyagi.kr/">我们的故事</a> · 数字名片 © 2026 LOVE FLOW · LFRI™ · 禁止未经授权的复制、传播及商业使用 · 版权所有',soon2:'数字名片制作即将开放',cp1:'链接已复制',cp2:'打开聊天窗口，长按后粘贴',cp3:'请发送此地址'},
 ko:{soon1:'마음 카드는 12월에 열립니다',soon2:'디지털 명함 만들기는 곧 열립니다',cp1:'링크를 복사했습니다',cp2:'카카오톡이나 문자 대화창을 열고 길게 눌러 「붙여넣기」 하세요',cp3:'이 주소를 보내 주세요'}};
 var KO={}, L='ko';
 [].forEach.call(document.querySelectorAll('[data-t]'),function(e){KO[e.getAttribute('data-t')]=e.innerHTML;});
 function tr(k){ return (T[L]&&T[L][k])||T.ko[k]||KO[k]||k; }
 function setL(l){ L=T[l]?l:'ko'; document.documentElement.lang=L==='zh'?'zh-CN':L;
-  [].forEach.call(document.querySelectorAll('[data-t]'),function(e){ var k=e.getAttribute('data-t'); e.innerHTML=(L==='ko'?KO[k]:(T[L][k]||KO[k])); });
-  var nm=document.querySelector('[data-t="nm"]'); if(nm){ nm.classList.toggle('lat',L!=='ko'); }
+  [].forEach.call(document.querySelectorAll('[data-t]'),function(e){ var k=e.getAttribute('data-t'); e.innerHTML=(L==='ko'||!T[L].hasOwnProperty(k))?KO[k]:T[L][k]; });
+  var nm=document.querySelector('[data-t="nm"]'); if(nm){ nm.classList.toggle('lat',L!=='ko'); } var bk=document.querySelector('[data-t="brand"]'); if(bk){ bk.classList.toggle('lat',L!=='ko'); }
   [].forEach.call(document.querySelectorAll('.lang button'),function(b){ var on=b.getAttribute('data-l')===L; b.classList.toggle('on',on); b.setAttribute('aria-pressed',on?'true':'false'); });
   try{ localStorage.setItem('uri_card_lang',L); }catch(x){} }
 [].forEach.call(document.querySelectorAll('.lang button'),function(b){ b.onclick=function(){ setL(b.getAttribute('data-l')); }; });
