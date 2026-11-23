@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- [우리이야기] 디지털 명함 시험판 · card/C-1001 · v4 · 261123 · 영어 · 중국어 화면 모두 옮김(LOVE FLOW · Hwang KyuChan · 상품 이름 옮김 · 주소 영어 · 푸터 · 대표 OK 14:26) · (v3) 한국어 · English · 中文 단추(사랑흐름-총괄-010 · 대표 OK 14:03 · 이름 HWANG KYUCHAN · 간체 · 상품 이름은 한글 그대로 · 고른 말은 기기에 기억) · (v2) 하는 일 다섯 줄 · 함께하는 곳 순서(대표 OK 13:50 · 시안 v13 · 소통) · (v1 261122) · 사랑흐름 대표 황규찬 · 대표 OK 23:12 「이대로 지으세요」 · 시안 v9 바탕 · 메일은 뺌(대표 23:20) -->
+<!-- [우리이야기] 디지털 명함 시험판 · card/C-1001 · v5 · 261123 · 「명함 보내기」(연락처 저장 옆 · card/send.js · 대표 OK 14:54) · (v4) 영어 · 중국어 화면 모두 옮김(LOVE FLOW · Hwang KyuChan · 상품 이름 옮김 · 주소 영어 · 푸터 · 대표 OK 14:26) · (v3) 한국어 · English · 中文 단추(사랑흐름-총괄-010 · 대표 OK 14:03 · 이름 HWANG KYUCHAN · 간체 · 상품 이름은 한글 그대로 · 고른 말은 기기에 기억) · (v2) 하는 일 다섯 줄 · 함께하는 곳 순서(대표 OK 13:50 · 시안 v13 · 소통) · (v1 261122) · 사랑흐름 대표 황규찬 · 대표 OK 23:12 「이대로 지으세요」 · 시안 v9 바탕 · 메일은 뺌(대표 23:20) -->
 <html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>사랑흐름 대표 황규찬 · 디지털 명함</title>
@@ -78,6 +78,7 @@ a{color:inherit;text-decoration:none}
 .lang button.on{background:var(--navy);border-color:var(--navy);color:#fff}
 .brand .k.lat{font-size:22px;letter-spacing:1px}
 .who .nm.lat{font-family:inherit;font-size:24px;letter-spacing:1px;font-weight:800}
+.pad.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 </style></head>
 <body><div class="pg">
 <div class="band"></div>
@@ -99,7 +100,7 @@ a{color:inherit;text-decoration:none}
 <a href="https://pf.kakao.com/_ExndxfX"><span class="circ"><svg class="ic" viewBox="0 0 24 24"><path d="M12 4C7 4 3 7.1 3 11c0 2.4 1.6 4.6 4 5.8L6 20l4-2.3c.7.1 1.3.2 2 .2 5 0 9-3.1 9-7s-4-7-9-7z"/></svg></span>SNS</a>
 <a href="https://map.naver.com/p/entry/place/1748542679"><span class="circ"><svg class="ic" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><span data-t="map">길찾기</span></a>
 </nav>
-<div class="pad"><a class="btn navy" id="save" href="hwang-gyuchan.vcf" download="황규찬_사랑흐름.vcf"><span data-t="save">연락처 저장</span></a></div>
+<div class="pad two"><a class="btn navy" id="save" href="hwang-gyuchan.vcf" download="황규찬_사랑흐름.vcf"><span data-t="save">연락처 저장</span></a><a class="btn org" id="send" href="#" data-card="C-1001" data-tel="010-2355-3565" data-name="황규찬"><span data-t="send">명함 보내기</span></a></div>
 <div class="gap"></div>
 <div class="pic"><img src="photo.jpg" alt="좋은 사람들과, 좋은 이야기로 행복한 세상을 만들어가요" width="444" height="438" loading="lazy"></div>
 <div class="gap"></div>
@@ -134,7 +135,7 @@ a{color:inherit;text-decoration:none}
 var URL='https://uriyagi.kr/card/C-1001/', VCF=URL+'hwang-gyuchan.vcf';
 var ua=navigator.userAgent||'', kakao=/KAKAOTALK/i.test(ua), android=/Android/i.test(ua), ios=/iPhone|iPad|iPod/i.test(ua);
 var T={
-en:{brand:'LOVE FLOW',brand2:'',qb:'LOVE FLOW',card:'Heart Card',ti:'CEO',nm:'Hwang KyuChan',addr:'17-13 Maebong-gil, Paju-si, Gyeonggi-do, Korea',home:'Website',call:'Call',prop:'Proposal',map:'Directions',save:'Save Contact',what:'WHAT WE DO',
+en:{brand:'LOVE FLOW',brand2:'',qb:'LOVE FLOW',card:'Heart Card',ti:'CEO',nm:'Hwang KyuChan',addr:'17-13 Maebong-gil, Paju-si, Gyeonggi-do, Korea',home:'Website',call:'Call',prop:'Proposal',map:'Directions',save:'Save Contact',send:'Send My Card',what:'WHAT WE DO',
 s1:'Story & Record Content: Production and Operation',d1:'Heart Journey · One Story · My Autobiography in Advance · Uriyagi · Custom records for organizations',
 s2:'Digital Business Cards · Mobile Websites · Season Cards',d2:'Business card and mobile website production · Year-round season card production and delivery',
 s3:'Digital Literacy & AI Education',d3:'Digital literacy education · Hands-on AI for Work · LOVE FLOW Guide training',
@@ -143,7 +144,7 @@ s5:'Software Development',d5:'Record and communication services',
 with:'Partners',wl:'Public institutions · Educational institutions · Military · Companies · Welfare organizations · Agricultural, Livestock, Fisheries and Forestry Cooperatives',
 tag:'Where love and<br>memories flow',room:'Uriyagi Room',share:'Share: Make a Digital Card',free:'Make a Free Digital Card',dc:'Digital Card',rep:'Report',ok:'OK',
 soon1:'Heart Card opens in December',ft:'<a href="https://www.loveflow.ai.kr/"><b>LOVE FLOW</b></a> · <a href="https://uriyagi.kr/">Uriyagi</a> · Digital Card © 2026 LOVE FLOW · LFRI™ · No unauthorized copying, distribution or commercial use · All rights reserved',soon2:'Digital card making opens soon',cp1:'Link copied',cp2:'Open a chat or message, press and hold, then paste',cp3:'Please send this address'},
-zh:{brand:'LOVE FLOW',brand2:'',qb:'LOVE FLOW',card:'心意卡',ti:'代表',nm:'Hwang KyuChan',addr:'17-13 Maebong-gil, Paju-si, Gyeonggi-do, Korea',home:'网站',call:'电话',prop:'提案书',map:'导航',save:'保存联系人',what:'业务范围',
+zh:{brand:'LOVE FLOW',brand2:'',qb:'LOVE FLOW',card:'心意卡',ti:'代表',nm:'Hwang KyuChan',addr:'17-13 Maebong-gil, Paju-si, Gyeonggi-do, Korea',home:'网站',call:'电话',prop:'提案书',map:'导航',save:'保存联系人',send:'发送名片',what:'业务范围',
 s1:'记录内容制作与运营',d1:'心灵之旅 · 一篇记录 · 提前写的自传 · 我们的故事 · 机构定制记录',
 s2:'数字名片 · 移动主页 · 季节贺卡',d2:'名片与移动主页制作 · 全年季节贺卡制作与寄送',
 s3:'数字素养 · AI 教育',d3:'数字素养教育 · 现场实务 AI · LOVE FLOW 向导培养',
@@ -164,7 +165,7 @@ function setL(l){ L=T[l]?l:'ko'; document.documentElement.lang=L==='zh'?'zh-CN':
 [].forEach.call(document.querySelectorAll('.lang button'),function(b){ b.onclick=function(){ setL(b.getAttribute('data-l')); }; });
 var L0='ko'; try{ L0=localStorage.getItem('uri_card_lang')||'ko'; }catch(x){}
 setL(L0);
-function toast(b,p){var t=document.getElementById('toast');document.getElementById('tB').textContent=b;document.getElementById('tP').textContent=p||'';t.className='on';}
+window.cardToast=function(b,p){toast(b,p);};function toast(b,p){var t=document.getElementById('toast');document.getElementById('tB').textContent=b;document.getElementById('tP').textContent=p||'';t.className='on';}
 document.getElementById('tX').onclick=function(){document.getElementById('toast').className='';};
 /* 카톡 안 브라우저는 파일 받기를 막는 일이 있어 휴대폰 기본 브라우저로 넘겨 엶 */
 document.getElementById('save').addEventListener('click',function(e){
@@ -182,4 +183,5 @@ document.getElementById('share').addEventListener('click',function(){
 [].forEach.call(document.querySelectorAll('[data-soon]'),function(a){a.addEventListener('click',function(e){e.preventDefault();toast(tr(a.getAttribute('data-soon')));});});
 })();
 </script>
+<script src="../send.js?v=1" defer></script>
 </body></html>
