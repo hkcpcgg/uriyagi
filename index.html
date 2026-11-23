@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v231 · 261123 · [우리이야기] 마당 위 둥근 아이콘 줄 — 이름 한 줄짜리가 아래로 처지던 것 고침(.strip align-items:flex-start · 그때 그 놀이 알림 · 대표 지시) -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v232 · 261123 · [우리이야기] 디지털 명함 만들기 — 카카오가 state=card 로 돌려보내면 /card/new/ 로 넘김 -->
+<!-- (이전) rec/index.html · v231 · 261123 · [우리이야기] 마당 위 둥근 아이콘 줄 — 이름 한 줄짜리가 아래로 처지던 것 고침(.strip align-items:flex-start · 그때 그 놀이 알림 · 대표 지시) -->
 <!-- (이전) rec/index.html · v230 · 261121 · [우리이야기] 검색에 헤이리 더함 — 헤이리기록관 C-0246 · 아트팩토리 C-0297 손님 보기 주소를 index(robots 메타) · robots.txt · sitemap(+ /heyri/ 안내 한 장) -->
 <!-- (이전) rec/index.html · v229 · 261121 · [우리이야기] 방 관리 「이용 · 요금」에 영상 줄(편 · MB) — 쓴 양에 영상도 들어감(서버 ③본부 v43) -->
 <!-- (이전) rec/index.html · v228 · 261121 · [우리이야기] 영상 파일도 마당 · 위 방 띠에 — 서버 ①Code v119 의 vt(첫 장면) · vu(영상) 고정 주소로 칸 그림 · 누르면 그 자리에서 재생(vwYt vfile) · 보기 화면 · 받은 장면 화면도 같이 (대표 261121 17:46) -->
@@ -2021,6 +2022,7 @@ function boot(){ try{ if(!/[?&]hq=1/.test(location.search)){ bookTop(); } }catch
   PS_OPEN=(sp.get('ps')||'').replace(/[^A-Za-z0-9.-]/g,'').slice(0,240); OPEN_R=(sp.get('r')||'').replace(/[^A-Za-z0-9-]/g,'').slice(0,20); OPEN_P=(sp.get('p')||'').replace(/[^A-Za-z0-9-]/g,'').slice(0,20);   /* ★v161 누른 사진(묶음 안 몇 번째) */
   var sn=(sp.get('sn')||'').replace(/[^a-z0-9]/g,'').slice(0,8); if(sn&&sn!==sget('lf_shn')){ var olds=!!sget(KEY); sset('lf_shn',sn); sset('lf_shn_st',olds?'old':''); setTimeout(function(){ shLog('열림','',sn); },3000); }   /* ★v165 알림 1단계 — 카톡으로 받은 링크로 열림 · 첫 화면을 다 그린 뒤 보냄 · 이미 이 기기에 방이 있던 분은 입장 · 남김을 세지 않음 */
   var code=(sp.get('code')||'').trim(), kerr=(sp.get('error')||'').trim();
+  if((code||kerr)&&sp.get('state')==='card'){ location.replace('/card/new/'+(code?'?code='+encodeURIComponent(code):'?kerr=1')); return; }   /* ★v232 디지털 명함 만들기 — 카카오가 돌려보낸 것을 만들기 화면으로 */
   if(code||kerr){ kakaoBack(code,kerr,sp.get('state')||''); return; }
   var ss=(sp.get('s')||'').replace(/[^a-f0-9]/gi,'').slice(0,20).toLowerCase(); if(ss.length===20){ rcvBoot(ss); return; }   /* ★v67 388 받는 분 화면 */
   var hok=(sp.get('hqok')||'').replace(/[^a-f0-9]/gi,'').slice(0,32).toLowerCase(); if(hok.length===32){ try{ history.replaceState(null,'',location.pathname); }catch(e){} hqOkView(hok,sp.get('y')==='1'); return; }   /* ★v63 365 카톡 [승인] */
@@ -6942,7 +6944,7 @@ window.addEventListener('appinstalled',function(){ PWA_EV=null; var b=$('pwaGo')
 try{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js',{scope:'/'})['catch'](function(){});
   /* ★v62 375 새 화면 파일을 받아 오면 한 번 바꿔 엶 — 첫 화면 · 광장에서만(쓰는 중에는 기다렸다가 첫 화면으로 돌아올 때) */
   navigator.serviceWorker.addEventListener('message',function(ev){ if(!ev.data||ev.data.t!=='lf-new'){ return; } NEWV=1; newGo(); }); } }catch(e){}
-var NEWV=0, REC_VER=231;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
+var NEWV=0, REC_VER=232;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
 function newChk(){ try{ if(!window.caches){ return; } caches.open('lf-rec-shell-v2').then(function(c){ return c.match('/'); }).then(function(r){ return r?r.text():''; }).then(function(t){ var m=/rec\/index\.html · v(\d+)/.exec(String(t).slice(0,600)); if(m&&parseInt(m[1],10)>REC_VER){ NEWV=1; newGo(); } })['catch'](function(){}); }catch(e){} }   /* ★v62 375 알림을 놓쳐도 남겨 둔 파일 버전을 직접 봄 */
 setTimeout(newChk,5000); setTimeout(newChk,15000);
 document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible'){ setTimeout(newChk,1500); } });

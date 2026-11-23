@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- [우리이야기] 디지털 명함 만들기 · card/new · v4 · 261123 · 견본은 대표 황규찬 것만(18:44 · 다복 뺌) · v3 「견본 보기」 비교표 아래 · 주문 제작 탭 누르면 펼침 · 새 창 (대표 OK 18:13) · (v2) 동의 항목마다 「보기」(약관 요지 · 개인정보 무엇 · 왜 · 언제까지 · 전문 링크) · 검색은 [선택] (대표 18:01) · (v1) 직접 제작(무료) · 주문 제작(유료 · 준비 중) 한 장 · 대표 17:48 · 아직 만들기 서버 없음 → 「만들기」는 곧 열립니다 -->
+<!-- [우리이야기] 디지털 명함 만들기 · card/new · v5 · 261123 · 직접 제작이 서버(①Code v127 recCard*)와 이어짐 · 카카오로 시작 · 사진 글자 읽기 · 본인 확인 · 만들기 · 끝 화면 — 2026-11-30(약관 시행) 전에는 주소에 ?t=1 일 때만(시험) · (v4) 견본은 대표 황규찬 것만(18:44 · 다복 뺌) · v3 「견본 보기」 비교표 아래 · 주문 제작 탭 누르면 펼침 · 새 창 (대표 OK 18:13) · (v2) 동의 항목마다 「보기」(약관 요지 · 개인정보 무엇 · 왜 · 언제까지 · 전문 링크) · 검색은 [선택] (대표 18:01) · (v1) 직접 제작(무료) · 주문 제작(유료 · 준비 중) 한 장 · 대표 17:48 · 아직 만들기 서버 없음 → 「만들기」는 곧 열립니다 -->
 <html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>디지털 명함 만들기 · 사랑흐름</title>
@@ -49,7 +49,20 @@ a{color:inherit;text-decoration:none}.pg{max-width:520px;margin:0 auto;backgroun
 .smp img{display:block;width:100%;aspect-ratio:1.91/1;object-fit:cover;background:#F3EEE6}
 .smp b{display:block;font-size:14px;padding:7px 9px 0}.smp small{display:block;font-size:12px;color:var(--sub);padding:2px 9px 9px}
 .smp .k{display:inline-block;font-size:11px;font-weight:700;border-radius:6px;padding:1px 6px;margin:8px 9px 0;background:#EEF3FB;color:var(--navy)}.smp .k.pay{background:#FDEEE2;color:#D9661A}
-</style></head><body><div class="pg">
+.kk{margin:6px 16px 0;padding:14px;border:1.5px solid #F2E3A0;background:#FFFBE6;border-radius:14px;font-size:14px;color:#5a4a00}
+.kk b{display:block;font-size:15px;margin-bottom:6px;color:#3b3000}
+.kbtn{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;margin-top:10px;font:inherit;font-weight:700;font-size:16px;border:0;border-radius:12px;padding:12px;background:#FEE500;color:#191919;cursor:pointer}
+.kbtn svg{width:20px;height:20px;fill:#191919}
+.kk .mine a{display:inline-block;margin:6px 6px 0 0;padding:4px 10px;border-radius:8px;background:#fff;border:1px solid #E9D98A;font-weight:700;color:var(--navy)}
+.pv{display:none;margin-top:10px;width:100%;border-radius:10px;border:1px solid var(--line)}.pv.on{display:block}
+.rd{display:none;margin-top:8px;font-size:13px;color:var(--navy);font-weight:700}.rd.on{display:block}
+.done{position:fixed;inset:0;background:rgba(20,20,20,.55);display:none;align-items:center;justify-content:center;z-index:30;padding:20px}.done.on{display:flex}
+.done>div{background:#fff;border-radius:18px;max-width:420px;width:100%;padding:22px 20px;text-align:center}
+.done h2{margin:0 0 6px;color:var(--navy);font-size:20px}.done p{margin:4px 0;color:var(--sub);font-size:14px;word-break:break-all}
+.done a,.done button{display:block;width:100%;margin-top:10px;font:inherit;font-weight:700;font-size:16px;border-radius:12px;padding:12px;border:0;cursor:pointer}
+.done .a1{background:var(--or);color:#fff}.done .a2{background:#fff;color:var(--navy);border:1.5px solid var(--navy)}
+</style>
+<script src="/lf/config.js?v=5"></script></head><body><div class="pg">
 <div class="band"></div>
 <div class="hd"><h1>디지털 명함 만들기</h1><p>가지고 계신 종이 명함 그대로 시작합니다</p></div>
 
@@ -77,8 +90,11 @@ a{color:inherit;text-decoration:none}.pg{max-width:520px;margin:0 auto;backgroun
 <div class="soon"><img src="/card/C-1001/og.jpg" alt="" loading="lazy"><span class="k pay">추가</span><b>모바일 홈페이지</b><small>견본 준비 중</small></div>
 </div>
 
+<div class="kk me" id="kk"><b>카카오로 시작하기</b>명함 주인 확인과 내 명함 관리를 위해 카카오로 한 번 들어옵니다. 들어오시면 종이 명함 사진에서 글자를 읽어 칸을 채워 드립니다.<button type="button" class="kbtn" id="kgo"><svg viewBox="0 0 24 24"><path d="M12 3.5C6.8 3.5 2.6 6.8 2.6 10.9c0 2.6 1.7 4.9 4.3 6.2l-1 3.7c-.1.3.3.6.6.4l4.4-2.9c.4 0 .7.1 1.1.1 5.2 0 9.4-3.3 9.4-7.4S17.2 3.5 12 3.5z"/></svg>카카오로 시작하기</button></div>
+
 <div class="sec"><h3><i>1</i>지금 쓰시는 종이 명함<span class="tag me">직접 작성</span></h3>
-<label class="up"><input type="file" accept="image/*" id="paper" hidden><b>📷 종이 명함 사진 올리기</b>앨범에서 고르거나 바로 찍기 · 네 모서리가 보이게</label></div>
+<label class="up"><input type="file" accept="image/*" id="paper" hidden><b>📷 종이 명함 사진 올리기</b>앨범에서 고르거나 바로 찍기 · 네 모서리가 보이게</label>
+<img class="pv" id="pv" alt=""><div class="rd" id="rd"></div></div>
 
 <div class="sec"><h3><i>2</i>이름과 소개<span class="tag me">직접 작성</span></h3>
 <div class="f"><label>상호 · 회사 <b>*</b></label><input class="req" id="co"></div>
@@ -111,15 +127,15 @@ a{color:inherit;text-decoration:none}.pg{max-width:520px;margin:0 auto;backgroun
 
 <div class="sec"><h3><i>9</i>확인 · 동의</h3>
 <label class="chk all"><input type="checkbox" id="all"><span>전체 동의</span></label>
-<label class="chk"><input type="checkbox" class="c"><span><b>[필수]</b> 제 명함이거나, 주인의 허락을 받았습니다</span></label>
+<label class="chk"><input type="checkbox" class="c" data-k="allow"><span><b>[필수]</b> 제 명함이거나, 주인의 허락을 받았습니다</span></label>
 <details class="dt"><summary>보기</summary>남의 이름 · 연락처 · 로고 · 사진을 허락 없이 쓰면 안 됩니다. 명함에 담긴 내용이 맞는지, 쓸 권한이 있는지는 만드는 분이 책임집니다. 다른 분이 권리 침해를 알려 오면 그 명함을 바로 가리고 양쪽에 알립니다.</details>
-<label class="chk"><input type="checkbox" class="c"><span><b>[필수]</b> 이용약관 동의</span></label>
+<label class="chk"><input type="checkbox" class="c" data-k="terms"><span><b>[필수]</b> 이용약관 동의</span></label>
 <details class="dt"><summary>보기</summary>
 <p>종이 명함을 찍으면 글자를 읽어 칸을 채워 드립니다. 읽은 내용은 틀릴 수 있으니, 만드는 분이 확인하고 고친 뒤 만들어 주십시오.</p>
 <p>「작성자 본인 확인」 표시는 만든 분이 로그인해 내용을 확인했다는 뜻입니다. 전화번호 주인이나 회사의 공식 권한을 확인했다는 뜻은 아닙니다.</p>
 <p>만든 분은 언제든 명함을 고치거나 내릴 수 있습니다. 사랑흐름의 고의 또는 과실로 생긴 책임 등 법에 따라 사랑흐름이 지는 책임은 줄어들지 않습니다.</p>
 <p><a href="https://uriyagi.kr/terms/" target="_blank" rel="noopener">이용약관 전문 보기 ›</a></p></details>
-<label class="chk"><input type="checkbox" class="c"><span><b>[필수]</b> 개인정보 수집 · 이용 동의</span></label>
+<label class="chk"><input type="checkbox" class="c" data-k="privacy"><span><b>[필수]</b> 개인정보 수집 · 이용 동의</span></label>
 <details class="dt"><summary>보기</summary>
 <p>명함은 이름과 연락처를 담아 다른 분께 보여 드리는 것이라, 그 정보를 받아 두어야 명함을 보여 드릴 수 있습니다.</p>
 <table>
@@ -131,6 +147,8 @@ a{color:inherit;text-decoration:none}.pg{max-width:520px;margin:0 auto;backgroun
 </table>
 <p>명함을 받은 분이 찍어 저장하는 남의 명함은 그분 휴대폰 연락처로만 넘어가고, 우리 서버에 남기지 않습니다. 동의하지 않으실 수 있으나, 그러면 명함을 만들 수 없습니다.</p>
 <p><a href="https://uriyagi.kr/privacy/" target="_blank" rel="noopener">개인정보처리방침 전문 보기 ›</a></p></details>
+<label class="chk"><input type="checkbox" class="c" data-k="self"><span><b>[필수]</b> 위 칸을 모두 확인했습니다 (본인이 확인했습니다)</span></label>
+<details class="dt"><summary>보기</summary>사진에서 읽은 글자는 틀릴 수 있습니다. 칸을 하나하나 보시고 고친 뒤 체크해 주세요. 명함에는 「작성자 본인 확인」이 함께 표시됩니다.</details>
 <label class="chk p"><input type="checkbox" class="c cp"><span><b>[필수 · 주문 제작]</b> 시안을 확인하고 확정하면, 그 뒤로는 고칠 수 없습니다</span></label>
 <label class="chk"><input type="checkbox" id="seo"><span><b style="color:var(--sub)">[선택]</b> 네이버 · 구글 검색에 제 명함을 엽니다</span></label>
 <details class="dt"><summary>보기</summary>체크하시면 검색에서 내 명함이 보일 수 있습니다. 체크하지 않으셔도 명함은 똑같이 만들어지고, 주소나 QR을 받은 분만 보게 됩니다. 나중에 바꿀 수 있습니다.</details>
@@ -139,6 +157,7 @@ a{color:inherit;text-decoration:none}.pg{max-width:520px;margin:0 auto;backgroun
 <button type="button" class="go" id="go" disabled>무료 명함 만들기</button>
 <footer class="ft"><a href="https://www.loveflow.ai.kr/"><b>사랑흐름</b></a> · 디지털 명함 · 모바일 홈페이지 제작 © 2026 사랑흐름 · LFRI™ · 무단 복제 · 배포 · 상업적 이용 금지 · All rights reserved</footer>
 </div>
+<div class="done" id="done"><div><h2>명함이 만들어졌습니다</h2><p id="dU"></p><a class="a1" id="dGo" href="#">내 명함 보기</a><button type="button" class="a2" id="dCp">주소 복사</button><p style="margin-top:10px;font-size:12.5px">내 명함을 열면 이 휴대폰이 「내 명함」으로 기억해, 받은 명함에서 「명함 보내기」를 누르면 이 명함이 갑니다.</p></div></div>
 <div id="toast"><div><b id="tB"></b><p id="tP"></p><button type="button" id="tX">확인</button></div></div>
 <script>
 (function(){
@@ -153,18 +172,48 @@ function setMode(m){ mode=m;
   [].forEach.call(document.querySelectorAll('.sec.pay'),function(s){s.classList.toggle('lock',m==='me');});
   [].forEach.call(document.querySelectorAll('.p'),function(s){s.style.display=m==='me'?'none':'';});
   $('go').textContent=m==='me'?'무료 명함 만들기':'주문 넣기';
+  var kb=$('kk'); if(kb){ kb.style.display=m==='me'?'':'none'; }
   chk(); }
 [].forEach.call(document.querySelectorAll('.tabs button'),function(b){ b.onclick=function(){ var m=b.getAttribute('data-m'); if(m==='pay'){ smp(true); toast('주문 제작은 준비 중입니다','지금은 직접 제작(무료)만 됩니다. 주문 제작이 열리면 알려 드립니다.'); } setMode(m); }; });
 function row(box,max,html){ var el=$(box); if(el.children.length>=max){ toast('최대 '+max+'개까지입니다'); return; } var d=document.createElement('div'); d.className='mi'; d.innerHTML=html; el.appendChild(d); }
 $('madd').onclick=function(){ row('ml',10,'<div class="f"><label>이름</label><input></div><div class="f"><label>구성 · 설명</label><input></div><div class="f"><label>값</label><input inputmode="numeric"></div><div class="f"><label>사진</label><input type="file" accept="image/*"></div>'); };
 $('ladd').onclick=function(){ row('ll',8,'<div class="f"><label>링크 주소</label><input inputmode="url" placeholder="https://"></div>'); };
 function boxes(){ return [].filter.call(document.querySelectorAll('.c'),function(c){ return !(mode==='me'&&c.classList.contains('cp')); }); }
-function chk(){ var ok=[].every.call(document.querySelectorAll('.req'),function(i){return i.value.trim();}) && boxes().every(function(c){return c.checked;}) && $('paper').files.length>0;
+function chk(){ var ok=[].every.call(document.querySelectorAll('.req'),function(i){return i.value.trim();}) && boxes().every(function(c){return c.checked;}) && !!FRONT;
   $('go').disabled=!ok; $('all').checked=boxes().every(function(c){return c.checked;}); }
 $('all').onchange=function(){ var v=$('all').checked; boxes().forEach(function(c){c.checked=v;}); chk(); };
 document.addEventListener('input',chk); document.addEventListener('change',chk);
-$('paper').addEventListener('change',function(){ var l=document.querySelector('.up b'); if(this.files.length){ l.textContent='✓ 종이 명함 사진을 골랐습니다'; } });
-$('go').onclick=function(){ if(mode==='pay'){ toast('주문 제작은 준비 중입니다','지금은 직접 제작(무료)만 됩니다.'); return; } toast('디지털 명함 만들기는 곧 열립니다','적어 주신 내용은 아직 보내지지 않습니다. 열리면 다시 해 주세요.'); };
+/* ★v5 서버와 이음 */
+var GAS=(window.LF_CONFIG&&LF_CONFIG.gas&&LF_CONFIG.gas.rec)||'', KREST='fe792945db813c2a38cacfbe273cba8d', KREDIR='https://uriyagi.kr/';
+function ls(k,v){ try{ if(v===undefined){ return localStorage.getItem(k)||''; } if(v===null){ localStorage.removeItem(k); } else { localStorage.setItem(k,v); } }catch(e){ return ''; } }
+var sp=new URLSearchParams(location.search); if(sp.get('t')==='1'){ ls('uri_card_t','1'); }
+var OPEN=Date.now()>=Date.parse('2026-11-30T00:00:00+09:00')||ls('uri_card_t')==='1';
+var CK=ls('uri_card_ck'), FRONT='';
+function post(o,cb){ if(!GAS){ cb({status:'err',msg:'서버 주소를 읽지 못했습니다.'}); return; } fetch(GAS,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(o)}).then(function(r){return r.json();}).then(cb).catch(function(){ cb({status:'err',msg:'지금은 연결되지 않습니다. 잠시 후 다시 해 주세요.'}); }); }
+function esc(v){ return String(v||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+function kkPaint(name,cards){ var b=$('kk'); if(!CK){ return; } var live=(cards||[]).filter(function(c){return c.state!=='지움';});
+  b.innerHTML='<b>✓ 카카오로 들어왔습니다'+(name?' · '+esc(name)+'님':'')+'</b>'+(live.length?'<div class="mine">내 명함 '+live.length+'장 '+live.map(function(c){ return '<a href="/card/'+c.no+'/?me=1">'+c.no+(c.state!=='열림'?' ('+esc(c.state)+')':'')+'</a>'; }).join('')+'</div>':'아래에 종이 명함 사진을 올려 주세요.')+'<div style="margin-top:8px;font-size:12.5px"><a href="#" id="kout" style="color:#8a7a2a;text-decoration:underline">다른 카카오로 들어가기</a></div>';
+  $('kout').onclick=function(e){ e.preventDefault(); CK=''; ls('uri_card_ck',null); location.reload(); }; }
+$('kgo').onclick=function(){ if(!OPEN){ toast('디지털 명함 만들기는 곧 열립니다','2026년 11월 30일에 열립니다.'); return; } location.href='https://kauth.kakao.com/oauth/authorize?response_type=code&client_id='+KREST+'&redirect_uri='+encodeURIComponent(KREDIR)+'&state=card&scope=profile_nickname'; };
+(function(){ var code=sp.get('code'); if(code){ history.replaceState(null,'',location.pathname); post({action:'recCardIn',code:code,redirect:KREDIR},function(r){ if(r.status!=='ok'){ toast('카카오 확인을 다시 해 주세요',r.msg||''); return; } CK=r.ck; ls('uri_card_ck',CK); kkPaint(r.name,r.cards); }); return; }
+  if(sp.get('kerr')){ history.replaceState(null,'',location.pathname); toast('카카오로 들어오지 못했습니다','다시 눌러 주세요.'); }
+  if(CK){ post({action:'recCardMine',ck:CK},function(r){ if(r.status!=='ok'){ CK=''; ls('uri_card_ck',null); return; } kkPaint(r.name,r.cards); }); } })();
+function shrink(file,max,cb){ var fr=new FileReader(); fr.onload=function(){ var im=new Image(); im.onload=function(){ var w=im.naturalWidth,h=im.naturalHeight,k=Math.min(1,max/Math.max(w,h)),c=document.createElement('canvas'); c.width=Math.round(w*k); c.height=Math.round(h*k); var x=c.getContext('2d'); x.fillStyle='#fff'; x.fillRect(0,0,c.width,c.height); x.drawImage(im,0,0,c.width,c.height); cb(c.toDataURL('image/jpeg',0.86)); }; im.onerror=function(){ cb(''); }; im.src=fr.result; }; fr.readAsDataURL(file); }
+var MAP={co:'co',name:'nm',title:'ti',tel:'tel',mobile:'mob',mail:'em',addr:'ad'};
+$('paper').addEventListener('change',function(){ var l=document.querySelector('.up b'), f=this.files[0]; if(!f){ return; } l.textContent='✓ 종이 명함 사진을 골랐습니다';
+  shrink(f,1600,function(d){ FRONT=d; if(!d){ toast('사진을 읽지 못했습니다','다른 사진으로 해 주세요.'); return; } $('pv').src=d; $('pv').className='pv on'; chk();
+    if(!CK||mode!=='me'){ return; } $('rd').className='rd on'; $('rd').textContent='글자를 읽는 중입니다…';
+    post({action:'recCardOcr',ck:CK,img:d},function(r){ if(r.status!=='ok'){ $('rd').textContent=r.msg||'글자를 읽지 못했습니다. 칸을 직접 채워 주세요.'; return; } var n=0, fl=r.fields||{}; Object.keys(MAP).forEach(function(k){ var el=$(MAP[k]); if(fl[k]&&el&&!el.value.trim()){ el.value=fl[k]; n++; } });
+      $('rd').textContent=n?'✓ '+n+'칸을 채웠습니다 · 틀린 곳이 있으면 고쳐 주세요':(r.msg||'읽은 글자가 없습니다. 칸을 직접 채워 주세요.'); chk(); }); }); });
+$('go').onclick=function(){ if(mode==='pay'){ toast('주문 제작은 준비 중입니다','지금은 직접 제작(무료)만 됩니다.'); return; }
+  if(!OPEN){ toast('디지털 명함 만들기는 곧 열립니다','2026년 11월 30일에 열립니다. 적어 주신 내용은 아직 보내지지 않습니다.'); return; }
+  if(!CK){ toast('카카오로 먼저 시작해 주세요','맨 위 노란 단추를 눌러 주세요.'); $('kk').scrollIntoView({behavior:'smooth'}); return; }
+  if(!FRONT){ toast('종이 명함 사진을 올려 주세요'); return; }
+  var o={action:'recCardNew',ck:CK,front:FRONT,search:$('seo').checked?'1':''}; Object.keys(MAP).forEach(function(k){ o[k]=$(MAP[k]).value.trim(); });
+  [].forEach.call(document.querySelectorAll('.c[data-k]'),function(c){ o[c.getAttribute('data-k')]=c.checked?'1':''; });
+  var b=$('go'); b.disabled=true; b.textContent='만드는 중입니다…';
+  post(o,function(r){ b.textContent='무료 명함 만들기'; chk(); if(r.status!=='ok'){ toast('명함을 만들지 못했습니다',r.msg||''); return; }
+    $('dU').textContent=r.url; $('dGo').href='/card/'+r.no+'/?me=1'; $('dCp').onclick=function(){ try{ navigator.clipboard.writeText(r.url); toast('주소를 복사했습니다'); }catch(e){ toast('주소',r.url); } }; $('done').className='done on'; }); };
 setMode('me');
 })();
 </script>
