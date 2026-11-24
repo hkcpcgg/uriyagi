@@ -10,7 +10,7 @@
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="/uri-favicon-48.png">
 <style>
-:root{--or:#E8771E;--or2:#D9661A;--navy:#1E4A76;--ink:#2B2B2B;--sub:#6F6A62;--line:#ECE4D8;--sand:#F4EEE4;--grad:linear-gradient(90deg,#2E8B57,#6BA548 30%,#C9B43A 65%,#E8771E);--serif:'Noto Serif KR','Nanum Myeongjo',serif}
+:root{--or:#C9A96E;--or2:#7A3520;--navy:#1E4A76;--ink:#2E3A46;--sub:#4A525C;--line:#ECE4D8;--sand:#F4EEE4;--grad:linear-gradient(90deg,#1E4A76,#C9A96E);--serif:'Noto Serif KR','Nanum Myeongjo',serif}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;background:var(--sand)}
 body{font-family:-apple-system,'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;color:var(--ink);line-height:1.5}
@@ -27,7 +27,7 @@ a{color:inherit;text-decoration:none}
 .brand .k{font-size:24px;font-weight:800;color:var(--or);letter-spacing:1px;line-height:1.1}
 .brand .e{font-size:10.5px;letter-spacing:5px;color:var(--or);margin-top:3px}
 .who{display:flex;align-items:center;gap:16px;margin-top:20px}
-.who .av{width:108px;height:108px;border-radius:22px;object-fit:cover;flex:0 0 auto;box-shadow:0 6px 16px rgba(0,0,0,.16);border:1px solid #eee3d4;background:#FEF6EB}
+.who .av{width:108px;height:108px;border-radius:22px;object-fit:cover;flex:0 0 auto;box-shadow:0 6px 16px rgba(0,0,0,.16);border:1px solid #eee3d4;background:#FFFCF7}
 .who .ti{font-family:var(--serif);font-size:16px;color:#444;font-weight:700}
 .who .nm{font-family:var(--serif);font-size:38px;font-weight:900;letter-spacing:5px;line-height:1.05;color:#222}
 .who .hj{font-family:var(--serif);font-size:17px;color:#7a7368;letter-spacing:4px;margin-top:2px}
@@ -38,10 +38,10 @@ a{color:inherit;text-decoration:none}
 .acts a{display:flex;flex-direction:column;align-items:center;font-size:13px;gap:5px;color:#333}
 .circ{width:50px;height:50px;border-radius:50%;border:1px solid #E7DFD3;background:#fff;box-shadow:0 1px 5px rgba(0,0,0,.09);display:grid;place-items:center;color:var(--navy)}
 .ic,.shg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;display:block}
-.acts .hi .circ{background:var(--or);border-color:var(--or);color:#fff}.acts .hi{font-weight:700;color:var(--or2)}
+.acts .hi .circ{background:var(--or);border-color:var(--or);color:#2E3A46}.acts .hi{font-weight:700;color:var(--or2)}
 .pad{padding:12px 16px}
 .btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;border-radius:13px;padding:16px;font:inherit;font-size:17px;font-weight:700;cursor:pointer}
-.navy{background:var(--navy);color:#fff}.org{background:var(--or);color:#fff}
+.navy{background:var(--navy);color:#fff}.org{background:var(--or);color:#2E3A46}
 .ln{background:#fff;color:var(--navy);border:1.5px solid var(--navy);margin-bottom:10px}
 .gap{height:8px;background:var(--sand)}
 .pic img{width:100%;height:auto;display:block}
@@ -52,7 +52,7 @@ a{color:inherit;text-decoration:none}
 .svc li::before{content:'';position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:50%;background:var(--or)}
 .svc b{display:block;font-size:16.5px;color:#222}.svc span{font-size:14.5px;color:var(--or2)}
 .with{border-top:1px solid var(--line);margin-top:16px;padding-top:12px;font-size:15.5px}.with b{margin-right:8px}
-.qrw{display:flex;gap:16px;align-items:center;margin-top:16px;background:#FBF8F3;border:1px solid var(--line);border-radius:14px;padding:14px}
+.qrw{display:flex;gap:16px;align-items:center;margin-top:16px;background:#FFFCF7;border:1px solid var(--line);border-radius:14px;padding:14px}
 .qrw img{width:104px;height:104px;border-radius:8px;background:#fff;padding:4px;border:1px solid var(--line)}
 .qrw p{margin:0;font-family:var(--serif);font-size:18px;line-height:1.5;color:#3a352e}
 .qrw p b{display:block;color:var(--or);font-size:15px;font-family:inherit}
@@ -60,20 +60,20 @@ a{color:inherit;text-decoration:none}
 .bund a{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 4px;text-align:center;font-size:14px;color:#333}
 .bund .ic{margin:0 auto 5px;color:var(--navy)}
 .ft{background:#2E3A46;color:#c4c9cf;font-weight:300;font-size:10px;line-height:1.55;padding:10px 14px calc(10px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:10px}
-.ft .tx{flex:1}.ft b{color:#fff;font-weight:500}
+.ft .tx{flex:1}.ft b{color:#2E3A46;font-weight:500}
 .ft .rp{flex:0 0 auto;border:1px solid #6c7682;border-radius:8px;padding:3px 10px;color:#e0e0e0;font-size:11.5px}
 #toast{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:opacity .2s;z-index:9}
 #toast.on{opacity:1;pointer-events:auto}
 #toast div{background:#fff;border-radius:18px;padding:26px 24px;width:min(86vw,360px);text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.25)}
 #toast b{display:block;font-size:21px;color:#1E4A76;margin-bottom:8px}
 #toast p{margin:0;font-size:16.5px;color:#444;line-height:1.5}
-#toast button{margin-top:18px;border:0;border-radius:12px;background:#E8771E;color:#fff;font:inherit;font-size:17px;font-weight:700;padding:12px 0;width:100%}
+#toast button{margin-top:18px;border:0;border-radius:12px;background:#C9A96E;color:#2E3A46;font:inherit;font-size:17px;font-weight:700;padding:12px 0;width:100%}
 .pad.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 </style>
 <style>
 .selfb{margin:10px 14px 0;font-size:12.5px;color:#2E7D4F;text-align:center}
 .txt{padding:14px 18px 2px;font-size:15px;color:#333;display:grid;gap:4px}.txt b{font-size:18px}
-.msg{padding:60px 24px;text-align:center;color:#555}.msg h1{font-size:20px;color:#1E4A76}.msg a{display:inline-block;margin-top:14px;color:#E8771E;font-weight:700}
+.msg{padding:60px 24px;text-align:center;color:#555}.msg h1{font-size:20px;color:#1E4A76}.msg a{display:inline-block;margin-top:14px;color:#C9A96E;font-weight:700}
 .rpt textarea{width:100%;min-height:80px;margin-top:10px;font:inherit;font-size:15px;border:1px solid #ddd;border-radius:10px;padding:8px}
 </style>
 <script src="/lf/config.js?v=5"></script>
