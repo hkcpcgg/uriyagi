@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- [우리이야기] 내 명함 · card/my · v2 · 261123 · 한 분 한 장(새 명함 만들기 뺌) · 고치기에서 앞면 · 뒷면 따로 · (v1) 시안 mycard_v1 그대로(대표 20:03 「진행합시다」) · 카카오로 들어온 분(명함 열쇠 uri_card_ck)의 명함 목록 · 보기 · 보내기 · 고치기 · 내리기 · 다시 열기 · 서버 recCardMine · recCardSet -->
+<!-- [우리이야기] 내 명함 · card/my · v3 · 261124 · 명함이 없으면 만들기 길 · (v2) 261123 · 한 분 한 장(새 명함 만들기 뺌) · 고치기에서 앞면 · 뒷면 따로 · (v1) 시안 mycard_v1 그대로(대표 20:03 「진행합시다」) · 카카오로 들어온 분(명함 열쇠 uri_card_ck)의 명함 목록 · 보기 · 보내기 · 고치기 · 내리기 · 다시 열기 · 서버 recCardMine · recCardSet -->
 <html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>내 명함 · 사랑흐름</title>
@@ -96,7 +96,7 @@ function shrink(file,max,cb){ var fr=new FileReader(); fr.onload=function(){ var
 if(!CK){ $('who').innerHTML='카카오로 들어온 뒤에 볼 수 있습니다. <a href="/card/new/" style="color:var(--or);font-weight:700">명함 만들기 화면에서 카카오로 시작하기 ›</a>'; return; }
 var F=[['co','상호 · 회사'],['name','이름'],['title','직함'],['tel','전화(명함에 보임)'],['mobile','휴대폰(명함 보내기 문자 받는 번호 · 명함에 안 보임)'],['mail','이메일'],['addr','주소']];
 function load(){ post({action:'recCardMine',ck:CK},function(r){ if(r.status!=='ok'){ $('who').innerHTML=esc(r.msg||'다시 들어와 주세요')+' <a href="/card/new/" style="color:var(--or);font-weight:700">카카오로 시작하기 ›</a>'; try{ localStorage.removeItem('uri_card_ck'); }catch(e){} return; }
-  var cs=(r.cards||[]).filter(function(c){ return c.state!=='지움'; }); $('who').textContent=(r.name?r.name+'님 · ':'')+'명함 '+cs.length+'장';
+  var cs=(r.cards||[]).filter(function(c){ return c.state!=='지움'; }); $('who').textContent=(r.name?r.name+'님 · ':'')+'명함 '+cs.length+'장'; if(!cs.length){ $('list').innerHTML='<a class="newc" href="/card/new/">무료 디지털 명함 만들기 ›</a>'; return; }
   $('list').innerHTML=cs.map(function(c,i){ var st=c.state==='열림'?'<span class="st on">열림</span>':c.state==='가림'?'<span class="st hid">살피는 중</span>':'<span class="st off">내림</span>';
     return '<div class="cd" data-i="'+i+'">'+(c.front?'<img src="'+esc(c.front)+'" alt="">':'')+'<div class="in"><b>'+esc(c.no)+' · '+esc(c.co||c.name)+'</b>'+st+'<small>'+esc(c.url)+'</small>'+(c.state==='가림'?'<small style="color:#C0392B">신고가 들어와 살피는 중입니다. 살핀 뒤 다시 열어 드립니다.</small>':'')+'</div>'+
       '<div class="bt"><a href="/card/'+esc(c.no)+'/" class="o">보기</a><button type="button" data-a="send"'+(c.state!=='열림'?' disabled':'')+'>보내기</button><button type="button" data-a="edit">고치기</button>'+(c.state==='열림'?'<button type="button" data-a="off">내리기</button>':'<button type="button" data-a="on"'+(c.state==='가림'?' disabled':'')+' class="'+(c.state==='가림'?'':'o')+'">다시 열기</button>')+'</div>'+
