@@ -25,3 +25,4 @@ h2{margin:18px 16px 10px;font-size:18px;color:var(--navy)}
 .ft{background:#2E3A46;color:#c4c9cf;font-weight:300;font-size:10px;line-height:1.55;padding:10px 14px calc(10px + env(safe-area-inset-bottom))}.ft b{color:#fff;font-weight:500}
 #stt{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:rgba(46,58,70,.94);color:#fff;font-size:13.5px;padding:10px 16px;border-radius:999px;z-index:9;white-space:nowrap}
 [hidden]{display:none!important}
+.more{display:block;margin:2px 16px 6px;text-align:right;font-size:14px;font-weight:800;color:var(--navy)}a.mc{color:inherit}

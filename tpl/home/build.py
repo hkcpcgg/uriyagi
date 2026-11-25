@@ -6,7 +6,7 @@
          python3 tpl/home/build.py sample-car (하나만)
 칸(모두 없어도 됨 · 있는 것만 그림):
  id · title · sub · logo · owner{face,title,name,line} · acts[{k,u,label,hi}] (k = book call sms map insta blog kakao youtube web card)
- items{title,list[{img,name,desc,price}]} · info[{title,text,note}] · room{code,title,note} · way{map,link,addr,note}
+ items{title,list[{img,name,desc,price,u}],more,moreLabel} (more = 쇼룸 · 우리 이야기 방 주소 · 유료) · info[{title,text,note}] · room{code,title,note} · way{map,link,addr,note}
  consult{tel,sms,label} · links[{k,u,label}] · sample(견본 띠 · noindex) · desc(검색 설명)"""
 import json, os, sys, html
 ROOT=os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -45,7 +45,11 @@ def build(d):
   if ac: o.append('<nav class="acts" style="grid-template-columns:repeat(%d,1fr)">'%min(5,len(ac))+''.join(a(x['u'],'<span class="circ">'+svg(x['k'])+'</span><span>'+e(x.get('label') or LBL.get(x['k'],''))+'</span>','hi' if x.get('hi') else '') for x in ac)+'</nav>')
   it=d.get('items')
   if it and it.get('list'):
-    o.append('<h2>%s</h2><div class="mcs">'%e(it.get('title','대표 상품'))+''.join('<div class="mc">'+('<img src="%s" alt="%s" width="200" height="140" loading="lazy">'%(e(x['img']),e(x['name'])) if x.get('img') else '<span class="noimg">'+svg('item')+'</span>')+'<b>%s</b>'%e(x['name'])+('<small>%s</small>'%e(x['desc']) if x.get('desc') else '')+('<em>%s</em>'%e(x['price']) if x.get('price') else '')+'</div>' for x in it['list'])+'</div>')
+    def card(x):
+      u=x.get('u'); op='<a class="mc" href="#s" data-s="1">' if u=='#s' else ('<a class="mc" href="%s">'%e(u) if u else '<div class="mc">')
+      return op+('<img src="%s" alt="%s" width="200" height="140" loading="lazy">'%(e(x['img']),e(x['name'])) if x.get('img') else '<span class="noimg">'+svg('item')+'</span>')+'<b>%s</b>'%e(x['name'])+('<small>%s</small>'%e(x['desc']) if x.get('desc') else '')+('<em>%s</em>'%e(x['price']) if x.get('price') else '')+('</a>' if u else '</div>')
+    o.append('<h2>%s</h2><div class="mcs">'%e(it.get('title','대표 상품'))+''.join(card(x) for x in it['list'])+'</div>')
+    if it.get('more'): o.append(a(it['more'],e(it.get('moreLabel','사진 더 많은 상품 보기 ›')),'more'))
   for x in d.get('info') or []:
     o.append('<div class="box">'+('<b>%s</b>'%e(x['title']) if x.get('title') else '')+'<span>%s</span>'%e(x.get('text',''))+('<br><span class="sub">%s</span>'%e(x['note']) if x.get('note') else '')+'</div>')
   rm=d.get('room')
