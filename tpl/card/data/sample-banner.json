@@ -1,0 +1,84 @@
+{
+ "id": "sample-banner",
+ "sample": 1,
+ "brand": "견본 · 현수막 · 전단지 광고",
+ "brandEn": "가게 · 단체 이름",
+ "title": "대표",
+ "name": "홍길동",
+ "line": "가게 · 단체 한 줄 소개",
+ "tel": "010-0000-0000",
+ "hours": "영업 · 행사 시간을 적습니다",
+ "addr": "주소를 적습니다",
+ "mapUrl": "#s",
+ "vcfName": "sample-banner",
+ "desc": "현수막 · 전단지 광고주 디지털 명함 견본 · 사랑흐름",
+ "acts": [
+  {
+   "k": "web",
+   "u": "/home/sample-banner/",
+   "label": "홈페이지",
+   "hi": 1
+  },
+  {
+   "k": "call",
+   "u": "#s"
+  },
+  {
+   "k": "sms",
+   "u": "#s"
+  },
+  {
+   "k": "insta",
+   "u": "#s"
+  },
+  {
+   "k": "map",
+   "u": "#s"
+  }
+ ],
+ "items": {
+  "title": "행사 상품",
+  "list": [
+   {
+    "name": "상품 1",
+    "desc": "사진 · 한 줄 설명",
+    "price": "값"
+   },
+   {
+    "name": "상품 2",
+    "desc": "사진 · 한 줄 설명",
+    "price": "값"
+   },
+   {
+    "name": "상품 3",
+    "desc": "사진 · 한 줄 설명",
+    "price": "값"
+   }
+  ]
+ },
+ "open": {
+  "title": "행사 일정",
+  "text": "기간 · 시간 · 장소를 적습니다"
+ },
+ "tag": "가게 · 단체 한 줄 소개",
+ "links": [
+  {
+   "k": "web",
+   "u": "/home/sample-banner/",
+   "label": "홈페이지"
+  },
+  {
+   "k": "room",
+   "u": "#s"
+  },
+  {
+   "k": "blog",
+   "u": "#s"
+  },
+  {
+   "k": "kakao",
+   "u": "#s",
+   "label": "카카오 채널"
+  }
+ ]
+}

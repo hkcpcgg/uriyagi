@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!-- [우리이야기] 디지털 명함 · card/sample-banner · 틀 엔진 tpl/card/build.py 로 만듦(손으로 고치지 말고 data/sample-banner.json 을 고친 뒤 다시 돌림) -->
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>견본 · 현수막 · 전단지 광고 · 디지털 명함</title>
+<meta name="description" content="현수막 · 전단지 광고주 디지털 명함 견본 · 사랑흐름">
+<meta name="robots" content="noindex"><link rel="canonical" href="https://uriyagi.kr/card/sample-banner/">
+<meta property="og:title" content="견본 · 현수막 · 전단지 광고"><meta property="og:description" content="현수막 · 전단지 광고주 디지털 명함 견본 · 사랑흐름"><meta property="og:url" content="https://uriyagi.kr/card/sample-banner/"><meta property="og:image" content="https://uriyagi.kr/og-image.png">
+<link rel="icon" href="/uri-favicon-48.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;900&display=swap" rel="stylesheet">
+<style>
+
+:root{--or:#C9A96E;--or2:#7A3520;--navy:#1E4A76;--ink:#2E3A46;--sub:#4A525C;--line:#ECE4D8;--sand:#F4EEE4;--grad:linear-gradient(90deg,#1E4A76,#C9A96E);--serif:'Noto Serif KR','Nanum Myeongjo',serif}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--sand)}
+body{font-family:-apple-system,'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;color:var(--ink);line-height:1.5}
+.pg{max-width:480px;margin:0 auto;background:#fff;min-height:100vh}
+a{color:inherit;text-decoration:none}
+.band{height:7px;background:var(--grad);background-size:200% 100%;animation:flow 9s ease-in-out infinite alternate}
+@keyframes flow{from{background-position:0 0}to{background-position:100% 0}}
+@media (prefers-reduced-motion:reduce){.band{animation:none}}
+.front{padding:22px 22px 18px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand img{width:62px;height:auto}
+.brand .k{font-size:24px;font-weight:800;color:var(--or);letter-spacing:1px;line-height:1.1}
+.brand .e{font-size:10.5px;letter-spacing:5px;color:var(--or);margin-top:3px}
+.who{display:flex;align-items:center;gap:16px;margin-top:20px}
+.who .av{width:108px;height:108px;border-radius:22px;object-fit:cover;flex:0 0 auto;box-shadow:0 6px 16px rgba(0,0,0,.16);border:1px solid #eee3d4;background:#FFFCF7}
+.who .ti{font-family:var(--serif);font-size:16px;color:#444;font-weight:700}
+.who .nm{font-family:var(--serif);font-size:38px;font-weight:900;letter-spacing:5px;line-height:1.05;color:#222}
+.who .hj{font-family:var(--serif);font-size:17px;color:#7a7368;letter-spacing:4px;margin-top:2px}
+.info{margin-top:18px;display:grid;gap:8px}
+.info a{display:flex;align-items:baseline;gap:10px;color:#333;font-size:17px}
+.info a i{font-style:normal;color:var(--or);font-weight:700;width:16px}
+.acts{display:grid;grid-template-columns:repeat(5,1fr);padding:16px 8px 6px}
+.acts a{display:flex;flex-direction:column;align-items:center;font-size:13px;gap:5px;color:#333}
+.circ{width:50px;height:50px;border-radius:50%;border:1px solid #E7DFD3;background:#fff;box-shadow:0 1px 5px rgba(0,0,0,.09);display:grid;place-items:center;color:var(--navy)}
+.ic,.shg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;display:block}
+.acts .hi .circ{background:var(--or);border-color:var(--or);color:#2E3A46}.acts .hi{font-weight:700;color:var(--or2)}
+.pad{padding:12px 16px}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;border-radius:13px;padding:16px;font:inherit;font-size:17px;font-weight:700;cursor:pointer}
+.navy{background:var(--navy);color:#fff}.org{background:var(--or);color:#2E3A46}
+.ln{background:#fff;color:var(--navy);border:1.5px solid var(--navy);margin-bottom:10px}
+.gap{height:8px;background:var(--sand)}
+.pic img{width:100%;height:auto;display:block}
+.back{padding:20px 20px 16px}
+.back h2{margin:0 0 12px;font-size:13px;letter-spacing:3px;color:var(--sub)}
+.svc{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.svc li{position:relative;padding-left:16px}
+.svc li::before{content:'';position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:50%;background:var(--or)}
+.svc b{display:block;font-size:16.5px;color:#222}.svc span{font-size:14.5px;color:var(--or2)}
+.with{border-top:1px solid var(--line);margin-top:16px;padding-top:12px;font-size:15.5px}.with b{margin-right:8px}
+.qrw{display:flex;gap:16px;align-items:center;margin-top:16px;background:#FFFCF7;border:1px solid var(--line);border-radius:14px;padding:14px}
+.qrw img{width:104px;height:104px;border-radius:8px;background:#fff;padding:4px;border:1px solid var(--line)}
+.qrw p{margin:0;font-family:var(--serif);font-size:18px;line-height:1.5;color:#3a352e}
+.qrw p b{display:block;color:var(--or);font-size:15px;font-family:inherit}
+.bund{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.bund a{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 4px;text-align:center;font-size:14px;color:#333}
+.bund .ic{margin:0 auto 5px;color:var(--navy)}
+.ft{background:#2E3A46;color:#c4c9cf;font-weight:300;font-size:10px;line-height:1.55;padding:10px 14px calc(10px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:10px}
+.ft .tx{flex:1}.ft b{color:#2E3A46;font-weight:500}
+.ft .rp{flex:0 0 auto;border:1px solid #6c7682;border-radius:8px;padding:3px 10px;color:#e0e0e0;font-size:11.5px}
+#toast{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:opacity .2s;z-index:9}
+#toast.on{opacity:1;pointer-events:auto}
+#toast div{background:#fff;border-radius:18px;padding:26px 24px;width:min(86vw,360px);text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+#toast b{display:block;font-size:21px;color:#1E4A76;margin-bottom:8px}
+#toast p{margin:0;font-size:16.5px;color:#444;line-height:1.5}
+#toast button{margin-top:18px;border:0;border-radius:12px;background:#C9A96E;color:#2E3A46;font:inherit;font-size:17px;font-weight:700;padding:12px 0;width:100%}
+.brand{position:relative}
+.brand{flex-wrap:wrap}
+.lang{order:-1;width:100%;display:flex;justify-content:flex-end;gap:4px;margin:-8px 0 2px}
+.lang button{border:1px solid #E7DFD3;background:#fff;color:#4A525C;border-radius:999px;padding:3px 9px;font:inherit;font-size:12px;cursor:pointer}
+.lang button.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.brand .k.lat{font-size:22px;letter-spacing:1px}
+.who .nm.lat{font-family:inherit;font-size:24px;letter-spacing:1px;font-weight:800}
+.pad.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.brand img{width:110px}
+.brand .k{color:#1E4A76}
+.svc span.p{color:var(--sub);font-size:13.5px;margin-left:6px}
+.note{margin:14px 0 0;font-size:15px;color:#444;background:#FFFCF7;border-left:4px solid var(--or);padding:10px 12px;border-radius:6px}
+.map{padding:14px 16px;text-align:center;background:#fff}.map img{width:100%;max-width:440px;height:auto;display:block;margin:0 auto;border:1px solid var(--line);border-radius:12px}
+.who .av{object-position:center 30%}
+.brand{position:relative;flex-wrap:wrap}
+.lang{order:-1;width:100%;display:flex;justify-content:flex-end;gap:4px;margin:-8px 0 2px;flex-wrap:wrap}
+.lang button{border:1px solid #E7DFD3;background:#fff;color:#4A525C;border-radius:999px;padding:3px 9px;font:inherit;font-size:12px;cursor:pointer}
+.lang button.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.who .nm.lat{font-family:inherit;font-size:24px;letter-spacing:1px;font-weight:800}
+.brand .k.lat{font-size:20px}
+.mn{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.mn li{display:flex;gap:12px;align-items:flex-start}
+.mn img{width:72px;height:72px;border-radius:12px;object-fit:cover;flex:0 0 auto;border:1px solid var(--line)}
+.mn b{display:block;font-size:16.5px;color:#222}.mn small{display:block;font-size:13.5px;color:var(--sub);line-height:1.45}.mn em{font-style:normal;font-weight:800;color:var(--or2);font-size:15.5px}
+.bund.b4{grid-template-columns:repeat(4,1fr);gap:6px}.bund.b4 a{font-size:12px;padding:12px 1px;white-space:nowrap;letter-spacing:-.3px}
+.dock{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;z-index:9;background:rgba(255,255,255,.97);box-shadow:0 -2px 10px rgba(0,0,0,.08);padding:10px 12px calc(10px + env(safe-area-inset-bottom));box-sizing:border-box}
+.pg{padding-bottom:84px}
+.noimg{display:grid;place-items:center;background:#F3EEE6;color:#9aa4b0}.noimg svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:1.8}
+.smpbar{background:#FFF8E1;border-bottom:1px solid #E9D18A;color:#5a4a00;font-size:13px;text-align:center;padding:7px 10px}.smpbar a{font-weight:800;color:var(--navy)}
+[hidden]{display:none!important}
+</style>
+</head>
+<body><div class="pg">
+<div class="smpbar">견본 · 이 모양으로 만들어 드립니다 · <a href="/card/new/">디지털 명함 만들기 ›</a></div>
+<div class="band"></div><div class="front">
+<div class="brand"><div><div class="k">견본 · 현수막 · 전단지 광고</div><div class="e">가게 · 단체 이름</div></div></div>
+<div class="who"><span class="av noimg"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="12" cy="11" r="3"/><path d="M8 17h8"/></svg></span><div><div class="ti">대표</div><div class="nm">홍길동</div><div class="hj" style="font-family:inherit;letter-spacing:0;font-size:14px">가게 · 단체 한 줄 소개</div></div></div>
+<div class="info"><a href="#s" data-s="1"><i>T</i>010-0000-0000</a><a><i>H</i><span>영업 · 행사 시간을 적습니다</span></a><a href="#s" data-s="1"><i>A</i><span>주소를 적습니다</span></a></div></div><div class="band"></div>
+<nav class="acts" style="grid-template-columns:repeat(5,1fr)"><a class="hi" href="/home/sample-banner/"><span class="circ"><svg class="ic" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7M5 10v10h14V10"/></svg></span><span>홈페이지</span></a><a href="#s" data-s="1"><span class="circ"><svg class="ic" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"/></svg></span><span>전화</span></a><a href="#s" data-s="1"><span class="circ"><svg class="ic" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 10h8M8 14h5"/></svg></span><span>문자</span></a><a href="#s" data-s="1"><span class="circ"><svg class="ic" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.5"/></svg></span><span>인스타</span></a><a href="#s" data-s="1"><span class="circ"><svg class="ic" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><span>길찾기</span></a></nav>
+<div class="pad two dock"><a class="btn navy" id="save" href="sample-banner.vcf" download="sample-banner.vcf">연락처 저장</a><a class="btn org" href="#s" data-s="1">내 명함 보내기</a></div><div class="gap"></div>
+<section class="back"><h2>행사 상품</h2><ul class="mn"><li><span class="noimg" style="width:72px;height:72px;border-radius:10px;flex:0 0 auto"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="12" cy="11" r="3"/><path d="M8 17h8"/></svg></span><div><b>상품 1</b><small>사진 · 한 줄 설명</small><em>값</em></div></li><li><span class="noimg" style="width:72px;height:72px;border-radius:10px;flex:0 0 auto"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="12" cy="11" r="3"/><path d="M8 17h8"/></svg></span><div><b>상품 2</b><small>사진 · 한 줄 설명</small><em>값</em></div></li><li><span class="noimg" style="width:72px;height:72px;border-radius:10px;flex:0 0 auto"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="12" cy="11" r="3"/><path d="M8 17h8"/></svg></span><div><b>상품 3</b><small>사진 · 한 줄 설명</small><em>값</em></div></li></ul><div class="with"><b>행사 일정</b><span>기간 · 시간 · 장소를 적습니다</span></div><div class="qrw"><img src="qr.png" alt="이 명함 QR" width="104" height="104"><p><b>견본 · 현수막 · 전단지 광고</b><span>가게 · 단체 한 줄 소개</span></p></div></section>
+<div class="gap"></div><div class="pad"><div class="bund b4" style="grid-template-columns:repeat(4,1fr)"><a href="/home/sample-banner/"><svg class="ic" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7M5 10v10h14V10"/></svg><span>홈페이지</span></a><a href="#s" data-s="1"><svg class="ic" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 10h8M8 14h5"/></svg><span>우리 이야기 방</span></a><a href="#s" data-s="1"><svg class="ic" viewBox="0 0 24 24"><path d="M5 19l1-4L16 5l3 3L9 18z"/><path d="M14 7l3 3"/></svg><span>블로그</span></a><a href="#s" data-s="1"><svg class="ic" viewBox="0 0 24 24"><path d="M12 4C7 4 3 7.1 3 11c0 2.4 1.6 4.6 4 5.8L6 20l4-2.3c.7.1 1.3.2 2 .2 5 0 9-3.1 9-7s-4-7-9-7z"/></svg><span>카카오 채널</span></a></div></div>
+<div class="gap"></div><div class="pad"><button class="btn ln" id="share"><svg class="shg" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>공유하기</button><a class="btn org" href="/card/new/">무료 디지털 명함 만들기</a></div>
+<footer class="ft"><div class="tx"><a href="https://www.loveflow.ai.kr/"><b>사랑흐름</b></a> · 디지털 명함 · 모바일 홈페이지 제작 © 2026 사랑흐름 · LFRI™ · 무단 복제 · 배포 · 상업적 이용 금지 · All rights reserved</div><a class="rp" href="https://pf.kakao.com/_ExndxfX/chat">신고</a></footer>
+</div>
+<div id="toast"><div><b id="tB"></b><p id="tP"></p><button type="button" id="tX">확인</button></div></div>
+<script>var CARD_URL="https://uriyagi.kr/card/sample-banner/", CARD_VCF="https://uriyagi.kr/card/sample-banner/sample-banner.vcf", CARD_TITLE="견본 · 현수막 · 전단지 광고 · 디지털 명함";</script>
+<script>
+(function(){
+var ua=navigator.userAgent||'', kakao=/KAKAOTALK/i.test(ua), android=/Android/i.test(ua), ios=/iPhone|iPad|iPod/i.test(ua);
+function toast(b,p){ var t=document.getElementById('toast'); document.getElementById('tB').textContent=b; document.getElementById('tP').textContent=p||''; t.className='on'; }
+window.cardToast=toast; document.getElementById('tX').onclick=function(){ document.getElementById('toast').className=''; };
+[].forEach.call(document.querySelectorAll('[data-s]'),function(x){ x.addEventListener('click',function(ev){ ev.preventDefault(); toast('견본입니다','실제 명함에서는 이 단추가 바로 연결됩니다'); }); });
+/* 카톡 안에서는 파일 받기가 막히는 일이 있어 휴대폰 기본 앱으로 넘겨 엶 */
+document.getElementById('save').addEventListener('click',function(e){ if(!kakao){ return; } e.preventDefault();
+  if(android){ location.href='intent://'+CARD_VCF.replace(/^https:\/\//,'')+'#Intent;scheme=https;package=com.android.chrome;end'; }
+  else if(ios){ location.href='kakaotalk://web/openExternal?url='+encodeURIComponent(CARD_VCF); } else { location.href=CARD_VCF; } });
+document.getElementById('share').addEventListener('click',function(){ var d={title:CARD_TITLE,url:CARD_URL};
+  if(navigator.share){ navigator.share(d).catch(function(){}); return; }
+  try{ navigator.clipboard.writeText(CARD_URL).then(function(){ toast('링크를 복사했습니다','카카오톡이나 문자 대화창에 붙여넣기 하세요'); }); }catch(x){ toast('이 링크를 보내 주세요',CARD_URL); } });
+})();
+</script>
+<script src="../send.js?v=4" defer></script>
+</body></html>

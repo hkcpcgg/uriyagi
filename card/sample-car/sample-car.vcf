@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:홍길동
+N:홍길동;;;;
+ORG:견본 · 자동차 영업
+TITLE:영업 담당
+TEL;TYPE=WORK,VOICE:010-0000-0000
+EMAIL:이메일을 적습니다
+ADR;TYPE=WORK:;;지점 주소를 적습니다;;;;
+NOTE:디지털 명함 https://uriyagi.kr/card/sample-car/
+END:VCARD
