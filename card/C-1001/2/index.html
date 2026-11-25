@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- [우리이야기] 대표 명함 C-1001 「하는 일」 세부 페이지 2 · v1 · 261125 · 대표 실폰 지적(글만 있으면 종이 명함 · 전단지와 같음) — 명함에 있던 글만 씀 · 서비스가 있는 줄만 「자세히 보기 ›」 · 고른 말(uri_card_lang) 따름 · /home/claude/tools/mk_svc.py 로 만듦 -->
+<!-- [우리이야기] 대표 명함 C-1001 「하는 일」 세부 페이지 2 · v2 · 261125 · 되돌아가는 길: 「‹ 이전」 = 온 곳(명함 · 모바일 홈페이지)으로 · 서비스 「자세히 보기」는 새 창(닫으면 이 페이지) · (v1) 대표 실폰 지적(글만 있으면 종이 명함 · 전단지와 같음) — 명함에 있던 글만 씀 · 서비스가 있는 줄만 「자세히 보기 ›」 · 고른 말(uri_card_lang) 따름 · /home/claude/tools/mk_svc.py 로 만듦 -->
 <html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>디지털 명함 · 모바일 홈페이지 · 시즌 카드 · 사랑흐름</title>
@@ -33,8 +33,10 @@ a{color:inherit;text-decoration:none}.pg{max-width:520px;margin:0 auto;backgroun
 var D={"ko": ["디지털 명함 · 모바일 홈페이지 · 시즌 카드", ["명함과 모바일 홈페이지 제작", "한 해 시즌 카드 제작과 발송"]], "en": ["Digital Business Cards · Mobile Websites · Season Cards", ["Business card and mobile website production", "Year-round season card production and delivery"]], "zh": ["数字名片 · 移动主页 · 季节贺卡", ["名片与移动主页制作", "全年季节贺卡制作与寄送"]], "u": ["https://uriyagi.kr/card/new/", "https://www.loveflow.ai.kr/card/"]}, W={"ko": {"back": "‹ 이전", "more": "자세히 보기 ›", "prop": "제안서", "call": "전화", "kk": "카카오", "who": "사랑흐름 · 대표 황규찬"}, "en": {"back": "‹ Back", "more": "Learn more ›", "prop": "Proposal", "call": "Call", "kk": "Kakao", "who": "LOVE FLOW · CEO Hwang KyuChan"}, "zh": {"back": "‹ 返回", "more": "了解更多 ›", "prop": "提案书", "call": "电话", "kk": "Kakao", "who": "LOVE FLOW · 代表 Hwang KyuChan"}}, F={"ko": "<a href=\"https://www.loveflow.ai.kr/\"><b>사랑흐름</b></a> · 디지털 명함 · 모바일 홈페이지 제작 © 2026 사랑흐름 · LFRI™ · 무단 복제 · 배포 · 상업적 이용 금지 · All rights reserved", "en": "<a href=\"https://www.loveflow.ai.kr/\"><b>LOVE FLOW</b></a> · Digital card & mobile homepage design © 2026 LOVE FLOW · LFRI™ · No unauthorized copying, distribution or commercial use · All rights reserved", "zh": "<a href=\"https://www.loveflow.ai.kr/\"><b>LOVE FLOW</b></a> · 数字名片 · 移动主页制作 © 2026 LOVE FLOW · LFRI™ · 禁止未经授权的复制、传播及商业使用 · 版权所有"}, L='ko'; try{ L=localStorage.getItem('uri_card_lang')||'ko'; }catch(e){} if(!D[L]){ L='ko'; }
 function $(i){ return document.getElementById(i); } function esc(v){ return String(v||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
 var w=W[L]; document.documentElement.lang=L==='zh'?'zh-CN':L; document.title=D[L][0]+' · '+(L==='ko'?'사랑흐름':'LOVE FLOW');
-$('bk').textContent=w.back; $('ti').textContent=D[L][0]; $('who').textContent=w.who; $('a1').textContent=w.prop; $('a2').textContent=w.call; $('a3').textContent=w.kk; $('ft').innerHTML=F[L];
-$('ls').innerHTML=D[L][1].map(function(t,i){ var u=D.u[i]; return u?'<a class="it" href="'+esc(u)+'">'+esc(t)+'<span class="dt">'+esc(w.more)+'</span></a>':'<div class="it">'+esc(t)+'</div>'; }).join('');
+$('bk').textContent=w.back;
+/* ★v2 되돌아가는 길 — 명함 · 모바일 홈페이지 어느 쪽에서 왔든 온 곳으로 · 주소로 바로 열었으면 명함으로 */
+$('bk').onclick=function(e){ var r=''; try{ r=document.referrer||''; }catch(x){} if(r.indexOf(location.origin+'/')===0){ e.preventDefault(); history.back(); } }; $('ti').textContent=D[L][0]; $('who').textContent=w.who; $('a1').textContent=w.prop; $('a2').textContent=w.call; $('a3').textContent=w.kk; $('ft').innerHTML=F[L];
+$('ls').innerHTML=D[L][1].map(function(t,i){ var u=D.u[i]; return u?'<a class="it" href="'+esc(u)+'" target="_blank" rel="noopener">'+esc(t)+'<span class="dt">'+esc(w.more)+'</span></a>':'<div class="it">'+esc(t)+'</div>'; }).join('');
 })();
 </script>
 </body></html>
