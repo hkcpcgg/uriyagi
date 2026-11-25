@@ -66,7 +66,7 @@ def build(d):
    '<link rel="icon" href="/uri-favicon-48.png">\n<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;900&display=swap" rel="stylesheet">\n'
    '<style>\n'+css+'</style>\n</head>\n<body><div class="pg">\n'+'\n'.join(x for x in o if x)+'\n</div>\n'
    '<div id="toast"><div><b id="tB"></b><p id="tP"></p><button type="button" id="tX">확인</button></div></div>\n'
-   '<script>var CARD_URL=%s, CARD_VCF=%s, CARD_TITLE=%s;</script>\n<script>\n'%(json.dumps(url),json.dumps(url+vname),json.dumps(d['brand']+' · 디지털 명함',ensure_ascii=False))+js+'</script>\n<script src="../send.js?v=4" defer></script>\n<script src="/card/dock.js?v=1" defer></script>\n</body></html>\n')
+   '<script>var CARD_URL=%s, CARD_VCF=%s, CARD_TITLE=%s;</script>\n<script>\n'%(json.dumps(url),json.dumps(url+vname),json.dumps(d['brand']+' · 디지털 명함',ensure_ascii=False))+js+'</script>\n<script src="../send.js?v=5" defer></script>\n<script src="/card/dock.js?v=1" defer></script>\n</body></html>\n')
   open(os.path.join(od,'index.html'),'w',encoding='utf-8').write(page); return od
 if __name__=='__main__':
   dd=os.path.join(HERE,'data'); names=sys.argv[1:] or [f[:-5] for f in sorted(os.listdir(dd)) if f.endswith('.json')]
