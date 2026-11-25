@@ -43,7 +43,7 @@ def build(d):
   o.append('<div class="info">'+''.join(inf)+'</div></div><div class="band"></div>')
   ac=d.get('acts') or []
   if ac: o.append('<nav class="acts" style="grid-template-columns:repeat(%d,1fr)">'%min(5,len(ac))+''.join(a(x['u'],'<span class="circ">'+svg(x['k'],'ic')+'</span><span>'+e(x.get('label') or LBL.get(x['k'],''))+'</span>','hi' if x.get('hi') else '') for x in ac)+'</nav>')
-  o.append('<div class="pad two dock"><a class="btn navy" id="save" href="%s" download="%s">연락처 저장</a>%s</div><div class="gap"></div>'%(e(vname),e(vname),'<a class="btn org" href="#s" data-s="1">내 명함 보내기</a>' if d.get('sample') else '<a class="btn org" id="send" href="#" data-card="%s" data-tel="%s" data-name="%s">내 명함 보내기</a>'%(e(cid),e(d.get('mobile') or d.get('tel','')),e(d.get('name') or d['brand']))))
+  o.append('<div class="pad two"><a class="btn navy" id="save" href="%s" download="%s">연락처 저장</a>%s</div><div class="gap"></div>'%(e(vname),e(vname),'<a class="btn org" href="#s" data-s="1">내 명함 보내기</a>' if d.get('sample') else '<a class="btn org" id="send" href="#" data-card="%s" data-tel="%s" data-name="%s">내 명함 보내기</a>'%(e(cid),e(d.get('mobile') or d.get('tel','')),e(d.get('name') or d['brand']))))
   bk=['<section class="back">']
   it=d.get('items')
   if it and it.get('list'):
@@ -66,7 +66,7 @@ def build(d):
    '<link rel="icon" href="/uri-favicon-48.png">\n<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;900&display=swap" rel="stylesheet">\n'
    '<style>\n'+css+'</style>\n</head>\n<body><div class="pg">\n'+'\n'.join(x for x in o if x)+'\n</div>\n'
    '<div id="toast"><div><b id="tB"></b><p id="tP"></p><button type="button" id="tX">확인</button></div></div>\n'
-   '<script>var CARD_URL=%s, CARD_VCF=%s, CARD_TITLE=%s;</script>\n<script>\n'%(json.dumps(url),json.dumps(url+vname),json.dumps(d['brand']+' · 디지털 명함',ensure_ascii=False))+js+'</script>\n<script src="../send.js?v=5" defer></script>\n<script src="/card/dock.js?v=1" defer></script>\n</body></html>\n')
+   '<script>var CARD_URL=%s, CARD_VCF=%s, CARD_TITLE=%s;</script>\n<script>\n'%(json.dumps(url),json.dumps(url+vname),json.dumps(d['brand']+' · 디지털 명함',ensure_ascii=False))+js+'</script>\n<script src="../send.js?v=5" defer></script>\n</body></html>\n')
   open(os.path.join(od,'index.html'),'w',encoding='utf-8').write(page); return od
 if __name__=='__main__':
   dd=os.path.join(HERE,'data'); names=sys.argv[1:] or [f[:-5] for f in sorted(os.listdir(dd)) if f.endswith('.json')]
