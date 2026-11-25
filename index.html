@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v234 · 261125 · [우리이야기] lf/frame.js 사본 글 두 곳(총괄-029) — 「⋮ 메뉴(오른쪽 위)」 · 「링크를 복사했어요」 · frame.js?v=31b 로 새로 받게 함 -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v235 · 261125 · [우리이야기] 명함 만들기 카카오 돌아오는 길 — state=card_t 면 /card/new/?code=…&t=1 (시험 표 이어 줌 · 대표 실폰 16:08) -->
+<!-- (이전) rec/index.html · v234 · 261125 · [우리이야기] lf/frame.js 사본 글 두 곳(총괄-029) — 「⋮ 메뉴(오른쪽 위)」 · 「링크를 복사했어요」 · frame.js?v=31b 로 새로 받게 함 -->
 <!-- (이전) rec/index.html · v233 · 261125 · [우리이야기] 통합 표준 v0.2 글 손질(총괄-027 · 대표 261124 21:04) — 고치기 → 수정 · 지우기 → 삭제(검색 지우기 · 관리자 지우기 규칙표는 그대로) · 성함 → 이름 · 다른 브라우저로 열기 단추 → 휴대폰 기본 앱에서 열기 · 다시 시도 → 다시 하기 · 양해 부탁 → 양해해 주세요 · 그만두기 → 취소 · 주소 복사 → 링크 복사 · 위 방 보이기 확인 → 저장 · 모양 · 동작 그대로 -->
 <!-- (이전) rec/index.html · v232 · 261123 · [우리이야기] 디지털 명함 만들기 — 카카오가 state=card 로 돌려보내면 /card/new/ 로 넘김 -->
 <!-- (이전) rec/index.html · v231 · 261123 · [우리이야기] 마당 위 둥근 아이콘 줄 — 이름 한 줄짜리가 아래로 처지던 것 고침(.strip align-items:flex-start · 그때 그 놀이 알림 · 대표 지시) -->
@@ -2024,7 +2025,7 @@ function boot(){ try{ if(!/[?&]hq=1/.test(location.search)){ bookTop(); } }catch
   PS_OPEN=(sp.get('ps')||'').replace(/[^A-Za-z0-9.-]/g,'').slice(0,240); OPEN_R=(sp.get('r')||'').replace(/[^A-Za-z0-9-]/g,'').slice(0,20); OPEN_P=(sp.get('p')||'').replace(/[^A-Za-z0-9-]/g,'').slice(0,20);   /* ★v161 누른 사진(묶음 안 몇 번째) */
   var sn=(sp.get('sn')||'').replace(/[^a-z0-9]/g,'').slice(0,8); if(sn&&sn!==sget('lf_shn')){ var olds=!!sget(KEY); sset('lf_shn',sn); sset('lf_shn_st',olds?'old':''); setTimeout(function(){ shLog('열림','',sn); },3000); }   /* ★v165 알림 1단계 — 카톡으로 받은 링크로 열림 · 첫 화면을 다 그린 뒤 보냄 · 이미 이 기기에 방이 있던 분은 입장 · 남김을 세지 않음 */
   var code=(sp.get('code')||'').trim(), kerr=(sp.get('error')||'').trim();
-  if((code||kerr)&&sp.get('state')==='card'){ location.replace('/card/new/'+(code?'?code='+encodeURIComponent(code):'?kerr=1')); return; }   /* ★v232 디지털 명함 만들기 — 카카오가 돌려보낸 것을 만들기 화면으로 */
+  if((code||kerr)&&/^card/.test(sp.get('state')||'')){ location.replace('/card/new/'+(code?'?code='+encodeURIComponent(code):'?kerr=1')+(sp.get('state')==='card_t'?'&t=1':'')); return; }   /* ★v235 state=card_t = 시험 휴대폰 표(?t=1)를 카카오 왕복 뒤에도 이어 줌 */   /* ★v232 디지털 명함 만들기 — 카카오가 돌려보낸 것을 만들기 화면으로 */
   if(code||kerr){ kakaoBack(code,kerr,sp.get('state')||''); return; }
   var ss=(sp.get('s')||'').replace(/[^a-f0-9]/gi,'').slice(0,20).toLowerCase(); if(ss.length===20){ rcvBoot(ss); return; }   /* ★v67 388 받는 분 화면 */
   var hok=(sp.get('hqok')||'').replace(/[^a-f0-9]/gi,'').slice(0,32).toLowerCase(); if(hok.length===32){ try{ history.replaceState(null,'',location.pathname); }catch(e){} hqOkView(hok,sp.get('y')==='1'); return; }   /* ★v63 365 카톡 [승인] */
@@ -6946,7 +6947,7 @@ window.addEventListener('appinstalled',function(){ PWA_EV=null; var b=$('pwaGo')
 try{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js',{scope:'/'})['catch'](function(){});
   /* ★v62 375 새 화면 파일을 받아 오면 한 번 바꿔 엶 — 첫 화면 · 광장에서만(쓰는 중에는 기다렸다가 첫 화면으로 돌아올 때) */
   navigator.serviceWorker.addEventListener('message',function(ev){ if(!ev.data||ev.data.t!=='lf-new'){ return; } NEWV=1; newGo(); }); } }catch(e){}
-var NEWV=0, REC_VER=234;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
+var NEWV=0, REC_VER=235;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
 function newChk(){ try{ if(!window.caches){ return; } caches.open('lf-rec-shell-v2').then(function(c){ return c.match('/'); }).then(function(r){ return r?r.text():''; }).then(function(t){ var m=/rec\/index\.html · v(\d+)/.exec(String(t).slice(0,600)); if(m&&parseInt(m[1],10)>REC_VER){ NEWV=1; newGo(); } })['catch'](function(){}); }catch(e){} }   /* ★v62 375 알림을 놓쳐도 남겨 둔 파일 버전을 직접 봄 */
 setTimeout(newChk,5000); setTimeout(newChk,15000);
 document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible'){ setTimeout(newChk,1500); } });
