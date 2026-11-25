@@ -38,13 +38,13 @@ function sms(body){ var ios=/iPhone|iPad|iPod/i.test(navigator.userAgent||''); l
 function sheet(html){ var d=document.createElement('div'); d.setAttribute('style','position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:flex-end;justify-content:center;z-index:50'); d.innerHTML='<div style="background:#fff;width:100%;max-width:480px;border-radius:18px 18px 0 0;padding:20px 18px calc(18px + env(safe-area-inset-bottom));font-family:inherit">'+html+'</div>'; d.addEventListener('click',function(e){ if(e.target===d||e.target.getAttribute('data-x')){ d.remove(); } }); document.body.appendChild(d); return d; }
 var B='display:block;width:100%;margin-top:10px;border-radius:12px;padding:14px;font:inherit;font-size:16.5px;font-weight:700;text-align:center;text-decoration:none;border:0;cursor:pointer;';
 var OWN=btn.getAttribute('data-name')||'';
-function koMsg(myUrl,meName){ return '[명함 회신] '+(OWN?OWN+'님, ':'')+'보내 주신 디지털 명함 잘 받았습니다.'+(myUrl?' 제 명함도 보내 드립니다.\n'+myUrl:(meName?' 저는 '+meName+'입니다.':''))+'\n앞으로 잘 부탁드립니다.'+(myUrl?'':'\n\n(디지털 명함 무료 만들기 https://uriyagi.kr/card/new/)'); }
+function koMsg(myUrl,meName){ return '[명함 회신] '+(OWN?OWN+'님, ':'')+'보내 주신 디지털 명함 잘 받았습니다.'+(myUrl?' 제 명함도 보내 드립니다.\n'+myUrl:(meName?' 저는 '+meName+'입니다.':''))+'\n반갑습니다.'+(myUrl?'':'\n\n(디지털 명함 무료 만들기 https://uriyagi.kr/card/new/)'); }
 function noCard(){ var nm=''; try{ nm=localStorage.getItem('uri_my_name')||''; }catch(e){}
   var d=sheet('<b style="display:block;font-size:19px;color:#1E4A76">'+(OWN?esc(OWN)+'님께 ':'')+'명함 회신 보내기</b><p style="margin:8px 0 4px;font-size:15px;color:#444;line-height:1.5">문자는 <b>'+(OWN?esc(OWN)+'님':'이 명함 주인')+'</b> 휴대폰으로 갑니다. 이 휴대폰에는 아직 내 디지털 명함이 없어, 이름과 소속을 적어 정중한 인사와 함께 보냅니다.</p>'+
   '<input id="snNm" value="'+esc(nm)+'" placeholder="예: 사랑흐름 대표 황규찬" style="width:100%;box-sizing:border-box;margin-top:8px;font:inherit;font-size:16px;border:1px solid #ddd;border-radius:10px;padding:11px">'+
   '<button type="button" id="snHi" style="'+B+'background:#C9A96E;color:#2E3A46">인사와 함께 보내기</button>'+
   '<a href="/card/new/" style="'+B+'background:#fff;color:#1E4A76;border:1.5px solid #1E4A76">먼저 내 디지털 명함 만들기 (무료)</a>'+
-  '<p style="margin:12px 0 0;font-size:12.5px;color:#777;line-height:1.5">보내는 글: 「[명함 회신] '+(OWN?esc(OWN)+'님, ':'')+'보내 주신 디지털 명함 잘 받았습니다. 저는 ○○입니다. 앞으로 잘 부탁드립니다.」 와 무료 디지털 명함 주소. 이미 디지털 명함이 있으시면 내 명함을 이 휴대폰에서 열고 「이 휴대폰의 내 명함으로」를 눌러 주세요. 그 뒤로는 명함 주소가 함께 갑니다.</p>'+
+  '<p style="margin:12px 0 0;font-size:12.5px;color:#777;line-height:1.5">보내는 글: 「[명함 회신] '+(OWN?esc(OWN)+'님, ':'')+'보내 주신 디지털 명함 잘 받았습니다. 저는 ○○입니다. 반갑습니다.」 와 무료 디지털 명함 주소. 이미 디지털 명함이 있으시면 내 명함을 이 휴대폰에서 열고 「이 휴대폰의 내 명함으로」를 눌러 주세요. 그 뒤로는 명함 주소가 함께 갑니다.</p>'+
   '<button type="button" data-x="1" style="'+B+'background:#f3f3f3;color:#555">닫기</button>');
   d.querySelector('#snHi').onclick=function(){ var v=(d.querySelector('#snNm').value||'').trim().slice(0,40); if(!v){ d.querySelector('#snNm').focus(); return; } try{ localStorage.setItem('uri_my_name',v); }catch(e){} d.remove(); sms(koMsg('',v)); }; }
 function esc(v){ return String(v||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }

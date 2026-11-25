@@ -112,7 +112,7 @@ $('main').innerHTML=
  '<button type="button" class="ok" id="bApply">적용</button>'+
  '<div class="prev" id="prev"><div class="wait"><span class="hrt">💜</span><b>인쇄물을 그리는 중입니다</b></div></div>'+
  '<button type="button" class="btn p" id="bDown" disabled>⬇ 인쇄용 내려받기</button>'+
- '<button type="button" class="btn l" id="bShare" disabled>카카오톡으로 공유</button>'+
+ '<button type="button" class="btn l" id="bShare" disabled>카카오톡으로 공유하기</button>'+
  '<p class="note">QR 주소는 바뀌지 않습니다 · 이벤트 내용은 가게가 책임집니다</p>';
 
 function onSel(box,attr,fn){ $(box).addEventListener('click',function(e){ var b=e.target.closest('['+attr+']'); if(!b){return;} fn(parseInt(b.getAttribute(attr),10),b); }); }
