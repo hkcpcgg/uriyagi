@@ -1,0 +1,22 @@
+{
+ "name": "견본 · 의정활동 기록",
+ "short_name": "의정활동",
+ "lang": "ko",
+ "start_url": "/home/sample-council/",
+ "scope": "/home/sample-council/",
+ "display": "standalone",
+ "background_color": "#FFFCF7",
+ "theme_color": "#1E4A76",
+ "icons": [
+  {
+   "src": "/uri-icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "/uri-icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  }
+ ]
+}
