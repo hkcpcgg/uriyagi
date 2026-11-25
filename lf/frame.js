@@ -1,4 +1,4 @@
-/* [우리이야기] uriyagi.kr 사본 — 사랑흐름 lf/frame.js v31(loveflow 54b70da)를 그대로 받음 · 바꾼 것은 주소 · 이름 · 그림뿐: ☰ 사랑흐름 쪽 줄 → https://www.loveflow.ai.kr/… · 위 띠 로고 = 우리 이야기 마당(포도송이) · 본부 알약 /?hq=1 · 공유 카드 = 우리 이야기 · 아이콘 파일 uri-* · inRec = true · 오른쪽 아래 동그라미(lfx-fab)는 index 가 body data-lf-fab=off 로 끄고 같은 꼴을 방마다 맞게 씀(마당 = 우리 이야기 카드 · 방 = 그 방 공유) */
+/* [우리이야기] uriyagi.kr 사본 · 261125 글 두 곳(총괄-029): 「⋮ 메뉴(오른쪽 위)」 · 「링크를 복사했어요 · 링크를 복사해 주세요」 — 사랑흐름 lf/frame.js v31(loveflow 54b70da)를 그대로 받음 · 바꾼 것은 주소 · 이름 · 그림뿐: ☰ 사랑흐름 쪽 줄 → https://www.loveflow.ai.kr/… · 위 띠 로고 = 우리 이야기 마당(포도송이) · 본부 알약 /?hq=1 · 공유 카드 = 우리 이야기 · 아이콘 파일 uri-* · inRec = true · 오른쪽 아래 동그라미(lfx-fab)는 index 가 body data-lf-fab=off 로 끄고 같은 꼴을 방마다 맞게 씀(마당 = 우리 이야기 카드 · 방 = 그 방 공유) */
 /* ═══════════════════════════════════════════════════════════════════
    현재 버전 ▶ lf/frame.js · v31 · 261117 · [우리이야기-소통-025 · 대표 「노란 거 빼고 · 통일」] ☰ 맨 아래 노란 「💬 공유하기」 → 흰 바탕 + 같은 공유 그림(□↗) · 오른쪽 아래 동그라미를 우리 이야기와 같은 치수로(44px · 선 1.8 · 그림자 옅게). [무손] 그 밖 v30 전부.
    (이전) lf/frame.js · v30 · 261117 · [699 · 701 · 대표 OK 261117 07:36 「노란 거 빼고 요거 · 통일 · 한 번에 다」] ① 아래 띠 판 제목 — 단추와 같은 색 아이콘을 떼고 작은 회색 글 + 오른쪽 「✕」 닫기 · 누르는 줄에 「›」(제목을 눌러 헛손질하던 것) ② 「← ⌂ →」 늘 푸터 바로 위(여행의 기록 반쪽 깨짐 · 소개 · 약관 · 도화지 맨 위에 뜨던 것 · 686) ③ 오른쪽 아래 공유하기 · 위로 올리기 작은 흰 동그라미 둘(전 화면 하나 · body data-lf-fab="off" 면 안 냄) · 화면마다 따로 달린 공유 단추(.lff-share · .lffsw · .lff-sb · .way-share · 메인 노란 단추)는 감춤 · 글 쓰는 칸을 누르면 아래 띠와 함께 숨음 ④ 카톡 공유 그림 og-image 2400×1260 선명본 ?v=261117. [무손] 그 밖 v29 전부.
@@ -332,9 +332,9 @@
   function shareFallback(H) {
     try {
       if (navigator.share) { navigator.share({ title: '우리 이야기', text: '우리의 오늘이 모여, 소중한 추억이 됩니다 — 우리 이야기', url: H })['catch'](function () {}); return; }
-      if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(H).then(function () { alert('주소를 복사했습니다'); }, function () { prompt('주소를 복사해 주세요', H); }); return; }
+      if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(H).then(function () { alert('링크를 복사했어요'); }, function () { prompt('링크를 복사해 주세요', H); }); return; }
     } catch (e) {}
-    prompt('주소를 복사해 주세요', H);
+    prompt('링크를 복사해 주세요', H);
   }
   function share() {
     var H = 'https://uriyagi.kr/?plaza=1';
@@ -597,7 +597,7 @@
         + '<div class="lfh-step"><b>□↑</b>공유 단추(화면 아래)</div>' + A + '<div class="lfh-step"><b>＋</b>홈 화면에 추가</div>' + A + '<div class="lfh-step"><b>추가</b>오른쪽 위</div>');
     } else {
       sheet('<h2>📲 홈 화면에 추가</h2><p>아래 순서대로 한 번만 눌러 주세요.</p>'
-        + '<div class="lfh-step"><b>⋮</b>브라우저 메뉴(오른쪽 위)</div>' + A + '<div class="lfh-step"><b>＋</b>홈 화면에 추가</div>' + A + '<div class="lfh-step"><b>추가</b>확인</div>'
+        + '<div class="lfh-step"><b>⋮</b>메뉴(오른쪽 위)</div>' + A + '<div class="lfh-step"><b>＋</b>홈 화면에 추가</div>' + A + '<div class="lfh-step"><b>추가</b>확인</div>'
         + '<p style="font-size:13px;color:#6B7785;margin:10px 0 0">삼성 인터넷은 ≡ 메뉴 → 현재 페이지 추가 → 홈 화면</p>');
     }
   }
