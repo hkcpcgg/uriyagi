@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!-- [우리이야기] 모바일 홈페이지 · home/sample-banner · 틀 엔진 tpl/home/build.py 로 만듦(손으로 고치지 말고 data/sample-banner.json 을 고친 뒤 다시 돌림) -->
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>견본 · 현수막 · 전단지 광고 · 인쇄물 QR로 들어오는 가게 · 행사 홈페이지</title>
+<meta name="description" content="현수막 · 전단지 광고주 모바일 홈페이지 견본 · 사랑흐름">
+<meta name="robots" content="noindex"><link rel="canonical" href="https://uriyagi.kr/home/sample-banner/">
+<meta property="og:title" content="견본 · 현수막 · 전단지 광고"><meta property="og:description" content="인쇄물 QR로 들어오는 가게 · 행사 홈페이지"><meta property="og:url" content="https://uriyagi.kr/home/sample-banner/"><meta property="og:image" content="https://uriyagi.kr/og-image.png">
+<link rel="icon" href="/uri-favicon-48.png"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#1E4A76"><link rel="apple-touch-icon" href="/uri-apple-180.png">
+<style>
+:root{--or:#C9A96E;--or2:#7A3520;--navy:#1E4A76;--ink:#2E3A46;--sub:#4A525C;--line:#ECE4D8;--sand:#F4EEE4}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;background:var(--sand)}
+body{font-family:-apple-system,'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;color:var(--ink);line-height:1.55}
+a{color:inherit;text-decoration:none}.pg{max-width:520px;margin:0 auto;background:#fff;min-height:100vh}
+.smpbar{background:#FFF8E1;border-bottom:1px solid #E9D18A;color:#5a4a00;font-size:13px;text-align:center;padding:7px 10px}.smpbar a{font-weight:800;color:var(--navy)}
+.hero{background:linear-gradient(160deg,#1E4A76,#2D5A9A);color:#fff;padding:22px 18px 22px;text-align:center}
+.hero .lg{width:150px;background:#fff;border-radius:18px;padding:6px}.hero h1{margin:10px 0 2px;font-size:25px}.hero p{margin:0;font-size:14.5px;opacity:.92}
+.own{display:flex;align-items:center;gap:10px;justify-content:center;margin-top:14px;font-size:14px}.own img{width:46px;height:46px;border-radius:50%;object-fit:cover;border:2px solid #fff}
+.acts{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:16px 10px 6px}.acts a{display:flex;flex-direction:column;align-items:center;font-size:13px;gap:5px;color:#333}
+.circ{width:52px;height:52px;border-radius:50%;border:1px solid #E7DFD3;background:#fff;box-shadow:0 1px 5px rgba(0,0,0,.09);display:grid;place-items:center;color:#1E4A76}
+.circ svg,.noimg svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.acts .hi .circ{background:var(--or);border-color:var(--or);color:#2E3A46}.acts .hi{font-weight:700;color:var(--or2)}
+h2{margin:18px 16px 10px;font-size:18px;color:var(--navy)}
+.newn{display:inline-block;margin-left:6px;font-size:12px;font-weight:800;background:#C0392B;color:#fff;border-radius:999px;padding:1px 8px;vertical-align:3px}
+.mcs{display:flex;gap:10px;overflow-x:auto;padding:0 16px 8px;scroll-snap-type:x mandatory}.mc{flex:0 0 210px;scroll-snap-align:start;background:#FFFCF7;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.mc img{width:100%;height:140px;object-fit:cover;display:block}.noimg{display:grid;place-items:center;height:110px;background:#F3EEE6;color:#9aa4b0}.noimg svg{width:34px;height:34px}
+.mc b{display:block;padding:8px 10px 0;font-size:15.5px}.mc small{display:block;padding:2px 10px;color:var(--sub);font-size:12.5px;line-height:1.45}.mc em{display:block;padding:4px 10px 10px;font-style:normal;font-weight:800;color:var(--or2)}
+.box{margin:10px 16px;background:#FFFCF7;border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:14.5px}.box b{display:block;color:var(--navy)}.box .sub{color:var(--sub)}.box .tx{font-weight:700;color:var(--navy)}
+.map{padding:0 16px}.map img{width:100%;max-width:440px;display:block;margin:0 auto;border:1px solid var(--line);border-radius:12px}
+.ph{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}.ph img{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:#eee}.ph .emp{grid-column:1/-1;padding:16px;text-align:center;color:var(--sub);font-size:13.5px;background:#FFFCF7}
+.note{font-size:12.5px;color:var(--sub);margin:-4px 16px 8px}
+.btn{display:flex;align-items:center;justify-content:center;margin:10px 16px;border-radius:13px;padding:15px;font-weight:800;font-size:16.5px}.navy{background:#1E4A76;color:#fff}.org{background:var(--or);color:#2E3A46}.ln{border:1.5px solid #1E4A76;color:#1E4A76;background:#fff}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 16px}.two .btn{margin:0}
+.bund{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:14px 16px 6px}.bund a{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 4px;text-align:center;font-size:14px;color:#333}.bund svg{display:block;margin:0 auto 5px;width:22px;height:22px;stroke:#1E4A76;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.hs{padding:6px 16px 16px;text-align:center}.hs button{border:0;background:none;font:inherit;font-size:13.5px;font-weight:700;color:var(--navy);text-decoration:underline;cursor:pointer}.hs div{text-align:left;font-size:13px;color:var(--sub);background:#FFFCF7;border:1px solid var(--line);border-radius:12px;padding:8px 12px;margin-top:6px}.hs p{margin:4px 0}
+.ft{background:#2E3A46;color:#c4c9cf;font-weight:300;font-size:10px;line-height:1.55;padding:10px 14px calc(10px + env(safe-area-inset-bottom))}.ft b{color:#fff;font-weight:500}
+#stt{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:rgba(46,58,70,.94);color:#fff;font-size:13.5px;padding:10px 16px;border-radius:999px;z-index:9;white-space:nowrap}
+[hidden]{display:none!important}
+</style></head>
+<body><div class="pg">
+<div class="smpbar">견본 · 이 모양으로 만들어 드립니다 · <a href="/card/new/">디지털 명함 만들기 ›</a></div>
+<header class="hero"><h1>견본 · 현수막 · 전단지 광고</h1><p>인쇄물 QR로 들어오는 가게 · 행사 홈페이지</p><div class="own"><span>대표 <b>홍길동</b> · 가게 · 단체 이름</span></div></header>
+<nav class="acts" style="grid-template-columns:repeat(4,1fr)"><a class="hi" href="#s" data-s="1"><span class="circ"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"/></svg></span><span>전화</span></a><a href="#s" data-s="1"><span class="circ"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 10h8M8 14h5"/></svg></span><span>문자</span></a><a href="#s" data-s="1"><span class="circ"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><span>길찾기</span></a><a href="#s" data-s="1"><span class="circ"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.5"/></svg></span><span>인스타</span></a></nav>
+<h2>행사 상품</h2><div class="mcs"><div class="mc"><span class="noimg"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="12" cy="11" r="3"/><path d="M8 17h8"/></svg></span><b>상품 1</b><small>사진 · 한 줄 설명</small><em>값</em></div><div class="mc"><span class="noimg"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="12" cy="11" r="3"/><path d="M8 17h8"/></svg></span><b>상품 2</b><small>사진 · 한 줄 설명</small><em>값</em></div><div class="mc"><span class="noimg"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="12" cy="11" r="3"/><path d="M8 17h8"/></svg></span><b>상품 3</b><small>사진 · 한 줄 설명</small><em>값</em></div></div>
+<div class="box"><b>행사 일정</b><span>기간 · 시간 · 장소를 적습니다</span><br><span class="sub">현수막 · 전단지의 QR 주소는 바뀌지 않아, 행사가 바뀌어도 다시 인쇄하지 않습니다</span></div>
+<h2>새 소식 <span class="newn" id="newn" hidden></span></h2><p class="note">새 행사 · 현장 사진을 이야기 방에 올리면 이 자리에 보입니다</p><div class="ph" id="ph" data-room=""></div>
+<h2>오시는 길</h2><div class="box"><span>주소를 적습니다</span><br><span class="sub">주차 · 찾아오는 길 한 줄</span><br><a class="tx" href="#s" data-s="1">길찾기 ›</a></div>
+<h2>문의</h2><div class="two"><a class="btn org" href="#s" data-s="1">전화 상담</a><a class="btn ln" href="#s" data-s="1">문자 상담</a></div>
+<div class="bund" style="grid-template-columns:repeat(3,1fr)"><a href="#s" data-s="1"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="8.5" cy="12" r="2"/><path d="M13 10h5M13 14h4"/></svg><span>디지털 명함</span></a><a href="#s" data-s="1"><svg viewBox="0 0 24 24"><path d="M5 19l1-4L16 5l3 3L9 18z"/><path d="M14 7l3 3"/></svg><span>블로그</span></a><a href="#s" data-s="1"><svg viewBox="0 0 24 24"><path d="M12 4C7 4 3 7.1 3 11c0 2.4 1.6 4.6 4 5.8L6 20l4-2.3c.7.1 1.3.2 2 .2 5 0 9-3.1 9-7s-4-7-9-7z"/></svg><span>카카오 채널</span></a></div>
+<div class="hs"><button type="button" id="hsb">휴대폰 홈 화면에 두기</button><div id="hsx" hidden><p>안드로이드: 오른쪽 위 ⋮ 메뉴 › 「홈 화면에 추가」</p><p>아이폰: 아래 □↑ 단추 › 「홈 화면에 추가」</p><p>카카오톡 안에서 여셨다면: 오른쪽 위 ⋮ › 「다른 브라우저로 열기」 뒤에 위처럼</p></div></div>
+<footer class="ft"><div><a href="https://www.loveflow.ai.kr/"><b>사랑흐름</b></a> · 디지털 명함 · 모바일 홈페이지 제작 © 2026 사랑흐름 · LFRI™ · 무단 복제 · 배포 · 상업적 이용 금지 · All rights reserved</div></footer>
+</div>
+<div id="stt" hidden>견본입니다 · 실제 홈페이지에서는 이 단추가 바로 연결됩니다</div>
+<script>
+(function(){
+[].forEach.call(document.querySelectorAll('[data-s]'),function(x){ x.onclick=function(ev){ ev.preventDefault(); var t=document.getElementById('stt'); t.hidden=false; clearTimeout(t._h); t._h=setTimeout(function(){ t.hidden=true; },2200); }; });
+var b=document.getElementById('hsb'); if(b){ b.onclick=function(){ var x=document.getElementById('hsx'); x.hidden=!x.hidden; }; }
+/* 이야기 방 공개 사진 — 열 때마다 /room/방번호/ 에서 읽음 · 이 휴대폰이 지난번에 본 것과 견줘 「새 소식 ○」 */
+var ph=document.getElementById('ph'); if(!ph){ return; } var C=ph.getAttribute('data-room'); if(!C){ ph.innerHTML='<div class="emp">새 소식은 이야기 방에 올린 사진이 이 자리에 보입니다</div>'; return; }
+var KEY='uri_home_seen_'+C, seen=[]; try{ seen=JSON.parse(localStorage.getItem(KEY)||'[]'); }catch(e){}
+function draw(list){ var u=[],s={}; list.forEach(function(x){ if(!s[x]){ s[x]=1; u.push(x); } });
+  ph.innerHTML=u.length?u.slice(0,9).map(function(x){ return '<a href="https://uriyagi.kr/?c='+C+'"><img src="'+x+'" alt="" loading="lazy"></a>'; }).join(''):'<div class="emp">아직 올린 사진이 없습니다</div>';
+  if(seen.length){ var n=u.filter(function(x){ return seen.indexOf(x)<0; }).length; var el=document.getElementById('newn'); if(el&&n){ el.textContent='새 소식 '+n; el.hidden=false; } }
+  try{ localStorage.setItem(KEY,JSON.stringify(u.slice(0,60))); }catch(e){} }
+var re=new RegExp('https://kr\\.object\\.ncloudstorage\\.com/uriyagi-photo/s/'+C+'/R-\\d+\\.jpg','g');
+try{ fetch('/room/'+C+'/',{cache:'no-cache'}).then(function(r){ return r.text(); }).then(function(t){ draw(t.match(re)||[]); }).catch(function(){ draw([]); }); }catch(e){ draw([]); }
+})();
+</script>
+</body></html>
