@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- [우리이야기] 디지털 명함 시험판 · card/C-1002 · v2 · 261125 · 홈페이지 · 전화 · 길찾기 단추(대표 17:14) · (v1) 무료 기본판 견본(종이 명함 사진 그대로) · 대표 23:30 · 261122 · 사랑흐름 대표 황규찬 · 대표 OK 23:12 「이대로 지으세요」 · 시안 v9 바탕 · 메일은 뺌(대표 23:20) · v+ 261123 「명함 보내기」(card/send.js) -->
+<!-- [우리이야기] 디지털 명함 시험판 · card/C-1002 · v3 · 261125 · 무료 명함과 같게: 맨 위 나도 만들기 · 오른쪽 세로 단추 · 바닥 고정 · 내 명함 보내기 · (v2) 261125 · 홈페이지 · 전화 · 길찾기 단추(대표 17:14) · (v1) 무료 기본판 견본(종이 명함 사진 그대로) · 대표 23:30 · 261122 · 사랑흐름 대표 황규찬 · 대표 OK 23:12 「이대로 지으세요」 · 시안 v9 바탕 · 메일은 뺌(대표 23:20) · v+ 261123 「명함 보내기」(card/send.js) -->
 <html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>황규찬 · 디지털 명함</title>
@@ -75,16 +75,21 @@ a{color:inherit;text-decoration:none}
 #toast button{margin-top:18px;border:0;border-radius:12px;background:#C9A96E;color:#2E3A46;font:inherit;font-size:17px;font-weight:700;padding:12px 0;width:100%}
 .pad.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .acts{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;padding:14px 8px 4px}.acts a{display:flex;flex-direction:column;align-items:center;font-size:13px;gap:5px;color:#333;text-decoration:none}.circ{width:50px;height:50px;border-radius:50%;border:1px solid #E7DFD3;background:#fff;box-shadow:0 1px 5px rgba(0,0,0,.09);display:grid;place-items:center;color:#1E4A76}.acts .ic{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.freebadge.lk{display:block;text-decoration:none;font-size:15px;letter-spacing:0;padding:10px 12px;text-align:center}.freebadge.lk small{font-size:12px;font-weight:800;letter-spacing:2px;margin-right:6px;opacity:.8}
+.rail{position:fixed;right:max(10px,calc(50vw - 230px));bottom:calc(86px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:10px;z-index:8}
+.rail a,.rail button{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.9);border:1px solid #E7DFD3;box-shadow:0 2px 8px rgba(0,0,0,.16);display:grid;place-items:center;color:#1E4A76;padding:0;cursor:pointer;text-decoration:none}
+.rail svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.dock{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;z-index:9;background:rgba(255,255,255,.97);box-shadow:0 -2px 10px rgba(0,0,0,.08);padding:10px 12px calc(10px + env(safe-area-inset-bottom));box-sizing:border-box}
+.pg{padding-bottom:84px}
 </style></head>
 <body><div class="pg">
-<div class="freebadge">무료 버전 <small>찍은 종이 명함 그대로</small></div>
+<a class="freebadge lk" href="/card/new/"><small>무료 버전</small>나도 디지털 명함 만들기 ›</a>
 <div class="paper"><img src="front.jpg" alt="황규찬 명함 앞면" width="1080" height="600"></div>
+<nav class="rail"><a href="https://www.loveflow.ai.kr/" aria-label="홈페이지" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7M5 10v10h14V10"/></svg></a><a href="tel:07041587786" aria-label="전화"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"/></svg></a><a href="https://map.naver.com/p/entry/place/1748542679" aria-label="길찾기" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></a><button type="button" id="share" aria-label="공유하기"><svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></button></nav>
 <div class="paper"><img src="back.jpg" alt="황규찬 명함 뒷면" width="1080" height="600" loading="lazy"></div>
-<nav class="acts"><a href="https://www.loveflow.ai.kr/" target="_blank" rel="noopener"><span class="circ"><svg class="ic" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7M5 10v10h14V10"/></svg></span>홈페이지</a><a href="tel:07041587786"><span class="circ"><svg class="ic" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"/></svg></span>전화</a><a href="https://map.naver.com/p/entry/place/1748542679" target="_blank" rel="noopener"><span class="circ"><svg class="ic" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>길찾기</a></nav>
-<div class="pad two"><a class="btn navy" id="save" href="hwang-gyuchan.vcf" download="황규찬_사랑흐름.vcf">연락처 저장</a><a class="btn org" id="send" href="#" data-card="C-1002" data-tel="010-2355-3565" data-name="황규찬">명함 보내기</a></div>
+<div class="pad two dock"><a class="btn navy" id="save" href="hwang-gyuchan.vcf" download="황규찬_사랑흐름.vcf">연락처 저장</a><a class="btn org" id="send" href="#" data-card="C-1002" data-tel="010-2355-3565" data-name="황규찬">내 명함 보내기</a></div>
 <div class="gap"></div>
 <div class="pad">
-<button class="btn ln" id="share"><svg class="shg" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>공유하기</button>
 <a class="btn org" href="/card/new/">나도 디지털 명함 만들기</a>
 </div>
 <footer class="ft"><div class="tx"><a href="https://www.loveflow.ai.kr/"><b>사랑흐름</b></a> · 디지털 명함 · 모바일 홈페이지 제작 © 2026 사랑흐름 · LFRI™ · 무단 복제 · 배포 · 상업적 이용 금지 · All rights reserved</div><a class="rp" href="https://pf.kakao.com/_ExndxfX/chat">신고</a></footer>

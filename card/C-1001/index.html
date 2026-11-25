@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- [우리이야기] 디지털 명함 시험판 · card/C-1001 · v6 · 261125 · 「하는 일」 다섯 줄 = 세부 페이지 링크(1/ ~ 5/) + 「자세히 보기 ›」(사랑흐름 메인 상품 줄 꼴) · 대표 실폰 지적 · (v5) 261123 · 「명함 보내기」(연락처 저장 옆 · card/send.js · 대표 OK 14:54) · (v4) 영어 · 중국어 화면 모두 옮김(LOVE FLOW · Hwang KyuChan · 상품 이름 옮김 · 주소 영어 · 푸터 · 대표 OK 14:26) · (v3) 한국어 · English · 中文 단추(사랑흐름-총괄-010 · 대표 OK 14:03 · 이름 HWANG KYUCHAN · 간체 · 상품 이름은 한글 그대로 · 고른 말은 기기에 기억) · (v2) 하는 일 다섯 줄 · 함께하는 곳 순서(대표 OK 13:50 · 시안 v13 · 소통) · (v1 261122) · 사랑흐름 대표 황규찬 · 대표 OK 23:12 「이대로 지으세요」 · 시안 v9 바탕 · 메일은 뺌(대표 23:20) -->
+<!-- [우리이야기] 디지털 명함 시험판 · card/C-1001 · v7 · 261125 · 바닥 고정 「연락처 저장 | 내 명함 보내기」(대표 17:49) ·261125 · 「하는 일」 다섯 줄 = 세부 페이지 링크(1/ ~ 5/) + 「자세히 보기 ›」(사랑흐름 메인 상품 줄 꼴) · 대표 실폰 지적 · (v5) 261123 · 「명함 보내기」(연락처 저장 옆 · card/send.js · 대표 OK 14:54) · (v4) 영어 · 중국어 화면 모두 옮김(LOVE FLOW · Hwang KyuChan · 상품 이름 옮김 · 주소 영어 · 푸터 · 대표 OK 14:26) · (v3) 한국어 · English · 中文 단추(사랑흐름-총괄-010 · 대표 OK 14:03 · 이름 HWANG KYUCHAN · 간체 · 상품 이름은 한글 그대로 · 고른 말은 기기에 기억) · (v2) 하는 일 다섯 줄 · 함께하는 곳 순서(대표 OK 13:50 · 시안 v13 · 소통) · (v1 261122) · 사랑흐름 대표 황규찬 · 대표 OK 23:12 「이대로 지으세요」 · 시안 v9 바탕 · 메일은 뺌(대표 23:20) -->
 <html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>사랑흐름 대표 황규찬 · 디지털 명함</title>
@@ -80,6 +80,8 @@ a{color:inherit;text-decoration:none}
 .brand .k.lat{font-size:22px;letter-spacing:1px}
 .who .nm.lat{font-family:inherit;font-size:24px;letter-spacing:1px;font-weight:800}
 .pad.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dock{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;z-index:9;background:rgba(255,255,255,.97);box-shadow:0 -2px 10px rgba(0,0,0,.08);padding:10px 12px calc(10px + env(safe-area-inset-bottom));box-sizing:border-box}
+.pg{padding-bottom:84px}
 </style></head>
 <body><div class="pg">
 <div class="band"></div>
@@ -101,7 +103,7 @@ a{color:inherit;text-decoration:none}
 <a href="https://pf.kakao.com/_ExndxfX"><span class="circ"><svg class="ic" viewBox="0 0 24 24"><path d="M12 4C7 4 3 7.1 3 11c0 2.4 1.6 4.6 4 5.8L6 20l4-2.3c.7.1 1.3.2 2 .2 5 0 9-3.1 9-7s-4-7-9-7z"/></svg></span>SNS</a>
 <a href="https://map.naver.com/p/entry/place/1748542679"><span class="circ"><svg class="ic" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><span data-t="map">길찾기</span></a>
 </nav>
-<div class="pad two"><a class="btn navy" id="save" href="hwang-gyuchan.vcf" download="황규찬_사랑흐름.vcf"><span data-t="save">연락처 저장</span></a><a class="btn org" id="send" href="#" data-card="C-1001" data-tel="010-2355-3565" data-name="황규찬"><span data-t="send">명함 보내기</span></a></div>
+<div class="pad two dock"><a class="btn navy" id="save" href="hwang-gyuchan.vcf" download="황규찬_사랑흐름.vcf"><span data-t="save">연락처 저장</span></a><a class="btn org" id="send" href="#" data-card="C-1001" data-tel="010-2355-3565" data-name="황규찬"><span data-t="send">내 명함 보내기</span></a></div>
 <div class="gap"></div>
 <div class="pic"><img src="photo.jpg" alt="좋은 사람들과, 좋은 이야기로 행복한 세상을 만들어가요" width="444" height="438" loading="lazy"></div>
 <div class="gap"></div>
