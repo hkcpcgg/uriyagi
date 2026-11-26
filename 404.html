@@ -93,7 +93,7 @@ var pg=document.getElementById('pg'), m=/^\/card\/(C-1\d{3})\/?$/i.exec(location
 function toast(b,p){ var t=document.getElementById('toast'); document.getElementById('tB').textContent=b; document.getElementById('tP').textContent=p||''; t.className='on'; }
 window.cardToast=toast; document.getElementById('tX').onclick=function(){ document.getElementById('toast').className=''; };
 function esc(v){ return String(v||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
-var FT='<footer class="ft"><div class="tx"><a href="https://www.loveflow.ai.kr/"><b>사랑흐름</b></a> · 디지털 명함 · 모바일 홈페이지 제작 © 2026 사랑흐름 · LFRI™ · 무단 복제 · 배포 · 상업적 이용 금지 · All rights reserved</div><a class="rp" href="#" id="rp">신고</a></footer>';
+var FT='<footer class="ft"><div class="tx"><a href="https://www.loveflow.ai.kr/use/"><b>사랑흐름</b></a> · 디지털 명함 · 모바일 홈페이지 제작 © 2026 사랑흐름 · LFRI™ · 무단 복제 · 배포 · 상업적 이용 금지 · All rights reserved</div><a class="rp" href="#" id="rp">신고</a></footer>';
 function miss(h,p){ document.title='사랑흐름'; pg.innerHTML='<div class="band"></div><div class="msg"><h1>'+h+'</h1><p>'+(p||'')+'</p><a href="/card/new/">나도 디지털 명함 만들기 ›</a><br><a href="/" style="color:#1E4A76">우리 이야기 ›</a></div>'; }
 if(!m){ miss('페이지를 찾지 못했습니다','주소를 한 번 더 확인해 주세요.'); return; }
 var NO=m[1].toUpperCase(), GAS=(window.LF_CONFIG&&LF_CONFIG.gas&&LF_CONFIG.gas.rec)||'';

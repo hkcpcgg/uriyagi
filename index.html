@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- ★ 현재 버전 ▶ rec/index.html · v235 · 261125 · [우리이야기] 명함 만들기 카카오 돌아오는 길 — state=card_t 면 /card/new/?code=…&t=1 (시험 표 이어 줌 · 대표 실폰 16:08) -->
+<!-- ★ 현재 버전 ▶ rec/index.html · v236 · 261126 · [우리이야기] ☰ 맨 아래 「사랑흐름 바로 가기」 밑에 한 줄 「사랑흐름 서비스 ›」 › www.loveflow.ai.kr/use/ (총괄 47번 · 대표 OK 16:47 입구) · 명함 · 모바일 홈페이지 푸터 「사랑흐름」 글자도 /use/ 로 -->
+<!-- (이전) rec/index.html · v235 · 261125 · [우리이야기] 명함 만들기 카카오 돌아오는 길 — state=card_t 면 /card/new/?code=…&t=1 (시험 표 이어 줌 · 대표 실폰 16:08) -->
 <!-- (이전) rec/index.html · v234 · 261125 · [우리이야기] lf/frame.js 사본 글 두 곳(총괄-029) — 「⋮ 메뉴(오른쪽 위)」 · 「링크를 복사했어요」 · frame.js?v=31b 로 새로 받게 함 -->
 <!-- (이전) rec/index.html · v233 · 261125 · [우리이야기] 통합 표준 v0.2 글 손질(총괄-027 · 대표 261124 21:04) — 고치기 → 수정 · 지우기 → 삭제(검색 지우기 · 관리자 지우기 규칙표는 그대로) · 성함 → 이름 · 다른 브라우저로 열기 단추 → 휴대폰 기본 앱에서 열기 · 다시 시도 → 다시 하기 · 양해 부탁 → 양해해 주세요 · 그만두기 → 취소 · 주소 복사 → 링크 복사 · 위 방 보이기 확인 → 저장 · 모양 · 동작 그대로 -->
 <!-- (이전) rec/index.html · v232 · 261123 · [우리이야기] 디지털 명함 만들기 — 카카오가 state=card 로 돌려보내면 /card/new/ 로 넘김 -->
@@ -1228,6 +1229,7 @@ body.tbh .posb{top:0}
 .rmenu .mrow{padding-left:16px;padding-right:16px}
 .rmenu .rsl{font-size:12.5px;color:var(--sub);padding:12px 16px 2px;font-weight:800}
 .rmenu .rlf{border-top:1px solid var(--line);margin-top:8px;padding:12px 4px 4px}.rmenu .rlf .lfog{margin:0 0 10px}.rmenu .rlf .ur{padding:10px 12px}
+.rlf .lfsv{display:flex;justify-content:space-between;align-items:center;padding:12px 6px;min-height:46px;font-size:14.5px;color:var(--sub);text-decoration:none;border-top:1px solid var(--line)}.rlf .lfsv i{font-style:normal;color:var(--navy);font-size:18px}
 .hob{display:flex;align-items:center;gap:12px;width:100%;border:0;border-radius:16px;padding:15px 14px;margin:0 0 10px;text-align:left;font-size:16px;font-weight:800;font-family:inherit;cursor:pointer;background:#E1F5EE;color:#04342C}
 .hob small{display:block;font-weight:500;font-size:13px;opacity:.85;margin-top:2px}
 .hob .ic{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-size:20px;color:#fff;background:#0F6E56;flex:none}
@@ -6148,7 +6150,7 @@ function recMenu(){
   if(!pwaIn()){ h+=row('pwa',ic('home'),'c-green','홈 화면에 추가','아이콘으로 바로 들어옵니다'); }
   if(ME&&!isGuest()){ h+=row('menu',ic('star'),'c-gray','이 방 설정 · 메뉴','보일 이름 · 카카오 연결 · 이 방에서 나가기'); }
   if(mode==='room'&&ME&&!isBoss()&&(K||G)){ h+=row('flag','🚩','c-gray','신고','사칭 · 부적절한 내용'); }   /* ★v80 422 */
-  h+='<div class="rlf"><a class="lfog" href="https://www.loveflow.ai.kr/"><img src="/lf-og-261118.jpg" alt="MBTI와 사랑흐름 LFRI로 두 사람 사이를 이어갑니다 — 사랑흐름" loading="lazy" width="1200" height="630"><span class="lfb">사랑흐름 바로 가기 ›</span></a></div>';   /* ★v198 ☰ 맨 아래 — 옛 「사랑흐름 홈」 줄은 분리 뒤 우리 이야기(/)로 가던 헛손질 */
+  h+='<div class="rlf"><a class="lfog" href="https://www.loveflow.ai.kr/"><img src="/lf-og-261118.jpg" alt="MBTI와 사랑흐름 LFRI로 두 사람 사이를 이어갑니다 — 사랑흐름" loading="lazy" width="1200" height="630"><span class="lfb">사랑흐름 바로 가기 ›</span></a><a class="lfsv" href="https://www.loveflow.ai.kr/use/">사랑흐름 서비스<i>›</i></a></div>';   /* ★v236 맨 아래 한 줄 「사랑흐름 서비스」 › /use/(총괄 47번) · ★v198 ☰ 맨 아래 — 옛 「사랑흐름 홈」 줄은 분리 뒤 우리 이야기(/)로 가던 헛손질 */
   var d=document.createElement('div'); d.className='dim rmd'; d.id='dimTop'; d.innerHTML='<nav class="rmenu" aria-label="우리 이야기 메뉴">'+h+'</nav>';
   d.onclick=function(e){ if(e.target===d){ closeSheet(); } }; document.body.appendChild(d); holdHistory();
   $('rmX').onclick=closeSheet;
@@ -6947,7 +6949,7 @@ window.addEventListener('appinstalled',function(){ PWA_EV=null; var b=$('pwaGo')
 try{ if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js',{scope:'/'})['catch'](function(){});
   /* ★v62 375 새 화면 파일을 받아 오면 한 번 바꿔 엶 — 첫 화면 · 광장에서만(쓰는 중에는 기다렸다가 첫 화면으로 돌아올 때) */
   navigator.serviceWorker.addEventListener('message',function(ev){ if(!ev.data||ev.data.t!=='lf-new'){ return; } NEWV=1; newGo(); }); } }catch(e){}
-var NEWV=0, REC_VER=235;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
+var NEWV=0, REC_VER=236;   /* ★v83 이 화면 버전 — 남겨 둔 화면이 이보다 새로우면 바꿔 엶 */
 function newChk(){ try{ if(!window.caches){ return; } caches.open('lf-rec-shell-v2').then(function(c){ return c.match('/'); }).then(function(r){ return r?r.text():''; }).then(function(t){ var m=/rec\/index\.html · v(\d+)/.exec(String(t).slice(0,600)); if(m&&parseInt(m[1],10)>REC_VER){ NEWV=1; newGo(); } })['catch'](function(){}); }catch(e){} }   /* ★v62 375 알림을 놓쳐도 남겨 둔 파일 버전을 직접 봄 */
 setTimeout(newChk,5000); setTimeout(newChk,15000);
 document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible'){ setTimeout(newChk,1500); } });

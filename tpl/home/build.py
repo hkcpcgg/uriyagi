@@ -64,7 +64,7 @@ def build(d):
   lk=d.get('links') or []
   if lk: o.append('<div class="bund" style="grid-template-columns:repeat(%d,1fr)">'%min(3,len(lk))+''.join(a(x['u'],svg(x['k'])+'<span>'+e(x.get('label') or LBL.get(x['k'],''))+'</span>') for x in lk)+'</div>')
   o.append('<div class="hs"><button type="button" id="hsb">휴대폰 홈 화면에 두기</button><div id="hsx" hidden><p>안드로이드: 오른쪽 위 ⋮ 메뉴 › 「홈 화면에 추가」</p><p>아이폰: 아래 □↑ 단추 › 「홈 화면에 추가」</p><p>카카오톡 안에서 여셨다면: 오른쪽 위 ⋮ › 「다른 브라우저로 열기」 뒤에 위처럼</p></div></div>')
-  o.append('<footer class="ft"><div><a href="https://www.loveflow.ai.kr/"><b>사랑흐름</b></a> · 디지털 명함 · 모바일 홈페이지 제작 © 2026 사랑흐름 · LFRI™ · 무단 복제 · 배포 · 상업적 이용 금지 · All rights reserved</div></footer>')
+  o.append('<footer class="ft"><div><a href="https://www.loveflow.ai.kr/use/"><b>사랑흐름</b></a> · 디지털 명함 · 모바일 홈페이지 제작 © 2026 사랑흐름 · LFRI™ · 무단 복제 · 배포 · 상업적 이용 금지 · All rights reserved</div></footer>')
   robots='noindex' if d.get('sample') or d.get('noindex') else 'index,follow'
   head=('<!DOCTYPE html>\n<!-- [우리이야기] 모바일 홈페이지 · home/%s · 틀 엔진 tpl/home/build.py 로 만듦(손으로 고치지 말고 data/%s.json 을 고친 뒤 다시 돌림) -->\n'%(hid,hid)+
    '<html lang="ko"><head><meta charset="utf-8">\n<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">\n'

@@ -56,7 +56,7 @@ def build(d):
   lk=d.get('links') or []
   if lk: o.append('<div class="gap"></div><div class="pad"><div class="bund b4" style="grid-template-columns:repeat(%d,1fr)">'%min(4,len(lk))+''.join(a(x['u'],svg(x['k'],'ic')+'<span>'+e(x.get('label') or LBL.get(x['k'],''))+'</span>') for x in lk)+'</div></div>')
   o.append('<div class="gap"></div><div class="pad"><button class="btn ln" id="share">'+SHARE+'공유하기</button><a class="btn org" href="/card/new/">무료 디지털 명함 만들기</a></div>')
-  o.append('<footer class="ft"><div class="tx"><a href="https://www.loveflow.ai.kr/"><b>사랑흐름</b></a> · 디지털 명함 · 모바일 홈페이지 제작 © 2026 사랑흐름 · LFRI™ · 무단 복제 · 배포 · 상업적 이용 금지 · All rights reserved</div><a class="rp" href="https://pf.kakao.com/_ExndxfX/chat">신고</a></footer>')
+  o.append('<footer class="ft"><div class="tx"><a href="https://www.loveflow.ai.kr/use/"><b>사랑흐름</b></a> · 디지털 명함 · 모바일 홈페이지 제작 © 2026 사랑흐름 · LFRI™ · 무단 복제 · 배포 · 상업적 이용 금지 · All rights reserved</div><a class="rp" href="https://pf.kakao.com/_ExndxfX/chat">신고</a></footer>')
   robots='noindex' if d.get('sample') or d.get('noindex') else 'index,follow'
   css=open(os.path.join(HERE,'card.css'),encoding='utf-8').read(); js=open(os.path.join(HERE,'card.js'),encoding='utf-8').read()
   page=('<!DOCTYPE html>\n<!-- [우리이야기] 디지털 명함 · card/%s · 틀 엔진 tpl/card/build.py 로 만듦(손으로 고치지 말고 data/%s.json 을 고친 뒤 다시 돌림) -->\n'%(cid,cid)+
