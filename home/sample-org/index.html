@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!-- [우리이야기] 단체 모바일 홈페이지(임시 이름) · 네 화면 시안 v3 · 261126 · 대표 14:11(표지 사진 · 흐린 이름 · 소개 접고 펼침 · 회원 검색 한 줄 · 전체 회원 보기 · 사무국 · 찾아오는 길 · 사용법과 교육 문의 가름) · (v2) · 대표 14:04 차례 바꿈(소개 › 회원 › 소식 · 행사(우리 이야기 방) › 연락 · 오시는 길 › 교육 · 사랑흐름은 맨 아래 작은 한 줄씩)
+     근거: 사랑흐름 총괄 45번 범위표 · GPT 이사 회신(화면 말 · 네 걸음) · GPT 디자인 기준서
+     꼴: 모바일 홈페이지 틀 엔진 tpl/home/home.css 를 그대로 옮겨 씀(색 · 칸 · 단추 · 푸터) · 새 색 없음
+     견본 자료는 모두 가상(가게 이름 · 단체 이름) · 실제 헤이리 상호 넣지 않음 · 운영 화면에 반영 안 함 -->
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow"><meta name="description" content="단체 모바일 홈페이지 견본 · 사랑흐름">
+<title>견본 · 단체 모바일 홈페이지 네 화면</title>
+<style>
+/* ── 틀 엔진 home.css 그대로 ── */
+:root{--or:#C9A96E;--or2:#7A3520;--navy:#1E4A76;--ink:#2E3A46;--sub:#4A525C;--line:#ECE4D8;--sand:#F4EEE4}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;background:var(--sand)}
+body{font-family:-apple-system,'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;color:var(--ink);line-height:1.55}
+a{color:inherit;text-decoration:none}.pg{max-width:520px;margin:0 auto;background:#fff;min-height:100vh}
+.smpbar{background:#FFF8E1;border-bottom:1px solid #E9D18A;color:#5a4a00;font-size:13px;text-align:center;padding:7px 10px}
+.hero{background:linear-gradient(160deg,#1E4A76,#2D5A9A);color:#fff;padding:22px 18px 22px;text-align:center}
+.hero h1{margin:10px 0 2px;font-size:25px}.hero p{margin:0;font-size:14.5px;opacity:.92}
+.acts{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:16px 10px 6px}.acts a{display:flex;flex-direction:column;align-items:center;font-size:13px;gap:5px;color:#333}
+.circ{width:52px;height:52px;border-radius:50%;border:1px solid #E7DFD3;background:#fff;box-shadow:0 1px 5px rgba(0,0,0,.09);display:grid;place-items:center;color:#1E4A76}
+.circ svg,.noimg svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.acts .hi .circ{background:var(--or);border-color:var(--or);color:#2E3A46}.acts .hi{font-weight:700;color:var(--or2)}
+h2{margin:18px 16px 10px;font-size:18px;color:var(--navy)}
+.noimg{display:grid;place-items:center;height:110px;background:#F3EEE6;color:#9aa4b0}.noimg svg{width:34px;height:34px}
+.box{margin:10px 16px;background:#FFFCF7;border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:14.5px}.box b{display:block;color:var(--navy)}.box .sub{color:var(--sub)}
+.ph{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.note{font-size:12.5px;color:var(--sub);margin:-4px 16px 8px}
+.btn{display:flex;align-items:center;justify-content:center;margin:10px 16px;border-radius:13px;padding:15px;font-weight:800;font-size:16.5px;min-height:48px;border:0;font-family:inherit;cursor:pointer;width:calc(100% - 32px)}
+.navy{background:#1E4A76;color:#fff}.org{background:var(--or);color:#2E3A46}.ln{border:1.5px solid #1E4A76!important;color:#1E4A76;background:#fff}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 16px}.two .btn{margin:0;width:auto}
+.bund{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:14px 16px 6px}.bund a{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 4px;text-align:center;font-size:14px;color:#333}.bund svg{display:block;margin:0 auto 5px;width:22px;height:22px;stroke:#1E4A76;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ft{background:#2E3A46;color:#c4c9cf;font-weight:300;font-size:10px;line-height:1.55;padding:10px 14px calc(10px + env(safe-area-inset-bottom))}.ft b{color:#fff;font-weight:500}
+#stt{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:rgba(46,58,70,.94);color:#fff;font-size:13.5px;padding:10px 16px;border-radius:999px;z-index:9;white-space:nowrap}
+[hidden]{display:none!important}
+.more{display:block;margin:2px 16px 6px;text-align:right;font-size:14px;font-weight:800;color:var(--navy)}
+
+/* ── 시안에서 더한 것(새로 지을 칸) — 틀의 색 · 모서리 · 간격 그대로 ── */
+.tabs{position:sticky;top:0;z-index:5;display:grid;grid-template-columns:repeat(4,1fr);background:#2E3A46;max-width:520px;margin:0 auto}
+.tabs button{border:0;background:none;color:#c4c9cf;font:inherit;font-size:13px;padding:11px 2px;min-height:44px;cursor:pointer}.tabs button.on{color:#fff;font-weight:800;box-shadow:inset 0 -3px 0 var(--or)}
+.scr[hidden]{display:none}
+.top{display:flex;align-items:center;gap:6px;padding:10px 12px;border-bottom:1px solid var(--line);font-weight:800;color:var(--navy);font-size:15.5px}
+.top a{display:grid;place-items:center;width:44px;height:44px;margin:-6px 0 -6px -8px;font-size:26px;font-weight:400}
+.ph span{aspect-ratio:1;display:block}
+.srch{display:flex;gap:8px;margin:0 16px 10px}.srch input{flex:1;min-width:0;border:1.5px solid #D9CFC0;border-radius:12px;padding:12px 14px;font:inherit;font-size:16px;min-height:48px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 16px 10px}.chips button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 13px;font:inherit;font-size:14px;color:#333;min-height:40px;cursor:pointer}.chips button.on{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:700}
+.mg{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px}
+.mm{background:#FFFCF7;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:block}
+.mm .noimg{height:96px}.mm b{display:block;padding:8px 10px 0;font-size:15px}.mm small{display:block;padding:0 10px 10px;color:var(--sub);font-size:12.5px}
+.ml a,.ml div{display:flex;align-items:center;gap:12px;padding:10px 16px;border-bottom:1px solid var(--line);min-height:64px}
+.ml .th{width:48px;height:48px;border-radius:10px;background:#F3EEE6;display:grid;place-items:center;color:#9aa4b0;flex:none}.ml .th svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8}
+.ml span.t{flex:1;min-width:0}.ml b{display:block;font-size:15.5px}.ml small{color:var(--sub);font-size:13px}.ml i{font-style:normal;color:var(--navy);font-size:20px}
+.ml .wait b{color:#8a929b}.ml .wait small{color:#a0a7ae}
+.cnt{margin:0 16px 6px;font-size:13.5px;color:var(--sub)}
+.rows a{display:flex;align-items:center;justify-content:space-between;margin:0 16px;padding:14px 4px;border-bottom:1px solid var(--line);font-size:16px;font-weight:700;color:var(--ink);min-height:52px}.rows a i{font-style:normal;color:var(--navy);font-size:20px}
+.lead{margin:-2px 16px 10px;font-size:14.5px;color:var(--sub)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:14px 16px 4px}.steps span{text-align:center;font-size:12px;color:#9aa4b0}.steps span:before{content:'';display:block;height:5px;border-radius:3px;background:#E7DFD3;margin-bottom:6px}.steps span.on{color:var(--navy);font-weight:800}.steps span.on:before{background:var(--or)}
+.stp[hidden]{display:none}
+.kakao{background:#FEE500;color:#191919}
+.fld{margin:0 16px 10px}.fld label{display:block;font-size:13px;color:var(--sub);margin-bottom:4px}.fld .v{border:1px solid var(--line);background:#F9F6F0;border-radius:12px;padding:12px 14px;font-size:16px}
+.opt{display:flex;align-items:flex-start;gap:10px;margin:0 16px 8px;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;cursor:pointer;min-height:48px}.opt input{margin-top:4px;width:18px;height:18px;accent-color:#1E4A76}.opt b{display:block;font-size:15.5px}.opt small{color:var(--sub);font-size:13px}
+.sw{display:flex;align-items:center;justify-content:space-between;margin:0 16px;padding:12px 2px;border-bottom:1px solid var(--line);min-height:52px;font-size:15.5px}
+.sw input{appearance:none;-webkit-appearance:none;width:48px;height:28px;border-radius:999px;background:#D9D3CA;position:relative;cursor:pointer;flex:none}.sw input:before{content:'';position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:left .15s}.sw input:checked{background:#0F6E56}.sw input:checked:before{left:23px}
+.sw small{display:block;color:var(--sub);font-size:12.5px}
+.done{text-align:center;padding:26px 16px 6px}.done .ok{width:64px;height:64px;border-radius:50%;background:#E6F2EE;color:#0F6E56;display:grid;place-items:center;margin:0 auto 10px;font-size:30px;font-weight:800}
+.lk{display:block;text-align:center;margin:6px 16px 12px;font-size:14px;font-weight:700;color:var(--navy);text-decoration:underline;background:none;border:0;font-family:inherit;width:calc(100% - 32px);cursor:pointer;min-height:44px}
+.tag{display:inline-block;font-size:11.5px;font-weight:800;border-radius:6px;padding:1px 7px;margin-left:6px;vertical-align:2px;background:#FFF1D6;color:#7A3520}
+.mini{margin:22px 16px 18px;border-top:1px solid var(--line)}.mini a{display:flex;align-items:center;justify-content:space-between;padding:12px 2px;border-bottom:1px solid var(--line);font-size:14px;color:var(--sub);min-height:48px}.mini a i{font-style:normal;color:var(--navy);font-size:18px}
+.ph a{aspect-ratio:1;display:block}
+.cover{position:relative;height:220px;overflow:hidden;background:#3a5a7a}
+.cv-img{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(0,0,0,.45)),linear-gradient(135deg,#9DB7C9 0%,#C9B79A 45%,#7F9A7A 100%)}
+.cv-t{position:absolute;left:0;right:0;bottom:0;padding:14px 18px 16px;color:#fff;background:rgba(30,74,118,.28);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
+.cv-t h1{margin:0;font-size:23px;opacity:.9;text-shadow:0 1px 6px rgba(0,0,0,.35)}.cv-t p{margin:2px 0 0;font-size:14px;opacity:.85}
+.cv-n{position:absolute;top:10px;right:10px;font-size:11.5px;color:#fff;background:rgba(0,0,0,.35);border-radius:999px;padding:3px 9px}
+.fold summary{list-style:none;cursor:pointer;position:relative;padding-right:22px}.fold summary::-webkit-details-marker{display:none}
+.fold summary:after{content:'⌄';position:absolute;right:0;top:-2px;color:var(--navy);font-size:20px}.fold[open] summary:after{content:'⌃';top:4px}
+.fold .one{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.fold[open] .one{display:none}.fold>span.sub{display:block;margin-top:2px}
+.mag{flex:1;display:flex;align-items:center;gap:8px;border:1.5px solid #D9CFC0;border-radius:12px;padding:0 12px;min-height:48px;background:#fff}.mag svg{width:20px;height:20px;stroke:#1E4A76;fill:none;stroke-width:2;stroke-linecap:round;flex:none}.mag input{border:0!important;padding:12px 0!important;outline:0;flex:1;min-width:0;font:inherit;font-size:16px}
+ol.st{margin:6px 0 0;padding-left:20px}ol.st li{margin:2px 0}
+</style></head><body>
+<!-- ═════ ① 단체 홈 ═════ -->
+<div class="pg">
+<div class="smpbar">견본 · 이 모양으로 만들어 드립니다 · <a href="https://www.loveflow.ai.kr/use/#o" style="font-weight:800;color:#1E4A76">단체 홈페이지 ›</a></div>
+<header class="cover"><div class="cv-img" role="img" aria-label="모임 표지 사진" style="background:url(https://www.loveflow.ai.kr/rec/seed/sample/bike/b5.jpg) center/cover no-repeat"></div><div class="cv-t"><h1>견본 · 두바퀴 주말 모임</h1><p>자전거 · 걷기 · 수영을 함께 하는 동네 모임</p></div></header>
+
+<details class="box fold"><summary><b>우리 모임을 소개합니다</b><span class="sub one">주말마다 강변을 달리고 산길을 걷습니다.</span></summary><span class="sub">주말마다 강변을 달리고 산길을 걷습니다. 동네 가게 사장님과 직장인 회원 마흔여 명이 함께하고, 모임 소식과 사진이 이곳에 모입니다. (가상 모임 · 견본 글)</span></details>
+
+<div class="srch" style="margin-top:18px"><span class="mag"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input type="search" placeholder="회원 검색 (이름 · 상호)" aria-label="회원 검색 (이름 · 상호)" data-s="1" readonly></span></div>
+<div class="mg" id="mgHome"></div>
+<a class="more" href="#s" data-s="1" style="margin-top:8px">전체 회원 보기 ›</a>
+
+<h2>소식 · 행사</h2>
+<div class="ph"><a href="#s" data-s="1" style="background:url(https://www.loveflow.ai.kr/rec/seed/sample/bike/b2.jpg) center/cover no-repeat"></a><a href="#s" data-s="1" style="background:url(https://www.loveflow.ai.kr/rec/seed/sample/hike/h5.jpg) center/cover no-repeat"></a><a href="#s" data-s="1" style="background:url(https://www.loveflow.ai.kr/rec/seed/sample/swim/s1.jpg) center/cover no-repeat"></a><a href="#s" data-s="1" style="background:url(https://www.loveflow.ai.kr/rec/seed/sample/bike/b3.jpg) center/cover no-repeat"></a><a href="#s" data-s="1" style="background:url(https://www.loveflow.ai.kr/rec/seed/sample/hike/h2.jpg) center/cover no-repeat"></a><a href="#s" data-s="1" style="background:url(https://www.loveflow.ai.kr/rec/seed/sample/bike/b1.jpg) center/cover no-repeat"></a></div>
+<p class="note" style="margin-top:6px">우리 이야기 방에 올린 공개 사진이 이 자리에 보입니다 · 누르면 그 방으로</p>
+<a class="more" href="#s" data-s="1">우리 이야기 방 ›</a>
+
+<h2>두바퀴 모임 · 모이는 곳</h2>
+<div class="box" style="margin-top:0"><b>○○강 자전거길 1번 쉼터</b><span class="sub">토요일 아침 7시 · 비 오면 쉼(가상 · 견본)</span></div>
+<nav class="acts" style="padding-top:2px"><a class="hi" href="#s" data-s="1"><span class="circ"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"/></svg></span><span>총무 전화</span></a><a href="#s" data-s="1"><span class="circ"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><span>길찾기</span></a><a href="#s" data-s="1"><span class="circ"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.5"/></svg></span><span>인스타</span></a><a href="#s" data-s="1"><span class="circ"><svg viewBox="0 0 24 24"><path d="M5 19l1-4L16 5l3 3L9 18z"/><path d="M14 7l3 3"/></svg></span><span>블로그</span></a></nav>
+
+<div class="mini"><a href="https://uriyagi.kr/guide/">사용법 · 스스로 배우기<i>›</i></a><a href="#s" data-s="1">단체 교육 문의<i>›</i></a><a href="https://www.loveflow.ai.kr/use/#o">사랑흐름으로 더 풍성하게<i>›</i></a></div>
+<footer class="ft"><div><a href="https://www.loveflow.ai.kr/"><b>사랑흐름</b></a> · 디지털 명함 · 모바일 홈페이지 제작 © 2026 사랑흐름 · LFRI™ · 무단 복제 · 배포 · 상업적 이용 금지 · All rights reserved</div></footer>
+</div>
+
+<div id="stt" hidden>견본입니다 · 실제 홈페이지에서는 이 단추가 바로 연결됩니다</div>
+<script>
+(function(){
+function $(i){ return document.getElementById(i); }
+document.addEventListener('click',function(e){ var a=e.target.closest('[data-s]'); if(!a){ return; } e.preventDefault(); var t=$('stt'); t.hidden=false; clearTimeout(t._h); t._h=setTimeout(function(){ t.hidden=true; },2200); });
+document.addEventListener('focusin',function(e){ if(e.target.matches&&e.target.matches('input[data-s]')){ e.target.blur(); var t=$('stt'); t.hidden=false; clearTimeout(t._h); t._h=setTimeout(function(){ t.hidden=true; },2200); } });
+var B='https://www.loveflow.ai.kr/rec/seed/sample/', M=[['바람길 자전거','자전거 · 수리','bike/b3.jpg'],['산들 커피','카페','hike/h1.jpg'],['한결 스포츠','운동용품','bike/b4.jpg'],['늘봄 사진관','사진관','hike/h3.jpg'],['김하늘','회원 · 산행','hike/h4.jpg'],['이바다','회원 · 수영','swim/s2.jpg'],['푸른 분식','음식점','bike/b1.jpg'],['오솔길 꽃집','꽃집','hike/h2.jpg']];
+var IC='<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="12" cy="11" r="3"/><path d="M8 17h8"/></svg>';
+for(var i=M.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)),t=M[i]; M[i]=M[j]; M[j]=t; }
+$('mgHome').innerHTML=M.slice(0,4).map(function(x){ return '<a class="mm" href="#s" data-s="1"><span class="noimg" style="background:url('+B+x[2]+') center/cover no-repeat"></span><b>'+x[0]+'</b><small>'+x[1]+'</small></a>'; }).join('');
+})();
+</script>
+</body></html>
