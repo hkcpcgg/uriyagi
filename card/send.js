@@ -1,4 +1,4 @@
-/* [우리이야기] card/send.js · v5 · 261125 · 「이 휴대폰의 내 명함으로」 단추 뺌(손님 모두에게 보일 필요 없음 · 말이 어려움) · 내 명함 기억은 ?me=1 로만 · (v4) 261123 · 대표 19:55 — 누가 누구에게 보내는지 분명히 · 정중한 회신 글 · 내 명함 없어도 이름을 적어 인사 + 무료 디지털 명함 주소를 함께 보냄 · 연락처 저장 방법 안내(이 휴대폰 · QR 로 옆 휴대폰) · (v3) 대표 19:34 — 「연락처 저장」 누르면 휴대폰별 저장 안내 · 내 명함이 없을 때 인사 문자만 보내지 않고 먼저 물음(무료로 만들기 / 인사 문자만) · (v2) 日本語 더함 · (v1) · 「명함 보내기」 — 받은 명함 자리에서 내 명함을 그 명함 주인 휴대폰으로 문자로 바로 보냄(대표 OK 14:54)
+/* [우리이야기] card/send.js · v6 · 261126 · 「먼저 내 디지털 명함 만들기」에 ?from=명함번호(총괄-024) · (v5) 261125 · 「이 휴대폰의 내 명함으로」 단추 뺌(손님 모두에게 보일 필요 없음 · 말이 어려움) · 내 명함 기억은 ?me=1 로만 · (v4) 261123 · 대표 19:55 — 누가 누구에게 보내는지 분명히 · 정중한 회신 글 · 내 명함 없어도 이름을 적어 인사 + 무료 디지털 명함 주소를 함께 보냄 · 연락처 저장 방법 안내(이 휴대폰 · QR 로 옆 휴대폰) · (v3) 대표 19:34 — 「연락처 저장」 누르면 휴대폰별 저장 안내 · 내 명함이 없을 때 인사 문자만 보내지 않고 먼저 물음(무료로 만들기 / 인사 문자만) · (v2) 日本語 더함 · (v1) · 「명함 보내기」 — 받은 명함 자리에서 내 명함을 그 명함 주인 휴대폰으로 문자로 바로 보냄(대표 OK 14:54)
    + 이 휴대폰이 기억한 내 명함(localStorage uri_my_card)이 있으면 그 주소를 실어 보냄
    + 내 명함 주인이 처음 한 번 `내명함주소?me=1` 로 열면 이 휴대폰이 내 명함으로 기억
    + 내 명함을 내가 보고 있으면 휴대폰 공유 창(아무에게나 보내기)
@@ -43,7 +43,7 @@ function noCard(){ var nm=''; try{ nm=localStorage.getItem('uri_my_name')||''; }
   var d=sheet('<b style="display:block;font-size:19px;color:#1E4A76">'+(OWN?esc(OWN)+'님께 ':'')+'명함 회신 보내기</b><p style="margin:8px 0 4px;font-size:15px;color:#444;line-height:1.5">문자는 <b>'+(OWN?esc(OWN)+'님':'이 명함 주인')+'</b> 휴대폰으로 갑니다. 이 휴대폰에는 아직 내 디지털 명함이 없어, 이름과 소속을 적어 정중한 인사와 함께 보냅니다.</p>'+
   '<input id="snNm" value="'+esc(nm)+'" placeholder="예: 사랑흐름 대표 황규찬" style="width:100%;box-sizing:border-box;margin-top:8px;font:inherit;font-size:16px;border:1px solid #ddd;border-radius:10px;padding:11px">'+
   '<button type="button" id="snHi" style="'+B+'background:#C9A96E;color:#2E3A46">인사와 함께 보내기</button>'+
-  '<a href="/card/new/" style="'+B+'background:#fff;color:#1E4A76;border:1.5px solid #1E4A76">먼저 내 디지털 명함 만들기 (무료)</a>'+
+  '<a href="/card/new/'+((/\/card\/(C-\d+)/.exec(location.pathname)||[])[1]?'?from='+/\/card\/(C-\d+)/.exec(location.pathname)[1]:'')+'" style="'+B+'background:#fff;color:#1E4A76;border:1.5px solid #1E4A76">먼저 내 디지털 명함 만들기 (무료)</a>'+
   '<p style="margin:12px 0 0;font-size:12.5px;color:#777;line-height:1.5">보내는 글: 「[명함 회신] '+(OWN?esc(OWN)+'님, ':'')+'보내 주신 디지털 명함 잘 받았습니다. 저는 ○○입니다. 반갑습니다.」 와 무료 디지털 명함 주소. 이미 디지털 명함이 있으시면 「내 명함」 화면(uriyagi.kr/card/my/)에서 「보기」를 한 번 눌러 주세요. 그 뒤로는 명함 주소가 함께 갑니다.</p>'+
   '<button type="button" data-x="1" style="'+B+'background:#f3f3f3;color:#555">닫기</button>');
   d.querySelector('#snHi').onclick=function(){ var v=(d.querySelector('#snNm').value||'').trim().slice(0,40); if(!v){ d.querySelector('#snNm').focus(); return; } try{ localStorage.setItem('uri_my_name',v); }catch(e){} d.remove(); sms(koMsg('',v)); }; }

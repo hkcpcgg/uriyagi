@@ -55,7 +55,7 @@ def build(d):
   if d.get('map'): o.append('<div class="gap"></div><div class="map">'+a(d['map'].get('link','#s'),'<img src="%s" alt="오시는 길" loading="lazy">'%e(d['map']['img']))+'</div>')
   lk=d.get('links') or []
   if lk: o.append('<div class="gap"></div><div class="pad"><div class="bund b4" style="grid-template-columns:repeat(%d,1fr)">'%min(4,len(lk))+''.join(a(x['u'],svg(x['k'],'ic')+'<span>'+e(x.get('label') or LBL.get(x['k'],''))+'</span>') for x in lk)+'</div></div>')
-  o.append('<div class="gap"></div><div class="pad"><button class="btn ln" id="share">'+SHARE+'공유하기</button><a class="btn org" href="/card/new/">무료 디지털 명함 만들기</a></div>')
+  o.append('<div class="gap"></div><div class="pad"><button class="btn ln" id="share">'+SHARE+'공유하기</button><a class="btn org" href="/card/new/'+(('?from='+str(d.get('id'))) if str(d.get('id','')).startswith('C-') else '')+'">무료 디지털 명함 만들기</a></div>')
   o.append('<footer class="ft"><div class="tx"><a href="https://www.loveflow.ai.kr/use/"><b>사랑흐름</b></a> · 디지털 명함 · 모바일 홈페이지 제작 © 2026 사랑흐름 · LFRI™ · 무단 복제 · 배포 · 상업적 이용 금지 · All rights reserved</div><a class="rp" href="https://pf.kakao.com/_ExndxfX/chat">신고</a></footer>')
   robots='noindex' if d.get('sample') or d.get('noindex') else 'index,follow'
   css=open(os.path.join(HERE,'card.css'),encoding='utf-8').read(); js=open(os.path.join(HERE,'card.js'),encoding='utf-8').read()
@@ -66,7 +66,7 @@ def build(d):
    '<link rel="icon" href="/uri-favicon-48.png">\n<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;900&display=swap" rel="stylesheet">\n'
    '<style>\n'+css+'</style>\n</head>\n<body><div class="pg">\n'+'\n'.join(x for x in o if x)+'\n</div>\n'
    '<div id="toast"><div><b id="tB"></b><p id="tP"></p><button type="button" id="tX">확인</button></div></div>\n'
-   '<script>var CARD_URL=%s, CARD_VCF=%s, CARD_TITLE=%s;</script>\n<script>\n'%(json.dumps(url),json.dumps(url+vname),json.dumps(d['brand']+' · 디지털 명함',ensure_ascii=False))+js+'</script>\n<script src="../send.js?v=5" defer></script>\n</body></html>\n')
+   '<script>var CARD_URL=%s, CARD_VCF=%s, CARD_TITLE=%s;</script>\n<script>\n'%(json.dumps(url),json.dumps(url+vname),json.dumps(d['brand']+' · 디지털 명함',ensure_ascii=False))+js+'</script>\n<script src="../send.js?v=6" defer></script>\n</body></html>\n')
   open(os.path.join(od,'index.html'),'w',encoding='utf-8').write(page); return od
 if __name__=='__main__':
   dd=os.path.join(HERE,'data'); names=sys.argv[1:] or [f[:-5] for f in sorted(os.listdir(dd)) if f.endswith('.json')]

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- [우리이야기] 404.html · v4 · 261125 · 대표 19:15 OK 대안: 띄우는 단추 없앰(표준 「떠 있는 버튼 금지」) · 앞면 바로 아래 아이콘 한 줄 · 그 아래 연락처 저장 | 내 명함 보내기 · 뒷면은 그 뒤 · 작은 휴대폰에서도 첫 화면에 다 들어옴 · (v3) 261125 · 대표 17:49 OK: 맨 위 「무료 버전 · 나도 디지털 명함 만들기 ›」 · 오른쪽 세로 단추(홈페이지 · 전화 · 이메일 · 길찾기 · 공유하기) 따라다님 · 바닥 고정 「연락처 저장 | 내 명함 보내기」 · (v2) 261125 · 무료 명함에도 홈페이지 · 전화 · 이메일 · 길찾기 단추(적은 칸만 · 대표 17:14) · (v1) 261123 · 디지털 명함 「직접 제작」 보기 — /card/C-1004/ 처럼 파일이 없는 명함 주소를 여기서 서버(recCardGet)로 그려 보여 줌 · 그 밖의 없는 주소는 「찾지 못함」 · 검색에 안 잡힘(404 · noindex) -->
+<!-- [우리이야기] 404.html · v5 · 261126 · 「나도 디지털 명함 만들기」에 ?from=명함번호(이어 만든 셈 · 총괄-024) · (v4) 261125 · 대표 19:15 OK 대안: 띄우는 단추 없앰(표준 「떠 있는 버튼 금지」) · 앞면 바로 아래 아이콘 한 줄 · 그 아래 연락처 저장 | 내 명함 보내기 · 뒷면은 그 뒤 · 작은 휴대폰에서도 첫 화면에 다 들어옴 · (v3) 261125 · 대표 17:49 OK: 맨 위 「무료 버전 · 나도 디지털 명함 만들기 ›」 · 오른쪽 세로 단추(홈페이지 · 전화 · 이메일 · 길찾기 · 공유하기) 따라다님 · 바닥 고정 「연락처 저장 | 내 명함 보내기」 · (v2) 261125 · 무료 명함에도 홈페이지 · 전화 · 이메일 · 길찾기 단추(적은 칸만 · 대표 17:14) · (v1) 261123 · 디지털 명함 「직접 제작」 보기 — /card/C-1004/ 처럼 파일이 없는 명함 주소를 여기서 서버(recCardGet)로 그려 보여 줌 · 그 밖의 없는 주소는 「찾지 못함」 · 검색에 안 잡힘(404 · noindex) -->
 <html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>디지털 명함 · 사랑흐름</title>
@@ -105,7 +105,7 @@ jsonp({action:'recCardGet',no:NO},function(c){
   if(c.status!=='ok'){ miss(c.reason==='HIDDEN'?'잠시 가려 둔 명함입니다':c.reason==='OFF'?'지금은 볼 수 없는 명함입니다':'명함을 찾지 못했습니다',c.msg||''); return; }
   var nm=c.name||c.co, CU='https://uriyagi.kr/card/'+c.no+'/';
   document.title=nm+' · 디지털 명함';
-  pg.innerHTML='<a class="freebadge lk" href="/card/new/"><small>무료 버전</small>나도 디지털 명함 만들기 ›</a>'+
+  pg.innerHTML='<a class="freebadge lk" href="/card/new/?from='+NO+'"><small>무료 버전</small>나도 디지털 명함 만들기 ›</a>'+
     (c.front?'<div class="paper"><img src="'+esc(c.front)+'" alt="'+esc(nm)+' 명함 앞면"></div>':'')+
 (function(){ var I={"home": "<svg viewBox=\"0 0 24 24\"><path d=\"M3 11l9-7 9 7M5 10v10h14V10\"/></svg>", "call": "<svg viewBox=\"0 0 24 24\"><path d=\"M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z\"/></svg>", "mail": "<svg viewBox=\"0 0 24 24\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"2\"/><path d=\"M3 7l9 6 9-6\"/></svg>", "map": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z\"/><circle cx=\"12\" cy=\"9.5\" r=\"2.5\"/></svg>", "share": "<svg viewBox=\"0 0 24 24\"><path d=\"M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5\"/></svg>"}, x=[]; function ac(h,i,l,e){ return '<a href="'+esc(h)+'" aria-label="'+l+'"'+(e?' target="_blank" rel="noopener"':'')+'>'+I[i]+'</a>'; }
       if(c.web){ x.push(ac(/^https?:/i.test(c.web)?c.web:'https://'+c.web,'home','홈페이지',1)); } if(c.tel){ x.push(ac('tel:'+String(c.tel).replace(/[^0-9+]/g,''),'call','전화')); } if(c.mail){ x.push(ac('mailto:'+c.mail,'mail','이메일')); } if(c.addr){ x.push(ac('https://map.naver.com/p/search/'+encodeURIComponent(c.addr),'map','길찾기',1)); }
@@ -113,13 +113,13 @@ jsonp({action:'recCardGet',no:NO},function(c){
     '<div class="pad two"><a class="btn navy" id="save" href="#">연락처 저장</a><a class="btn org" id="send" href="#" data-card="'+esc(c.no)+'" data-tel="'+esc(c.st||c.tel)+'" data-name="'+esc(nm)+'">내 명함 보내기</a></div>'+
         (c.back?'<div class="paper"><img src="'+esc(c.back)+'" alt="'+esc(nm)+' 명함 뒷면" loading="lazy"></div>':'')+
     (c.self?'<div class="selfb">✓ 작성자 본인 확인</div>':'')+
-    '<div class="pad"><a class="btn org" href="/card/new/">나도 디지털 명함 만들기</a></div>'+FT;
+    '<div class="pad"><a class="btn org" href="/card/new/?from='+NO+'">나도 디지털 명함 만들기</a></div>'+FT;
   document.getElementById('save').onclick=function(e){ e.preventDefault(); var ua=navigator.userAgent||''; if(/KAKAOTALK/i.test(ua)){ var here=location.href; if(/Android/i.test(ua)){ location.href='intent://'+here.replace(/^https:\/\//,'')+'#Intent;scheme=https;package=com.android.chrome;end'; } else { location.href='kakaotalk://web/openExternal?url='+encodeURIComponent(here); } return; } var b=new Blob([vcf(c)],{type:'text/vcard;charset=utf-8'}), a=document.createElement('a'); a.href=window.URL.createObjectURL(b); a.download=nm+'.vcf'; document.body.appendChild(a); a.click(); setTimeout(function(){ a.remove(); },500); };
   document.getElementById('share').onclick=function(){ var d={title:nm+' · 디지털 명함',url:CU}; if(navigator.share){ navigator.share(d).catch(function(){}); return; } try{ navigator.clipboard.writeText(CU).then(function(){ toast('링크를 복사했습니다','카카오톡이나 문자 대화창에 붙여넣기 하세요'); }); }catch(x){ toast('이 주소를 보내 주세요',CU); } };
   document.getElementById('rp').onclick=function(e){ e.preventDefault(); var t=document.getElementById('toast'); document.getElementById('tB').textContent='이 명함 신고'; document.getElementById('tP').innerHTML='남의 명함을 허락 없이 쓰는 등 문제가 있으면 적어 주세요. 확인하는 동안 명함을 가려 둡니다.<span class="rpt"><textarea id="rw" maxlength="200"></textarea></span>'; var bt=document.getElementById('tX'); bt.textContent='신고하기'; t.className='on';
     bt.onclick=function(){ var w=(document.getElementById('rw')||{}).value||''; if(!w.trim()){ t.className=''; bt.textContent='확인'; bt.onclick=function(){ t.className=''; }; return; } fetch(GAS,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'recCardReport',no:c.no,why:w})}).then(function(r){return r.json();}).then(function(d){ bt.textContent='확인'; bt.onclick=function(){ t.className=''; location.reload(); }; document.getElementById('tB').textContent=d.status==='ok'?'신고를 받았습니다':'신고하지 못했습니다'; document.getElementById('tP').textContent=d.status==='ok'?'확인하는 동안 명함을 가려 둡니다.':(d.msg||''); }); }; };
   window.cardVcf=vcf(c);
-  var s=document.createElement('script'); s.src='/card/send.js?v=5'; document.body.appendChild(s);
+  var s=document.createElement('script'); s.src='/card/send.js?v=6'; document.body.appendChild(s);
 });
 })();
 </script>
