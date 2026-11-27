@@ -1,11 +1,12 @@
-/* [우리이야기] 완성 명함 틀 v2 · card/look/look.js · 261127 · 대표 17:23 지적: 다른 화면 칸 이름과 겹쳐 이름이 잘리고 상호가 흐림 · 안쪽 칸 이름을 모두 lk- 로 바꿈 · 맨 위 배경 사진(cover · 매장 사진) · 배경 사진이 있으면 머리 높이 키우고 아래로 어둡게 · 홈페이지 아이콘 겹침 걷음 · 맨 아래 글에 링크(나도 만들기 · 사랑흐름 · 우리 이야기)
+/* [우리이야기] 완성 명함 틀 v3 · card/look/look.js · 261127 · 연락처 저장: 서버 연락처 파일 주소(vcfUrl · ①Code v146 recCardVcf)로 엶 · 카카오톡 안에서는 휴대폰 기본 브라우저로 넘겨 엶(전처럼 연락처 앱으로) · 대표 17:30 「파일 다운로드만 됨」
+   (v2) 261127 · 대표 17:23 지적: 다른 화면 칸 이름과 겹쳐 이름이 잘리고 상호가 흐림 · 안쪽 칸 이름을 모두 lk- 로 바꿈 · 맨 위 배경 사진(cover · 매장 사진) · 배경 사진이 있으면 머리 높이 키우고 아래로 어둡게 · 홈페이지 아이콘 겹침 걷음 · 맨 아래 글에 링크(나도 만들기 · 사랑흐름 · 우리 이야기)
    (v1) 261127 · 대표 15:40 OK(시안 v2)
    + 하나의 틀로 무료 명함 · 주문 제작 명함 · 신청 화면 「완성 시안 확인」 · 단체 명함이 함께 씀
    + 판: dk(짙은 판) · lt(밝은 판) · 손님이 고름 · 내용은 같고 색만 다름
    + 공유는 표준 공유 그림 svg(card/C-1002 · 404.html 과 같은 것) · 화면 글자에 화살표 쓰지 않음
    + 아이콘은 tpl/home/build.py IC 와 같은 그림
    쓰는 법: LookCard.render(놓을자리, 자료, '판') · LookCard.theme(놓을자리, '판')
-   자료 칸: cover(맨 위 배경 사진) · name · title · brand · intro · face · mobile · tel · mail · web · addr · mapUrl · links[{k,u,label}] · url(명함 주소 · /card/qrcode.js 를 먼저 부르면 QR을 그 자리에서 그림) · vcf(연락처 파일 주소 · 없으면 그 자리에서 만듦) · no(명함 번호) · qr(QR 그림 주소) */
+   자료 칸: cover(맨 위 배경 사진) · name · title · brand · intro · face · mobile · tel · mail · web · addr · mapUrl · links[{k,u,label}] · url(명함 주소 · /card/qrcode.js 를 먼저 부르면 QR을 그 자리에서 그림) · vcfUrl(서버 연락처 파일 주소 · 있으면 이것을 엶) · vcf(연락처 파일 주소 · 없으면 그 자리에서 만듦) · no(명함 번호) · qr(QR 그림 주소) */
 (function(){
 var IC={
  call:'<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"/>',
@@ -75,7 +76,7 @@ function render(el,d,th){ css(); d=d||{}; var A=acts(d), no=!!d.preview;
    '<div class="lk-nm">'+esc(d.name||'이름')+'</div>'+
    '<div class="lk-ti">'+(d.brand?'<b>'+esc(d.brand)+'</b>':'')+(d.brand&&d.title?' · ':'')+esc(d.title||'')+'</div></div>';
   if(A.length) h+='<nav class="lk-ics">'+A.map(function(x){ var ext=/^https?:/.test(x.u); return '<a href="'+esc(x.u)+'"'+(ext?' target="_blank" rel="noopener"':'')+'><span class="lk-ci">'+g(x.k)+'</span>'+esc(x.label||LBL[x.k]||'링크')+'</a>'; }).join('')+'</nav>';
-  h+='<div class="lk-two"><a class="lk-bt lk-sv" data-lk="save" href="'+esc(d.vcf||'#')+'"'+(d.vcf?' download':'')+'>'+g('save')+'연락처 저장</a>'+
+  h+='<div class="lk-two"><a class="lk-bt lk-sv" data-lk="save" href="'+esc(d.vcfUrl||d.vcf||'#')+'"'+(d.vcf&&!d.vcfUrl?' download':'')+'>'+g('save')+'연락처 저장</a>'+
      '<button class="lk-bt lk-sd" type="button" data-lk="send">'+g('share')+'내 명함 보내기</button></div>'+
      '<p class="lk-hp">「연락처 저장」을 누르면 이 명함 주인 연락처가 내 휴대폰에 저장됩니다</p>';
   if(d.intro) h+='<div class="lk-sc"><h2>소개</h2><p>'+esc(d.intro)+'</p></div>';
@@ -88,7 +89,8 @@ function render(el,d,th){ css(); d=d||{}; var A=acts(d), no=!!d.preview;
   el.innerHTML=h;
   var sv=el.querySelector('[data-lk=save]'), sd=el.querySelector('[data-lk=send]');
   sv.addEventListener('click',function(e){ if(no){ e.preventDefault(); toast('미리 보기입니다 · 발급되면 이 단추로 연락처가 저장됩니다'); return; }
-    if(d.vcf) return; e.preventDefault();
+    var vu=d.vcfUrl||d.vcf; if(vu){ var ua=navigator.userAgent||''; if(/KAKAOTALK/i.test(ua)){ e.preventDefault(); var abs=/^https?:/.test(vu)?vu:location.origin+vu; if(/Android/i.test(ua)){ location.href='intent://'+abs.replace(/^https:\/\//,'')+'#Intent;scheme=https;package=com.android.chrome;end'; } else { location.href='kakaotalk://web/openExternal?url='+encodeURIComponent(abs); } return; } if(d.vcfUrl){ e.preventDefault(); location.href=d.vcfUrl; } return; }   /* v3 */
+    e.preventDefault();
     try{ var b=new Blob([vcf(d)],{type:'text/vcard;charset=utf-8'}), u=URL.createObjectURL(b), a=document.createElement('a'); a.href=u; a.download=(d.name||'명함')+'.vcf'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(function(){ URL.revokeObjectURL(u); },4000); }catch(x){ toast('연락처를 만들지 못했습니다'); } });
   sd.addEventListener('click',function(){ if(no||!d.url){ toast('미리 보기입니다 · 발급되면 카카오톡 · 문자로 이 명함을 보냅니다'); return; }
     var s={title:(d.brand?d.brand+' ':'')+(d.title?d.title+' ':'')+(d.name||'')+' · 디지털 명함',url:d.url};

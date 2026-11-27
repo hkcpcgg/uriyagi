@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- [우리이야기] 404.html · v7 · 261127 · 명함 틀 v2(배경 사진 · 칸 이름 겹침 걷음 · 맨 아래 링크) · (v6) 261127 · 주문 제작 명함(종류 「주문 제작」)은 완성 명함 틀 card/look 으로 그림(판 · 얼굴 · 링크 · QR) · 22회차 · (v5) 261126 · 「나도 디지털 명함 만들기」에 ?from=명함번호(이어 만든 셈 · 총괄-024) · (v4) 261125 · 대표 19:15 OK 대안: 띄우는 단추 없앰(표준 「떠 있는 버튼 금지」) · 앞면 바로 아래 아이콘 한 줄 · 그 아래 연락처 저장 | 내 명함 보내기 · 뒷면은 그 뒤 · 작은 휴대폰에서도 첫 화면에 다 들어옴 · (v3) 261125 · 대표 17:49 OK: 맨 위 「무료 버전 · 나도 디지털 명함 만들기 ›」 · 오른쪽 세로 단추(홈페이지 · 전화 · 이메일 · 길찾기 · 공유하기) 따라다님 · 바닥 고정 「연락처 저장 | 내 명함 보내기」 · (v2) 261125 · 무료 명함에도 홈페이지 · 전화 · 이메일 · 길찾기 단추(적은 칸만 · 대표 17:14) · (v1) 261123 · 디지털 명함 「직접 제작」 보기 — /card/C-1004/ 처럼 파일이 없는 명함 주소를 여기서 서버(recCardGet)로 그려 보여 줌 · 그 밖의 없는 주소는 「찾지 못함」 · 검색에 안 잡힘(404 · noindex) -->
+<!-- [우리이야기] 404.html · v8 · 261127 · 주문 제작 명함 연락처 저장은 서버 연락처 파일(recCardVcf)로 · (v7) 261127 · 명함 틀 v2(배경 사진 · 칸 이름 겹침 걷음 · 맨 아래 링크) · (v6) 261127 · 주문 제작 명함(종류 「주문 제작」)은 완성 명함 틀 card/look 으로 그림(판 · 얼굴 · 링크 · QR) · 22회차 · (v5) 261126 · 「나도 디지털 명함 만들기」에 ?from=명함번호(이어 만든 셈 · 총괄-024) · (v4) 261125 · 대표 19:15 OK 대안: 띄우는 단추 없앰(표준 「떠 있는 버튼 금지」) · 앞면 바로 아래 아이콘 한 줄 · 그 아래 연락처 저장 | 내 명함 보내기 · 뒷면은 그 뒤 · 작은 휴대폰에서도 첫 화면에 다 들어옴 · (v3) 261125 · 대표 17:49 OK: 맨 위 「무료 버전 · 나도 디지털 명함 만들기 ›」 · 오른쪽 세로 단추(홈페이지 · 전화 · 이메일 · 길찾기 · 공유하기) 따라다님 · 바닥 고정 「연락처 저장 | 내 명함 보내기」 · (v2) 261125 · 무료 명함에도 홈페이지 · 전화 · 이메일 · 길찾기 단추(적은 칸만 · 대표 17:14) · (v1) 261123 · 디지털 명함 「직접 제작」 보기 — /card/C-1004/ 처럼 파일이 없는 명함 주소를 여기서 서버(recCardGet)로 그려 보여 줌 · 그 밖의 없는 주소는 「찾지 못함」 · 검색에 안 잡힘(404 · noindex) -->
 <html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>디지털 명함 · 사랑흐름</title>
@@ -109,9 +109,9 @@ jsonp({action:'recCardGet',no:NO},function(c){
     var LKK={'인스타그램':'insta','유튜브':'youtube','블로그':'blog','카카오 채널':'kakao','예약':'book','네이버 플레이스':'map'};
     function lkOf(u){ return /instagram\.com/i.test(u)?'insta':/youtube\.com|youtu\.be/i.test(u)?'youtube':/blog\.naver|tistory|brunch|velog/i.test(u)?'blog':/pf\.kakao|open\.kakao/i.test(u)?'kakao':/place\.naver|naver\.me|map\.naver/i.test(u)?'map':/booking|reserv|catchtable|tablenow/i.test(u)?'book':'web'; }
     function ld(src,cb){ var s=document.createElement('script'); s.src=src; s.onload=cb; s.onerror=cb; document.head.appendChild(s); }
-    ld('/card/qrcode.js',function(){ ld('/card/look/look.js?v=2',function(){
+    ld('/card/qrcode.js',function(){ ld('/card/look/look.js?v=3',function(){
       pg.innerHTML='<div id="lkc"></div>'+FT; pg.style.background='transparent';
-      LookCard.render(document.getElementById('lkc'),{cover:c.cover||'',name:c.name,title:c.title,brand:c.co,intro:c.intro,face:c.face,mobile:c.st||'',tel:c.tel,mail:c.mail,web:c.web,addr:c.addr,url:CU,links:(c.links||[]).map(function(l){ return {k:lkOf(l.u),u:l.u,label:l.label||''}; })},c.th==='lt'?'lt':'dk');
+      LookCard.render(document.getElementById('lkc'),{vcfUrl:GAS?GAS+'?action=recCardVcf&no='+encodeURIComponent(c.no):'',cover:c.cover||'',name:c.name,title:c.title,brand:c.co,intro:c.intro,face:c.face,mobile:c.st||'',tel:c.tel,mail:c.mail,web:c.web,addr:c.addr,url:CU,links:(c.links||[]).map(function(l){ return {k:lkOf(l.u),u:l.u,label:l.label||''}; })},c.th==='lt'?'lt':'dk');
       document.getElementById('rp').onclick=rpOpen;
     }); });
     return;
