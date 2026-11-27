@@ -1,4 +1,5 @@
-/* [우리이야기] 완성 명함 틀 v3 · card/look/look.js · 261127 · 연락처 저장: 서버 연락처 파일 주소(vcfUrl · ①Code v146 recCardVcf)로 엶 · 카카오톡 안에서는 휴대폰 기본 브라우저로 넘겨 엶(전처럼 연락처 앱으로) · 대표 17:30 「파일 다운로드만 됨」
+/* [우리이야기] 완성 명함 틀 v4 · card/look/look.js · 261127 · 보는 분이 짙은 판 · 밝은 판을 골라 봄(d.pick · 맨 위 오른쪽 작은 단추 둘 · 고른 것은 이 휴대폰에 기억) · 대표 17:46
+   (v3) 261127 · 연락처 저장: 서버 연락처 파일 주소(vcfUrl · ①Code v146 recCardVcf)로 엶 · 카카오톡 안에서는 휴대폰 기본 브라우저로 넘겨 엶(전처럼 연락처 앱으로) · 대표 17:30 「파일 다운로드만 됨」
    (v2) 261127 · 대표 17:23 지적: 다른 화면 칸 이름과 겹쳐 이름이 잘리고 상호가 흐림 · 안쪽 칸 이름을 모두 lk- 로 바꿈 · 맨 위 배경 사진(cover · 매장 사진) · 배경 사진이 있으면 머리 높이 키우고 아래로 어둡게 · 홈페이지 아이콘 겹침 걷음 · 맨 아래 글에 링크(나도 만들기 · 사랑흐름 · 우리 이야기)
    (v1) 261127 · 대표 15:40 OK(시안 v2)
    + 하나의 틀로 무료 명함 · 주문 제작 명함 · 신청 화면 「완성 시안 확인」 · 단체 명함이 함께 씀
@@ -28,6 +29,7 @@ var CSS='.lk{--or:#C9A96E;--navy:#1E4A76;max-width:480px;margin:0 auto;overflow:
 '.lk.dk{--bg:#16202B;--fg:#F4EFE7;--sub:#B9C0C8;--box:#212D3A;--ln:#2E3B4A;--ic:#C9A96E}'+
 '.lk.lt{--bg:#FFFFFF;--fg:#222;--sub:#5C636B;--box:#F6F2EB;--ln:#ECE4D8;--ic:#1E4A76}'+
 '.lk *{box-sizing:border-box}.lk a{color:inherit;text-decoration:none}'+
+'.lk .lk-pk{position:absolute;top:10px;right:10px;display:flex;background:rgba(0,0,0,.35);border-radius:20px;padding:3px;gap:2px;z-index:2}.lk .lk-pk button{border:0;background:transparent;color:#fff;font:inherit;font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:16px;cursor:pointer}.lk .lk-pk button.on{background:#fff;color:#1E4A76}.lk{position:relative}'+
 '.lk .lk-cv{height:118px;background:linear-gradient(135deg,#1E4A76,#C9A96E);background-size:cover;background-position:center}.lk .lk-cv.ph{height:190px}'+
 '.lk .lk-who{text-align:center;margin-top:-62px;padding:0 20px}'+
 '.lk .lk-av{width:124px;height:124px;border-radius:50%;object-fit:cover;border:4px solid var(--bg);box-shadow:0 6px 18px rgba(0,0,0,.25);background:var(--box);display:inline-block;vertical-align:top}'+
@@ -71,7 +73,8 @@ function acts(d){ var a=[];
   return a.slice(0,6); }
 function render(el,d,th){ css(); d=d||{}; var A=acts(d), no=!!d.preview;
   var cvs=d.cover?' ph" style="background-image:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.45)),url(\''+esc(d.cover)+'\')':'';
-  var h='<div class="lk '+(th==='lt'?'lt':'dk')+'"><div class="lk-cv'+cvs+'"></div><div class="lk-who">'+
+  if(d.pick){ try{ var sv=localStorage.getItem('lk_th'); if(sv==='dk'||sv==='lt'){ th=sv; } }catch(e0){} }
+  var h='<div class="lk '+(th==='lt'?'lt':'dk')+'">'+(d.pick?'<div class="lk-pk"><button type="button" data-pk="dk" class="'+(th!=='lt'?'on':'')+'">짙게</button><button type="button" data-pk="lt" class="'+(th==='lt'?'on':'')+'">밝게</button></div>':'')+'<div class="lk-cv'+cvs+'"></div><div class="lk-who">'+
    (d.face?'<img class="lk-av" src="'+esc(d.face)+'" alt="'+esc(d.name)+' 사진">':'<span class="lk-av lk-no">'+esc((d.name||'').slice(0,1))+'</span>')+
    '<div class="lk-nm">'+esc(d.name||'이름')+'</div>'+
    '<div class="lk-ti">'+(d.brand?'<b>'+esc(d.brand)+'</b>':'')+(d.brand&&d.title?' · ':'')+esc(d.title||'')+'</div></div>';
@@ -87,6 +90,7 @@ function render(el,d,th){ css(); d=d||{}; var A=acts(d), no=!!d.preview;
      '<p>이 QR을 찍으면 이 명함이 열립니다<br><b>'+esc(d.url?String(d.url).replace(/^https?:\/\//,'').replace(/\/$/,''):'확정하면 명함 주소가 나옵니다')+'</b></p></div>'+
      '<div class="lk-ft"><a class="mk" href="https://uriyagi.kr/card/">나도 디지털 명함 만들기</a><br><a href="https://www.loveflow.ai.kr/">사랑흐름</a> · <a href="https://uriyagi.kr/">우리 이야기</a> 디지털 명함</div></div>';
   el.innerHTML=h;
+  [].forEach.call(el.querySelectorAll('[data-pk]'),function(b){ b.onclick=function(){ var t=b.getAttribute('data-pk'); theme(el,t); [].forEach.call(el.querySelectorAll('[data-pk]'),function(x){ x.className=x===b?'on':''; }); try{ localStorage.setItem('lk_th',t); }catch(e1){} }; });
   var sv=el.querySelector('[data-lk=save]'), sd=el.querySelector('[data-lk=send]');
   sv.addEventListener('click',function(e){ if(no){ e.preventDefault(); toast('미리 보기입니다 · 발급되면 이 단추로 연락처가 저장됩니다'); return; }
     var vu=d.vcfUrl||d.vcf; if(vu){ var ua=navigator.userAgent||''; if(/KAKAOTALK/i.test(ua)){ e.preventDefault(); var abs=/^https?:/.test(vu)?vu:location.origin+vu; if(/Android/i.test(ua)){ location.href='intent://'+abs.replace(/^https:\/\//,'')+'#Intent;scheme=https;package=com.android.chrome;end'; } else { location.href='kakaotalk://web/openExternal?url='+encodeURIComponent(abs); } return; } if(d.vcfUrl){ e.preventDefault(); location.href=d.vcfUrl; } return; }   /* v3 */
