@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!-- [우리이야기] 완성 명함 틀 견본 · card/look · v1 · 261127 · 대표 15:40 OK · 틀은 look.js 하나(짙은 판 · 밝은 판) · 무료 · 주문 제작 · 신청 화면 미리 보기 · 단체 명함이 같은 틀을 씀 -->
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>완성 명함 틀 견본 · 우리 이야기</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/uri-favicon-48.png">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;900&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;background:#E9E4DC;font-family:-apple-system,'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif}
+.top{max-width:480px;margin:0 auto;padding:14px 14px 12px}
+.top h1{margin:0 0 6px;font-size:19px;color:#1E4A76}
+.top p{margin:0;word-break:keep-all;font-size:14.5px;color:#444;line-height:1.55}
+.sw{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.sw button{border:1.5px solid #1E4A76;background:#fff;color:#1E4A76;border-radius:12px;padding:13px;font:inherit;font-size:16px;font-weight:700;cursor:pointer}
+.sw button.on{background:#1E4A76;color:#fff}
+#c{border-radius:22px 22px 0 0;overflow:hidden;max-width:480px;margin:0 auto}
+</style></head><body>
+<div class="top">
+<h1>완성 명함 틀 견본</h1>
+<p>+ 신청이 끝나면 이 꼴의 디지털 명함이 나옵니다<br>+ 짙은 판 · 밝은 판 중에 고르시면 됩니다 · 내용은 같고 색만 다릅니다<br>+ 발급 뒤에도 「내 명함 관리」에서 바꿀 수 있습니다</p>
+<div class="sw"><button type="button" id="bDk" class="on">짙은 판</button><button type="button" id="bLt">밝은 판</button></div>
+</div>
+<div id="c"></div>
+<script src="/card/qrcode.js"></script>
+<script src="/card/look/look.js?v=1"></script>
+<script>
+(function(){
+var c=document.getElementById('c'),d=document.getElementById('bDk'),l=document.getElementById('bLt');
+LookCard.render(c,{
+  name:'황규찬',title:'대표',brand:'사랑흐름',
+  intro:'사랑과 추억이 흐르는 곳.\n가족 · 단체의 이야기를 기록하고 잇습니다.',
+  face:'/card/look/sample-face.jpg',
+  mobile:'010-2355-3565',tel:'070-4158-7786',web:'https://www.loveflow.ai.kr/',
+  addr:'경기도 파주시 매봉길 17-13',mapUrl:'https://map.naver.com/p/entry/place/1748542679',
+  url:'https://uriyagi.kr/card/C-1002/',vcf:'/card/C-1002/hwang-gyuchan.vcf'
+},'dk');
+d.onclick=function(){LookCard.theme(c,'dk');d.className='on';l.className='';};
+l.onclick=function(){LookCard.theme(c,'lt');l.className='on';d.className='';};
+})();
+</script>
+</body></html>
