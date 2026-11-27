@@ -1,10 +1,11 @@
-/* [우리이야기] 완성 명함 틀 v1 · card/look/look.js · 261127 · 대표 15:40 OK(시안 v2)
+/* [우리이야기] 완성 명함 틀 v2 · card/look/look.js · 261127 · 대표 17:23 지적: 다른 화면 칸 이름과 겹쳐 이름이 잘리고 상호가 흐림 · 안쪽 칸 이름을 모두 lk- 로 바꿈 · 맨 위 배경 사진(cover · 매장 사진) · 배경 사진이 있으면 머리 높이 키우고 아래로 어둡게 · 홈페이지 아이콘 겹침 걷음 · 맨 아래 글에 링크(나도 만들기 · 사랑흐름 · 우리 이야기)
+   (v1) 261127 · 대표 15:40 OK(시안 v2)
    + 하나의 틀로 무료 명함 · 주문 제작 명함 · 신청 화면 「완성 시안 확인」 · 단체 명함이 함께 씀
    + 판: dk(짙은 판) · lt(밝은 판) · 손님이 고름 · 내용은 같고 색만 다름
    + 공유는 표준 공유 그림 svg(card/C-1002 · 404.html 과 같은 것) · 화면 글자에 화살표 쓰지 않음
    + 아이콘은 tpl/home/build.py IC 와 같은 그림
    쓰는 법: LookCard.render(놓을자리, 자료, '판') · LookCard.theme(놓을자리, '판')
-   자료 칸: name · title · brand · intro · face · mobile · tel · mail · web · addr · mapUrl · links[{k,u,label}] · url(명함 주소 · /card/qrcode.js 를 먼저 부르면 QR을 그 자리에서 그림) · vcf(연락처 파일 주소 · 없으면 그 자리에서 만듦) · no(명함 번호) · qr(QR 그림 주소) */
+   자료 칸: cover(맨 위 배경 사진) · name · title · brand · intro · face · mobile · tel · mail · web · addr · mapUrl · links[{k,u,label}] · url(명함 주소 · /card/qrcode.js 를 먼저 부르면 QR을 그 자리에서 그림) · vcf(연락처 파일 주소 · 없으면 그 자리에서 만듦) · no(명함 번호) · qr(QR 그림 주소) */
 (function(){
 var IC={
  call:'<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"/>',
@@ -26,31 +27,31 @@ var CSS='.lk{--or:#C9A96E;--navy:#1E4A76;max-width:480px;margin:0 auto;overflow:
 '.lk.dk{--bg:#16202B;--fg:#F4EFE7;--sub:#B9C0C8;--box:#212D3A;--ln:#2E3B4A;--ic:#C9A96E}'+
 '.lk.lt{--bg:#FFFFFF;--fg:#222;--sub:#5C636B;--box:#F6F2EB;--ln:#ECE4D8;--ic:#1E4A76}'+
 '.lk *{box-sizing:border-box}.lk a{color:inherit;text-decoration:none}'+
-'.lk .cv{height:118px;background:linear-gradient(135deg,#1E4A76,#C9A96E)}'+
-'.lk .who{text-align:center;margin-top:-62px;padding:0 20px}'+
-'.lk .av{width:124px;height:124px;border-radius:50%;object-fit:cover;border:4px solid var(--bg);box-shadow:0 6px 18px rgba(0,0,0,.25);background:var(--box);display:inline-block;vertical-align:top}'+
-'.lk .av.no{display:inline-grid;place-items:center;font-size:44px;font-weight:900;color:var(--ic);font-family:"Noto Serif KR",serif}'+
-'.lk .nm{font-family:"Noto Serif KR","Nanum Myeongjo",serif;font-size:32px;font-weight:900;letter-spacing:4px;margin:10px 0 0;line-height:1.2;word-break:keep-all}'+
-'.lk .ti{font-size:16px;color:var(--sub);margin-top:4px;word-break:keep-all}.lk .ti b{color:var(--or);font-weight:700}'+
-'.lk .ics{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;padding:20px 12px 4px}'+
-'.lk .ics a{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:13px;width:60px}'+
-'.lk .ci{width:52px;height:52px;border-radius:50%;background:var(--box);border:1px solid var(--ln);display:grid;place-items:center;color:var(--ic)}'+
-'.lk svg.g{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;display:block;flex:0 0 auto}'+
-'.lk .two{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:18px 16px 6px}'+
-'.lk .bt{display:flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:14px;padding:16px 8px;font:inherit;font-size:17px;font-weight:700;cursor:pointer;width:100%}'+
-'.lk .sv{background:#1E4A76;color:#fff}.lk .sd{background:#C9A96E;color:#2E3A46}'+
-'.lk .hp{padding:0 16px;margin:0;font-size:13px;color:var(--sub);text-align:center;word-break:keep-all}'+
-'.lk .sc{margin:16px 16px 0;background:var(--box);border:1px solid var(--ln);border-radius:16px;padding:16px}'+
-'.lk .sc h2{margin:0 0 8px;font-size:13px;letter-spacing:3px;color:var(--or)}.lk .sc p{margin:0;font-size:16px;white-space:pre-line;word-break:keep-all}'+
-'.lk .rw{display:flex;gap:10px;align-items:flex-start;padding:8px 0;font-size:15.5px;border-top:1px solid var(--ln);word-break:break-all}.lk .rw:first-of-type{border-top:0}.lk .rw svg.g{color:var(--ic);margin-top:1px}'+
-'.lk .qr{display:flex;gap:14px;align-items:center}.lk .qr img,.lk .qr i,.lk .qr .qv{width:96px;height:96px;border-radius:10px;background:#fff;padding:4px;flex:0 0 auto}'+
-'.lk .qr i{display:grid;place-items:center;font-style:normal;font-size:12px;color:#888;text-align:center}'+
-'.lk .qr .qv svg{width:100%;height:100%;display:block}.lk .qr p{font-size:14.5px}.lk .qr b{color:var(--or)}'+
-'.lk .ft{margin-top:18px;padding:12px 16px 20px;font-size:11px;color:var(--sub);text-align:center;border-top:1px solid var(--ln)}'+
+'.lk .lk-cv{height:118px;background:linear-gradient(135deg,#1E4A76,#C9A96E);background-size:cover;background-position:center}.lk .lk-cv.ph{height:190px}'+
+'.lk .lk-who{text-align:center;margin-top:-62px;padding:0 20px}'+
+'.lk .lk-av{width:124px;height:124px;border-radius:50%;object-fit:cover;border:4px solid var(--bg);box-shadow:0 6px 18px rgba(0,0,0,.25);background:var(--box);display:inline-block;vertical-align:top}'+
+'.lk .lk-av.lk-no{display:inline-grid;place-items:center;font-size:44px;font-weight:900;color:var(--ic);font-family:"Noto Serif KR",serif}'+
+'.lk .lk-nm{font-family:"Noto Serif KR","Nanum Myeongjo",serif;font-size:32px;font-weight:900;letter-spacing:4px;margin:10px 0 0;line-height:1.2;word-break:keep-all}'+
+'.lk .lk-ti{font-size:16px;color:var(--sub);margin-top:4px;word-break:keep-all}.lk .lk-ti b{color:var(--or);font-weight:700}'+
+'.lk .lk-ics{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;padding:20px 12px 4px}'+
+'.lk .lk-ics a{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:13px;width:60px}'+
+'.lk .lk-ci{width:52px;height:52px;border-radius:50%;background:var(--box);border:1px solid var(--ln);display:grid;place-items:center;color:var(--ic)}'+
+'.lk svg.lk-g{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;display:block;flex:0 0 auto}'+
+'.lk .lk-two{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:18px 16px 6px}'+
+'.lk .lk-bt{display:flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:14px;padding:16px 8px;font:inherit;font-size:17px;font-weight:700;cursor:pointer;width:100%}'+
+'.lk .lk-sv{background:#1E4A76;color:#fff}.lk .lk-sd{background:#C9A96E;color:#2E3A46}'+
+'.lk .lk-hp{padding:0 16px;margin:0;font-size:13px;color:var(--sub);text-align:center;word-break:keep-all}'+
+'.lk .lk-sc{margin:16px 16px 0;background:var(--box);border:1px solid var(--ln);border-radius:16px;padding:16px}'+
+'.lk .lk-sc h2{margin:0 0 8px;font-size:13px;letter-spacing:3px;color:var(--or)}.lk .lk-sc p{margin:0;font-size:16px;white-space:pre-line;word-break:keep-all}'+
+'.lk .lk-rw{display:flex;gap:10px;align-items:flex-start;padding:8px 0;font-size:15.5px;border-top:1px solid var(--ln);word-break:break-all}.lk .lk-rw:first-of-type{border-top:0}.lk .lk-rw svg.lk-g{color:var(--ic);margin-top:1px}'+
+'.lk .lk-qr{display:flex;gap:14px;align-items:center}.lk .lk-qr img,.lk .lk-qr i,.lk .lk-qr .lk-qv{width:96px;height:96px;border-radius:10px;background:#fff;padding:4px;flex:0 0 auto}'+
+'.lk .lk-qr i{display:grid;place-items:center;font-style:normal;font-size:12px;color:#888;text-align:center}'+
+'.lk .lk-qr .lk-qv svg{width:100%;height:100%;display:block}.lk .lk-qr p{font-size:14.5px}.lk .lk-qr b{color:var(--or)}'+
+'.lk .lk-ft{margin-top:18px;padding:14px 16px 22px;font-size:13px;color:var(--sub);text-align:center;border-top:1px solid var(--ln);line-height:1.9}.lk .lk-ft a{color:var(--or);font-weight:700;text-decoration:underline;text-underline-offset:3px}.lk .lk-ft a.mk{display:inline-block;text-decoration:none;border:1.5px solid var(--or);border-radius:20px;padding:4px 14px;margin-bottom:6px}'+
 '.lk-t{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#2E3A46;color:#fff;border-radius:12px;padding:12px 16px;font-size:15px;opacity:0;transition:opacity .2s;pointer-events:none;max-width:90vw;z-index:50;text-align:center}.lk-t.on{opacity:1}';
 function css(){ if(document.getElementById('lkCss')) return; var s=document.createElement('style'); s.id='lkCss'; s.textContent=CSS; document.head.appendChild(s); }
 function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
-function g(k){ return '<svg class="g" viewBox="0 0 24 24" aria-hidden="true">'+(IC[k]||IC.web)+'</svg>'; }
+function g(k){ return '<svg class="lk-g" viewBox="0 0 24 24" aria-hidden="true">'+(IC[k]||IC.web)+'</svg>'; }
 function digits(s){ return String(s||'').replace(/[^0-9+]/g,''); }
 function toast(m){ var t=document.querySelector('.lk-t'); if(!t){ t=document.createElement('div'); t.className='lk-t'; document.body.appendChild(t); } t.textContent=m; t.className='lk-t on'; clearTimeout(toast.h); toast.h=setTimeout(function(){ t.className='lk-t'; },2600); }
 function vcf(d){ var L=['BEGIN:VCARD','VERSION:3.0','N:'+(d.name||'').slice(0,1)+';'+(d.name||'').slice(1)+';;;','FN:'+(d.name||'')];
@@ -64,24 +65,26 @@ function acts(d){ var a=[];
   if(d.mobile) a.push({k:'sms',u:'sms:'+digits(d.mobile)});
   if(d.web) a.push({k:'web',u:d.web});
   if(d.addr) a.push({k:'map',u:d.mapUrl||('https://map.naver.com/p/search/'+encodeURIComponent(d.addr))});
-  (d.links||[]).forEach(function(x){ if(x&&x.u&&a.length<6) a.push(x); });
+  function nu(u){ return String(u||'').toLowerCase().replace(/^https?:\/\//,'').replace(/^www\./,'').replace(/\/+$/,''); }
+  (d.links||[]).forEach(function(x){ if(!x||!x.u||a.length>=6) return; if(a.some(function(y){ return nu(y.u)===nu(x.u); })) return; a.push(x); });   /* v2 같은 주소 두 번 걷음 */
   return a.slice(0,6); }
 function render(el,d,th){ css(); d=d||{}; var A=acts(d), no=!!d.preview;
-  var h='<div class="lk '+(th==='lt'?'lt':'dk')+'"><div class="cv"></div><div class="who">'+
-   (d.face?'<img class="av" src="'+esc(d.face)+'" alt="'+esc(d.name)+' 사진">':'<span class="av no">'+esc((d.name||'').slice(0,1))+'</span>')+
-   '<div class="nm">'+esc(d.name||'이름')+'</div>'+
-   '<div class="ti">'+(d.brand?'<b>'+esc(d.brand)+'</b>':'')+(d.brand&&d.title?' · ':'')+esc(d.title||'')+'</div></div>';
-  if(A.length) h+='<nav class="ics">'+A.map(function(x){ var ext=/^https?:/.test(x.u); return '<a href="'+esc(x.u)+'"'+(ext?' target="_blank" rel="noopener"':'')+'><span class="ci">'+g(x.k)+'</span>'+esc(x.label||LBL[x.k]||'링크')+'</a>'; }).join('')+'</nav>';
-  h+='<div class="two"><a class="bt sv" data-lk="save" href="'+esc(d.vcf||'#')+'"'+(d.vcf?' download':'')+'>'+g('save')+'연락처 저장</a>'+
-     '<button class="bt sd" type="button" data-lk="send">'+g('share')+'내 명함 보내기</button></div>'+
-     '<p class="hp">「연락처 저장」을 누르면 이 명함 주인 연락처가 내 휴대폰에 저장됩니다</p>';
-  if(d.intro) h+='<div class="sc"><h2>소개</h2><p>'+esc(d.intro)+'</p></div>';
+  var cvs=d.cover?' ph" style="background-image:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.45)),url(\''+esc(d.cover)+'\')':'';
+  var h='<div class="lk '+(th==='lt'?'lt':'dk')+'"><div class="lk-cv'+cvs+'"></div><div class="lk-who">'+
+   (d.face?'<img class="lk-av" src="'+esc(d.face)+'" alt="'+esc(d.name)+' 사진">':'<span class="lk-av lk-no">'+esc((d.name||'').slice(0,1))+'</span>')+
+   '<div class="lk-nm">'+esc(d.name||'이름')+'</div>'+
+   '<div class="lk-ti">'+(d.brand?'<b>'+esc(d.brand)+'</b>':'')+(d.brand&&d.title?' · ':'')+esc(d.title||'')+'</div></div>';
+  if(A.length) h+='<nav class="lk-ics">'+A.map(function(x){ var ext=/^https?:/.test(x.u); return '<a href="'+esc(x.u)+'"'+(ext?' target="_blank" rel="noopener"':'')+'><span class="lk-ci">'+g(x.k)+'</span>'+esc(x.label||LBL[x.k]||'링크')+'</a>'; }).join('')+'</nav>';
+  h+='<div class="lk-two"><a class="lk-bt lk-sv" data-lk="save" href="'+esc(d.vcf||'#')+'"'+(d.vcf?' download':'')+'>'+g('save')+'연락처 저장</a>'+
+     '<button class="lk-bt lk-sd" type="button" data-lk="send">'+g('share')+'내 명함 보내기</button></div>'+
+     '<p class="lk-hp">「연락처 저장」을 누르면 이 명함 주인 연락처가 내 휴대폰에 저장됩니다</p>';
+  if(d.intro) h+='<div class="lk-sc"><h2>소개</h2><p>'+esc(d.intro)+'</p></div>';
   var R=[]; if(d.mobile) R.push(['mobile',d.mobile]); if(d.tel) R.push(['call',d.tel]); if(d.mail) R.push(['mail',d.mail]);
   if(d.web) R.push(['web',String(d.web).replace(/^https?:\/\//,'').replace(/\/$/,'')]); if(d.addr) R.push(['map',d.addr]);
-  if(R.length) h+='<div class="sc"><h2>연락처</h2>'+R.map(function(r){ return '<div class="rw">'+g(r[0])+'<span>'+esc(r[1])+'</span></div>'; }).join('')+'</div>';
-  h+='<div class="sc qr">'+(d.qr?'<img src="'+esc(d.qr)+'" alt="명함 QR">':(d.url&&window.qrcode?'<span class="qv">'+qrSvg(d.url)+'</span>':'<i>확정하면<br>QR이<br>나옵니다</i>'))+
+  if(R.length) h+='<div class="lk-sc"><h2>연락처</h2>'+R.map(function(r){ return '<div class="lk-rw">'+g(r[0])+'<span>'+esc(r[1])+'</span></div>'; }).join('')+'</div>';
+  h+='<div class="lk-sc lk-qr">'+(d.qr?'<img src="'+esc(d.qr)+'" alt="명함 QR">':(d.url&&window.qrcode?'<span class="lk-qv">'+qrSvg(d.url)+'</span>':'<i>확정하면<br>QR이<br>나옵니다</i>'))+
      '<p>이 QR을 찍으면 이 명함이 열립니다<br><b>'+esc(d.url?String(d.url).replace(/^https?:\/\//,'').replace(/\/$/,''):'확정하면 명함 주소가 나옵니다')+'</b></p></div>'+
-     '<div class="ft">사랑흐름 · 우리 이야기 디지털 명함</div></div>';
+     '<div class="lk-ft"><a class="mk" href="https://uriyagi.kr/card/">나도 디지털 명함 만들기</a><br><a href="https://www.loveflow.ai.kr/">사랑흐름</a> · <a href="https://uriyagi.kr/">우리 이야기</a> 디지털 명함</div></div>';
   el.innerHTML=h;
   var sv=el.querySelector('[data-lk=save]'), sd=el.querySelector('[data-lk=send]');
   sv.addEventListener('click',function(e){ if(no){ e.preventDefault(); toast('미리 보기입니다 · 발급되면 이 단추로 연락처가 저장됩니다'); return; }
