@@ -2027,6 +2027,7 @@ function boot(){ try{ if(!/[?&]hq=1/.test(location.search)){ bookTop(); } }catch
   PS_OPEN=(sp.get('ps')||'').replace(/[^A-Za-z0-9.-]/g,'').slice(0,240); OPEN_R=(sp.get('r')||'').replace(/[^A-Za-z0-9-]/g,'').slice(0,20); OPEN_P=(sp.get('p')||'').replace(/[^A-Za-z0-9-]/g,'').slice(0,20);   /* ★v161 누른 사진(묶음 안 몇 번째) */
   var sn=(sp.get('sn')||'').replace(/[^a-z0-9]/g,'').slice(0,8); if(sn&&sn!==sget('lf_shn')){ var olds=!!sget(KEY); sset('lf_shn',sn); sset('lf_shn_st',olds?'old':''); setTimeout(function(){ shLog('열림','',sn); },3000); }   /* ★v165 알림 1단계 — 카톡으로 받은 링크로 열림 · 첫 화면을 다 그린 뒤 보냄 · 이미 이 기기에 방이 있던 분은 입장 · 남김을 세지 않음 */
   var code=(sp.get('code')||'').trim(), kerr=(sp.get('error')||'').trim();
+  if((code||kerr)&&sp.get('state')==='card_o'){ location.replace('/card/order/'+(code?'?code='+encodeURIComponent(code):'?kerr=1')); return; }   /* ★261127 주문 제작 신청(card/order · 시안 v4) 카카오 돌아오는 길 */
   if((code||kerr)&&/^card/.test(sp.get('state')||'')){ location.replace('/card/new/'+(code?'?code='+encodeURIComponent(code):'?kerr=1')+(sp.get('state')==='card_t'?'&t=1':'')); return; }   /* ★v235 state=card_t = 시험 휴대폰 표(?t=1)를 카카오 왕복 뒤에도 이어 줌 */   /* ★v232 디지털 명함 만들기 — 카카오가 돌려보낸 것을 만들기 화면으로 */
   if(code||kerr){ kakaoBack(code,kerr,sp.get('state')||''); return; }
   var ss=(sp.get('s')||'').replace(/[^a-f0-9]/gi,'').slice(0,20).toLowerCase(); if(ss.length===20){ rcvBoot(ss); return; }   /* ★v67 388 받는 분 화면 */
