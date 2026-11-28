@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- [우리이야기] 사랑흐름 명함 전시관 · card/hall · v1 · 261127 · 시안 v3 대표 OK(12:52) · 견본 모음(home/index.html) 꼴 그대로 · 무료 · 유료 · 주문제작 표시 = 사랑흐름 서비스 이용(/use/) 색과 말 · 목록 = 서버 recCardHall(①Code v135 · 전시에 올린 열린 명함만) + 견본 · 들어올 때마다 무작위 · 맨 아래 = 사랑흐름 lf-foot.js -->
+<!-- [261128 위 띠 card/bar.js · 사용 안내 펼치기 card/howto.js]  [우리이야기] 사랑흐름 명함 전시관 · card/hall · v1 · 261127 · 시안 v3 대표 OK(12:52) · 견본 모음(home/index.html) 꼴 그대로 · 무료 · 유료 · 주문제작 표시 = 사랑흐름 서비스 이용(/use/) 색과 말 · 목록 = 서버 recCardHall(①Code v135 · 전시에 올린 열린 명함만) + 견본 · 들어올 때마다 무작위 · 맨 아래 = 사랑흐름 lf-foot.js -->
 <html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="사람 · 사업장 · 단체를 만나는 곳 · 사랑흐름 명함 전시관">
@@ -94,6 +94,7 @@ ol.st{margin:6px 0 0;padding-left:20px}ol.st li{margin:2px 0}
 <div class="mg" id="mg"></div>
 <div id="empty">찾는 명함이 없습니다</div>
 <a class="btn org" href="/card/new/" style="margin-top:18px">나도 디지털 명함 만들기</a>
+<div data-howto="loop,make,room"></div>
 <div class="mini"><a href="https://www.loveflow.ai.kr/use/">서비스 이용 구분 · 무료 · 유료 · 주문제작<i>›</i></a></div>
 <div id="lfFoot"></div><script src="https://www.loveflow.ai.kr/lf-foot.js" defer></script>
 </div>
@@ -140,4 +141,6 @@ if(GAS){ fetch(GAS,{method:'POST',headers:{'Content-Type':'text/plain;charset=ut
 }).catch(function(){}); }
 })();
 </script>
+<script src="/card/bar.js?v=1" defer></script>
+<script src="/card/howto.js?v=1" defer></script>
 </body></html>

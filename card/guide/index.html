@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- [우리이야기] 디지털 명함 · 모바일 홈페이지 사용 안내 · card/guide · v1 · 261128 · 대표님 요청 10시 30분(손님용 · 순한 말 · 돌고 도는 흐름 · 사랑흐름 게시판 · 모바일 홈페이지에서 링크로 부름) · 지금 있는 기능만 적음 -->
+<!-- [261128 위 띠 card/bar.js]  [우리이야기] 디지털 명함 · 모바일 홈페이지 사용 안내 · card/guide · v1 · 261128 · 대표님 요청 10시 30분(손님용 · 순한 말 · 돌고 도는 흐름 · 사랑흐름 게시판 · 모바일 홈페이지에서 링크로 부름) · 지금 있는 기능만 적음 -->
 <html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>디지털 명함 · 모바일 홈페이지 사용 안내 · 사랑흐름</title>
@@ -83,7 +83,7 @@ details div{padding:0 14px 12px;font-size:15px}
 </section>
 
 <section class="sec" id="s6"><h2><span class="n">6</span>내 명함 고치고 관리하기</h2>
-<ul class="p"><li>카카오로 들어오시면 내가 만든 명함이 모여 있어요</li><li>주문 제작 명함은 얼굴 · 가게 사진 · 판 · 글자를 직접 고치고, 고친 모습을 바로 볼 수 있어요</li><li>명함마다 전시관에 올릴지 정해요</li><li>맨 아래 「내 주문」에서 주문 제작 진행을 확인해요</li></ul>
+<ul class="p"><li>카카오로 들어오시면 내가 만든 명함이 모여 있어요</li><li>주문 제작 명함은 얼굴 · 가게 사진 · 판 · 글자를 직접 고치고, 고친 모습을 바로 볼 수 있어요</li><li>잠시 쉬고 싶으면 「내리기」, 다시 보이려면 「다시 열기」</li><li>명함마다 전시관에 올릴지 정해요</li><li>맨 아래 「내 주문」에서 주문 제작 진행을 확인해요</li></ul>
 <a class="go ln" href="/card/my/">내 명함 관리 ›</a>
 </section>
 
@@ -114,4 +114,5 @@ details div{padding:0 14px 12px;font-size:15px}
 <script>
 {const b=document.querySelectorAll('[data-t]');b.forEach(x=>x.onclick=()=>{b.forEach(z=>z.classList.toggle('on',z===x));document.getElementById('tg').hidden=x.dataset.t!=='g';document.getElementById('ti').hidden=x.dataset.t!=='i';});}
 </script>
+<script src="/card/bar.js?v=1" defer></script>
 </body></html>

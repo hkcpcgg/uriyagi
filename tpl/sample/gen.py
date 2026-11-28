@@ -74,6 +74,8 @@ def page(p):
         '<header class="cover">%s<div class="cv-t"><h1>%s</h1><p>%s</p></div></header>' % (cv, e(p['title']), e(p['sub'])),
     ]
     body += p['body']
+    if not p['id']:
+        body.append('<div data-howto="home,loop,faq"></div>')  # 261128 사용 안내 펼치기 card/howto.js
     body.append('<div class="mini">' + ''.join('<a href="%s"%s>%s<i>›</i></a>' % (u, ' data-s="1"' if u == '#s' else '', e(t)) for t, u in p['mini']) + '</div>')
     body.append('<footer class="ft"><div><a href="https://www.loveflow.ai.kr/use/"><b>사랑흐름</b></a> · 디지털 명함 · 모바일 홈페이지 제작 © 2026 사랑흐름 · LFRI™ · 무단 복제 · 배포 · 상업적 이용 금지 · All rights reserved</div></footer>')
     out = '''<!DOCTYPE html>
@@ -99,8 +101,8 @@ document.addEventListener('click',function(e){ var a=e.target.closest('[data-s]'
 document.addEventListener('focusin',function(e){ if(e.target.matches&&e.target.matches('input[data-s]')){ e.target.blur(); sh(); } });
 })();
 </script>
-</body></html>
-''' % dict(id=p['id'], desc=e(p['desc']), title=e(p['title']), og=p.get('og', ''), css=CSS, body='\n'.join(body))
+%(hw)s</body></html>
+''' % dict(hw=('' if p['id'] else '<script src="/card/howto.js?v=1" defer></script>\n'), id=p['id'], desc=e(p['desc']), title=e(p['title']), og=p.get('og', ''), css=CSS, body='\n'.join(body))
     d = os.path.join(ROOT, 'home', p['id']); os.makedirs(d, exist_ok=True)
     open(os.path.join(d, 'index.html'), 'w', encoding='utf-8').write(out)
     print('home/%s' % (p['id'] + '/' if p['id'] else ''))
